@@ -1,0 +1,36 @@
+:: Start
+Hi there, what's your name mate? $hi
+[[Gui|gui]] $gui
+[[I dont know!|dont know]] $dontknow
+
+
+:: gui
+I see, That's a pretty neat name, I must say. Who gave you that name? $isee
+
+[[My mother|mother]] $mother
+[[Who cares? Can you help me or not?|who cares]] $whocares
+
+
+:: mother
+She's a smart person. $smartmom
+
+
+:: dont know
+That's too sad... $sad
+
+[[Oh really? I couldn't figure that out by myself...|oh really?]] $ohreally
+[[Yeah... I feel sad|i feel sad]] $ifeelsad
+
+
+:: who cares
+Get out of here then $outofhere
+
+
+:: i feel sad
+Here, I'll help you. Take this bread. $bread
+
+
+:: oh really?
+Well then smartass. Go look for help in the sewers $sewers
+
+

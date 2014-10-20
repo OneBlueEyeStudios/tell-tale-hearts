@@ -1,0 +1,50 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Standard Assets/Character Controllers/Sources/Scripts/FPSInputController.js">
+    <Files>
+      <File FileName="Assets/Scripts/TweeDatabase.cs" Line="76" Column="24" />
+      <File FileName="Assets/Scripts/FMOD_Test.cs" Line="21" Column="41" />
+      <File FileName="Assets/Plugins/FMOD/FMOD_StudioSystem.cs" Line="1" Column="1" />
+      <File FileName="Assets/Plugins/FMOD/FMOD_Listener.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/FMOD_TestRain.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Rotate.cs" Line="1" Column="1" />
+      <File FileName="Assets/Shaders/GlowItem.shader" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CharView.cs" Line="1" Column="1" />
+      <File FileName="Assets/Standard Assets/Character Controllers/Sources/Scripts/MouseLook.cs" Line="1" Column="1" />
+      <File FileName="Assets/Standard Assets/Character Controllers/Sources/Scripts/CharacterMotor.js" Line="1" Column="1" />
+      <File FileName="Assets/Standard Assets/Character Controllers/Sources/Scripts/FPSInputController.js" Line="1" Column="1" />
+      <File FileName="Assets/Editor/TweeProcessor.cs" Line="182" Column="3" />
+      <File FileName="Assets/Scripts/TweePassage.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/TweeManager.cs" Line="9" Column="43" />
+      <File FileName="Assets/Scripts/SoundManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Editor/TweeDatabaseCreator.cs" Line="63" Column="27" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Scripts" expanded="True" />
+          </Node>
+          <Node name="Assembly-CSharp-Editor" expanded="True">
+            <Node name="Editor" expanded="True" />
+          </Node>
+          <Node name="Assembly-UnityScript-firstpass" expanded="True">
+            <Node name="Standard Assets" expanded="True">
+              <Node name="Character Controllers" expanded="True">
+                <Node name="Sources" expanded="True">
+                  <Node name="Scripts" expanded="True">
+                    <Node name="FPSInputController.js" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
