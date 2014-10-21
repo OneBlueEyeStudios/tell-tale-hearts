@@ -43,6 +43,8 @@ public class TweeProcessor : AssetPostprocessor
 										database.addNewDialogue (dialogue._id, dialogue);
 								}
 						}
+						EditorUtility.SetDirty(database);
+						AssetDatabase.SaveAssets();
 				}
 
 

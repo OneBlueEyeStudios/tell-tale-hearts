@@ -15,6 +15,7 @@ public class TweeManager : MonoBehaviour {
 	public TweeDialogue _currentDialogue;
 
 
+	public GameObject _dialogueBox;
 	public Text _body, _transition1, _transition2;
 
 	public string teste;
@@ -119,9 +120,10 @@ public class TweeManager : MonoBehaviour {
 
 	void setEnabledText(bool enabled)
 	{
-		_body.gameObject.SetActive (enabled);
+		_dialogueBox.SetActive (enabled);
+		/*_body.gameObject.SetActive (enabled);
 		_transition1.gameObject.SetActive (enabled);
-		_transition2.gameObject.SetActive (enabled);
+		_transition2.gameObject.SetActive (enabled);*/
 	}
 
 	IEnumerator ClearConsole()
