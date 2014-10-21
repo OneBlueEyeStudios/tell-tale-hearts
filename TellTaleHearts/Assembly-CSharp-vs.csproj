@@ -208,6 +208,9 @@
      <Compile Include="Assets\Scripts\Twine\TweeDatabase.cs" />
      <Compile Include="Assets\Scripts\Twine\TweeManager.cs" />
      <Compile Include="Assets\Scripts\Twine\TweePassage.cs" />
+     <Compile Include="Assets\Scripts\UI\FadeInScene.cs" />
+     <Compile Include="Assets\Scripts\UI\FadeOutScene.cs" />
+     <Compile Include="Assets\Scripts\UI\SplashScreen.cs" />
      <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\NGUI\ReadMe - 3.7.4.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />

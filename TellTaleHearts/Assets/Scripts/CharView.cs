@@ -21,7 +21,7 @@ public class CharView : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
-	
+			
 		}
 
 		void lightUpObject (GameObject go)
