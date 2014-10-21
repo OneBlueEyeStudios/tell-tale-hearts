@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class TweeDatabaseCreator{
 
-	static string dbPath = "Assets/TweeDatabase.asset";
+	static string dbPath = "Assets/Twine/TweeDatabase.asset";
 
 	[MenuItem ("TellTale/Create Twee Database")]
 	static TweeDatabase createTweeDatabase()
