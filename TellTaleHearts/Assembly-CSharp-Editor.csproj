@@ -205,7 +205,7 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/Editor/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="JMOAssets">
- <HintPath>/Users/guilherme_cunha/Dev/tell-tale-hearts/TellTaleHearts/Assets/JMO Assets/Editor/JMOAssets.dll</HintPath>
+ <HintPath>/Users/wei_li/tell-tale-hearts/TellTaleHearts/Assets/JMO Assets/Editor/JMOAssets.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.Graphs.dll</HintPath>

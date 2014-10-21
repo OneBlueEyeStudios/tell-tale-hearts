@@ -274,7 +274,7 @@
      <None Include="Assets\NGUI\Examples\Resources\Localization.txt" />
      <None Include="Assets\Shaders\GlowItem.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>/Users/guilherme_cunha/Dev/tell-tale-hearts/TellTaleHearts/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>/Users/wei_li/tell-tale-hearts/TellTaleHearts/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>

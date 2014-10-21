@@ -199,10 +199,10 @@
      <None Include="Assets\NGUI\Examples\Resources\Localization.txt" />
      <None Include="Assets\Shaders\GlowItem.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>/Users/guilherme_cunha/Dev/tell-tale-hearts/TellTaleHearts/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>/Users/wei_li/tell-tale-hearts/TellTaleHearts/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="Assembly-UnityScript">
- <HintPath>/Users/guilherme_cunha/Dev/tell-tale-hearts/TellTaleHearts/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ <HintPath>/Users/wei_li/tell-tale-hearts/TellTaleHearts/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
@@ -211,7 +211,7 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/Editor/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="JMOAssets">
- <HintPath>/Users/guilherme_cunha/Dev/tell-tale-hearts/TellTaleHearts/Assets/JMO Assets/Editor/JMOAssets.dll</HintPath>
+ <HintPath>/Users/wei_li/tell-tale-hearts/TellTaleHearts/Assets/JMO Assets/Editor/JMOAssets.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.Graphs.dll</HintPath>
