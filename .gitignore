@@ -14,5 +14,16 @@
 /*.booproj
 /*.DS_Store
 
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.DS_Store
+
+
 #Unity3D Generated File On Crash Reports
 sysinfo.txt

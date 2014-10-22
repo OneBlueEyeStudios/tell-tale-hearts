@@ -98,7 +98,8 @@ public class CharView : MonoBehaviour
 				}
 
 				if (_currentlyCentered != null) {
-						if (Input.GetButtonDown ("Fire1")) {
+						//if (Input.GetButtonDown ("Fire1")) {
+			if (Input.GetKeyDown(KeyCode.E)) {
 
 								//Debug.LogWarning ("_currentlyCentered.layer:" + _currentlyCentered.layer);
 								if (_currentlyCentered.layer == LayerMasks.GrabbableLayerIndex) {
@@ -126,13 +127,14 @@ public class CharView : MonoBehaviour
 
 										}
 								} else if (_currentlyCentered.layer == LayerMasks.InteractableLayerIndex) {
-										Debug.LogWarning ("aisjdasjdlajsd");
+										//Debug.LogWarning ("aisjdasjdlajsd");
 
 										Interactable interactable = _currentlyCentered.GetComponent<Interactable> ();
 										interactable.interact ();
 								}
 						}
-						else if (Input.GetButtonDown ("Fire2")) {
+						//else if (Input.GetButtonDown ("Fire2")) {
+			else if (Input.GetKeyDown(KeyCode.P)){
 								if (!_mouseLookEnabled) {
 
 					_currentlyCentered.GetComponent<Item>().putInInventory();
