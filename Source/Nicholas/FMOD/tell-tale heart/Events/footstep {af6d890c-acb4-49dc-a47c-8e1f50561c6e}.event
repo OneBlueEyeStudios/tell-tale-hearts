@@ -5,7 +5,7 @@
             <value>footstep</value>
         </property>
         <relationship name="folder">
-            <destination>{4d24cb0c-97a0-4bc5-989b-be0e9367b8c5}</destination>
+            <destination>{5ccc429e-206e-4f23-a058-0685d9637ce9}</destination>
         </relationship>
         <relationship name="mixer">
             <destination>{67706367-1035-4007-8264-d8a862818196}</destination>

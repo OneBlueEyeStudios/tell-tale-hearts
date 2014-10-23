@@ -5,7 +5,7 @@
             <value>room tone</value>
         </property>
         <relationship name="folder">
-            <destination>{4d24cb0c-97a0-4bc5-989b-be0e9367b8c5}</destination>
+            <destination>{79327631-a6ae-4440-b7d1-b05564c08389}</destination>
         </relationship>
         <relationship name="mixer">
             <destination>{4ec75922-784d-4369-b2f2-23934cc5bbd7}</destination>

@@ -5,7 +5,7 @@
             <value>heartbeat</value>
         </property>
         <relationship name="folder">
-            <destination>{4d24cb0c-97a0-4bc5-989b-be0e9367b8c5}</destination>
+            <destination>{5ccc429e-206e-4f23-a058-0685d9637ce9}</destination>
         </relationship>
         <relationship name="mixer">
             <destination>{eaf9b208-411f-4ed9-b992-39a230985beb}</destination>

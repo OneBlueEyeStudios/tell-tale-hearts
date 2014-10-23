@@ -5,7 +5,7 @@
             <value>stove</value>
         </property>
         <relationship name="folder">
-            <destination>{4d24cb0c-97a0-4bc5-989b-be0e9367b8c5}</destination>
+            <destination>{5af245f1-e9a6-4f09-9d9c-6e7bedb6a17b}</destination>
         </relationship>
         <relationship name="mixer">
             <destination>{1e7acef3-44ab-41c5-ac78-2b36183370d3}</destination>
