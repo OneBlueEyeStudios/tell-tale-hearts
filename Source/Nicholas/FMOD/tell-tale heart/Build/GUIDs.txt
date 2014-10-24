@@ -1,7 +1,8 @@
 {172ed1ce-720e-4626-9bf7-ce9e64c3d2f7} event:/ambience/room tone
 {5061842f-f740-4985-a1f3-1da990f8d10e} event:/ambience/rain
-{d139bc54-9a68-475e-9b83-595817ab654c} event:/furniture/stove
-{82b1b5fc-1a25-4fef-b936-76c90a077a62} event:/furniture/door
+{d139bc54-9a68-475e-9b83-595817ab654c} event:/household/stove
+{82b1b5fc-1a25-4fef-b936-76c90a077a62} event:/household/door
+{77eb3fe9-b7bc-4fa3-84a9-9dfb5a0f9dcb} event:/household/window
 {af6d890c-acb4-49dc-a47c-8e1f50561c6e} event:/human/footstep
 {d619531b-f43f-429c-9572-1c561ea709c4} event:/human/footstep - cop1
 {e2df5dbd-4b36-4c46-92de-fdf08b32a4e4} event:/human/footstep - cop2

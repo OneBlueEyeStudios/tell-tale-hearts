@@ -36,6 +36,9 @@
         <relationship name="parameters">
             <destination>{f2d00c5c-815f-4baa-873d-7cf0914d327c}</destination>
         </relationship>
+        <relationship name="banks">
+            <destination>{e86e1ea5-25f4-4378-a80b-8573d5986a30}</destination>
+        </relationship>
     </object>
     <object class="EventMixer" id="{1ee8c65d-950e-4fdb-84ad-93b13146254e}">
         <relationship name="masterBus">
@@ -646,6 +649,9 @@
     <object class="SpatialiserEffect" id="{2ec0e2ac-717d-41ed-90da-3998ac471156}">
         <property name="minimumDistance">
             <value>2.2</value>
+        </property>
+        <property name="maximumDistance">
+            <value>10</value>
         </property>
     </object>
     <object class="MixerSend" id="{1bc93506-0b18-4d59-9194-e30dfc4054da}">
