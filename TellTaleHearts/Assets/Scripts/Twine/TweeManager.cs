@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine.UI;
 
 public class TweeManager : MonoBehaviour {
-
+	/*
 	public TweeDatabase _tweeDatabase;
 
 	public TweePassage _currentPassage;
@@ -100,12 +100,13 @@ public class TweeManager : MonoBehaviour {
 		MethodInfo method = type.GetMethod("Clear");
 		method.Invoke(new object(), null);
 	}
-
+*/
 	public void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag ("Player")) {
-			setEnabledText(true);
-			startDialogue("tweeTest");
+			//setEnabledText(true);
+			//startDialogue("tweeTest");
+			DialogueHandler._instance.startDialogue("tweeTest");
 		}
 
 	}
@@ -113,17 +114,17 @@ public class TweeManager : MonoBehaviour {
 	public void OnTriggerExit(Collider other)
 	{
 		if (other.CompareTag ("Player")) {
-			setEnabledText(false);
+			DialogueHandler._instance.stopDialogue();
 		}
 		
 	}
-
+	/*
 	void setEnabledText(bool enabled)
 	{
 		_dialogueBox.SetActive (enabled);
 		/*_body.gameObject.SetActive (enabled);
 		_transition1.gameObject.SetActive (enabled);
-		_transition2.gameObject.SetActive (enabled);*/
+		_transition2.gameObject.SetActive (enabled);
 	}
 
 	IEnumerator ClearConsole()
@@ -136,5 +137,5 @@ public class TweeManager : MonoBehaviour {
 		yield return null; // this is required to wait for an additional frame, without this clearing doesn't work (at least for me)
 		Debug.ClearDeveloperConsole();
 	}
-
+*/
 }
