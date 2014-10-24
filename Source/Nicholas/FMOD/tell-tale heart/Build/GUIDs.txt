@@ -3,8 +3,8 @@
 {d139bc54-9a68-475e-9b83-595817ab654c} event:/furniture/stove
 {82b1b5fc-1a25-4fef-b936-76c90a077a62} event:/furniture/door
 {af6d890c-acb4-49dc-a47c-8e1f50561c6e} event:/human/footstep
-{e2df5dbd-4b36-4c46-92de-fdf08b32a4e4} event:/human/footstep - cop1
-{d619531b-f43f-429c-9572-1c561ea709c4} event:/human/footstep - cop2
+{d619531b-f43f-429c-9572-1c561ea709c4} event:/human/footstep - cop1
+{e2df5dbd-4b36-4c46-92de-fdf08b32a4e4} event:/human/footstep - cop2
 {0cf24789-64d4-439b-bcf3-72d24eadb632} event:/human/heartbeat
 {db811e1e-e0be-432e-a336-883ef99dd0e2} event:/human/breath
 {ece1d9bd-5bb0-479f-8571-24a3f124a50f} bus:/
