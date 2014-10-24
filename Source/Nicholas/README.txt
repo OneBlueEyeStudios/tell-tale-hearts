@@ -13,5 +13,6 @@ basically finished:
 
 not good enough:
 -door (door: 5 initial 0-1 open, 9-10 close)
+-window (window: 5 initial 0-1 open, 9-10 close)
 -heartbeat (speed: 0-1 silent, 1-3 normal, 3-5 fast, 5-7 super fast, 7-10 silent)
 -breath (frequency: 0-2 silent, 2-5 deep, 5-10 fast)
