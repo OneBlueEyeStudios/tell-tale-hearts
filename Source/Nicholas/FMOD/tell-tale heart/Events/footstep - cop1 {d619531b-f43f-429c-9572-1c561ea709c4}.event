@@ -107,7 +107,7 @@
     </object>
     <object class="GameParameter" id="{c6b0fb85-0cf1-4806-90f0-c2f3b9e0ec78}">
         <property name="name">
-            <value>speed</value>
+            <value>step duration</value>
         </property>
         <property name="initialValue">
             <value>3.49999976158142</value>
