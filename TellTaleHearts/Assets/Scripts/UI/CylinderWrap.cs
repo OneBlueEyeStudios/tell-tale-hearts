@@ -52,7 +52,7 @@ public class CylinderWrap : MonoBehaviour {
 				if (index >= transform.childCount || index < 0 || _isCentering)
 						return;
 
-		Debug.LogWarning ("Center on index: " + index);
+//		Debug.LogWarning ("Center on index: " + index);
 
 		int nChilds = transform.childCount;
 		

@@ -23,6 +23,16 @@ public class CharInventory : MonoBehaviour {
 		_inventory.Remove (i);
 	}
 
+	public bool hasOnInventory(string itemName)
+	{
+		foreach (Item item in _inventory) 
+		{
+			if(item._description==itemName)
+				return true;
+		}
+		return false;
+	}
+
 	// Use this for initialization
 	void Start () {
 		_inventory = new List<Item> ();

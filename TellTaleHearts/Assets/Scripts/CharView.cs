@@ -4,9 +4,8 @@ using System.Collections;
 public class CharView : MonoBehaviour
 {
 		[Range(0.1f,10f)]
-		public float
-				_grabDistance;
-		//Material _lastObjectMaterial;
+		public float _grabDistance;
+		Material _lastObjectMaterial;
 		Material[] _lastObjectMaterials;
 		public Material _glowItemMaterial;
 		public Shader _glowShader;
@@ -23,6 +22,7 @@ public class CharView : MonoBehaviour
 		{
 			
 		}
+
 
 		void lightUpObject (GameObject go)
 		{
@@ -58,7 +58,7 @@ public class CharView : MonoBehaviour
 		{
 				_currentlyCentered.transform.renderer.material.shader = _lastShader;
 		}
-	
+
 		// Update is called once per frame
 		void Update ()
 		{

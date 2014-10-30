@@ -15,7 +15,7 @@ public class RainSoundSource : MonoBehaviour {
 	void Start () {
 	
 		
-		rain = FMOD_StudioSystem.instance.GetEvent ("event:/rain");
+		rain = FMOD_StudioSystem.instance.GetEvent ("event:/ambience/rain");
 		
 		FMOD.Studio._3D_ATTRIBUTES attributes;
 		rain.get3DAttributes (out attributes);
@@ -74,6 +74,10 @@ public class RainSoundSource : MonoBehaviour {
 	
 	public IEnumerator openWindow ()
 	{
+
+		//windowValue.setValue (1);
+		yield return null;
+
 		while (windowFloat<1) {
 			
 			//StartCoroutine(changeRainIntensity(1));
@@ -82,15 +86,20 @@ public class RainSoundSource : MonoBehaviour {
 			windowValue.setValue (windowFloat);
 			yield return null;
 		}
+
 	}
 	
 	public IEnumerator closeWindow ()
 	{
+		//windowValue.setValue (9);
+		yield return null;
+
 		while (windowFloat>0) {
-			windowFloat -= Time.deltaTime*2;
+			windowFloat -= Time.deltaTime*0.8f;
 			windowValue.setValue (windowFloat);
 			yield return null;
 		}
+
 	}
 
 	// Update is called once per frame

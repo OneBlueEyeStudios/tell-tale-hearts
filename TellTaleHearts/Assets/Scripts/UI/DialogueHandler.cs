@@ -110,7 +110,7 @@ public class DialogueHandler : MonoBehaviour {
 
 			float scrollWheel = Input.GetAxis ("Mouse ScrollWheel");
 			
-			Debug.LogWarning ("scrollwheel: " + scrollWheel);
+//			Debug.LogWarning ("scrollwheel: " + scrollWheel);
 			
 			if (scrollWheel > 0f) 
 			{

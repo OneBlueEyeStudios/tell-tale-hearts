@@ -72,6 +72,42 @@ public class SoundManager : MonoBehaviour {
 		}
 	}
 
+	public void playSoundAtPositionAndParameter(string eventName, Vector3 position, string parameterName, float value)
+	{
+
+
+		EventInstance fmodEvent = FMOD_StudioSystem.instance.GetEvent (eventName);
+		ParameterInstance fmodParameter;
+
+		RESULT result = fmodEvent.getParameter (parameterName, out fmodParameter);
+
+
+
+
+		//fmodEvent = FMOD_StudioSystem.instance.GetEvent ("event:/household/stove");
+	
+		var attributes = FMOD.Studio.UnityUtil.to3DAttributes(position);
+		//ERRCHECK( instance.set3DAttributes(attributes) );
+
+		//		FMOD.Studio._3D_ATTRIBUTES attributes;
+		//fmodEvent.get3DAttributes (out attributes);
+	
+		//		VECTOR v;
+		//		v.x = position.x;
+		//		v.y = position.y;
+		//		v.z = position.z;
+	
+		//		attributes.position = v;
+	
+		fmodEvent.set3DAttributes (attributes);
+	
+		fmodEvent.start ();
+
+		fmodParameter.setValue (value);
+
+		fmodEvent.release ();
+	
+		}
 	// Use this for initialization
 	void Start () {
 	
