@@ -1,7 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+
 
 public class DialogueHandler : MonoBehaviour {
+
+	public event EventHandler dialogueEnded;
+
+	public void OnDialogueEnded()
+	{
+		if (dialogueEnded!=null)
+				dialogueEnded (this,EventArgs.Empty);
+	}
 
 	public static DialogueHandler _instance;
 
@@ -20,14 +30,16 @@ public class DialogueHandler : MonoBehaviour {
 	
 	public TweeDialogue _currentDialogue;
 	
-	
+	public UILabel _simpleLine;
+
 	public GameObject _dialogueBox;
+	public GameObject _optionsBox;
 
 	public CylinderWrap _cylinderWrap;
 
-
+	bool _showingDialogue;
 	
-	public void startDialogue (string dialogueID)
+	public void startDialogue (string dialogueID, string startPassage = "Start")
 	{
 
 
@@ -35,10 +47,11 @@ public class DialogueHandler : MonoBehaviour {
 		_currentDialogue = _tweeDatabase.getDialogue (dialogueID);
 
 
-		_cylinderWrap._currentPassage = _currentDialogue.getPassage ("Start");
-		StartCoroutine(printPassage ("Start",0));
+		_cylinderWrap._currentPassage = _currentDialogue.getPassage (startPassage);
+		StartCoroutine(printPassage (startPassage,0));
 
-		NGUITools.SetActive (_dialogueBox, true);
+		//NGUITools.SetActive (_dialogueBox, true);
+		showDialogueBox ();
 	}
 
 	public void stopDialogue ()
@@ -48,6 +61,47 @@ public class DialogueHandler : MonoBehaviour {
 
 	}
 
+	public void showSimpleDialog(string text)
+	{
+		NGUITools.SetActive (_simpleLine.gameObject, true);
+		_simpleLine.text = text;
+		Invoke ("disableSimpleLine", 2);
+		}
+
+	void disableSimpleLine()
+	{
+		
+		NGUITools.SetActive (_simpleLine.gameObject, false);
+	}
+
+	public void showDialogueBox ()
+	{
+		NGUITools.SetActive (_dialogueBox, true);
+		
+		showOptions ();
+	}
+	public void hideDialogueBox ()
+	{
+		NGUITools.SetActive (_dialogueBox, false);
+		
+		
+	}
+
+	void hideOptions ()
+	{
+		NGUITools.SetActive (_optionsBox, false);
+
+		
+		_showingDialogue = false;
+
+		Invoke ("hideDialogueBox", 3);
+	}
+	void showOptions ()
+	{
+		NGUITools.SetActive (_optionsBox, true);
+
+		_showingDialogue = true;
+	}
 
 	 IEnumerator printPassage(string title, float wait)
 	{
@@ -62,6 +116,9 @@ public class DialogueHandler : MonoBehaviour {
 		if(_currentPassage == null)
 		{
 			Debug.LogError("There is no such passage: "+title);
+			//stopDialogue();
+			hideDialogueBox();
+			OnDialogueEnded();
 		}
 		
 		if (!string.IsNullOrEmpty (_currentPassage.dialogue)) {
@@ -84,11 +141,22 @@ public class DialogueHandler : MonoBehaviour {
 		_transition2.color = Color.black;
 
 */
-		if (_currentPassage.transitions == null)
-			yield break;
+		if (_currentPassage.transitions == null) 
+		{
+			OnDialogueEnded();
+			hideOptions();
+			//stopDialogue();
+			//			yield break;
+
+				}
 		
-		if (_currentPassage.transitions.Count == 0)
-			yield break;
+		if (_currentPassage.transitions.Count == 0) {
+			OnDialogueEnded();
+			hideOptions();
+			//stopDialogue();
+			//yield break;
+
+				}
 
 		for (int i =0; i < _currentPassage.transitions.Count; i++) 
 		{
@@ -105,7 +173,7 @@ public class DialogueHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (_currentPassage != null) 
+		if (_currentPassage != null && _showingDialogue) 
 		{
 
 			float scrollWheel = Input.GetAxis ("Mouse ScrollWheel");

@@ -1,0 +1,31 @@
+﻿:: Start
+Hello Sir. How are you doing today
+
+[[Well|comein]]
+[[Not so well|notwell]]
+
+
+:: comein
+We'll search the house
+
+
+:: OpenDoor
+Hello Sir. How are you doing today
+
+[[Well|comein]]
+[[Not so well|notwell]]
+
+
+:: NotOpenDoor
+Did you not hear the knocks on the door?
+
+[[I'm sorry|comein]]
+
+
+:: notwell
+Anything in particular? We come because we had an anonymous call about a fight in the neighborhood.
+
+[[I'm just tired|comein]]
+[[I just had this weird dream|comein]]
+
+

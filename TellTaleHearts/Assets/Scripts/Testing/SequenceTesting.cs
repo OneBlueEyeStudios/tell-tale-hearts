@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using Fungus;
 
 [System.Serializable]
 public class Sequence
@@ -21,7 +23,34 @@ public class Sequence
 	}
 }
 
+public enum CopType{good,bad}
+
+public delegate void CopTypeHandler(CopType agent);
+
 public class SequenceTesting : MonoBehaviour {
+
+	public event CopTypeHandler pathFinished;
+
+	public void OnPathFinished(CopType agent)
+	{
+		if (pathFinished != null)
+			pathFinished (agent);
+		}
+
+	public static SequenceTesting _instance;
+
+
+	public delegate void SequenceDelegate (Fungus.Sequence sequence, Fungus.Command command);
+	public event SequenceDelegate eventFinished;
+
+	public void OnEventFinished(Fungus.Sequence sequence, Fungus.Command command)
+	{
+		if (eventFinished != null) {
+			eventFinished(sequence,command);
+		}
+	}
+
+
 
 	MyDictionary _navPointsDictionary;
 
@@ -29,11 +58,12 @@ public class SequenceTesting : MonoBehaviour {
 
 	public UILabel _clueFoundLabel;
 
-	List<Sequence> _badCopSequence;
-	List<Sequence> _goodCopSequence;
+	Dictionary<string,List<Sequence>> _badCopSequence;
+	Dictionary<string,List<Sequence>> _goodCopSequence;
 	void Awake()
 	{
 		_navPointsDictionary = GetComponent<MyDictionary> ();
+		_instance = this;
 	}
 
 	bool arrived(NavMeshAgent agent)
@@ -60,8 +90,18 @@ public class SequenceTesting : MonoBehaviour {
 
 		float waitTime = 3;
 
-		_badCopSequence = new List<Sequence> ();
-		_badCopSequence.Add (new Sequence ("Foyer", waitTime));
+		List<Sequence> stage2a = new List<Sequence> ();
+		stage2a.Add(new Sequence ("Foyer", 0));
+
+    	_badCopSequence = new Dictionary<string, List<Sequence>>();
+		_badCopSequence.Add("Stage2A",stage2a);
+
+		stage2a = new List<Sequence> ();
+		stage2a.Add(new Sequence ("Foyer2", 0));
+		
+		_goodCopSequence = new Dictionary<string, List<Sequence>>();
+		_goodCopSequence.Add("Stage2A",stage2a);
+		/*
 		_badCopSequence.Add (new Sequence ("Bathroom", waitTime));
 		_badCopSequence.Add (new Sequence ("Bedroom", waitTime));
 		_badCopSequence.Add (new Sequence ("RoommateBedroom", waitTime));
@@ -74,7 +114,7 @@ public class SequenceTesting : MonoBehaviour {
 
 
 		_goodCopSequence = new List<Sequence> ();
-		_goodCopSequence.Add (new Sequence ("Foyer", waitTime));
+		_goodCopSequence.Add (new Sequence ("Foyer2", waitTime));
 		_goodCopSequence.Add (new Sequence ("LivingRoom", waitTime));
 		_goodCopSequence.Add (new Sequence ("Clue1", waitTime,true));
 		_goodCopSequence.Add (new Sequence ("Pastry", waitTime));
@@ -83,16 +123,44 @@ public class SequenceTesting : MonoBehaviour {
 		_goodCopSequence.Add (new Sequence ("Bedroom", waitTime));
 		_goodCopSequence.Add (new Sequence ("RoommateBedroom", waitTime));
 		_goodCopSequence.Add (new Sequence ("Clue3", waitTime,true));
+*/
 
 
 		//StartCoroutine(startSequence (_badCop, _badCopSequence,0));
-		StartCoroutine(startSequence (_goodCop, _goodCopSequence,0));
+		//StartCoroutine(startSequence (_goodCop, _goodCopSequence,0));
+	}
+
+	public void MoveCharacter(CopType copType,string stage)
+	{
+		switch (copType) {
+		case CopType.bad:
+			StartCoroutine(startSequence(_badCop,_badCopSequence[stage],0));
+			break;
+		case CopType.good:
+			StartCoroutine(startSequence(_goodCop,_goodCopSequence[stage],0));
+			break;
+				default:
+						break;
+		}
+	}
+
+	void pathEnd (NavMeshAgent cop)
+	{
+		if (cop == _badCop)
+			OnPathFinished (CopType.bad);
+		else if (cop == _goodCop)
+			OnPathFinished (CopType.good);
 	}
 
 	IEnumerator startSequence (NavMeshAgent cop, List<Sequence> sequence, int index)
 	{
-		if (index >= sequence.Count || index < 0)
-						yield break;
+		if (index >= sequence.Count || index < 0) 
+		{
+			pathEnd(cop);
+
+			yield break;
+		
+		}
 
 		Sequence currentSequence = sequence [index];
 
