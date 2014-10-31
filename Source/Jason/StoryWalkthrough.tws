@@ -259,8 +259,8 @@ g14
 I00
 sg15
 (lp91
-F300.0
-aF152.0
+F263.0
+aF162.0
 asg17
 (itiddlywiki
 Tiddler
@@ -356,7 +356,7 @@ tp118
 Rp119
 sbsa(dp120
 g14
-I00
+I01
 sg15
 (lp121
 F435.0
