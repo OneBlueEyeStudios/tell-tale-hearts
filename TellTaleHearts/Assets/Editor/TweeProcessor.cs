@@ -135,6 +135,7 @@ public class TweeProcessor : AssetPostprocessor
 								// start a new passage here with that title.
 								currentPassage = new TweePassage ();
 								currentPassage.title = chunks [0].Trim ();
+				Debug.LogWarning("Title: "+currentPassage.title);
                  
 								// If there was anything after the [, the passage has tags, so just
 								// split them up and attach them to the passage.
@@ -161,7 +162,7 @@ public class TweeProcessor : AssetPostprocessor
 
 												currentPassage.dialogue = lines [i].Substring (lines [i].IndexOf ('$') + 1);
 						
-												Debug.LogWarning ("body dialogue: " + currentPassage.dialogue);
+//												Debug.LogWarning ("body dialogue: " + currentPassage.dialogue);
 
 												buffer.AppendLine (lines [i].Substring (0, lines [i].Length - (lines [i].Length - lines [i].IndexOf ('$')))); 
 
@@ -178,8 +179,14 @@ public class TweeProcessor : AssetPostprocessor
 				// When we hit the end of the file, we should still have the last passage in
 				// the file in the buffer. Wrap it up and end it as well.
 				if (currentPassage != null) {           
-						currentPassage.body = buffer.ToString ();
-						passages.Add (currentPassage.title, currentPassage);
+						//currentPassage.body = buffer.ToString ();
+						//passages.Add (currentPassage.title, currentPassage);
+					currentPassage.body = buffer.ToString ();
+					passages.Add (currentPassage.title, currentPassage);                 
+					
+					myPassages.Add (currentPassage);
+					myTitles.Add (currentPassage.title);
+					//buffer = new StringBuilder ();
 				}
 
 				TweeDialogue tweeDialogue = new TweeDialogue (filename, myTitles, myPassages);

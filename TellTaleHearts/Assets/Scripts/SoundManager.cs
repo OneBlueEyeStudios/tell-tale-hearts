@@ -37,7 +37,7 @@ public class SoundManager : MonoBehaviour {
 
 	public float playDialogue(string tag)
 	{
-		UnityEngine.Debug.LogWarning ("Play: " + tag);
+//		UnityEngine.Debug.LogWarning ("Play: " + tag);
 
 		AudioClip clip = getClipFor (tag);
 
