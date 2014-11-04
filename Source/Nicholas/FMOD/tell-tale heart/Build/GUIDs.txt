@@ -1,7 +1,7 @@
 {5061842f-f740-4985-a1f3-1da990f8d10e} event:/ambience/rain
 {172ed1ce-720e-4626-9bf7-ce9e64c3d2f7} event:/ambience/room tone
-{d601953d-0de4-4dac-8475-b3ece117ec1d} event:/household/door knocking
 {82b1b5fc-1a25-4fef-b936-76c90a077a62} event:/household/door
+{d601953d-0de4-4dac-8475-b3ece117ec1d} event:/household/door knocking
 {d139bc54-9a68-475e-9b83-595817ab654c} event:/household/stove
 {77eb3fe9-b7bc-4fa3-84a9-9dfb5a0f9dcb} event:/household/window
 {db811e1e-e0be-432e-a336-883ef99dd0e2} event:/human/breath
@@ -11,6 +11,6 @@
 {0cf24789-64d4-439b-bcf3-72d24eadb632} event:/human/heartbeat
 {ece1d9bd-5bb0-479f-8571-24a3f124a50f} bus:/
 {0d5e9d5a-4e02-4cb9-8d21-8f3aa831e51f} bus:/Reverb
-{8ca2cc90-b40b-43b7-a3b5-3d8bdae0655d} bank:/test
 {fb2d5a7b-e9c4-466b-b9f8-2afdea8e6907} bank:/test2
+{8ca2cc90-b40b-43b7-a3b5-3d8bdae0655d} bank:/test
 {e86e1ea5-25f4-4378-a80b-8573d5986a30} bank:/Master Bank
