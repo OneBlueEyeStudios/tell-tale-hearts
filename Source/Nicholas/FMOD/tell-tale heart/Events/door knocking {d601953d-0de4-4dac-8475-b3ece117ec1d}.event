@@ -31,6 +31,9 @@
         <relationship name="parameters">
             <destination>{d284bd2e-f1cb-4e9a-b868-cf1455448f9b}</destination>
         </relationship>
+        <relationship name="banks">
+            <destination>{e86e1ea5-25f4-4378-a80b-8573d5986a30}</destination>
+        </relationship>
     </object>
     <object class="EventMixer" id="{85d94faa-3ee5-43c6-a1b0-dc030c2a8a9f}">
         <relationship name="masterBus">
@@ -106,7 +109,7 @@
             <value>2</value>
         </property>
         <property name="volume">
-            <value>3</value>
+            <value>10</value>
         </property>
         <relationship name="event">
             <destination>{8c78b15c-f811-44dd-8634-0ea65661e92d}</destination>
@@ -124,6 +127,9 @@
         </property>
         <property name="name">
             <value>1</value>
+        </property>
+        <property name="volume">
+            <value>10</value>
         </property>
         <relationship name="event">
             <destination>{65523527-a373-49cf-baa1-4f76200052c9}</destination>
@@ -143,13 +149,16 @@
             <value>3</value>
         </property>
         <property name="volume">
-            <value>-3</value>
+            <value>6</value>
         </property>
         <relationship name="event">
             <destination>{20ef826d-3949-498d-90a6-f6c874c4bfe0}</destination>
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{ba849c7b-855f-41c4-8dae-fe34ceddf302}">
+        <property name="volume">
+            <value>3</value>
+        </property>
         <property name="name">
             <value>Audio 1</value>
         </property>
