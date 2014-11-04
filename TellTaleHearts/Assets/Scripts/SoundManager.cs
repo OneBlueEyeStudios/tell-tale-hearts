@@ -145,8 +145,8 @@ public class SoundManager : MonoBehaviour {
 		_soundEvents = new List<FMODEvent> ();
 
 
-
-		Invoke ("playThemeMusic", _themeMusicWaitTime);
+		if(Application.loadedLevelName=="GameInit")
+			Invoke ("playThemeMusic", _themeMusicWaitTime);
 
 	}
 
@@ -166,7 +166,7 @@ public class SoundManager : MonoBehaviour {
 	{
 		_cop = GameObject.Find ("BadCop");
 
-		StartCoroutine (lowerThemeCoroutine (0.4f));
+		StartCoroutine (lowerThemeCoroutine (0.3f));
 	}
 
 	IEnumerator lowerThemeCoroutine(float newVolume)

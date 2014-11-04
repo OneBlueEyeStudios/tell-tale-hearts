@@ -5,11 +5,13 @@ public class CharView : MonoBehaviour
 {
 		[Range(0.1f,10f)]
 		public float _grabDistance;
-		Material _lastObjectMaterial;
-		Material[] _lastObjectMaterials;
-		public Material _glowItemMaterial;
-		public Shader _glowShader;
-		Shader _lastShader;
+	[Range(0.1f,10f)]
+	public float _objectDistance;
+	//Material _lastObjectMaterial;
+	//	Material[] _lastObjectMaterials;
+	//	public Material _glowItemMaterial;
+	//	public Shader _glowShader;
+	//	Shader _lastShader;
 		public GameObject _currentlyCentered;
 		public Transform _handSocket;
 		public Transform _lastObjectParent;
@@ -40,7 +42,7 @@ public class CharView : MonoBehaviour
 		_hasGameBegun = false;
 			setMouseLookEnabled (false);
 		setCharacterMotorEnabled(false);
-		SoundManager._instance.lowerThemeMusic ();
+		//SoundManager._instance.lowerThemeMusic ();
 		}
 
 
@@ -56,6 +58,7 @@ public class CharView : MonoBehaviour
 				//_lastObjectMaterials = _currentlyCentered.renderer.ma
 		}
 
+	/*
 		void lightUp (Renderer renderer)
 		{
 				//_lastObjectMaterials = _currentlyCentered.renderer.ma
@@ -64,6 +67,7 @@ public class CharView : MonoBehaviour
 				_currentlyCentered.transform.renderer.material.shader = _glowShader;
 				_currentlyCentered.transform.renderer.material.SetColor ("_RimColor", Color.blue);
 		}
+		*/
 
 		void unlightObject (GameObject go)
 		{
@@ -74,14 +78,18 @@ public class CharView : MonoBehaviour
 		//				unlight (r);
 		}
 
+	/*
 		void unlight (Renderer renderer)
 		{
 				_currentlyCentered.transform.renderer.material.shader = _lastShader;
 		}
+*/
 
 		// Update is called once per frame
 		void Update ()
 		{
+			_handSocket.transform.position = Camera.main.transform.position + Camera.main.transform.forward * _objectDistance;
+
 		if (Input.GetButtonDown ("Fire1") && !_hasGameBegun) {
 
 			_cameraSmooth.returnToOriginalPos();
@@ -94,6 +102,8 @@ public class CharView : MonoBehaviour
 
 			setMouseLookEnabled(true);
 			setCharacterMotorEnabled(true);
+
+			SoundManager._instance.lowerThemeMusic();
 
 		}
 
@@ -154,7 +164,10 @@ public class CharView : MonoBehaviour
 												_currentlyCentered.transform.parent = _handSocket;
 												//iTween.MoveTo (_currentlyCentered.gameObject, new , 1);
 
-												iTween.MoveTo (_currentlyCentered.gameObject, iTween.Hash ("position", Vector3.zero, "time", 1.0f, "islocal", true));
+											Item item = _currentlyCentered.GetComponent<Item>();
+
+											iTween.MoveTo (_currentlyCentered.gameObject, iTween.Hash ("position", Vector3.zero, "time", 1.0f, "islocal", true));
+											iTween.RotateTo (_currentlyCentered.gameObject, iTween.Hash ("rotation",item._frontFacing , "time", 1.0f, "islocal", true));
 
 												setMouseLookEnabled (false);
 
@@ -193,7 +206,11 @@ public class CharView : MonoBehaviour
 		
 								Vector3 delta = Input.mousePosition - _lastMousePosition;
 
-								_currentlyCentered.transform.Rotate (new Vector3 (0, -delta.x, 0), Space.World);
+				// 	OLD, BEFORE POSTCARD
+								//_currentlyCentered.transform.Rotate (new Vector3 (0, -delta.x, 0), Space.Self	);
+
+				// NEW, AFTER POSTCARD
+				_currentlyCentered.transform.Rotate (new Vector3 (0, 0, delta.x), Space.Self	);
 						}
 				}
 

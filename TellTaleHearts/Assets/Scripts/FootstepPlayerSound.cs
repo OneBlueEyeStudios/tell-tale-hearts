@@ -3,10 +3,10 @@ using System.Collections;
 using FMOD.Studio;
 using FMOD;
 
-public class FootstepSound : MonoBehaviour {
+public class FootstepPlayerSound : MonoBehaviour {
 
 
-	NavMeshAgent _navAgent;
+
 
 	EventInstance footstep;
 	ParameterInstance surfaceValue;
@@ -18,7 +18,6 @@ public class FootstepSound : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		_navAgent = GetComponent<NavMeshAgent> ();
 
 		footstep = FMOD_StudioSystem.instance.GetEvent (_eventName);
 
@@ -38,20 +37,21 @@ public class FootstepSound : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//float v = Input.GetAxis ("Vertical");
+		float v = Input.GetAxis ("Vertical");
+		float h = Input.GetAxis ("Horizontal");
 
 
-		if (Vector3.SqrMagnitude (_navAgent.velocity) > 1)
-			surfaceFloat = 1.5f;
+		if(v>0.1f || h>0.1f)
+						surfaceFloat = 2.5f;
 		else
 			surfaceFloat = 0f;
 
+		footstep.setVolume (_volume);
 
 		footstep.set3DAttributes (FMOD.Studio.UnityUtil.to3DAttributes(transform.position));
 
 		surfaceValue.setValue (surfaceFloat);
 		
-		
-		surfaceValue.setValue (surfaceFloat);
+	
 	}
 }
