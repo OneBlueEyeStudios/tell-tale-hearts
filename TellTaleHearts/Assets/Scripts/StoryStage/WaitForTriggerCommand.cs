@@ -34,7 +34,9 @@ public class WaitForTriggerCommand : Command {
 
 	public override string GetSummary()
 	{
+		if(_triggerName!=null)
 		return _triggerName;
+		return "";
 	}
 	
 }

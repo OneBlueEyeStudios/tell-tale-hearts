@@ -7,6 +7,7 @@ using Fungus;
 [System.Serializable]
 public class Sequence
 {
+	public Transform _node;
 	public string _goToNode;
 	public float _timeWait;
 	public bool _hasClue;
@@ -101,6 +102,8 @@ public class SequenceTesting : MonoBehaviour {
 		
 		_goodCopSequence = new Dictionary<string, List<Sequence>>();
 		_goodCopSequence.Add("Stage2A",stage2a);
+
+
 		/*
 		_badCopSequence.Add (new Sequence ("Bathroom", waitTime));
 		_badCopSequence.Add (new Sequence ("Bedroom", waitTime));
@@ -130,19 +133,42 @@ public class SequenceTesting : MonoBehaviour {
 		//StartCoroutine(startSequence (_goodCop, _goodCopSequence,0));
 	}
 
-	public void MoveCharacter(CopType copType,string stage)
+
+
+	public void MoveCharacter(CopType copType,Vector3 position)
 	{
 		switch (copType) {
 		case CopType.bad:
-			StartCoroutine(startSequence(_badCop,_badCopSequence[stage],0));
+			StartCoroutine(MoveCharacterCoroutine(_badCop,position));
 			break;
 		case CopType.good:
-			StartCoroutine(startSequence(_goodCop,_goodCopSequence[stage],0));
+			StartCoroutine(MoveCharacterCoroutine(_goodCop,position));
 			break;
-				default:
-						break;
+		default:
+			break;
 		}
 	}
+
+	IEnumerator MoveCharacterCoroutine(NavMeshAgent agent, Vector3 position)
+	{
+		
+		//Sequence currentSequence = sequence [index];
+		
+		agent.SetDestination (position);
+		//cop.SetDestination (currentSequence._node.position);
+		
+		yield return null;
+		
+		while (!arrived(agent)) 
+		{
+
+			yield return null;
+			
+		}
+
+		pathEnd(agent);
+	}
+	
 
 	void pathEnd (NavMeshAgent cop)
 	{
@@ -152,7 +178,39 @@ public class SequenceTesting : MonoBehaviour {
 			OnPathFinished (CopType.good);
 	}
 
-	IEnumerator startSequence (NavMeshAgent cop, List<Sequence> sequence, int index)
+	public void MoveCharacter(CopType copType,string stage)
+	{
+		switch (copType) {
+		case CopType.bad:
+			StartCoroutine(startSequence(_badCop,_badCopSequence[stage],0));
+			break;
+		case CopType.good:
+			StartCoroutine(startSequence(_goodCop,_goodCopSequence[stage],0));
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void startSequence (CopType copType, List<Sequence> sequence, int index = 0)
+	{
+		NavMeshAgent target = null;
+				switch (copType) {
+				case CopType.bad:
+			target = _badCop;
+						break;
+				case CopType.good:
+			target = _goodCop;
+
+						break;
+				default:
+						break;
+				}
+		if(target!=null)
+			StartCoroutine (startSequence (target, sequence, index));
+	}
+
+	public IEnumerator startSequence (NavMeshAgent cop, List<Sequence> sequence, int index)
 	{
 		if (index >= sequence.Count || index < 0) 
 		{
@@ -165,6 +223,7 @@ public class SequenceTesting : MonoBehaviour {
 		Sequence currentSequence = sequence [index];
 
 		cop.SetDestination ((_navPointsDictionary[currentSequence._goToNode] as Transform).transform.position);
+		//cop.SetDestination (currentSequence._node.position);
 
 		yield return null;
 
@@ -199,6 +258,25 @@ public class SequenceTesting : MonoBehaviour {
 		StartCoroutine(startSequence (cop, sequence, index + 1));
 
 	}
+
+	public void searchForClue(string clueName)
+	{
+		NGUITools.SetActive (_clueFoundLabel.gameObject, true);
+		//if(cop == _badCop)
+			_clueFoundLabel.text = "Cops found out about-> "+clueName;
+		//Debug.LogWarning("Bad Cop found out about-> "+currentSequence._clueName);
+		//else
+		//	_clueFoundLabel.text = "Good Cop found out about-> "+clueName;
+		//Debug.LogWarning("Good Cop found out about-> "+currentSequence._clueName);
+
+		Invoke ("hideClueText", 3);
+	}
+
+	void hideClueText()
+	{
+		NGUITools.SetActive (_clueFoundLabel.gameObject, false);
+	}
+		
 
 	/*Transform getRandomPos()
 	{

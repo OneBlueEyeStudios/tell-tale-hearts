@@ -10,13 +10,21 @@ public class FMODEvent
 {
 	public EventInstance _event;
 	public SoundType _type;
+	public string _eventName;
 
 	public FMODEvent(EventInstance e, SoundType t)
 	{
 		_event = e;
 		_type = t;
 	}
+	public FMODEvent(EventInstance e, string eventName)
+	{
+		_event = e;
+		_eventName = eventName;
+	}
+
 }
+
 
 public class SoundManager : MonoBehaviour {
 
@@ -28,6 +36,8 @@ public class SoundManager : MonoBehaviour {
 		_rainEvents = new List<RainSoundSource> ();
 		_currentRainIntensity = 0;
 	}
+
+	public List<FMODEvent> _soundEvents;
 
 	public List<RainSoundSource> _rainEvents;
 
@@ -72,33 +82,35 @@ public class SoundManager : MonoBehaviour {
 		}
 	}
 
-	public void playSoundAtPositionAndParameter(string eventName, Vector3 position, string parameterName, float value)
+	public EventInstance playSoundAtPosition(string eventName, Vector3 position, bool register = false)
 	{
+		EventInstance fmodEvent = FMOD_StudioSystem.instance.GetEvent (eventName);
+		ParameterInstance fmodParameter;
 
+		var attributes = FMOD.Studio.UnityUtil.to3DAttributes(position);
+	
+		fmodEvent.set3DAttributes (attributes);
+		
+		fmodEvent.start ();
 
+		
+		fmodEvent.release ();
+
+		if (register)
+			RegisterNewEvent (fmodEvent, eventName);
+
+		return fmodEvent;
+	}
+
+	public EventInstance playSoundAtPositionAndParameter(string eventName, Vector3 position, string parameterName, float value, bool register = false)
+	{
 		EventInstance fmodEvent = FMOD_StudioSystem.instance.GetEvent (eventName);
 		ParameterInstance fmodParameter;
 
 		RESULT result = fmodEvent.getParameter (parameterName, out fmodParameter);
-
-
-
-
-		//fmodEvent = FMOD_StudioSystem.instance.GetEvent ("event:/household/stove");
 	
 		var attributes = FMOD.Studio.UnityUtil.to3DAttributes(position);
-		//ERRCHECK( instance.set3DAttributes(attributes) );
 
-		//		FMOD.Studio._3D_ATTRIBUTES attributes;
-		//fmodEvent.get3DAttributes (out attributes);
-	
-		//		VECTOR v;
-		//		v.x = position.x;
-		//		v.y = position.y;
-		//		v.z = position.z;
-	
-		//		attributes.position = v;
-	
 		fmodEvent.set3DAttributes (attributes);
 	
 		fmodEvent.start ();
@@ -107,12 +119,54 @@ public class SoundManager : MonoBehaviour {
 
 		fmodEvent.release ();
 	
+		if (register)
+						RegisterNewEvent (fmodEvent, eventName);
+
+		return fmodEvent;
 		}
+
 	// Use this for initialization
 	void Start () {
 	
+		_soundEvents = new List<FMODEvent> ();
 	}
-	
+
+	public void RegisterNewEvent(EventInstance eventInstance, string eventName)
+	{
+		_soundEvents.Add (new FMODEvent (eventInstance, eventName));
+	}
+
+	public bool HasEventWithName(string eventName, out FMODEvent outEvent)
+	{
+		outEvent = null;
+		foreach (FMODEvent ev in _soundEvents) 
+		{
+			if(ev._eventName.Equals(eventName))
+			{
+				outEvent = ev;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void SetParameterForEvent (string eventName, string parameterName, float parameterValue)
+	{
+		FMODEvent ev;
+		if (HasEventWithName (eventName, out ev)) 
+		{
+			ev._event.setParameterValue(parameterName,parameterValue);
+		}
+	}
+	public void TweenParameter (string eventName, string parameterName, string easeType, float duration)
+	{
+		FMODEvent ev;
+		if (HasEventWithName (eventName, out ev)) 
+		{
+			
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.UpArrow))
@@ -127,4 +181,6 @@ public class SoundManager : MonoBehaviour {
 			setRainIntensity(_currentRainIntensity);
 		}
 	}
+
+
 }

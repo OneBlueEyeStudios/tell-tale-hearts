@@ -43,7 +43,7 @@ public class TweeDatabaseCreator{
 
 
 	/*
-
+	
 	static void createTweeDatabase(List<string> dialogueIds, List<TweeDialogue> dialogues)
 	{
 		TweeDatabase database = ScriptableObject.CreateInstance<TweeDatabase> ();
@@ -61,7 +61,7 @@ public class TweeDatabaseCreator{
 	{
 		database = AssetDatabase.LoadAssetAtPath (dbPath, typeof(TweeDatabase)) as TweeDatabase;
 		bool exists = database != null;
-		EditorUtility.DisplayDialog ("TweeDatabase Exists?",exists.ToString(),"OK");
+		//EditorUtility.DisplayDialog ("TweeDatabase Exists?",exists.ToString(),"OK");
 
 		return exists;
 	}
