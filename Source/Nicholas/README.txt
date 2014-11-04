@@ -11,6 +11,7 @@ basically finished:
 -footstep-cop1 (surface: 0-1 silent, 1-2 rug, 2-3 wood, 3-4 creaky flr; step duration: 3.5 initial 0-2 slow, 2-4 normal, 4-10 fast)
 -footstep-cop2 (surface: 0-1 silent, 1-2 rug, 2-3 wood, 3-4 creaky flr; step duration: 3.5 initial 0-2 slow, 2-4 normal, 4-10 fast)
 -door knocking (intensity: 0-2 silent, 2-4 1st knock, 4-6 2nd knock, 6-10 3rd knock)
+-kerosene lamp
 
 not good enough:
 -door (door: 5 initial 0-1 open, 9-10 close)
