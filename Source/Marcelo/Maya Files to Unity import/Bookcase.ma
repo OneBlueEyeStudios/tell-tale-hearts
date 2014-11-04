@@ -1,6 +1,6 @@
 //Maya ASCII 2015 scene
 //Name: Bookcase.ma
-//Last modified: Sun, Nov 02, 2014 11:49:39 AM
+//Last modified: Tue, Nov 04, 2014 11:21:00 AM
 //Codeset: UTF-8
 requires maya "2015";
 currentUnit -l meter -a degree -t film;
@@ -14,6 +14,16 @@ createNode transform -n "Bookcase";
 	setAttr ".s" -type "double3" 1.1700950742240506 1 1 ;
 createNode mesh -n "BookcaseShape" -p "Bookcase";
 	setAttr -k off ".v";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+createNode mesh -n "polySurfaceShape1" -p "Bookcase";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:59]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -36,9 +46,9 @@ createNode mesh -n "BookcaseShape" -p "Bookcase";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 72 ".vt[0:71]"  -0.60000002 0.145579 0.19965123 0.60000002 0.145579 0.19965123
+	setAttr -s 72 ".vt[0:71]"  -0.60000002 0.14557901 0.19965123 0.60000002 0.14557901 0.19965123
 		 -0.60000002 2.41851521 0.19965123 0.60000002 2.41851521 0.19965123 -0.60000002 2.41851521 -0.19965123
-		 0.60000002 2.41851521 -0.19965123 -0.60000002 0.145579 -0.19965123 0.60000002 0.145579 -0.19965123
+		 0.60000002 2.41851521 -0.19965123 -0.60000002 0.14557901 -0.19965123 0.60000002 0.14557901 -0.19965123
 		 -0.5341168 0.2451728 0.19965123 0.5341168 0.2451728 0.19965123 0.5341168 2.29073381 0.19965123
 		 -0.5341168 2.29073381 0.19965123 -0.5341168 0.2451728 -0.14554787 0.5341168 0.2451728 -0.14554787
 		 0.5341168 2.29073381 -0.14554787 -0.5341168 2.29073381 -0.14554787 -0.64225602 2.48662114 0.21371199
@@ -48,19 +58,19 @@ createNode mesh -n "BookcaseShape" -p "Bookcase";
 		 0.65390635 0.083016358 0.21758868 -0.65390635 0.083016358 0.21758868 -0.65390635 0.001918335 -0.21758868
 		 0.65390635 0.001918335 -0.21758868 0.65390635 0.001918335 0.21758868 -0.65390635 0.001918335 0.21758868
 		 -0.55649894 1.9348613 0.19007331 0.55649894 1.9348613 0.19007331 -0.55649894 1.95545638 0.19007331
-		 0.55649894 1.95545638 0.19007331 -0.55649894 1.95545638 -0.16364831 0.55649894 1.95545638 -0.16364831
-		 -0.55649894 1.9348613 -0.16364831 0.55649894 1.9348613 -0.16364831 -0.55649894 1.55254698 0.19007331
+		 0.55649894 1.95545638 0.19007331 -0.55649894 1.95545638 -0.16364832 0.55649894 1.95545638 -0.16364832
+		 -0.55649894 1.9348613 -0.16364832 0.55649894 1.9348613 -0.16364832 -0.55649894 1.55254698 0.19007331
 		 0.55649894 1.55254698 0.19007331 -0.55649894 1.57314205 0.19007331 0.55649894 1.57314205 0.19007331
-		 -0.55649894 1.57314205 -0.16364831 0.55649894 1.57314205 -0.16364831 -0.55649894 1.55254698 -0.16364831
-		 0.55649894 1.55254698 -0.16364831 -0.55649894 1.20574808 0.19007331 0.55649894 1.20574808 0.19007331
-		 -0.55649894 1.22634327 0.19007331 0.55649894 1.22634327 0.19007331 -0.55649894 1.22634327 -0.16364831
-		 0.55649894 1.22634327 -0.16364831 -0.55649894 1.20574808 -0.16364831 0.55649894 1.20574808 -0.16364831
+		 -0.55649894 1.57314205 -0.16364832 0.55649894 1.57314205 -0.16364832 -0.55649894 1.55254698 -0.16364832
+		 0.55649894 1.55254698 -0.16364832 -0.55649894 1.20574808 0.19007331 0.55649894 1.20574808 0.19007331
+		 -0.55649894 1.22634327 0.19007331 0.55649894 1.22634327 0.19007331 -0.55649894 1.22634327 -0.16364832
+		 0.55649894 1.22634327 -0.16364832 -0.55649894 1.20574808 -0.16364832 0.55649894 1.20574808 -0.16364832
 		 -0.55649894 0.8568601 0.19007331 0.55649894 0.8568601 0.19007331 -0.55649894 0.87745535 0.19007331
-		 0.55649894 0.87745535 0.19007331 -0.55649894 0.87745535 -0.16364831 0.55649894 0.87745535 -0.16364831
-		 -0.55649894 0.8568601 -0.16364831 0.55649894 0.8568601 -0.16364831 -0.55649894 0.51632881 0.19007331
+		 0.55649894 0.87745535 0.19007331 -0.55649894 0.87745535 -0.16364832 0.55649894 0.87745535 -0.16364832
+		 -0.55649894 0.8568601 -0.16364832 0.55649894 0.8568601 -0.16364832 -0.55649894 0.51632881 0.19007331
 		 0.55649894 0.51632881 0.19007331 -0.55649894 0.536924 0.19007331 0.55649894 0.536924 0.19007331
-		 -0.55649894 0.536924 -0.16364831 0.55649894 0.536924 -0.16364831 -0.55649894 0.51632881 -0.16364831
-		 0.55649894 0.51632881 -0.16364831;
+		 -0.55649894 0.536924 -0.16364832 0.55649894 0.536924 -0.16364832 -0.55649894 0.51632881 -0.16364832
+		 0.55649894 0.51632881 -0.16364832;
 	setAttr -s 120 ".ed[0:119]"  0 1 1 2 3 1 4 5 1 6 7 1 0 2 0 1 3 0 2 4 1
 		 3 5 1 4 6 0 5 7 0 6 0 1 7 1 1 0 8 0 1 9 0 8 9 0 3 10 0 9 10 0 2 11 0 11 10 0 8 11 0
 		 8 12 0 9 13 0 12 13 0 10 14 0 13 14 0 11 15 0 15 14 0 12 15 0 2 16 0 3 17 0 16 17 1
@@ -197,19 +207,65 @@ createNode mesh -n "BookcaseShape" -p "Bookcase";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode groupId -n "groupId1";
+createNode polyAutoProj -n "polyAutoProj3";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "f[0:59]";
+	setAttr ".ix" -type "matrix" 1.1700950742240506 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1;
+	setAttr ".s" -type "double3" 2.5235247802734375 2.5235247802734375 2.5235247802734375 ;
+	setAttr ".o" 0;
+	setAttr ".ps" 0.20000000298023224;
+	setAttr ".dl" yes;
+createNode polyAutoProj -n "polyAutoProj2";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "f[0:59]";
+	setAttr ".ix" -type "matrix" 1.1700950742240506 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1;
+	setAttr ".s" -type "double3" 2.5235247802734375 2.5235247802734375 2.5235247802734375 ;
+	setAttr ".p" 8;
+	setAttr ".o" 0;
+	setAttr ".ps" 0.20000000298023224;
+	setAttr ".dl" yes;
+createNode polyAutoProj -n "polyAutoProj1";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "f[0:59]";
+	setAttr ".ix" -type "matrix" 1.1700950742240506 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1;
+	setAttr ".s" -type "double3" 2.5235247802734375 2.5235247802734375 2.5235247802734375 ;
+	setAttr ".o" 0;
+	setAttr ".ps" 0.20000000298023224;
+	setAttr ".dl" yes;
+createNode polyPlanarProj -n "polyPlanarProj1";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "f[0:59]";
+	setAttr ".ix" -type "matrix" 1.1700950742240506 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1;
+	setAttr ".ws" yes;
+	setAttr ".pc" -type "double3" 0 1.2636807250976563 0 ;
+	setAttr ".ps" -type "double2" 1.5302651977539063 2.5235247802734375 ;
+	setAttr ".cam" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1;
+createNode materialInfo -n "materialInfo1";
+createNode shadingEngine -n "lambert2SG";
 	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode lambert -n "test_wood";
+createNode checker -n "checker2";
+createNode place2dTexture -n "place2dTexture2";
+	setAttr ".re" -type "float2" 4 4 ;
+createNode lightLinker -s -n "lightLinker1";
+	setAttr -s 3 ".lnk";
+	setAttr -s 3 ".slnk";
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
 select -ne :renderPartition;
-	setAttr -s 2 ".st";
+	setAttr -s 3 ".st";
 select -ne :renderGlobalsList1;
 select -ne :defaultShaderList1;
-	setAttr -s 2 ".s";
+	setAttr -s 3 ".s";
 select -ne :postProcessList1;
 	setAttr -s 2 ".p";
+select -ne :defaultRenderUtilityList1;
+	setAttr -s 5 ".u";
 select -ne :defaultRenderingList1;
+select -ne :defaultTextureList1;
+	setAttr -s 5 ".tx";
 select -ne :initialShadingGroup;
 	setAttr ".ro" yes;
 select -ne :initialParticleSE;
@@ -226,10 +282,31 @@ select -ne :hardwareRenderingGlobals;
 		 0 0 0 0 ;
 select -ne :defaultHardwareRenderGlobals;
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
-select -ne :ikSystem;
-	setAttr -s 4 ".sol";
-connectAttr "groupId1.id" "BookcaseShape.iog.og[0].gid";
-connectAttr ":initialShadingGroup.mwc" "BookcaseShape.iog.og[0].gco";
-connectAttr "BookcaseShape.iog.og[0]" ":initialShadingGroup.dsm" -na;
-connectAttr "groupId1.msg" ":initialShadingGroup.gn" -na;
+connectAttr "polyAutoProj3.out" "BookcaseShape.i";
+connectAttr "polyAutoProj2.out" "polyAutoProj3.ip";
+connectAttr "BookcaseShape.wm" "polyAutoProj3.mp";
+connectAttr "polyAutoProj1.out" "polyAutoProj2.ip";
+connectAttr "BookcaseShape.wm" "polyAutoProj2.mp";
+connectAttr "polyPlanarProj1.out" "polyAutoProj1.ip";
+connectAttr "BookcaseShape.wm" "polyAutoProj1.mp";
+connectAttr "polySurfaceShape1.o" "polyPlanarProj1.ip";
+connectAttr "BookcaseShape.wm" "polyPlanarProj1.mp";
+connectAttr "lambert2SG.msg" "materialInfo1.sg";
+connectAttr "test_wood.msg" "materialInfo1.m";
+connectAttr "checker2.msg" "materialInfo1.t" -na;
+connectAttr "test_wood.oc" "lambert2SG.ss";
+connectAttr "BookcaseShape.iog" "lambert2SG.dsm" -na;
+connectAttr "checker2.oc" "test_wood.c";
+connectAttr "place2dTexture2.o" "checker2.uv";
+connectAttr "place2dTexture2.ofs" "checker2.fs";
+relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "lambert2SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "lambert2SG.message" ":defaultLightSet.message";
+connectAttr "lambert2SG.pa" ":renderPartition.st" -na;
+connectAttr "test_wood.msg" ":defaultShaderList1.s" -na;
+connectAttr "place2dTexture2.msg" ":defaultRenderUtilityList1.u" -na;
+connectAttr "checker2.msg" ":defaultTextureList1.tx" -na;
 // End of Bookcase.ma

@@ -1,6 +1,6 @@
 //Maya ASCII 2015 scene
 //Name: DiningRoomTable.ma
-//Last modified: Sun, Nov 02, 2014 11:07:58 AM
+//Last modified: Tue, Nov 04, 2014 12:03:51 PM
 //Codeset: UTF-8
 requires maya "2015";
 currentUnit -l meter -a degree -t film;
@@ -15,6 +15,17 @@ createNode transform -n "DiningTable";
 	setAttr ".sp" -type "double3" 0 0.88193924055635609 0 ;
 createNode mesh -n "DiningTableShape" -p "DiningTable";
 	setAttr -k off ".v";
+	setAttr ".vir" yes;
+	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.5 0.5 ;
+	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr ".cuvs" -type "string" "map1";
+	setAttr ".dcc" -type "string" "Ambient+Diffuse";
+	setAttr ".covm[0]"  0 1 1;
+	setAttr ".cdvm[0]"  0 1 1;
+createNode mesh -n "polySurfaceShape1" -p "DiningTable";
+	setAttr -k off ".v";
+	setAttr ".io" yes;
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
 	setAttr ".pv" -type "double2" 0.5 0.5 ;
@@ -188,6 +199,13 @@ createNode mesh -n "DiningTableShape" -p "DiningTable";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode polyAutoProj -n "polyAutoProj1";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "f[0:57]";
+	setAttr ".ix" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1;
+	setAttr ".s" -type "double3" 2.5000003051757811 2.5000003051757811 2.5000003051757811 ;
+	setAttr ".ps" 0.20000000298023224;
+	setAttr ".dl" yes;
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -215,7 +233,8 @@ select -ne :hardwareRenderingGlobals;
 		 0 0 0 0 ;
 select -ne :defaultHardwareRenderGlobals;
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
-select -ne :ikSystem;
-	setAttr -s 4 ".sol";
+connectAttr "polyAutoProj1.out" "DiningTableShape.i";
+connectAttr "polySurfaceShape1.o" "polyAutoProj1.ip";
+connectAttr "DiningTableShape.wm" "polyAutoProj1.mp";
 connectAttr "DiningTableShape.iog" ":initialShadingGroup.dsm" -na;
 // End of DiningRoomTable.ma
