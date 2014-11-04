@@ -12,10 +12,12 @@ public class PlayFMODSoundParameter : Command {
 	public float _parameterValue;
 	public Transform _position;
 	public bool _register;
+	public bool _track;
+	public float _volume = 1;
 
 	public override void OnEnter()
 	{
-		SoundManager._instance.playSoundAtPositionAndParameter (_eventName, _position.position, _parameterName, _parameterValue,_register);
+		SoundManager._instance.playSoundAtPositionAndParameter (_eventName, _position, _parameterName, _parameterValue,_register,_track, _volume);
 
 		Continue ();
 	}

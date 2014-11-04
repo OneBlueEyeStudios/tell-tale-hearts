@@ -69,7 +69,7 @@ public class Window : Interactable {
 		_animator.SetTrigger ("open");
 		_isClosed = false;
 
-		SoundManager._instance.playSoundAtPositionAndParameter ("event:/household/window",transform.position,"window",0);
+		SoundManager._instance.playSoundAtPositionAndParameter ("event:/household/window",transform,"window",0);
 
 		//_windowParameter.setValue (0);
 		//_windowEvent.start ();
@@ -85,7 +85,7 @@ public class Window : Interactable {
 
 		//_windowParameter.setValue (9);
 		//_windowEvent.start ();
-		SoundManager._instance.playSoundAtPositionAndParameter ("event:/household/window",transform.position,"window",9);
+		SoundManager._instance.playSoundAtPositionAndParameter ("event:/household/window",transform,"window",9);
 
 		if(_rainSound!=null)
 			

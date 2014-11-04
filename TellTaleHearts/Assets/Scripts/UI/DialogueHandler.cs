@@ -122,6 +122,9 @@ public class DialogueHandler : MonoBehaviour {
 		}
 		
 		if (!string.IsNullOrEmpty (_currentPassage.dialogue)) {
+
+			UnityEngine.Debug.LogWarning ("_currentPassage.dialogue: " + _currentPassage.dialogue);
+
 			SoundManager._instance.playDialogue(_currentPassage.dialogue);
 		}
 		

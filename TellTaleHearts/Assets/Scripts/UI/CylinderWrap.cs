@@ -191,12 +191,15 @@ public class CylinderWrap : MonoBehaviour {
 
 	void changeText ()
 	{
+		if (_currentPassage == null)
+						return;
+
 		_currentCenteredIndex = getCenteredIndex ();
 		for(int i = 0; i < _currentPassage.transitions.Count; i++)
 		{
 			if(i == _currentCenteredIndex)
 			
-				transform.GetChild(i).GetComponent<UILabel>().text = _currentPassage.transitions[i].name;
+				transform.GetChild(i).GetComponent<UILabel>().text = _currentPassage.transitions[i].name.ToUpper();
 
 
 			else

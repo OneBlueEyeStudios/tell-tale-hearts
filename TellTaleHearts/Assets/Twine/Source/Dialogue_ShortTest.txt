@@ -58,7 +58,7 @@ Open up! We know someone’s home!
 
 
 :: Stage 2A
-Sorry to wake you, but we have have recieved a complaint about a shriek and  a possible violent altercation. Do you mind if we come in and look around?
+Sorry to wake you, but we have have recieved a complaint about a shriek and  a possible violent altercation. Do you mind if we come in and look around?  $sorry
 
 [[Yes, come on in|Stage 2 END]]
 [[No, not without a warrent|Stage 2E]]
@@ -107,13 +107,12 @@ Anonymous
 
 
 :: Stage 2D
-So you are awake! You afraid or something, you look nervous. We’re here on suspicion of foul play and need to look around the premises. 
+So you are awake! You afraid or something, you look nervous. We’re here on suspicion of foul play and need to look around the premises.
 
-[[The cops start investigation|Stage 2 END]]
 
 
 :: Stage 2C
-About time, it’s raining out here! We have report about a possible violent altercation. We need to look around, OK?
+About time, it’s raining out here! We have report about a possible violent altercation. We need to look around, OK? $abouttime
 
 [[Yes|Stage 2 END]]
 [[No|Stage 2E]]
@@ -122,9 +121,8 @@ About time, it’s raining out here! We have report about a possible violent alt
 
 
 :: Stage 2E
-I’m afraid you don’t have much of a choice. 
+I’m afraid you don’t have much of a choice. $nochoice
 
-[[The cops start their investigation|Stage 2 END]]
 
 
 :: Stage 3C

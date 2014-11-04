@@ -17,10 +17,30 @@ public class CharView : MonoBehaviour
 		bool _mouseLookEnabled = true;
 		Vector3 _lastMousePosition;
 
+	public SmoothRandomPos _cameraSmooth;
+	public GameObject _eyelids;
+	public GameObject _themeSplash;
+
+	public CharacterMotor2 _charMotor;
+
+	bool _hasGameBegun;
+
+	public GameObject _soundManagerPref;
+	void Awake()
+	{
+		if (SoundManager._instance == null) 
+		{
+			Instantiate(_soundManagerPref);
+		}
+	}
+
 		// Use this for initialization
 		void Start ()
 		{
-			
+		_hasGameBegun = false;
+			setMouseLookEnabled (false);
+		setCharacterMotorEnabled(false);
+		SoundManager._instance.lowerThemeMusic ();
 		}
 
 
@@ -62,6 +82,21 @@ public class CharView : MonoBehaviour
 		// Update is called once per frame
 		void Update ()
 		{
+		if (Input.GetButtonDown ("Fire1") && !_hasGameBegun) {
+
+			_cameraSmooth.returnToOriginalPos();
+
+			Destroy(_cameraSmooth);
+			Destroy(_eyelids.gameObject);
+			Destroy(_themeSplash.gameObject);
+
+			_hasGameBegun = true;
+
+			setMouseLookEnabled(true);
+			setCharacterMotorEnabled(true);
+
+		}
+
 	
 				Ray r = Camera.main.ScreenPointToRay (new Vector3 (Screen.width / 2f, Screen.height / 2f, 0));
 
@@ -173,4 +208,11 @@ public class CharView : MonoBehaviour
 
 				_mouseLookEnabled = enabled;
 		}
+
+	void setCharacterMotorEnabled (bool enabled)
+	{
+		_charMotor.enabled = enabled;
+
+
+	}
 }

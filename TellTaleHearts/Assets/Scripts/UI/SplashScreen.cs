@@ -201,6 +201,8 @@ public class SplashScreen : MonoBehaviour
 				{
 					if ((Application.levelCount >= 1) && (levelToLoad != ""))
 					{
+						SoundManager._instance.stopThemeMusic();
+
 						Application.LoadLevel(levelToLoad);
 					}
 				}

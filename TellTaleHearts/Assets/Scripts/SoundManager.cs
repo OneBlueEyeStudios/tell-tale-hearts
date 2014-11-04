@@ -11,16 +11,20 @@ public class FMODEvent
 	public EventInstance _event;
 	public SoundType _type;
 	public string _eventName;
+	public bool _track;
+	public Transform _position;
 
 	public FMODEvent(EventInstance e, SoundType t)
 	{
 		_event = e;
 		_type = t;
 	}
-	public FMODEvent(EventInstance e, string eventName)
+	public FMODEvent(EventInstance e, string eventName,bool track, Transform trans)
 	{
 		_event = e;
 		_eventName = eventName;
+		_track = track;
+		_position = trans;
 	}
 
 }
@@ -28,14 +32,22 @@ public class FMODEvent
 
 public class SoundManager : MonoBehaviour {
 
+
 	public static SoundManager _instance;
+
+	GameObject _cop;
 
 	void Awake()
 	{
+
+		DontDestroyOnLoad (this.gameObject);
+
 		_instance = this;
 		_rainEvents = new List<RainSoundSource> ();
 		_currentRainIntensity = 0;
 	}
+
+	public float _themeMusicWaitTime = 25;
 
 	public List<FMODEvent> _soundEvents;
 
@@ -47,14 +59,14 @@ public class SoundManager : MonoBehaviour {
 
 	public float playDialogue(string tag)
 	{
-//		UnityEngine.Debug.LogWarning ("Play: " + tag);
+		UnityEngine.Debug.LogWarning ("play: " + tag);
 
 		AudioClip clip = getClipFor (tag);
 
 		if (clip == null)
 						return 0;
 
-		AudioSource.PlayClipAtPoint (clip,Vector3.zero);
+		AudioSource.PlayClipAtPoint (clip,_cop.transform.position);
 
 		return clip.length;
 	}
@@ -96,23 +108,25 @@ public class SoundManager : MonoBehaviour {
 		
 		fmodEvent.release ();
 
-		if (register)
-			RegisterNewEvent (fmodEvent, eventName);
+//		if (register)
+//			RegisterNewEvent (fmodEvent, eventName);
 
 		return fmodEvent;
 	}
 
-	public EventInstance playSoundAtPositionAndParameter(string eventName, Vector3 position, string parameterName, float value, bool register = false)
+	public EventInstance playSoundAtPositionAndParameter(string eventName, Transform position, string parameterName, float value, bool register = false, bool track = false, float volume = 1)
 	{
 		EventInstance fmodEvent = FMOD_StudioSystem.instance.GetEvent (eventName);
 		ParameterInstance fmodParameter;
 
 		RESULT result = fmodEvent.getParameter (parameterName, out fmodParameter);
 	
-		var attributes = FMOD.Studio.UnityUtil.to3DAttributes(position);
+		var attributes = FMOD.Studio.UnityUtil.to3DAttributes(position.position);
 
 		fmodEvent.set3DAttributes (attributes);
 	
+		fmodEvent.setVolume (volume);
+
 		fmodEvent.start ();
 
 		fmodParameter.setValue (value);
@@ -120,7 +134,7 @@ public class SoundManager : MonoBehaviour {
 		fmodEvent.release ();
 	
 		if (register)
-						RegisterNewEvent (fmodEvent, eventName);
+						RegisterNewEvent (fmodEvent, eventName,track,position);
 
 		return fmodEvent;
 		}
@@ -129,11 +143,45 @@ public class SoundManager : MonoBehaviour {
 	void Start () {
 	
 		_soundEvents = new List<FMODEvent> ();
+
+
+
+		Invoke ("playThemeMusic", _themeMusicWaitTime);
+
 	}
 
-	public void RegisterNewEvent(EventInstance eventInstance, string eventName)
+	void playThemeMusic()
 	{
-		_soundEvents.Add (new FMODEvent (eventInstance, eventName));
+		UnityEngine.Debug.LogWarning ("Play music NOW!");
+
+		audio.Play ();
+	}
+
+	public void stopThemeMusic()
+	{
+		audio.Stop ();
+	}
+
+	public void lowerThemeMusic ()
+	{
+		_cop = GameObject.Find ("BadCop");
+
+		StartCoroutine (lowerThemeCoroutine (0.4f));
+	}
+
+	IEnumerator lowerThemeCoroutine(float newVolume)
+	{
+		while (audio.volume > newVolume) 
+		{
+		
+			audio.volume -= Time.deltaTime/3;
+			yield return null;
+		}
+	}
+
+	public void RegisterNewEvent(EventInstance eventInstance, string eventName,bool track,Transform position)
+	{
+		_soundEvents.Add (new FMODEvent (eventInstance, eventName, track, position));
 	}
 
 	public bool HasEventWithName(string eventName, out FMODEvent outEvent)
@@ -180,7 +228,20 @@ public class SoundManager : MonoBehaviour {
 			_currentRainIntensity -= 2;
 			setRainIntensity(_currentRainIntensity);
 		}
+
+		trackAudio ();
+
 	}
 
 
+	void trackAudio ()
+	{
+		foreach (FMODEvent ev in _soundEvents) 
+		{
+			if(ev._track)
+			{
+				ev._event.set3DAttributes(FMOD.Studio.UnityUtil.to3DAttributes(ev._position.position));
+			}
+		}
+	}
 }
