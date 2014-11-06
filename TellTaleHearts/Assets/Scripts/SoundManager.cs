@@ -57,6 +57,8 @@ public class SoundManager : MonoBehaviour {
 
 	public float _currentRainIntensity;
 
+
+
 	public float playDialogue(string tag)
 	{
 		UnityEngine.Debug.LogWarning ("play: " + tag);
@@ -220,6 +222,15 @@ public class SoundManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if(Input.GetKeyDown(KeyCode.Escape))
+		{
+			if(Application.loadedLevelName == "NewSplashScreen")
+				Application.LoadLevel("test_scene");
+			else
+				Application.Quit();
+		}
+
+
 		if(Input.GetKeyDown(KeyCode.UpArrow))
 		{
 			_currentRainIntensity += 2;

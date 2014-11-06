@@ -20,6 +20,7 @@ namespace Fungus
 		public string HelpText { get; set; }
 	}
 
+	[Serializable]
 	public class Command : MonoBehaviour
 	{
 		[HideInInspector]

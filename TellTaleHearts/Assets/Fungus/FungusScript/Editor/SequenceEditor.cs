@@ -351,6 +351,51 @@ namespace Fungus
 				}
 			}
 		}
+
+		static public void CommandField(SerializedProperty property, GUIContent label, GUIContent nullLabel, FungusScript fungusScript)
+		{
+			if (fungusScript == null)
+			{
+				return;
+			}
+			
+			Command command = property.objectReferenceValue as Command;
+
+			Debug.LogWarning ("property: " + property.objectReferenceValue);
+
+			Sequence seq = command.GetSequence ();
+			// Build dictionary of child sequences
+			List<GUIContent> commandNames = new List<GUIContent>();
+			
+			int selectedIndex = 0;
+			commandNames.Add(nullLabel);
+			Command[] commands = seq.GetComponentsInChildren<Command>();
+			for (int i = 0; i < commands.Length; ++i)
+			{
+				commandNames.Add(new GUIContent(commands[i].name));
+				
+				if (command == commands[i])
+				{
+					selectedIndex = i + 1;
+				}
+			}
+			
+			selectedIndex = EditorGUILayout.Popup(label, selectedIndex, commandNames.ToArray());
+			if (selectedIndex == 0)
+			{
+				command = null; // Option 'None'
+			}
+			else
+			{
+				command = commands[selectedIndex - 1];
+			}
+			
+			property.objectReferenceValue = command;
+		}
+
 	}
+
+
+
 
 }

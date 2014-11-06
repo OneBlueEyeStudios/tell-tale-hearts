@@ -3,12 +3,30 @@ using System.Collections;
 
 public delegate void StringDelegate (string eventName);
 public delegate void StageStepDelegate (StageStep stageStep);
+public delegate void VoidDelegate ();
 
 public class StageManager : MonoBehaviour {
 
+	public event VoidDelegate fungusMerge;
 	public event StringDelegate eventTrigger;
 	public event StageStepDelegate stageStepEnded;
 
+	public int _nFungusThreads = 2;
+	int _nMergedFungusThreads= 0;
+
+	public void fungusReachedMerge ()
+	{
+		_nMergedFungusThreads++;
+		if (_nMergedFungusThreads == _nFungusThreads)
+						OnFungusMerge ();
+	}
+
+	public void OnFungusMerge()
+	{
+		_nMergedFungusThreads = 0;
+		if (fungusMerge != null)
+			fungusMerge ();
+	}
 
 	public void OnEventTrigger(string eventName)
 	{
