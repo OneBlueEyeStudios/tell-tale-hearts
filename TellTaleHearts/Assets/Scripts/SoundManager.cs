@@ -152,7 +152,7 @@ public class SoundManager : MonoBehaviour {
 
 	void playThemeMusic()
 	{
-		UnityEngine.Debug.LogWarning ("Play music NOW!");
+//		UnityEngine.Debug.LogWarning ("Play music NOW!");
 
 		audio.Play ();
 	}
@@ -166,11 +166,14 @@ public class SoundManager : MonoBehaviour {
 	{
 		_cop = GameObject.Find ("BadCop");
 
-		StartCoroutine (lowerThemeCoroutine (0.3f));
+		StartCoroutine (lowerThemeCoroutine (0.0f));
 	}
 
 	IEnumerator lowerThemeCoroutine(float newVolume)
 	{
+
+		yield return new WaitForSeconds (5);
+
 		while (audio.volume > newVolume) 
 		{
 		

@@ -7,16 +7,21 @@ ModelImporter:
     100002: House_Layout02
     100004: House_UVd
     100006: pPlane1
+    100008: House_Layout01
     400000: //RootNode
     400002: House_Layout02
     400004: House_UVd
     400006: pPlane1
+    400008: House_Layout01
     2300000: House_Layout02
     2300002: pPlane1
+    2300004: House_Layout01
     3300000: House_Layout02
     3300002: pPlane1
+    3300004: House_Layout01
     4300000: pPlane1
     4300002: House_Layout02
+    4300004: House_Layout01
     9500000: //RootNode
   materials:
     importMaterials: 1

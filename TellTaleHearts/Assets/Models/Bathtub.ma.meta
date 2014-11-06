@@ -9,27 +9,46 @@ ModelImporter:
     100006: pCube4
     100008: pCube5
     100010: pSphere2
+    100012: Bathtub
+    100014: Bathtub1
+    100016: Bathtub_group
+    100018: transform1
+    100020: transform2
+    100022: transform3
+    100024: transform4
+    100026: transform5
     400000: //RootNode
     400002: pCube2
     400004: pCube3
     400006: pCube4
     400008: pCube5
     400010: pSphere2
+    400012: Bathtub
+    400014: Bathtub1
+    400016: Bathtub_group
+    400018: transform1
+    400020: transform2
+    400022: transform3
+    400024: transform4
+    400026: transform5
     2300000: pCube2
     2300002: pCube3
     2300004: pCube4
     2300006: pCube5
     2300008: pSphere2
+    2300010: Bathtub1
     3300000: pCube2
     3300002: pCube3
     3300004: pCube4
     3300006: pCube5
     3300008: pSphere2
+    3300010: Bathtub1
     4300000: pSphere2
     4300002: pCube2
     4300004: pCube3
     4300006: pCube5
     4300008: pCube4
+    4300010: Bathtub1
     9500000: //RootNode
   materials:
     importMaterials: 1

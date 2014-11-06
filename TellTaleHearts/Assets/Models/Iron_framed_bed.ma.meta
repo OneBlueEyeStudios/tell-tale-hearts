@@ -22,6 +22,14 @@ ModelImporter:
     100032: transform3
     100034: transform4
     100036: transform5
+    100038: curve1 2
+    100040: curve1 3
+    100042: curve2 2
+    100044: curve2 3
+    100046: Matress_03
+    100048: Matress_04
+    100050: polySurface5
+    100052: polySurface6
     400000: curve1
     400002: curve1 1
     400004: curve2
@@ -41,18 +49,38 @@ ModelImporter:
     400032: transform3
     400034: transform4
     400036: transform5
+    400038: curve1 2
+    400040: curve1 3
+    400042: curve2 2
+    400044: curve2 3
+    400046: Matress_03
+    400048: Matress_04
+    400050: polySurface5
+    400052: polySurface6
     2300000: Matress_01
     2300002: Matress_02
     2300004: polySurface3
     2300006: polySurface4
+    2300008: Matress_03
+    2300010: Matress_04
+    2300012: polySurface5
+    2300014: polySurface6
     3300000: Matress_01
     3300002: Matress_02
     3300004: polySurface3
     3300006: polySurface4
+    3300008: Matress_03
+    3300010: Matress_04
+    3300012: polySurface5
+    3300014: polySurface6
     4300000: polySurface3
     4300002: Matress_01
     4300004: Matress_02
     4300006: polySurface4
+    4300008: polySurface5
+    4300010: Matress_03
+    4300012: Matress_04
+    4300014: polySurface6
     9500000: //RootNode
   materials:
     importMaterials: 1

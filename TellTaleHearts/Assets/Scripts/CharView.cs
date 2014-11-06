@@ -100,6 +100,8 @@ public class CharView : MonoBehaviour
 
 			_hasGameBegun = true;
 
+			StageManager._instance.OnEventTrigger("GameStart");
+
 			setMouseLookEnabled(true);
 			setCharacterMotorEnabled(true);
 

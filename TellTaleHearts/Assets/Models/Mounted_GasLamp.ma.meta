@@ -5,11 +5,21 @@ ModelImporter:
   fileIDToRecycleName:
     100000: Mounted_GasLamp
     100002: //RootNode
+    100004: glass_lamp
+    100006: metal_lamp
     400000: Mounted_GasLamp
     400002: //RootNode
+    400004: glass_lamp
+    400006: metal_lamp
     2300000: Mounted_GasLamp
+    2300002: glass_lamp
+    2300004: metal_lamp
     3300000: Mounted_GasLamp
+    3300002: glass_lamp
+    3300004: metal_lamp
     4300000: Mounted_GasLamp
+    4300002: metal_lamp
+    4300004: glass_lamp
     9500000: //RootNode
   materials:
     importMaterials: 1
