@@ -6,7 +6,7 @@ using FMOD;
 
 public class Cop : MonoBehaviour {
 	
-
+	public CopType _copType;
 	public Animator _animator;
 
 	NavMeshAgent _navMeshAgent;
@@ -35,5 +35,14 @@ public class Cop : MonoBehaviour {
 		//UnityEngine.Debug.LogWarning ("surfaceFloat: " + surfaceFloat);
 
 		//footstep.setParameterValue ("surface", surfaceFloat);
+	}
+
+	void OnTriggerStay(Collider col)
+	{
+		if (col.CompareTag ("Player")) 
+		{
+			StageManager._instance.OnCopApproach(_copType);
+		}
+
 	}
 }

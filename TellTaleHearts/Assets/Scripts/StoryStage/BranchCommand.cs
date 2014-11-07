@@ -16,7 +16,7 @@ public class BranchCommand : Command {
 	void eventFinished (Fungus.Sequence sequence, Fungus.Command command)
 	{
 		if (sequence == _leftSequence) {
-			Debug.LogWarning("Left sequence finished");
+			Debug.LogWarning("Sequence:"+_leftSequence.name+" finished");
 						//_rightSequence.Stop ();
 			ExecuteSequence(_leftSequence);
 			//sequence = _leftSequence;
@@ -24,7 +24,7 @@ public class BranchCommand : Command {
 			command.Continue();
 			SequenceTesting._instance.eventFinished -= eventFinished;
 				} else if (sequence == _rightSequence) {
-			Debug.LogWarning("Right sequence finished");
+			Debug.LogWarning("Sequence:"+_rightSequence.name+" finished");
 						//_leftSequence.Stop ();
 			//ExecuteSequence(_rightSequence);
 			//sequence = _rightSequence;

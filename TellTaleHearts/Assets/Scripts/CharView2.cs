@@ -4,11 +4,9 @@ using System.Collections;
 public class CharView2 : MonoBehaviour
 {
 		[Range(0.1f,10f)]
-		public float
-				_grabDistance;
+		public float _grabDistance;
 		[Range(0.1f,10f)]
-		public float
-				_objectDistanceToCamera;
+		public float _objectDistanceToCamera;
 		public Transform _handSocket;
 		public GameObject _mainCamera;
 		public GameObject _currentlyCentered;
@@ -16,7 +14,7 @@ public class CharView2 : MonoBehaviour
 		Vector3 _lastMousePosition;
 		bool _mouseLookEnabled;
 		bool _holdingObject;
-	bool _canDrop;
+		bool _canDrop;
 
 		// Use this for initialization
 		void Start ()
@@ -40,9 +38,6 @@ public class CharView2 : MonoBehaviour
 	
 		void FixedUpdate ()
 		{
-				//_handSocket.transform.position = Camera.main.transform.position + Camera.main.transform.forward * _objectDistanceToCamera;
-
-	
 				Ray r = Camera.main.ScreenPointToRay (new Vector3 (Screen.width / 2f, Screen.height / 2f, 0));
 
 				RaycastHit hit;

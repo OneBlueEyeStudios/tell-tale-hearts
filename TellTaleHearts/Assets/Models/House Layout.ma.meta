@@ -17,6 +17,23 @@ ModelImporter:
     100022: House_Layout02
     100024: House_UVd
     100026: House_Layout01
+    100028: House_Layout_1
+    100030: House_Layout_10
+    100032: House_Layout_11
+    100034: House_Layout_12
+    100036: House_Layout_13
+    100038: House_Layout_14
+    100040: House_Layout_15
+    100042: House_Layout_16
+    100044: House_Layout_17
+    100046: House_Layout_2
+    100048: House_Layout_3
+    100050: House_Layout_4
+    100052: House_Layout_5
+    100054: House_Layout_6
+    100056: House_Layout_7
+    100058: House_Layout_8
+    100060: House_Layout_9
     400000: distanceDimension1
     400002: //RootNode
     400004: imagePlane1
@@ -31,6 +48,23 @@ ModelImporter:
     400022: House_Layout02
     400024: House_UVd
     400026: House_Layout01
+    400028: House_Layout_1
+    400030: House_Layout_10
+    400032: House_Layout_11
+    400034: House_Layout_12
+    400036: House_Layout_13
+    400038: House_Layout_14
+    400040: House_Layout_15
+    400042: House_Layout_16
+    400044: House_Layout_17
+    400046: House_Layout_2
+    400048: House_Layout_3
+    400050: House_Layout_4
+    400052: House_Layout_5
+    400054: House_Layout_6
+    400056: House_Layout_7
+    400058: House_Layout_8
+    400060: House_Layout_9
     2300000: pCube1
     2300002: pCube2
     2300004: pCube3
@@ -39,6 +73,23 @@ ModelImporter:
     2300010: pPlane1
     2300012: House_Layout02
     2300014: House_Layout01
+    2300016: House_Layout_1
+    2300018: House_Layout_10
+    2300020: House_Layout_11
+    2300022: House_Layout_12
+    2300024: House_Layout_13
+    2300026: House_Layout_14
+    2300028: House_Layout_15
+    2300030: House_Layout_16
+    2300032: House_Layout_17
+    2300034: House_Layout_2
+    2300036: House_Layout_3
+    2300038: House_Layout_4
+    2300040: House_Layout_5
+    2300042: House_Layout_6
+    2300044: House_Layout_7
+    2300046: House_Layout_8
+    2300048: House_Layout_9
     3300000: pCube1
     3300002: pCube2
     3300004: pCube3
@@ -47,6 +98,23 @@ ModelImporter:
     3300010: pPlane1
     3300012: House_Layout02
     3300014: House_Layout01
+    3300016: House_Layout_1
+    3300018: House_Layout_10
+    3300020: House_Layout_11
+    3300022: House_Layout_12
+    3300024: House_Layout_13
+    3300026: House_Layout_14
+    3300028: House_Layout_15
+    3300030: House_Layout_16
+    3300032: House_Layout_17
+    3300034: House_Layout_2
+    3300036: House_Layout_3
+    3300038: House_Layout_4
+    3300040: House_Layout_5
+    3300042: House_Layout_6
+    3300044: House_Layout_7
+    3300046: House_Layout_8
+    3300048: House_Layout_9
     4300000: pCube1
     4300002: pCube2
     4300004: pCube3
@@ -55,6 +123,23 @@ ModelImporter:
     4300010: pPlane1
     4300012: House_Layout02
     4300014: House_Layout01
+    4300016: House_Layout_1
+    4300018: House_Layout_2
+    4300020: House_Layout_3
+    4300022: House_Layout_4
+    4300024: House_Layout_5
+    4300026: House_Layout_6
+    4300028: House_Layout_7
+    4300030: House_Layout_8
+    4300032: House_Layout_9
+    4300034: House_Layout_10
+    4300036: House_Layout_11
+    4300038: House_Layout_12
+    4300040: House_Layout_13
+    4300042: House_Layout_14
+    4300044: House_Layout_15
+    4300046: House_Layout_16
+    4300048: House_Layout_17
     9500000: //RootNode
   materials:
     importMaterials: 1

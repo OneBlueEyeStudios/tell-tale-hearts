@@ -42,7 +42,7 @@ public class DialogueHandler : MonoBehaviour {
 	public void startDialogue (string dialogueID, string startPassage = "Start")
 	{
 
-
+//		Debug.LogWarning ("startDialogue: " + startPassage);
 
 		_currentDialogue = _tweeDatabase.getDialogue (dialogueID);
 

@@ -13,7 +13,7 @@ public class BranchBreak : Command {
 
 		SequenceTesting._instance.OnEventFinished(GetSequence (),this);
 
-		Debug.LogWarning ("branch break");
+//		Debug.LogWarning ("branch break");
 
 		//Continue ();
 	}

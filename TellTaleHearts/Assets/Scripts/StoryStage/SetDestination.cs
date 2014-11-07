@@ -21,20 +21,24 @@ public class SetDestination : Command {
 	//public Transform _node;
 
 	public List<CopDestination> _copDestination;
+	public int _waitTimePerNode;
+
 
 	int arrived = 0;
 
 	void pathFinished (CopType agent)
 	{
 	
-		//Debug.LogWarning ("Path finished!");
+//		Debug.LogWarning ("Path finished!");
 
 		//SequenceTesting._instance.pathFinished -= pathFinished;
 
 		arrived++;
-		if (arrived == _copDestination.Count) {
+//		Debug.LogWarning ("arrived:"+arrived+"     _copDestination.Count"+_copDestination.Count);
+		if (arrived >= _copDestination.Count) {
 						SequenceTesting._instance.pathFinished -= pathFinished;
 
+			arrived=0;
 						Continue ();
 				}
 	}
@@ -45,9 +49,18 @@ public class SetDestination : Command {
 	{
 		SequenceTesting._instance.pathFinished += pathFinished;
 
-		foreach(CopDestination destination in _copDestination)
 
-			SequenceTesting._instance.MoveCharacter (destination._copType, destination._node.position);
+
+		foreach (CopDestination destination in _copDestination) 
+		{
+			if(destination._node.childCount > 0)
+			{
+				SequenceTesting._instance.MoveCharacterList (destination._copType, destination._node,_waitTimePerNode);
+			}
+			else
+				SequenceTesting._instance.MoveCharacter (destination._copType, destination._node.position);
+		
+		}
 	}
 
 	

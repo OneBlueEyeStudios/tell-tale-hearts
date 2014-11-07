@@ -133,7 +133,39 @@ public class SequenceTesting : MonoBehaviour {
 		//StartCoroutine(startSequence (_goodCop, _goodCopSequence,0));
 	}
 
+	public void MoveCharacterList (CopType copType, Transform parentNode,int waitTimePerNode)
+	{
+		StartCoroutine(MoveCharacterListCoroutine(copType,parentNode, waitTimePerNode));
+	}
 
+	public IEnumerator MoveCharacterListCoroutine (CopType copType, Transform parentnode, int waitTimePerNode)
+	{
+		int index = 0;
+
+		NavMeshAgent cop = null;
+
+		switch (copType) {
+		case CopType.bad:
+			cop = _badCop;
+			break;
+		case CopType.good:
+			cop = _goodCop;
+			break;
+		default:
+			break;
+		}
+
+		while (index < parentnode.childCount) 
+		{
+			yield return StartCoroutine(MoveCharacterCoroutine(cop,parentnode.GetChild(index).position,true));
+
+			yield return new WaitForSeconds (waitTimePerNode);
+
+    		index++;
+		}
+
+		pathEnd (cop);
+	}
 
 	public void MoveCharacter(CopType copType,Vector3 position)
 	{
@@ -149,7 +181,9 @@ public class SequenceTesting : MonoBehaviour {
 		}
 	}
 
-	IEnumerator MoveCharacterCoroutine(NavMeshAgent agent, Vector3 position)
+
+
+	IEnumerator MoveCharacterCoroutine(NavMeshAgent agent, Vector3 position, bool multiPath = false)
 	{
 		
 		//Sequence currentSequence = sequence [index];
@@ -166,7 +200,8 @@ public class SequenceTesting : MonoBehaviour {
 			
 		}
 
-		pathEnd(agent);
+		if(!multiPath)
+			pathEnd(agent);
 	}
 	
 
