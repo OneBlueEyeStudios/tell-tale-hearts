@@ -161,6 +161,17 @@ public class SequenceTesting : MonoBehaviour {
 
 			yield return new WaitForSeconds (waitTimePerNode);
 
+			ClueReference clueRef = parentnode.GetChild(index).GetComponent<ClueReference>();
+			if(clueRef!=null)
+			{
+				if(clueRef._reference._available)
+				{
+					Debug.LogWarning("Cop learned about: "+clueRef._reference._clueType);
+
+					StageManager._instance.copDiscoveredClue(copType,clueRef._reference._clueType);
+				}
+			}
+
     		index++;
 		}
 

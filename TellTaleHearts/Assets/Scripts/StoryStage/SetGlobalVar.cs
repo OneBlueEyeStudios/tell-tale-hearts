@@ -8,6 +8,7 @@ using Fungus;
              "Set Global Var")]
 public class SetGlobalVar : Command {
 
+
 	public string _globalVar;
 	public int _value;
 

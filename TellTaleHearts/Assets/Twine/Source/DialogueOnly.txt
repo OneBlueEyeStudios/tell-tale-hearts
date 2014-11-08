@@ -6,65 +6,56 @@ It’s still dark, but there is enough light to indicate that we are indoors loo
 The logo dissolves away and the camera pans down until it is looking straight ahead and everything comes into focus. The sound of the heart fades away into nothingness. The rain becomes slightly louder and clearer. 
 
 
-:: Stage 1
-Police! Is there anybody home?
-
-[[Answer the door|Stage 2A]]
-[[Ignore the door|Stage 2B]]
-
-
-
-:: Stage 4A
-Can you come here? 
-
-[[You come to the bedroom|Stage 4B]]
-[[You stay away from the bedroom|Stage 4C]]
-
-
-:: Stage 3A
+:: Stage 3
 Do you live here alone?
 
-[[No, I have a roommate|Stage 3B]]
-[[Yes, I live here alone|Stage 3D]]
-
-
-
-:: Stage 2A
-Sorry to wake you, but we have have recieved a complaint about a shriek and  a possible violent altercation. Do you mind if we come in and look around?
-
-[[Yes, come on in|Stage 2 END]]
-[[No, not without a warrent|Stage 2E]]
-
+[[No, I have a roommate|Stage 3B]]<var:doubt+=0>
+[[Yes, I live here alone|Stage 3D]]<var:doubt+=1>
 
 
 
 :: Stage 5
 This roommate of yours, how can he afford living in such a large house?
 
-[[I think he has a government pension|Stage 5B]]
-[[He's owned it a long time and I pay rent|Stage 5C]]
+[[I think he has a pension|Stage 5B]]<var:doubt+=1>
+[[He's owned it a long time and I pay rent|Stage 5C]]<var:doubt+=0>
 
 
-:: Stage 6A-1
-So your roommate is visiting his son?
-
-[[What? As far as I know he is out at the pub| Stage 6B]]
-[[Yeah, for a few days|Stage 6C]]
-
-
-
-:: Stage 6A-2
+:: Stage 6
 Where did you say your roommmate was?
 
-[[As far as I know he is out at the pub| Stage 6B]]
-[[Visiting his son|Stage 6 END]]
+[[As far as I know he is out at the pub| Stage 6B]]<var:doubt+=0>
+[[Visiting his son|Stage 6C]]<var:doubt+=1>
 
 
 :: Stage 7A
 What time did you say you got home?
 
-[[I've been home all night|Stage 7 END]]
-[[A short while ago|Stage 7 END]]
+[[I've been home all night|Stage 7 END]]<var:doubt+=1>
+[[A short while ago|Stage 7 END]]<var:doubt+=0>
+
+
+
+:: Stage 2A
+Sorry to wake you, but we have have recieved a complaint about a shriek and  a possible violent altercation. Do you mind if we come in and look around?
+
+[[Yes, come on in|Stage 2 END]]<var:doubt+=0>
+[[No, not without a warrant|Stage 2E]]<var:doubt+=1>
+
+
+
+
+:: Stage 2C
+About time, it’s raining out here! We have report about a possible violent altercation. We need to look around, OK?
+
+[[Yes|Stage 2 END]]<var:doubt+=0>
+[[No|Stage 2E]]<var:doubt+=1>
+
+
+
+
+:: Stage 2D
+So you are awake! You afraid or something, you look nervous? We’re here on suspicion of foul play and need to look around the premises. 
 
 
 
@@ -72,75 +63,34 @@ What time did you say you got home?
 Untitled Story
 
 
-:: Stage 2B
-Open up! We know someone’s home!
-
-[[Answer the door|Stage 2C]]
-[[Ignore the door|Stage 2D]]
-
-
-
 :: Stage 4
 Where were you earlier tonight?
 
-[[I have been home all night, alone|Stage 4D]]
-[[I was at a play, then home|Stage 4E]]
-
-
-:: Stage 4C
-Hey, you deaf? I said come here.
-
-[[You come to the room|Stage 4B]]
-[[You stay away|Stage 4F]]
-
-
-:: Stage 3D
-A lot of stuff around here looks like it was meant for an old man. Can you explain that?
-
-[[It's from the previous tenant|Stage 3F]]
-[[Oh, that's my roommates stuff|Stage 3E]]
-
-
-:: Stage 5B
-Pensioner, hmmm. Military or Government?
-
-[[I believe he was a lieutentant|Stage 5D]]
-[[I've never bothered to ask|Stage 5E]]
-
-
-:: Stage 5C
-Do you pay your rent on time?
-
-[[Of course, I got a good deal here|Stage 5 END]]
-[[ Not lately, been sick lately|Stage 5 END]]
-
-
-
-::  Stage 6B
-Does he drink often?
-
-[[Pretty much everyday|Stage 6 END]]
-[[No, just enjoys the people at the pub|Stage 6 END]]
-
-
-:: Stage 6C
-Did he ever mention a niece?
-
-[[I know he has one, but that it|Stage 6 END]]
-[[I believe she is coming to visit soon|Stage 6 END]]
+[[I have been home all night, alone|Stage 4D]]<var:doubt+=1>
+[[I was at a play, then home|Stage 4E]]<var:doubt+=0>
 
 
 :: Stage 3B
 Is your roommate home?
 
-[[He went out drinking|Stage 3 END]]
-[[He is off visiting his son|Stage 3C]]
+[[He went out drinking|Stage 3 END]]<var:doubt+=0>
+[[He is off visiting his son|Stage 3C]]<var:doubt+=1>
 
 
 
 
-:: StoryAuthor
-Anonymous
+:: Stage 3D
+A lot of stuff around here looks like it was meant for an old man. Can you explain that?
+
+[[It's from the previous tenant|Stage 3 END]]<var:doubt+=1>
+[[Oh, that's my roommates stuff|Stage 3E]]<var:doubt+=0>
+
+
+:: Stage 5B
+Pensioner, hmmm. Military or company?
+
+[[I believe he was a lieutentant|Stage 5D]]<var:doubt-=1>
+[[I've never bothered to ask|Stage 5E]]<var:doubt+=0>
 
 
 :: Stage 7 END
@@ -149,40 +99,49 @@ Done
 
 
 
-:: Stage 2D
-So you are awake! You afraid or something, you look nervous? We’re here on suspicion of foul play and need to look around the premises. 
+:: Stage 5C
+Do you pay your rent on time?
 
-[[The cops start investigation|Stage 2 END]]
-
-
-:: Stage 2C
-About time, it’s raining out here! We have report about a possible violent altercation. We need to look around, OK?
-
-[[Yes|Stage 2 END]]
-[[No|Stage 2E]]
+[[Of course, I got a good deal here|Stage 5 END]]<var:doubt+=0>
+[[Not lately, been sick lately|Stage 5 END]]<var:doubt+=1>
 
 
+
+::  Stage 6B
+Does he drink often?
+
+[[Pretty much everyday|Stage 6 END]]<var:doubt+=0>
+[[No, just enjoys the people at the pub|Stage 6 END]]<var:doubt+=1>
+
+
+:: Stage 6C
+Did he ever mention a niece?
+
+[[His son is his only family|Stage 6 END]] <var:doubt+=1>
+[[I believe she is coming to visit soon|Stage 6 END]] <var:doubt-=1>
+
+
+:: StoryAuthor
+Anonymous
 
 
 :: Stage 2E
 I’m afraid you don’t have much of a choice. 
 
-[[The cops start their investigation|Stage 2 END]]
+
+
+:: Stage 4D
+Did you happen to hear a shriek?
+
+[[It's been quiet all night|Stage 4 END]]<var:doubt+=1>
+[[I screamed when I stubbed my toe|Stage 4 END]]<var:doubt-=1>
 
 
 :: Stage 4E
-Interesting. Did you happen to hear a scream at any point?
+Interesting. When did you get home?
 
-[[Been silent all night|Stage 4 END]]
-[[I screamed when I stubbed my foot|Stage 4 END]]
-
-
-:: Stage 4F
-Fine, don't bother. Just tell me, were you home all night?
-
-[[Yes, I've been home all night|Stage 4D]]
-[[No, I was at a play earlier|Stage 4E]]
-
+[[Around dusk|Stage 4D]]<var:doubt+=1>
+[[Less than an hour ago|Stage 4 END]]<var:doubt+=0>
 
 
 :: Stage 5D
@@ -205,30 +164,16 @@ Done
 :: Stage 3C
 His son? When do you expect him back?
 
-[[He didn’t say|Stage 3 END]]
-[[He’ll be back in a few days|Stage 3 END]]
+[[He didn’t say|Stage 3 END]]<var:doubt+=1>
+[[He’ll be back in a few days|Stage 3 END]]<var:doubt+=1>
 
 
 
 :: Stage 3E
 I thought you said you live here alone?
 
-[[Sorry, I thought you meant right now|Stage 3 END]]
-
-
-
-:: Stage 3F
-how can you afford living in such a large house?
-
-[[I have a company pension|Stage 3 END]]
-[[I've owned it a long time and rent out a room|Stage 3 END]]
-
-
-:: Stage 4D
-Home all night you say. Can you explain the shriek that was heard?
-
-[[I didn't hear any shriek|Stage 4 END]]
-[[I screamed from a dream|Stage 4 END]]
+[[Sorry, I thought you meant right now|Stage 3 END]]<var:doubt-=1>
+[[You are mistaken|Stage 3 END]]<var:doubt+=1>
 
 
 :: Stage 2 END

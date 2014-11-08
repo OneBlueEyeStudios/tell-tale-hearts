@@ -167,16 +167,18 @@ public class CharView : MonoBehaviour
 										interactable.interact ();
 								}
 						} else if (Input.GetKeyDown (KeyCode.P)) {
-								if (!_mouseLookEnabled) {
-
+								//if (!_mouseLookEnabled) {
+								if(_isHoldingObject){
+										_lastObjectParent.GetComponent<Clue>()._available = false;
 										_currentlyCentered.GetComponent<Item> ().putInInventory ();
-										_currentlyCentered.gameObject.SetActive (false);
+										//Destroy(_currentlyCentered.gameObject);
+					        			_currentlyCentered.gameObject.SetActive (false);
 										_currentlyCentered = null;
-										
 										
 										_lastObjectParent = null;
 									
 										setMouseLookEnabled (true);
+										_isHoldingObject = false;
 								}
 						}
 				}
@@ -190,7 +192,7 @@ public class CharView : MonoBehaviour
 								//_currentlyCentered.transform.Rotate (new Vector3 (0, -delta.x, 0), Space.Self	);
 
 								// NEW, AFTER POSTCARD
-								_currentlyCentered.transform.Rotate (new Vector3 (0, 0, delta.x), Space.Self);
+								//_currentlyCentered.transform.Rotate (new Vector3 (0, 0, delta.x), Space.Self);
 						}
 				}
 
