@@ -1,7 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
+public class Constants
+{
+	public static string CURRENT_STAGE = "CurrentStage"; 
+	public static string DOUBT = "doubt";
+	public static string SUSPICION = "Suspicion";
+	public static string SPEAKING_COP = "SpeakingCop";
+	public static string DECISION_NODE = "Decision";
+	public static string GOOD_COP_APPROACH = "GoodCopApproach";
+	public static string BAD_COP_APPROACH = "BadCopApproach";
+
+
+	public static string CUE_TAG = "cue";
+	public static string VAR_TAG = "var";
+	public static string PLUS_EQUAL = "+=";
+	public static string MINUS_EQUAL = "-=";
+
+}
 
 public class DialogueHandler : MonoBehaviour {
 
@@ -9,6 +27,8 @@ public class DialogueHandler : MonoBehaviour {
 
 	public void OnDialogueEnded()
 	{
+		evaluateDialogue ();
+
 		if (dialogueEnded!=null)
 				dialogueEnded (this,EventArgs.Empty);
 	}
@@ -38,9 +58,12 @@ public class DialogueHandler : MonoBehaviour {
 	public CylinderWrap _cylinderWrap;
 
 	bool _showingDialogue;
+
+	public Dictionary<string,int> _currentDialogueVars;
 	
 	public void startDialogue (string dialogueID, string startPassage = "Start")
 	{
+		_currentDialogueVars = new Dictionary<string, int> ();
 
 //		Debug.LogWarning ("startDialogue: " + startPassage);
 
@@ -59,6 +82,22 @@ public class DialogueHandler : MonoBehaviour {
 		NGUITools.SetActive (_dialogueBox, false);
 		
 
+	}
+
+	void evaluateDialogue ()
+	{
+		if (_currentDialogueVars.ContainsKey(Constants.DOUBT) && _currentDialogueVars [Constants.DOUBT] > 0) 
+		{
+
+			if(StageManager._instance.copKnowsStageClue())
+			{
+				Debug.LogWarning("Cop knows about clue");
+			StageManager._instance.incrementGlobalVar(Constants.SUSPICION,1);
+			}
+			else
+				Debug.LogWarning("Cop does not knows about clue");
+
+		}
 	}
 
 	public void showSimpleDialog(string text)
@@ -117,8 +156,8 @@ public class DialogueHandler : MonoBehaviour {
 		{
 			Debug.LogError("There is no such passage: "+title);
 			//stopDialogue();
-			hideDialogueBox();
-			OnDialogueEnded();
+			//hideDialogueBox();
+			//OnDialogueEnded();
 		}
 		
 		if (!string.IsNullOrEmpty (_currentPassage.dialogue)) {
@@ -172,7 +211,101 @@ public class DialogueHandler : MonoBehaviour {
 
 		
 	}
-	
+
+	string getTransitionCue(TweeTransition tweeTransition)
+	{
+		if (tweeTransition.tags == null)
+						return "";
+
+		foreach(TweeTag tags in tweeTransition.tags)
+		{
+			if(tags.key.Equals(Constants.CUE_TAG))
+			{
+				return tags.value;
+			}
+		}
+
+		return "";
+	}
+
+	void checkVariable (string s)
+	{
+		int value = 0;
+		bool exists = _currentDialogueVars.TryGetValue (s, out value);
+
+		if (!exists) 
+		{
+				
+			_currentDialogueVars.Add (s, 0);
+			Debug.LogWarning("Created var: "+s);
+		}
+
+	}
+
+	void evaluateVar (string s)
+	{
+		int plusEqual, minusEqual;
+		plusEqual = s.IndexOf (Constants.PLUS_EQUAL);
+		minusEqual = s.IndexOf (Constants.MINUS_EQUAL);
+
+		bool isPlusEqual = plusEqual > 0;
+
+		string varName;
+		if (isPlusEqual)
+			varName = s.cutFromTo(0,plusEqual);
+		else
+			varName = s.cutFromTo(0,minusEqual);
+
+
+		checkVariable (varName);
+
+		int value = int.Parse(s.Substring(varName.Length+2));
+
+		if (isPlusEqual)
+			_currentDialogueVars [varName] += value;
+		else
+			_currentDialogueVars [varName] -= value;
+
+		//Debug.LogWarning ("varName: " + varName + " => value " + value);
+
+		Debug.LogWarning (varName+"="+_currentDialogueVars [varName]);
+
+	}
+
+	void evaluateVars (TweeTransition tweeTransition)
+	{
+		if (tweeTransition.tags == null) 
+		{
+			Debug.LogWarning("tweeTransition.tags == null");
+
+						return;
+		
+		}
+
+		foreach(TweeTag tag in tweeTransition.tags)
+		{
+			if(tag.key.Equals(Constants.VAR_TAG))
+			{
+				evaluateVar(tag.value);
+			}
+		}
+	}
+
+	void evaluateTransition (TweeTransition tweeTransition)
+	{
+		//float length = SoundManager._instance.playDialogue(_currentPassage.transitions[index].dialogue);
+		string cue = getTransitionCue (tweeTransition);
+		float length = 0;
+		if (!string.IsNullOrEmpty (cue)) 
+		{ 
+			length = SoundManager._instance.playDialogue(cue);
+		
+		}
+
+		evaluateVars (tweeTransition);
+
+		StartCoroutine(printPassage(tweeTransition.passageTag, length));
+	}	
 	
 	// Update is called once per frame
 	void Update () {
@@ -199,8 +332,9 @@ public class DialogueHandler : MonoBehaviour {
 			{
 				int index = _cylinderWrap._currentCenteredIndex;
 
-				float length = SoundManager._instance.playDialogue(_currentPassage.transitions[index].dialogue);
-				StartCoroutine(printPassage(_currentPassage.transitions[index].passageTag, length));
+				//float length = SoundManager._instance.playDialogue(_currentPassage.transitions[index].dialogue);
+				evaluateTransition(_currentPassage.transitions[index]);
+
 
 			}
 			/*
@@ -219,6 +353,12 @@ public class DialogueHandler : MonoBehaviour {
 			*/
 		}
 	}
+	void OnGUI()
+	{
+		if (_currentDialogueVars!=null && _currentDialogueVars.ContainsKey (Constants.DOUBT))
+			GUI.Label (new Rect(0,0,100,100),"doubt: " + _currentDialogueVars [Constants.DOUBT]);
+	}
+
 	/*
 	public void OnTriggerEnter(Collider other)
 	{

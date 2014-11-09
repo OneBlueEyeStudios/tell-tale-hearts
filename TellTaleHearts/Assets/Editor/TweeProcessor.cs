@@ -43,8 +43,8 @@ public class TweeProcessor : AssetPostprocessor
 										database.addNewDialogue (dialogue._id, dialogue);
 								}
 						}
-						EditorUtility.SetDirty(database);
-						AssetDatabase.SaveAssets();
+						EditorUtility.SetDirty (database);
+						AssetDatabase.SaveAssets ();
 				}
 
 
@@ -118,16 +118,16 @@ public class TweeProcessor : AssetPostprocessor
 										buffer = new StringBuilder ();
 								}
                  
-								/* I know, I know, a magic number and chained function calls and it's
-			* ugly, but it's not that complicated. A new passage in a twee file
+				/* I know, I know, a magic number and chained function calls and it's
+				 * ugly, but it's not that complicated. A new passage in a twee file
                  * starts with a line like this:
                  *
                  * :: The Passage Begins Here [someTag anotherTag heyThere]
                  *               
                  * What's happening here is when a new passage starts, we ignore the
-				* :: prefix, strip off the ] at the end of the tags, and split the
-				* line on [ into two strings, one of which will be the passage title
-				           * while the other has all of the passage's tags, if any are found.
+				 * :: prefix, strip off the ] at the end of the tags, and split the
+				 * line on [ into two strings, one of which will be the passage title
+				 * while the other has all of the passage's tags, if any are found.
                  */
 								chunks = lines [i].Substring (2).Replace ("]", "").Split ('[');
                  
@@ -135,7 +135,7 @@ public class TweeProcessor : AssetPostprocessor
 								// start a new passage here with that title.
 								currentPassage = new TweePassage ();
 								currentPassage.title = chunks [0].Trim ();
-				Debug.LogWarning("Title: "+currentPassage.title);
+								Debug.LogWarning ("Title: " + currentPassage.title);
                  
 								// If there was anything after the [, the passage has tags, so just
 								// split them up and attach them to the passage.
@@ -148,15 +148,50 @@ public class TweeProcessor : AssetPostprocessor
 
 
 								if (lines [i].StartsWith ("[[")) {
-										int indexFirst = lines [i].IndexOf ("[[");
-										int indexLast = lines [i].LastIndexOf ("]]") - 2;
+										int indexFirst = lines [i].IndexOf ("[[")+2;
+					//int indexFirst = lines [i].IndexOf ("[[") +2;
+										int indexLast = lines [i].LastIndexOf ("]]");
 										int length = lines [i].Length - (lines [i].Length - indexLast) - indexFirst;
 
-										string[] split = lines [i].Substring (indexFirst + 2, length).Split ('|');
-										string dialogue = lines [i].Substring (lines [i].IndexOf ('$') + 1);
+										//string[] split = lines [i].Substring (indexFirst + 2, length).Split ('|');
+										string[] split = lines [i].cutFromTo(indexFirst,indexLast).Split ('|');
+					//string[] split = lines [i].Substring (indexFirst, length).Split ('|');
+										//string dialogue = lines [i].Substring (lines [i].IndexOf ('$') + 1);
 
-										Debug.LogWarning ("Transition title:" + split [0] + " _ transition tag:" + split [1] + " _ dialogue:" + dialogue);
-										currentPassage.addNewTransition (split [0], split [1], dialogue);
+					//Debug.LogWarning("lines i:"+lines [i]);
+					//Debug.LogWarning("lines i cut:"+lines [i].cutFromTo(indexFirst,indexLast));
+
+					//TAGS
+
+					//Dictionary<string,string> tags = new Dictionary<string, string>();
+					List<TweeTag> tags = new List<TweeTag>();
+
+					int startDic, endDic;
+					startDic = lines [i].IndexOf ("<")+1;
+					endDic  = lines [i].IndexOf (">");
+
+					if(startDic>0)
+					{
+					string[] splidDic = lines [i].cutFromTo(startDic,endDic).Split (',');
+
+					foreach(string tag in splidDic)
+					{
+						
+
+							string[] splitTag = tag.Split(':');
+
+							Debug.LogError(splitTag[0] +"       "+ splitTag[1]);
+
+							tags.Add(new TweeTag(splitTag[0],splitTag[1]));
+
+					}
+					}
+
+					Debug.LogWarning ("Transition title:" + split [0] + "/// transition tag:" + split [1]);// + "///dialogue:" + dialogue);
+
+
+
+					currentPassage.addNewTransition (split [0], split [1],"",tags);//, dialogue);
 								} else {
 										if (lines [i].Contains ("$")) {
 
@@ -181,12 +216,12 @@ public class TweeProcessor : AssetPostprocessor
 				if (currentPassage != null) {           
 						//currentPassage.body = buffer.ToString ();
 						//passages.Add (currentPassage.title, currentPassage);
-					currentPassage.body = buffer.ToString ();
-					passages.Add (currentPassage.title, currentPassage);                 
+						currentPassage.body = buffer.ToString ();
+						passages.Add (currentPassage.title, currentPassage);                 
 					
-					myPassages.Add (currentPassage);
-					myTitles.Add (currentPassage.title);
-					//buffer = new StringBuilder ();
+						myPassages.Add (currentPassage);
+						myTitles.Add (currentPassage.title);
+						//buffer = new StringBuilder ();
 				}
 
 				TweeDialogue tweeDialogue = new TweeDialogue (filename, myTitles, myPassages);
@@ -195,7 +230,11 @@ public class TweeProcessor : AssetPostprocessor
 
 		}
 
-		// Use this for initialization
+
+
+
+	
+	// Use this for initialization
 		void Start ()
 		{
 	
@@ -207,3 +246,5 @@ public class TweeProcessor : AssetPostprocessor
 	
 		}
 }
+
+
