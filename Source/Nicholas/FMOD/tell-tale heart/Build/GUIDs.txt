@@ -14,6 +14,7 @@
 {2d50b9e7-98fb-47e3-8723-48f55584d99f} event:/action/cheque
 {8940e9b7-c490-4f6e-b611-62a28a3e8286} event:/action/letter
 {e481ffc1-f311-467c-9ba4-46b955c60f3c} event:/action/ticket
+{e765eee3-7cd2-4e7f-b43d-8c245e874ab9} event:/dialogue/confess
 {ece1d9bd-5bb0-479f-8571-24a3f124a50f} bus:/
 {0d5e9d5a-4e02-4cb9-8d21-8f3aa831e51f} bus:/Reverb
 {e86e1ea5-25f4-4378-a80b-8573d5986a30} bank:/Master Bank
