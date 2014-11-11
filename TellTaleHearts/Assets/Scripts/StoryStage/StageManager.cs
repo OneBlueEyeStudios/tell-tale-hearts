@@ -11,7 +11,12 @@ public delegate void VoidDelegate ();
 public class StageClue
 {
 	public int _stage;
+	public bool _hasClue;
 	public ClueType _type;
+	public Transform _mainRoom;
+	public Transform _secondaryRoom;
+	public CopType _speakingCop;
+
 }
 
 public class StageManager : MonoBehaviour {
@@ -84,19 +89,74 @@ public class StageManager : MonoBehaviour {
 	// List of clues that the good cop and the bad cop discovered when exploring the house
 	List<ClueType> _goodCopClues, _badCopClues;
 
+
+
 	public CopType getCurrentSpeakingCop()
 	{
-		if (_goodFungus.GetBooleanVariable (Constants.SPEAKING_COP))
+		/*if (_goodFungus.GetBooleanVariable (Constants.SPEAKING_COP))
 			return CopType.good;
 		else
-			return CopType.bad;
+			return CopType.bad;*/
+
+		StageClue stage = getCurrentStage ();
+		return stage._speakingCop;
+	}
+
+	ClueType getClueType(int stage, out bool hasClue)
+	{
+		foreach (StageClue stageClue in _stageClue) 
+		{
+			if(stageClue._stage == stage)
+			{
+				hasClue = stageClue._hasClue;
+				return stageClue._type;
+			}
+		}
+
+		Debug.LogError ("Could not find clue for Stage: " + stage);
+		hasClue = false;
+		return ClueType.OperaTicket;
+	}
+
+	public Transform getRoomForCurrentStage ()
+	{
+		int currentStage = _globalVars [Constants.CURRENT_STAGE];
+
+		foreach (StageClue stageClue in _stageClue) 
+		{
+			if(stageClue._stage == currentStage)
+			{
+				return stageClue._mainRoom;
+			}
+		}
+
+		return null;
+	}
+
+	public Transform getSecondaryRoomForCurrentStage ()
+	{
+		int currentStage = _globalVars [Constants.CURRENT_STAGE];
+		
+		foreach (StageClue stageClue in _stageClue) 
+		{
+			if(stageClue._stage == currentStage)
+			{
+				return stageClue._secondaryRoom;
+			}
+		}
+		
+		return null;
 	}
 
 	public bool copKnowsStageClue ()
 	{
 		CopType currentCop = getCurrentSpeakingCop ();
 
-		ClueType currentStageClue = _stageClue [_globalVars [Constants.CURRENT_STAGE]]._type;
+		bool hasClue = false;
+		ClueType currentStageClue = getClueType (_globalVars [Constants.CURRENT_STAGE],out hasClue);//_stageClue []._type;
+
+		if (!hasClue)
+			return true;
 
 		switch (currentCop) {
 		case CopType.bad:
@@ -197,18 +257,50 @@ public class StageManager : MonoBehaviour {
 		fungus.SetBooleanVariable(boolVarName,!fungus.GetBooleanVariable(boolVarName));
 	}
 
+	StageClue getCurrentStage ()
+	{
+		int currentStage = _globalVars [Constants.CURRENT_STAGE];
+		
+		foreach (StageClue stageClue in _stageClue) 
+		{
+			if(stageClue._stage == currentStage)
+			{
+				return stageClue;
+			}
+		}
+
+		return null;
+	}
+
 	public void triggerNextStage (FungusScript script)
 	{
 
-		if (_globalVars [Constants.CURRENT_STAGE] == 0) {
-			_globalVars [Constants.CURRENT_STAGE] = 4;
-						_goodFungus.SetBooleanVariable (Constants.SPEAKING_COP, true);
-				} else 
+		OnEventTrigger (Constants.STAGE_FINISH_TRIGGER);
+
+		//if (_globalVars [Constants.CURRENT_STAGE] == 0) {
+		//	_globalVars [Constants.CURRENT_STAGE] = 3;
+		//				_badFungus.SetBooleanVariable (Constants.SPEAKING_COP, true);
+		//		} else 
 		{
 			_globalVars [Constants.CURRENT_STAGE] = _globalVars [Constants.CURRENT_STAGE] + 1;
+
+			StageClue stage = getCurrentStage ();
+
+			if(stage._speakingCop == CopType.bad)
+			{
+				_badFungus.SetBooleanVariable (Constants.SPEAKING_COP, true);
+				_goodFungus.SetBooleanVariable (Constants.SPEAKING_COP, false);
+			}
+			else
+			{
+				_badFungus.SetBooleanVariable (Constants.SPEAKING_COP, false);
+				_goodFungus.SetBooleanVariable (Constants.SPEAKING_COP, true);
+			}
+
 	
-			toggleVariable (_goodFungus, Constants.SPEAKING_COP);
-			toggleVariable (_badFungus, Constants.SPEAKING_COP);
+	
+			//toggleVariable (_goodFungus, Constants.SPEAKING_COP);
+			//toggleVariable (_badFungus, Constants.SPEAKING_COP);
 				}
 		_goodFungus.ExecuteSequence (getSequence(_goodFungus, Constants.DECISION_NODE));
 		_badFungus.ExecuteSequence (getSequence(_badFungus, Constants.DECISION_NODE));
@@ -217,8 +309,11 @@ public class StageManager : MonoBehaviour {
 
 	void Awake()
 	{
+		_badCopClues = new List<ClueType>();
+		_goodCopClues = new List<ClueType>();
+
 		_globalVars = new Dictionary<string, int> ();
-		_globalVars.Add (Constants.CURRENT_STAGE,0);
+		_globalVars.Add (Constants.CURRENT_STAGE,2);
 		_globalVars.Add (Constants.SUSPICION,0);
 		_instance = this;
 	}

@@ -61,6 +61,10 @@ public class SequenceTesting : MonoBehaviour {
 
 	Dictionary<string,List<Sequence>> _badCopSequence;
 	Dictionary<string,List<Sequence>> _goodCopSequence;
+
+	
+	bool _stopLoopMovement = false;
+
 	void Awake()
 	{
 		_navPointsDictionary = GetComponent<MyDictionary> ();
@@ -133,9 +137,29 @@ public class SequenceTesting : MonoBehaviour {
 		//StartCoroutine(startSequence (_goodCop, _goodCopSequence,0));
 	}
 
+
+	public void MoveCharacterListToCurrentClue (CopType copType,int waitTimePerNode, bool loop = false)
+	{
+		Transform parentNode = null;
+
+		if (copType == StageManager._instance.getCurrentSpeakingCop ()) 
+		
+			 parentNode = StageManager._instance.getRoomForCurrentStage ();
+
+		else
+			 parentNode = StageManager._instance.getSecondaryRoomForCurrentStage ();
+
+
+		if(!loop)
+			StartCoroutine(MoveCharacterListCoroutine(copType,parentNode, waitTimePerNode));
+		else
+			StartCoroutine(MoveCharacterListCoroutineLoop(copType,parentNode, waitTimePerNode));
+	}
+	
 	public void MoveCharacterList (CopType copType, Transform parentNode,int waitTimePerNode)
 	{
 		StartCoroutine(MoveCharacterListCoroutine(copType,parentNode, waitTimePerNode));
+
 	}
 
 	public IEnumerator MoveCharacterListCoroutine (CopType copType, Transform parentnode, int waitTimePerNode)
@@ -154,6 +178,7 @@ public class SequenceTesting : MonoBehaviour {
 		default:
 			break;
 		}
+
 
 		while (index < parentnode.childCount) 
 		{
@@ -176,6 +201,64 @@ public class SequenceTesting : MonoBehaviour {
 		}
 
 		pathEnd (cop);
+	}
+
+	public IEnumerator MoveCharacterListCoroutineLoop (CopType copType, Transform parentnode, int waitTimePerNode)
+	{
+		
+
+		_stopLoopMovement = false;
+
+		
+		NavMeshAgent cop = null;
+		
+		switch (copType) {
+		case CopType.bad:
+			cop = _badCop;
+			break;
+		case CopType.good:
+			cop = _goodCop;
+			break;
+		default:
+			break;
+		}
+
+		StageManager._instance.eventTrigger += eventTrigger;
+
+
+		while (!_stopLoopMovement) {
+			int index = 0;
+						while (index < parentnode.childCount && !_stopLoopMovement) {
+								yield return StartCoroutine (MoveCharacterCoroutine (cop, parentnode.GetChild (index).position, true));
+			
+								yield return new WaitForSeconds (waitTimePerNode);
+			
+								ClueReference clueRef = parentnode.GetChild (index).GetComponent<ClueReference> ();
+								if (clueRef != null) {
+										if (clueRef._reference._available) {
+												Debug.LogWarning ("Cop learned about: " + clueRef._reference._clueType);
+					
+												StageManager._instance.copDiscoveredClue (copType, clueRef._reference._clueType);
+										}
+								}
+			
+								index++;
+						}
+
+				}
+
+		StageManager._instance.eventTrigger -= eventTrigger;
+
+		pathEnd (cop);
+	}
+
+	void eventTrigger (string eventName)
+	{
+		if (eventName.Equals (Constants.STAGE_FINISH_TRIGGER)) 
+		{
+			_stopLoopMovement = true;
+		}
+
 	}
 
 	public void MoveCharacter(CopType copType,Vector3 position)

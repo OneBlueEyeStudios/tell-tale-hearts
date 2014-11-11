@@ -5,7 +5,7 @@ S''
 p2
 sS'saveDestination'
 p3
-V/Users/guilherme_cunha/Dev/tell-tale-hearts/TellTaleHearts/Assets/Twine/Source/DialogueOnly_Revision01.tws.tws
+V/Users/guilherme_cunha/Dev/tell-tale-hearts/TellTaleHearts/Assets/Twine/Source/DialogueOnly_Revision01.tws
 p4
 sS'metadata'
 p5
@@ -156,7 +156,7 @@ sg33
 g58
 sbsa(dp60
 g14
-I01
+I00
 sg15
 (lp61
 F158.0
@@ -167,7 +167,7 @@ Tiddler
 p62
 (dp63
 g21
-VSorry to wake you, but we have have recieved a complaint about a shriek and  a possible violent altercation. Do you mind if we come in and look around?\u000a\u000a[[Yes, come on in|Stage 2 END]]<var:doubt+=0>\u000a[[No, not without a warrant|Stage 2E]]<var:doubt+=1>\u000a\u000a
+VSorry to wake you, but we have have recieved a complaint about a shriek and  a possible violent altercation. Do you mind if we come in and look around? $cue:19\u000a\u000a[[Yes, come on in|Stage 2 END]]<var:doubt+=0>\u000a[[No, not without a warrant|Stage 2E]]<var:doubt+=1>\u000a\u000a
 p64
 sg23
 VStage 2A
@@ -176,12 +176,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I13
-I50
-I21
-I4
-I311
+I9
+I17
+I19
+I34
+I6
+I313
 I0
 tp66
 (dp67
@@ -217,7 +217,7 @@ Tiddler
 p77
 (dp78
 g21
-VDo you live here alone?\u000a\u000a[[No, I have a roommate|Stage 3B]]<var:doubt+=0>\u000a[[Yes, I live here alone|Stage 3D]]<var:doubt+=1>\u000a
+VDo you live here alone? $cue:24\u000a\u000a[[No, I have a roommate|Stage 3B]]<var:doubt+=0>\u000a[[Yes, I live here alone|Stage 3D]]<var:doubt+=1>\u000a
 p79
 sg23
 VStage 3
@@ -226,12 +226,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I13
-I28
-I3
-I4
-I311
+I9
+I17
+I31
+I37
+I6
+I313
 I0
 tp81
 (dp82
@@ -267,7 +267,7 @@ Tiddler
 p92
 (dp93
 g21
-VI\u2019m afraid you don\u2019t have much of a choice. \u000a
+VI\u2019m afraid you don\u2019t have much of a choice.  $cue:23\u000a
 p94
 sg23
 VStage 2E
@@ -276,12 +276,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I16
-I14
-I11
+I9
+I17
+I20
 I4
-I311
+I6
+I313
 I0
 tp96
 (dp97
@@ -317,7 +317,7 @@ Tiddler
 p107
 (dp108
 g21
-VIs your roommate home?\u000a\u000a[[He went out drinking|Stage 3 END]]<var:doubt+=0>\u000a[[He is off visiting his son|Stage 3C]]<var:doubt+=1>\u000a\u000a
+VIs your roommate home?  $cue:25\u000a\u000a[[He went out drinking|Stage 3 END]]<var:doubt+=0>\u000a[[He is off visiting his son|Stage 3C]]<var:doubt+=1>\u000a\u000a
 p109
 sg23
 VStage 3B
@@ -326,12 +326,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I13
-I7
-I40
-I4
-I311
+I9
+I17
+I31
+I50
+I6
+I313
 I0
 tp111
 (dp112
@@ -367,7 +367,7 @@ Tiddler
 p122
 (dp123
 g21
-VHis son? When do you expect him back?\u000a\u000a[[He didn\u2019t say|Stage 3 END]]<var:doubt+=1>\u000a[[He\u2019ll be back in a few days|Stage 3 END]]<var:doubt+=1>\u000a
+VHis son? When do you expect him back?  $cue:26\u000a\u000a[[He didn\u2019t say|Stage 3 END]]<var:doubt+=1>\u000a[[He\u2019ll be back in a few days|Stage 3 END]]<var:doubt+=1>\u000a
 p124
 sg23
 VStage 3C
@@ -376,12 +376,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I13
+I9
+I17
+I32
 I8
-I23
-I4
-I311
+I6
+I313
 I0
 tp126
 (dp127
@@ -417,7 +417,7 @@ Tiddler
 p137
 (dp138
 g21
-VWhere were you earlier tonight?\u000a\u000a[[I have been home all night, alone|Stage 4D]]<var:doubt+=1>\u000a[[I was at a play, then home|Stage 4E]]<var:doubt+=0>
+VWhere were you earlier tonight?  $cue:29\u000a\u000a[[I have been home all night, alone|Stage 4D]]<var:doubt+=1>\u000a[[I was at a play, then home|Stage 4E]]<var:doubt+=0>
 p139
 sg23
 VStage 4
@@ -426,12 +426,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I13
-I27
-I43
-I4
-I311
+I9
+I17
+I32
+I29
+I6
+I313
 I0
 tp141
 (dp142
@@ -467,7 +467,7 @@ Tiddler
 p152
 (dp153
 g21
-VDid you happen to hear a shriek?\u000a\u000a[[It's been quiet all night|Stage 4 END]]<var:doubt+=1>\u000a[[I screamed when I stubbed my toe|Stage 4 END]]<var:doubt-=1>
+VDid you happen to hear a shriek?  $cue:30\u000a\u000a[[It's been quiet all night|Stage 4 END]]<var:doubt+=1>\u000a[[I screamed when I stubbed my toe|Stage 4 END]]<var:doubt-=1>
 p154
 sg23
 VStage 4D
@@ -476,12 +476,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I13
-I43
-I44
-I4
-I311
+I9
+I17
+I32
+I36
+I6
+I313
 I0
 tp156
 (dp157
@@ -517,7 +517,7 @@ Tiddler
 p167
 (dp168
 g21
-VInteresting. When did you get home?\u000a\u000a[[Around dusk|Stage 4D]]<var:doubt+=1>\u000a[[Less than an hour ago|Stage 4 END]]<var:doubt+=0>
+VInteresting. When did you get home?  $cue:31\u000a\u000a[[Around dusk|Stage 4D]]<var:doubt+=1>\u000a[[Less than an hour ago|Stage 4 END]]<var:doubt+=0>
 p169
 sg23
 VStage 4E
@@ -526,12 +526,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I13
-I43
 I9
-I4
-I311
+I17
+I32
+I43
+I6
+I313
 I0
 tp171
 (dp172
@@ -567,7 +567,7 @@ Tiddler
 p182
 (dp183
 g21
-VThis roommate of yours, how can he afford living in such a large house?\u000a\u000a[[I think he has a pension|Stage 5B]]<var:doubt+=1>\u000a[[He's owned it a long time and I pay rent|Stage 5C]]<var:doubt+=0>
+VThis roommate of yours, how can he afford living in such a large house?  $cue:33\u000a\u000a[[I think he has a pension|Stage 5B]]<var:doubt+=1>\u000a[[He's owned it a long time and I pay rent|Stage 5C]]<var:doubt+=0>
 p184
 sg23
 VStage 5
@@ -576,12 +576,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I13
-I34
-I39
-I4
-I311
+I9
+I17
+I32
+I53
+I6
+I313
 I0
 tp186
 (dp187
@@ -617,7 +617,7 @@ Tiddler
 p197
 (dp198
 g21
-VDo you pay your rent on time?\u000a\u000a[[Of course, I got a good deal here|Stage 5 END]]<var:doubt+=0>\u000a[[Not lately, been sick lately|Stage 5 END]]<var:doubt+=1>\u000a
+VDo you pay your rent on time? $cue:35\u000a\u000a[[Of course, I got a good deal here|Stage 5 END]]<var:doubt+=0>\u000a[[Not lately, been sick lately|Stage 5 END]]<var:doubt+=1>\u000a
 p199
 sg23
 VStage 5C
@@ -626,12 +626,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I13
-I24
-I27
-I4
-I311
+I9
+I17
+I33
+I10
+I6
+I313
 I0
 tp201
 (dp202
@@ -667,7 +667,7 @@ Tiddler
 p212
 (dp213
 g21
-VPensioner, hmmm. Military or company?\u000a\u000a[[I believe he was a lieutentant|Stage 5D]]<var:doubt-=1>\u000a[[I've never bothered to ask|Stage 5E]]<var:doubt+=0>
+VPensioner, hmmm. Military or company? $cue:34\u000a\u000a[[I believe he was a lieutentant|Stage 5D]]<var:doubt-=1>\u000a[[I've never bothered to ask|Stage 5E]]<var:doubt+=0>
 p214
 sg23
 VStage 5B
@@ -676,12 +676,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I13
-I23
-I5
-I4
-I311
+I9
+I17
+I33
+I0
+I6
+I313
 I0
 tp216
 (dp217
@@ -717,7 +717,7 @@ Tiddler
 p227
 (dp228
 g21
-VA lot of stuff around here looks like it was meant for an old man. Can you explain that?\u000a\u000a[[It's from the previous tenant|Stage 3 END]]<var:doubt+=1>\u000a[[Oh, that's my roommates stuff|Stage 3E]]<var:doubt+=0>
+VA lot of stuff around here looks like it was meant for an old man. Can you explain that?  $cue:27\u000a\u000a[[It's from the previous tenant|Stage 3 END]]<var:doubt+=1>\u000a[[Oh, that's my roommates stuff|Stage 3E]]<var:doubt+=0>
 p229
 sg23
 VStage 3D
@@ -726,12 +726,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I13
-I30
-I11
-I4
-I311
+I9
+I17
+I32
+I1
+I6
+I313
 I0
 tp231
 (dp232
@@ -767,7 +767,7 @@ Tiddler
 p242
 (dp243
 g21
-VI thought you said you live here alone?\u000a\u000a[[Sorry, I thought you meant right now|Stage 3 END]]<var:doubt-=1>\u000a[[You are mistaken|Stage 3 END]]<var:doubt+=1>
+VI thought you said you live here alone?  $cue:28\u000a\u000a[[Sorry, I thought you meant right now|Stage 3 END]]<var:doubt-=1>\u000a[[You are mistaken|Stage 3 END]]<var:doubt+=1>
 p244
 sg23
 VStage 3E
@@ -776,12 +776,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I13
-I12
-I25
-I4
-I311
+I9
+I17
+I32
+I17
+I6
+I313
 I0
 tp246
 (dp247
@@ -817,7 +817,7 @@ Tiddler
 p257
 (dp258
 g21
-VNever mentioned it...Interesting. \u000a\u000a[[end scene|Stage 5 END]]\u000a
+VNever mentioned it...Interesting. $cue:37\u000a\u000a[[end scene|Stage 5 END]]\u000a
 p259
 sg23
 VStage 5E
@@ -825,14 +825,14 @@ p260
 sg25
 g26
 ((I2014
-I10
-I31
-I12
-I54
-I10
-I4
-I304
-I1
+I11
+I9
+I17
+I33
+I23
+I6
+I313
+I0
 tp261
 (dp262
 tp263
@@ -867,7 +867,7 @@ Tiddler
 p272
 (dp273
 g21
-VAn officer. Good to see he's being taken care of. \u000a\u000a[[end scene|Stage 5 END]]
+VAn officer. Good to see he's being taken care of. $cue:36\u000a\u000a[[end scene|Stage 5 END]]
 p274
 sg23
 VStage 5D
@@ -875,14 +875,14 @@ p275
 sg25
 g26
 ((I2014
-I10
-I31
-I12
-I54
-I18
-I4
-I304
-I1
+I11
+I9
+I17
+I33
+I17
+I6
+I313
+I0
 tp276
 (dp277
 tp278
@@ -917,7 +917,7 @@ Tiddler
 p287
 (dp288
 g21
-VWhere did you say your roommmate was?\u000a\u000a[[As far as I know he is out at the pub| Stage 6B]]<var:doubt+=0>\u000a[[Visiting his son|Stage 6C]]<var:doubt+=1>
+VWhere did you say your roommmate was? $cue:39\u000a\u000a[[As far as I know he is out at the pub| Stage 6B]]<var:doubt+=0>\u000a[[Visiting his son|Stage 6C]]<var:doubt+=1>
 p289
 sg23
 VStage 6
@@ -926,12 +926,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I13
-I36
-I8
-I4
-I311
+I9
+I17
+I33
+I39
+I6
+I313
 I0
 tp291
 (dp292
@@ -967,7 +967,7 @@ Tiddler
 p302
 (dp303
 g21
-VDid he ever mention a niece?\u000a\u000a[[His son is his only family|Stage 6 END]] <var:doubt+=1>\u000a[[I believe she is coming to visit soon|Stage 6 END]] <var:doubt-=1>
+VDid he ever mention a niece? $cue:41\u000a\u000a[[His son is his only family|Stage 6 END]] <var:doubt+=1>\u000a[[I believe she is coming to visit soon|Stage 6 END]] <var:doubt-=1>
 p304
 sg23
 VStage 6C
@@ -976,12 +976,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I13
-I38
-I12
-I4
-I311
+I9
+I17
+I33
+I53
+I6
+I313
 I0
 tp306
 (dp307
@@ -1017,7 +1017,7 @@ Tiddler
 p317
 (dp318
 g21
-VDoes he drink often?\u000a\u000a[[Pretty much everyday|Stage 6 END]]<var:doubt+=0>\u000a[[No, just enjoys the people at the pub|Stage 6 END]]<var:doubt+=1>
+VDoes he drink often? $cue:40\u000a\u000a[[Pretty much everyday|Stage 6 END]]<var:doubt+=0>\u000a[[No, just enjoys the people at the pub|Stage 6 END]]<var:doubt+=1>
 p319
 sg23
 V Stage 6B
@@ -1026,12 +1026,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I13
-I37
-I25
-I4
-I311
+I9
+I17
+I33
+I46
+I6
+I313
 I0
 tp321
 (dp322
@@ -1067,21 +1067,21 @@ Tiddler
 p332
 (dp333
 g21
-VWhat time did you say you got home?\u000a\u000a[[I've been home all night|Stage 7 END]]<var:doubt+=1>\u000a[[A short while ago|Stage 7 END]]<var:doubt+=0>\u000a
+VWhat time did you say you got home? $cue:42\u000a\u000a[[I've been home all night|Stage 7 END]]<var:doubt+=1>\u000a[[A short while ago|Stage 7 END]]<var:doubt+=0>\u000a
 p334
 sg23
-VStage 7A
+VStage 7
 p335
 sg25
 g26
 ((I2014
 I11
-I7
-I13
-I38
-I44
-I4
-I311
+I9
+I17
+I34
+I0
+I6
+I313
 I0
 tp336
 (dp337
@@ -1376,7 +1376,7 @@ Tiddler
 p423
 (dp424
 g21
-VSo you are awake! You afraid or something, you look nervous? We\u2019re here on suspicion of foul play and need to look around the premises. \u000a
+VSo you are awake! You afraid or something, you look nervous? We\u2019re here on suspicion of foul play and need to look around the premises.  $cue:22\u000a
 p425
 sg23
 VStage 2D
@@ -1385,12 +1385,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I16
-I13
-I11
-I4
-I311
+I9
+I17
+I19
+I59
+I6
+I313
 I0
 tp427
 (dp428
@@ -1426,7 +1426,7 @@ Tiddler
 p438
 (dp439
 g21
-VAbout time, it\u2019s raining out here! We have report about a possible violent altercation. We need to look around, OK?\u000a\u000a[[Yes|Stage 2 END]]<var:doubt+=0>\u000a[[No|Stage 2E]]<var:doubt+=1>\u000a\u000a
+VAbout time, it\u2019s raining out here! We have report about a possible violent altercation. We need to look around, OK?  $cue:21\u000a\u000a[[Yes|Stage 2 END]]<var:doubt+=0>\u000a[[No|Stage 2E]]<var:doubt+=1>\u000a\u000a
 p440
 sg23
 VStage 2C
@@ -1435,12 +1435,12 @@ sg25
 g26
 ((I2014
 I11
-I7
-I15
-I31
-I31
-I4
-I311
+I9
+I17
+I19
+I53
+I6
+I313
 I0
 tp442
 (dp443

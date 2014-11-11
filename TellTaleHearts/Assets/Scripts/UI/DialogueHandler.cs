@@ -5,6 +5,7 @@ using System;
 
 public class Constants
 {
+
 	public static string CURRENT_STAGE = "CurrentStage"; 
 	public static string DOUBT = "doubt";
 	public static string SUSPICION = "Suspicion";
@@ -18,6 +19,9 @@ public class Constants
 	public static string VAR_TAG = "var";
 	public static string PLUS_EQUAL = "+=";
 	public static string MINUS_EQUAL = "-=";
+
+	
+	public static string STAGE_FINISH_TRIGGER =  "StageFinished";
 
 }
 

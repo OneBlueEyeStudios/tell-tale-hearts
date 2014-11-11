@@ -118,7 +118,7 @@ public class TweeProcessor : AssetPostprocessor
 										buffer = new StringBuilder ();
 								}
                  
-				/* I know, I know, a magic number and chained function calls and it's
+								/* I know, I know, a magic number and chained function calls and it's
 				 * ugly, but it's not that complicated. A new passage in a twee file
                  * starts with a line like this:
                  *
@@ -148,54 +148,54 @@ public class TweeProcessor : AssetPostprocessor
 
 
 								if (lines [i].StartsWith ("[[")) {
-										int indexFirst = lines [i].IndexOf ("[[")+2;
-					//int indexFirst = lines [i].IndexOf ("[[") +2;
+										int indexFirst = lines [i].IndexOf ("[[") + 2;
+										//int indexFirst = lines [i].IndexOf ("[[") +2;
 										int indexLast = lines [i].LastIndexOf ("]]");
 										int length = lines [i].Length - (lines [i].Length - indexLast) - indexFirst;
 
 										//string[] split = lines [i].Substring (indexFirst + 2, length).Split ('|');
-										string[] split = lines [i].cutFromTo(indexFirst,indexLast).Split ('|');
-					//string[] split = lines [i].Substring (indexFirst, length).Split ('|');
+										string[] split = lines [i].cutFromTo (indexFirst, indexLast).Split ('|');
+										//string[] split = lines [i].Substring (indexFirst, length).Split ('|');
 										//string dialogue = lines [i].Substring (lines [i].IndexOf ('$') + 1);
 
-					//Debug.LogWarning("lines i:"+lines [i]);
-					//Debug.LogWarning("lines i cut:"+lines [i].cutFromTo(indexFirst,indexLast));
+										//Debug.LogWarning("lines i:"+lines [i]);
+										//Debug.LogWarning("lines i cut:"+lines [i].cutFromTo(indexFirst,indexLast));
 
-					//TAGS
+										//TAGS
 
-					//Dictionary<string,string> tags = new Dictionary<string, string>();
-					List<TweeTag> tags = new List<TweeTag>();
+										//Dictionary<string,string> tags = new Dictionary<string, string>();
+										List<TweeTag> tags = new List<TweeTag> ();
 
-					int startDic, endDic;
-					startDic = lines [i].IndexOf ("<")+1;
-					endDic  = lines [i].IndexOf (">");
+										int startDic, endDic;
+										startDic = lines [i].IndexOf ("<") + 1;
+										endDic = lines [i].IndexOf (">");
 
-					if(startDic>0)
-					{
-					string[] splidDic = lines [i].cutFromTo(startDic,endDic).Split (',');
+										if (startDic > 0) {
+												string[] splidDic = lines [i].cutFromTo (startDic, endDic).Split (',');
 
-					foreach(string tag in splidDic)
-					{
+												foreach (string tag in splidDic) {
 						
 
-							string[] splitTag = tag.Split(':');
+														string[] splitTag = tag.Split (':');
 
-							Debug.LogError(splitTag[0] +"       "+ splitTag[1]);
+														Debug.LogError (splitTag [0] + "       " + splitTag [1]);
 
-							tags.Add(new TweeTag(splitTag[0],splitTag[1]));
+														tags.Add (new TweeTag (splitTag [0], splitTag [1]));
 
-					}
-					}
+												}
+										}
 
-					Debug.LogWarning ("Transition title:" + split [0] + "/// transition tag:" + split [1]);// + "///dialogue:" + dialogue);
+										Debug.LogWarning ("Transition title:" + split [0] + "/// transition tag:" + split [1]);// + "///dialogue:" + dialogue);
 
 
 
-					currentPassage.addNewTransition (split [0], split [1],"",tags);//, dialogue);
+										currentPassage.addNewTransition (split [0], split [1], "", tags);//, dialogue);
 								} else {
 										if (lines [i].Contains ("$")) {
 
-												currentPassage.dialogue = lines [i].Substring (lines [i].IndexOf ('$') + 1);
+						string cueTag = "$cue:";
+
+												currentPassage.dialogue = lines [i].Substring (lines [i].IndexOf (cueTag) + cueTag.Length);
 						
 //												Debug.LogWarning ("body dialogue: " + currentPassage.dialogue);
 
@@ -234,7 +234,7 @@ public class TweeProcessor : AssetPostprocessor
 
 
 	
-	// Use this for initialization
+		// Use this for initialization
 		void Start ()
 		{
 	

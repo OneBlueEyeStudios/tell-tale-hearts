@@ -9,6 +9,14 @@ public class BallItem : Item {
 		CharInventory._instance.addToInventory (this);
 		gameObject.SetActive (false);
 	}
+	override public void grabbed ()
+	{
+	
+	}
+	override public void released ()
+	{
+		
+	}
 
 	// Use this for initialization
 	void Start () {
