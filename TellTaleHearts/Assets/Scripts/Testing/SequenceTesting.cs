@@ -7,108 +7,108 @@ using Fungus;
 [System.Serializable]
 public class Sequence
 {
-	public Transform _node;
-	public string _goToNode;
-	public float _timeWait;
-	public bool _hasClue;
-	public string _clueName;
-	//string _nextNode;
+		public Transform _node;
+		public string _goToNode;
+		public float _timeWait;
+		public bool _hasClue;
+		public string _clueName;
+		//string _nextNode;
 
-	public Sequence(string node, float wait, bool hasClue = false)//, string nextNode)
-	{
-		_goToNode = node;
-		_timeWait = wait;
-		_hasClue = hasClue;
-		_clueName = node;
-		//_nextNode = nextNode;
-	}
+		public Sequence (string node, float wait, bool hasClue = false)//, string nextNode)
+		{
+				_goToNode = node;
+				_timeWait = wait;
+				_hasClue = hasClue;
+				_clueName = node;
+				//_nextNode = nextNode;
+		}
 }
 
-public enum CopType{good,bad}
+public enum CopType
+{
+		good,
+		bad
+}
 
-public delegate void CopTypeHandler(CopType agent);
+public delegate void CopTypeHandler (CopType agent);
 
-public class SequenceTesting : MonoBehaviour {
+public class SequenceTesting : MonoBehaviour
+{
 
-	public event CopTypeHandler pathFinished;
+		public event CopTypeHandler pathFinished;
 
-	public void OnPathFinished(CopType agent)
-	{
-		if (pathFinished != null)
-			pathFinished (agent);
+		public void OnPathFinished (CopType agent)
+		{
+				if (pathFinished != null)
+						pathFinished (agent);
 		}
 
-	public static SequenceTesting _instance;
+		public static SequenceTesting _instance;
 
 
-	public delegate void SequenceDelegate (Fungus.Sequence sequence, Fungus.Command command);
-	public event SequenceDelegate eventFinished;
+		public delegate void SequenceDelegate (Fungus.Sequence sequence,Fungus.Command command);
 
-	public void OnEventFinished(Fungus.Sequence sequence, Fungus.Command command)
-	{
-		if (eventFinished != null) {
-			eventFinished(sequence,command);
+		public event SequenceDelegate eventFinished;
+
+		public void OnEventFinished (Fungus.Sequence sequence, Fungus.Command command)
+		{
+				if (eventFinished != null) {
+						eventFinished (sequence, command);
+				}
 		}
-	}
 
+		MyDictionary _navPointsDictionary;
+		public NavMeshAgent _goodCop, _badCop;
+		public UILabel _clueFoundLabel;
+		Dictionary<string,List<Sequence>> _badCopSequence;
+		Dictionary<string,List<Sequence>> _goodCopSequence;
+		bool _stopLoopMovement = false;
 
+		void Awake ()
+		{
+				_navPointsDictionary = GetComponent<MyDictionary> ();
+				_instance = this;
+		}
 
-	MyDictionary _navPointsDictionary;
-
-	public NavMeshAgent _goodCop, _badCop;
-
-	public UILabel _clueFoundLabel;
-
-	Dictionary<string,List<Sequence>> _badCopSequence;
-	Dictionary<string,List<Sequence>> _goodCopSequence;
-
-	
-	bool _stopLoopMovement = false;
-
-	void Awake()
-	{
-		_navPointsDictionary = GetComponent<MyDictionary> ();
-		_instance = this;
-	}
-
-	bool arrived(NavMeshAgent agent)
-	{
-		float dist=agent.remainingDistance; 
+		bool arrived (NavMeshAgent agent)
+		{
+				float dist = agent.remainingDistance; 
 
 //		Debug.LogWarning ("agent.remainingDistance:" + agent.remainingDistance);
 
-		if (dist != Mathf.Infinity && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance <= agent.stoppingDistance) //Arrived.
+				if (dist != Mathf.Infinity && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance <= agent.stoppingDistance) //Arrived.
 						return true;
-		return false;
-	}
+				return false;
+		}
 
 
-	// Use this for initialization
-	void Start () {
+		// Use this for initialization
+		void Start ()
+		{
 	
-		/*
+				/*
 		foreach (KeyValuePair<string, UnityEngine.Object> pair in _navPointsDictionary) 
 		{
 			Debug.LogWarning("Key: "+pair.Key+"-> Value: "+pair.Value);
 
 		}*/
 
-		float waitTime = 3;
+				float waitTime = 3;
 
-		List<Sequence> stage2a = new List<Sequence> ();
-		stage2a.Add(new Sequence ("Foyer", 0));
+				List<Sequence> stage2a = new List<Sequence> ();
+				stage2a.Add (new Sequence ("Foyer", 0));
 
-    	_badCopSequence = new Dictionary<string, List<Sequence>>();
-		_badCopSequence.Add("Stage2A",stage2a);
+				_badCopSequence = new Dictionary<string, List<Sequence>> ();
+				_badCopSequence.Add ("Stage2A", stage2a);
 
-		stage2a = new List<Sequence> ();
-		stage2a.Add(new Sequence ("Foyer2", 0));
+				stage2a = new List<Sequence> ();
+				stage2a.Add (new Sequence ("Foyer2", 0));
 		
-		_goodCopSequence = new Dictionary<string, List<Sequence>>();
-		_goodCopSequence.Add("Stage2A",stage2a);
+				_goodCopSequence = new Dictionary<string, List<Sequence>> ();
+				_goodCopSequence.Add ("Stage2A", stage2a);
 
 
-		/*
+				/*
 		_badCopSequence.Add (new Sequence ("Bathroom", waitTime));
 		_badCopSequence.Add (new Sequence ("Bedroom", waitTime));
 		_badCopSequence.Add (new Sequence ("RoommateBedroom", waitTime));
@@ -133,106 +133,109 @@ public class SequenceTesting : MonoBehaviour {
 */
 
 
-		//StartCoroutine(startSequence (_badCop, _badCopSequence,0));
-		//StartCoroutine(startSequence (_goodCop, _goodCopSequence,0));
-	}
-
-
-	public void MoveCharacterListToCurrentClue (CopType copType,int waitTimePerNode, bool loop = false)
-	{
-		Transform parentNode = null;
-
-		if (copType == StageManager._instance.getCurrentSpeakingCop ()) 
-		
-			 parentNode = StageManager._instance.getRoomForCurrentStage ();
-
-		else
-			 parentNode = StageManager._instance.getSecondaryRoomForCurrentStage ();
-
-
-		if(!loop)
-			StartCoroutine(MoveCharacterListCoroutine(copType,parentNode, waitTimePerNode));
-		else
-			StartCoroutine(MoveCharacterListCoroutineLoop(copType,parentNode, waitTimePerNode));
-	}
-	
-	public void MoveCharacterList (CopType copType, Transform parentNode,int waitTimePerNode)
-	{
-		StartCoroutine(MoveCharacterListCoroutine(copType,parentNode, waitTimePerNode));
-
-	}
-
-	public IEnumerator MoveCharacterListCoroutine (CopType copType, Transform parentnode, int waitTimePerNode)
-	{
-		int index = 0;
-
-		NavMeshAgent cop = null;
-
-		switch (copType) {
-		case CopType.bad:
-			cop = _badCop;
-			break;
-		case CopType.good:
-			cop = _goodCop;
-			break;
-		default:
-			break;
+				//StartCoroutine(startSequence (_badCop, _badCopSequence,0));
+				//StartCoroutine(startSequence (_goodCop, _goodCopSequence,0));
 		}
 
-
-		while (index < parentnode.childCount) 
+		public void MoveCharacterListToCurrentClue (CopType copType, int waitTimePerNode, bool loop = false)
 		{
-			yield return StartCoroutine(MoveCharacterCoroutine(cop,parentnode.GetChild(index).position,true));
+				Transform parentNode = null;
 
-			yield return new WaitForSeconds (waitTimePerNode);
+				if (copType == StageManager._instance.getCurrentSpeakingCop ()) 
+		
+						parentNode = StageManager._instance.getRoomForCurrentStage ();
+				else
+						parentNode = StageManager._instance.getSecondaryRoomForCurrentStage ();
 
-			ClueReference clueRef = parentnode.GetChild(index).GetComponent<ClueReference>();
-			if(clueRef!=null)
-			{
-				if(clueRef._reference._available)
-				{
-					Debug.LogWarning("Cop learned about: "+clueRef._reference._clueType);
 
-					StageManager._instance.copDiscoveredClue(copType,clueRef._reference._clueType);
+				if (!loop)
+						StartCoroutine (MoveCharacterListCoroutine (copType, parentNode, waitTimePerNode));
+				else {
+			Debug.LogWarning("MoveCharacterListCoroutineLoop: "+copType);
+						StartCoroutine (MoveCharacterListCoroutineLoop (copType, parentNode, waitTimePerNode));
 				}
-			}
+		}
+	
+		public void MoveCharacterList (CopType copType, Transform parentNode, int waitTimePerNode)
+		{
+				StartCoroutine (MoveCharacterListCoroutine (copType, parentNode, waitTimePerNode));
 
-    		index++;
 		}
 
-		pathEnd (cop);
-	}
+		public IEnumerator MoveCharacterListCoroutine (CopType copType, Transform parentnode, int waitTimePerNode)
+		{
+				int index = 0;
 
-	public IEnumerator MoveCharacterListCoroutineLoop (CopType copType, Transform parentnode, int waitTimePerNode)
-	{
-		
+				NavMeshAgent cop = null;
 
-		_stopLoopMovement = false;
+				switch (copType) {
+				case CopType.bad:
+						cop = _badCop;
+						break;
+				case CopType.good:
+						cop = _goodCop;
+						break;
+				default:
+						break;
+				}
 
-		
-		NavMeshAgent cop = null;
-		
-		switch (copType) {
-		case CopType.bad:
-			cop = _badCop;
-			break;
-		case CopType.good:
-			cop = _goodCop;
-			break;
-		default:
-			break;
+
+				while (index < parentnode.childCount) {
+						yield return StartCoroutine (MoveCharacterCoroutine (cop, parentnode.GetChild (index).position, true));
+
+						yield return new WaitForSeconds (waitTimePerNode);
+
+						ClueReference clueRef = parentnode.GetChild (index).GetComponent<ClueReference> ();
+						if (clueRef != null) {
+								if (clueRef._reference._available) {
+										Debug.LogWarning ("Cop learned about: " + clueRef._reference._clueType);
+
+										StageManager._instance.copDiscoveredClue (copType, clueRef._reference._clueType);
+								}
+						}
+
+						index++;
+				}
+
+				pathEnd (cop);
 		}
 
-		StageManager._instance.eventTrigger += eventTrigger;
+		public IEnumerator MoveCharacterListCoroutineLoop (CopType copType, Transform parentnode, int waitTimePerNode)
+		{
 
+		while (_stopLoopMovement) {
+			yield return null;
+				}
+			
+
+				_stopLoopMovement = false;
+
+		
+				NavMeshAgent cop = null;
+		
+				switch (copType) {
+				case CopType.bad:
+						cop = _badCop;
+						break;
+				case CopType.good:
+						cop = _goodCop;
+						break;
+				default:
+						break;
+				}
+
+				StageManager._instance.eventTrigger += eventTrigger;
+
+
+		//bool stopLoop = false;
 
 		while (!_stopLoopMovement) {
-			int index = 0;
-						while (index < parentnode.childCount && !_stopLoopMovement) {
+
+				int index = 0;
+			while (index < parentnode.childCount && !_stopLoopMovement) {
 								yield return StartCoroutine (MoveCharacterCoroutine (cop, parentnode.GetChild (index).position, true));
 			
-								yield return new WaitForSeconds (waitTimePerNode);
-			
+				yield return new WaitForSeconds (waitTimePerNode);
 								ClueReference clueRef = parentnode.GetChild (index).GetComponent<ClueReference> ();
 								if (clueRef != null) {
 										if (clueRef._reference._available) {
@@ -244,170 +247,205 @@ public class SequenceTesting : MonoBehaviour {
 			
 								index++;
 						}
-
 				}
 
+				_stopLoopMovement = false;
+
+		Debug.LogError ("MoveCharacterListCoroutineLoop END!:" + copType);
+		
 		StageManager._instance.eventTrigger -= eventTrigger;
 
+		
+
+		
 		pathEnd (cop);
-	}
+		}
 
-	void eventTrigger (string eventName)
-	{
-		if (eventName.Equals (Constants.STAGE_FINISH_TRIGGER)) 
+		void eventTrigger (string eventName)
 		{
-			_stopLoopMovement = true;
+				Debug.LogWarning ("eventName trigger: " + eventName);
+		
+				if (eventName.Equals (Constants.STAGE_FINISH_TRIGGER)) {
+						Debug.LogWarning ("Stop LOOP MOVEMENT");
+			
+						_stopLoopMovement = true;
+				}
+
 		}
 
-	}
-
-	public void MoveCharacter(CopType copType,Vector3 position)
+	IEnumerator MoveCharacterTransformCoroutine (NavMeshAgent agent, Transform node)
 	{
-		switch (copType) {
-		case CopType.bad:
-			StartCoroutine(MoveCharacterCoroutine(_badCop,position));
-			break;
-		case CopType.good:
-			StartCoroutine(MoveCharacterCoroutine(_goodCop,position));
-			break;
-		default:
-			break;
-		}
-	}
 
 
+		agent.SetDestination (node.position);
 
-	IEnumerator MoveCharacterCoroutine(NavMeshAgent agent, Vector3 position, bool multiPath = false)
-	{
-		
-		//Sequence currentSequence = sequence [index];
-		
-		agent.SetDestination (position);
-		//cop.SetDestination (currentSequence._node.position);
-		
 		yield return null;
 		
-		while (!arrived(agent)) 
-		{
+		while (!arrived(agent)) {
+		
+			agent.SetDestination (node.position + (agent.transform.position - node.position).normalized * 3);
 
 			yield return null;
 			
 		}
 
-		if(!multiPath)
-			pathEnd(agent);
-	}
-	
-
-	void pathEnd (NavMeshAgent cop)
-	{
-		if (cop == _badCop)
-			OnPathFinished (CopType.bad);
-		else if (cop == _goodCop)
-			OnPathFinished (CopType.good);
+		pathEnd (agent);
 	}
 
-	public void MoveCharacter(CopType copType,string stage)
+	public void MoveCharacterTrack (CopType copType, Transform node)
 	{
 		switch (copType) {
 		case CopType.bad:
-			StartCoroutine(startSequence(_badCop,_badCopSequence[stage],0));
+			StartCoroutine (MoveCharacterTransformCoroutine (_badCop, node));
 			break;
 		case CopType.good:
-			StartCoroutine(startSequence(_goodCop,_goodCopSequence[stage],0));
+			StartCoroutine (MoveCharacterTransformCoroutine (_goodCop, node));
 			break;
 		default:
 			break;
 		}
 	}
 
-	public void startSequence (CopType copType, List<Sequence> sequence, int index = 0)
-	{
-		NavMeshAgent target = null;
+		public void MoveCharacter (CopType copType, Vector3 position)
+		{
 				switch (copType) {
 				case CopType.bad:
-			target = _badCop;
+						StartCoroutine (MoveCharacterCoroutine (_badCop, position));
 						break;
 				case CopType.good:
-			target = _goodCop;
+						StartCoroutine (MoveCharacterCoroutine (_goodCop, position));
+						break;
+				default:
+						break;
+				}
+		}
+
+		IEnumerator MoveCharacterCoroutine (NavMeshAgent agent, Vector3 position, bool multiPath = false)
+		{
+		
+				//Sequence currentSequence = sequence [index];
+		
+				agent.SetDestination (position);
+				//cop.SetDestination (currentSequence._node.position);
+		
+				yield return null;
+		
+				while (!arrived(agent)) {
+
+						yield return null;
+			
+				}
+
+				if (!multiPath)
+						pathEnd (agent);
+		}
+
+		void pathEnd (NavMeshAgent cop)
+		{
+				if (cop == _badCop)
+						OnPathFinished (CopType.bad);
+				else if (cop == _goodCop)
+						OnPathFinished (CopType.good);
+		}
+
+		public void MoveCharacter (CopType copType, string stage)
+		{
+				switch (copType) {
+				case CopType.bad:
+						StartCoroutine (startSequence (_badCop, _badCopSequence [stage], 0));
+						break;
+				case CopType.good:
+						StartCoroutine (startSequence (_goodCop, _goodCopSequence [stage], 0));
+						break;
+				default:
+						break;
+				}
+		}
+
+		public void startSequence (CopType copType, List<Sequence> sequence, int index = 0)
+		{
+				NavMeshAgent target = null;
+				switch (copType) {
+				case CopType.bad:
+						target = _badCop;
+						break;
+				case CopType.good:
+						target = _goodCop;
 
 						break;
 				default:
 						break;
 				}
-		if(target!=null)
-			StartCoroutine (startSequence (target, sequence, index));
-	}
-
-	public IEnumerator startSequence (NavMeshAgent cop, List<Sequence> sequence, int index)
-	{
-		if (index >= sequence.Count || index < 0) 
-		{
-			pathEnd(cop);
-
-			yield break;
-		
+				if (target != null)
+						StartCoroutine (startSequence (target, sequence, index));
 		}
 
-		Sequence currentSequence = sequence [index];
-
-		cop.SetDestination ((_navPointsDictionary[currentSequence._goToNode] as Transform).transform.position);
-		//cop.SetDestination (currentSequence._node.position);
-
-		yield return null;
-
-		while (!arrived(cop)) 
+		public IEnumerator startSequence (NavMeshAgent cop, List<Sequence> sequence, int index)
 		{
+				if (index >= sequence.Count || index < 0) {
+						pathEnd (cop);
 
-			yield return null;
+						yield break;
 		
-		}
+				}
+
+				Sequence currentSequence = sequence [index];
+
+				cop.SetDestination ((_navPointsDictionary [currentSequence._goToNode] as Transform).transform.position);
+				//cop.SetDestination (currentSequence._node.position);
+
+				yield return null;
+
+				while (!arrived(cop)) {
+
+						yield return null;
+		
+				}
 
 //		Debug.LogWarning("arrived");
 
 
 
-		if (currentSequence._hasClue && !CharInventory._instance.hasOnInventory(currentSequence._clueName) )
-		{
-			NGUITools.SetActive (_clueFoundLabel.gameObject, true);
-			if(cop == _badCop)
-				_clueFoundLabel.text = "Bad Cop found out about-> "+currentSequence._clueName;
+				if (currentSequence._hasClue && !CharInventory._instance.hasOnInventory (currentSequence._clueName)) {
+						NGUITools.SetActive (_clueFoundLabel.gameObject, true);
+						if (cop == _badCop)
+								_clueFoundLabel.text = "Bad Cop found out about-> " + currentSequence._clueName;
 			//Debug.LogWarning("Bad Cop found out about-> "+currentSequence._clueName);
 			else
-				_clueFoundLabel.text = "Good Cop found out about-> "+currentSequence._clueName;
-			//Debug.LogWarning("Good Cop found out about-> "+currentSequence._clueName);
+								_clueFoundLabel.text = "Good Cop found out about-> " + currentSequence._clueName;
+						//Debug.LogWarning("Good Cop found out about-> "+currentSequence._clueName);
+				}
+
+
+				yield return new WaitForSeconds (sequence [index]._timeWait);
+
+				NGUITools.SetActive (_clueFoundLabel.gameObject, false);
+
+
+				StartCoroutine (startSequence (cop, sequence, index + 1));
+
 		}
 
+		public void searchForClue (string clueName)
+		{
+				NGUITools.SetActive (_clueFoundLabel.gameObject, true);
+				//if(cop == _badCop)
+				_clueFoundLabel.text = "Cops found out about-> " + clueName;
+				//Debug.LogWarning("Bad Cop found out about-> "+currentSequence._clueName);
+				//else
+				//	_clueFoundLabel.text = "Good Cop found out about-> "+clueName;
+				//Debug.LogWarning("Good Cop found out about-> "+currentSequence._clueName);
 
-		yield return new WaitForSeconds (sequence [index]._timeWait);
+				Invoke ("hideClueText", 3);
+		}
 
-		NGUITools.SetActive (_clueFoundLabel.gameObject, false);
-
-
-		StartCoroutine(startSequence (cop, sequence, index + 1));
-
-	}
-
-	public void searchForClue(string clueName)
-	{
-		NGUITools.SetActive (_clueFoundLabel.gameObject, true);
-		//if(cop == _badCop)
-			_clueFoundLabel.text = "Cops found out about-> "+clueName;
-		//Debug.LogWarning("Bad Cop found out about-> "+currentSequence._clueName);
-		//else
-		//	_clueFoundLabel.text = "Good Cop found out about-> "+clueName;
-		//Debug.LogWarning("Good Cop found out about-> "+currentSequence._clueName);
-
-		Invoke ("hideClueText", 3);
-	}
-
-	void hideClueText()
-	{
-		NGUITools.SetActive (_clueFoundLabel.gameObject, false);
-	}
+		void hideClueText ()
+		{
+				NGUITools.SetActive (_clueFoundLabel.gameObject, false);
+		}
 		
 
-	/*Transform getRandomPos()
+		/*Transform getRandomPos()
 	{
 		int nPoints  = _navPointsDictionary._dic.Count;
 
@@ -425,10 +463,11 @@ public class SequenceTesting : MonoBehaviour {
 		return null;
 	}*/
 
-	// Update is called once per frame
-	void Update () {
+		// Update is called once per frame
+		void Update ()
+		{
 
-		/*
+				/*
 		if(Input.GetKeyDown(KeyCode.Q))
 		{
 			int nPoints  = _navPointsDictionary._dic.Count;
@@ -440,5 +479,5 @@ public class SequenceTesting : MonoBehaviour {
 			//_navMeshAgent.SetDestination(_target.transform.position);
 		}
 		*/
-	}
+		}
 }

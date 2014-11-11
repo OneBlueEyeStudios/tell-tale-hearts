@@ -59,6 +59,9 @@ public class CharView : MonoBehaviour
 		// Update is called once per frame
 		void Update ()
 		{
+
+			setMouseLookEnabled (!Input.GetKey (KeyCode.LeftShift));
+
 				_handSocket.transform.position = Camera.main.transform.position + Camera.main.transform.forward * _objectDistance;
 
 				if (Input.GetButtonDown ("Fire1") && !_hasGameBegun) {

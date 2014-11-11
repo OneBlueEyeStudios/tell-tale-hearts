@@ -18,22 +18,28 @@ public class SetLoopStageDestination : Command {
 
 	void pathFinished (CopType agent)
 	{
-	
+
+//		Debug.LogError("LOOP PATH FINISHED!!!!!!!!!:"+agent);
+		
 		if (_copType == agent) {
-						SequenceTesting._instance.pathFinished -= pathFinished;
+
+			Debug.LogError("LOOP PATH FINISHED!!!!!!!!!:"+agent);
+			SequenceTesting._instance.pathFinished -= pathFinished;
 
 						Continue ();
+
+
 				}		
 				
 	}
-	
-
 
 	public override void OnEnter()
 	{
 		SequenceTesting._instance.pathFinished += pathFinished;
 
 
+		Debug.LogError("LOOP PATH Started!!!!!!!!!:"+_copType);
+		
 		SequenceTesting._instance.MoveCharacterListToCurrentClue (_copType,_waitTimePerNode,true);
 
 	}

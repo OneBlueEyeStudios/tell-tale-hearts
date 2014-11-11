@@ -45,7 +45,7 @@ public class StageManager : MonoBehaviour {
 	public void OnEventTrigger(string eventName)
 	{
 		if (eventTrigger != null)
-						eventTrigger (eventName);
+			eventTrigger (eventName);
 	}
 
 	public void OnStageStepEnd(StageStep stageStep)
@@ -99,6 +99,7 @@ public class StageManager : MonoBehaviour {
 			return CopType.bad;*/
 
 		StageClue stage = getCurrentStage ();
+
 		return stage._speakingCop;
 	}
 
@@ -150,6 +151,9 @@ public class StageManager : MonoBehaviour {
 
 	public bool copKnowsStageClue ()
 	{
+		if (_globalVars [Constants.CURRENT_STAGE] < 3)
+			return true;
+
 		CopType currentCop = getCurrentSpeakingCop ();
 
 		bool hasClue = false;
@@ -260,7 +264,9 @@ public class StageManager : MonoBehaviour {
 	StageClue getCurrentStage ()
 	{
 		int currentStage = _globalVars [Constants.CURRENT_STAGE];
-		
+	
+		//Debug.LogWarning ("CurrentStage: " + currentStage);
+
 		foreach (StageClue stageClue in _stageClue) 
 		{
 			if(stageClue._stage == currentStage)
@@ -282,7 +288,10 @@ public class StageManager : MonoBehaviour {
 		//				_badFungus.SetBooleanVariable (Constants.SPEAKING_COP, true);
 		//		} else 
 		{
+
+			Debug.LogError ("CurrentStage: " + _globalVars [Constants.CURRENT_STAGE]);
 			_globalVars [Constants.CURRENT_STAGE] = _globalVars [Constants.CURRENT_STAGE] + 1;
+			Debug.LogError ("CurrentStage: " + _globalVars [Constants.CURRENT_STAGE]);
 
 			StageClue stage = getCurrentStage ();
 

@@ -41,6 +41,7 @@ public class Cop : MonoBehaviour
 
 		float angle = AngleSigned(direction.normalized, transform.forward,Vector3.up);
 
+		/*
 				if (angle < -120) {
 					_animator.SetTrigger (_backVar);
 				}
@@ -60,10 +61,11 @@ public class Cop : MonoBehaviour
 				} else if (angle > 120) {
 						_animator.SetTrigger (_backVar);
 				}
+				*/
 
 
 
-				UnityEngine.Debug.LogWarning ("angle: " + angle);
+//				UnityEngine.Debug.LogWarning ("angle: " + angle);
 
 				//surfaceFloat = Mathf.Lerp(surfaceFloat,4,Time.deltaTime * 0.1f);
 
