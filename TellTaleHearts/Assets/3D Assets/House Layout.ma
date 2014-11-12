@@ -1,6 +1,6 @@
 //Maya ASCII 2015 scene
 //Name: House Layout.ma
-//Last modified: Wed, Nov 12, 2014 03:35:42 PM
+//Last modified: Wed, Nov 12, 2014 03:51:28 PM
 //Codeset: UTF-8
 requires maya "2015";
 currentUnit -l centimeter -a degree -t film;
@@ -16,6 +16,7 @@ createNode mesh -n "HouseMainShape" -p "HouseMain";
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:555]";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.31111479178071022 0.5359480008482933 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
 	setAttr -s 1334 ".uvst[0].uvsp";
 	setAttr ".uvst[0].uvsp[0:249]" -type "float2" 0.7564314 0.15403031 0.75643146
@@ -364,6 +365,23 @@ createNode mesh -n "HouseMainShape" -p "HouseMain";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 16 ".pt";
+	setAttr ".pt[577]" -type "float3" 0 0 88.534859 ;
+	setAttr ".pt[578]" -type "float3" 0 0 -77.868011 ;
+	setAttr ".pt[581]" -type "float3" 0 0 -77.868011 ;
+	setAttr ".pt[582]" -type "float3" 0 0 88.534859 ;
+	setAttr ".pt[590]" -type "float3" 0 0 -77.868011 ;
+	setAttr ".pt[596]" -type "float3" 0 0 88.534859 ;
+	setAttr ".pt[609]" -type "float3" 0 0 88.534859 ;
+	setAttr ".pt[613]" -type "float3" 0 0 -77.868011 ;
+	setAttr ".pt[614]" -type "float3" 0 0 -77.868011 ;
+	setAttr ".pt[621]" -type "float3" 0 0 88.534859 ;
+	setAttr ".pt[626]" -type "float3" 0 0 88.534859 ;
+	setAttr ".pt[627]" -type "float3" 0 0 88.534859 ;
+	setAttr ".pt[628]" -type "float3" 0 0 -77.868011 ;
+	setAttr ".pt[629]" -type "float3" 0 0 -77.868011 ;
+	setAttr ".pt[634]" -type "float3" 0 0 88.534859 ;
+	setAttr ".pt[635]" -type "float3" 0 0 -77.868011 ;
 	setAttr -s 711 ".vt";
 	setAttr ".vt[0:165]"  -909.28344727 -7.4180096e-14 -1056.099853516 -686.015686035 522.84973145 -1081.80480957
 		 -681.35919189 522.84973145 -1055.82006836 -681.35919189 -7.8469918e-14 -1055.82006836
@@ -2068,6 +2086,7 @@ createNode mesh -n "HouseWindowsShape" -p "HouseWindows";
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode transform -n "HouseWindows1";
+	setAttr ".t" -type "double3" 25.186603905168795 -0.97201162832004684 173.23959465898429 ;
 	setAttr ".rp" -type "double3" 1267.4060873455144 261.42486572265619 -554.11876370996595 ;
 	setAttr ".sp" -type "double3" 1267.4060873455144 261.42486572265619 -554.11876370996595 ;
 createNode mesh -n "HouseWindowsShape1" -p "HouseWindows1";
@@ -2141,8 +2160,8 @@ createNode mesh -n "HouseWindowsShape1" -p "HouseWindows1";
 		 -379.2048645 318.32299805 -1172.5020752 -315.013946533 116.7520752 -1098.48962402
 		 -315.013885498 318.32299805 -1098.48962402;
 	setAttr -s 70 ".ed[0:69]"  1 0 0 1 2 0 2 3 0 3 0 0 4 5 0 6 5 0 6 7 0
-		 7 4 0 8 1 0 1 7 0 7 9 0 8 9 0 0 4 0 10 11 0 12 11 0 13 12 0 10 13 0 14 8 1 9 15 0
-		 14 15 0 2 16 0 16 17 0 17 6 0 2 6 0 16 18 0 18 19 0 19 17 1 20 21 0 22 21 0 23 22 0
+		 7 4 0 8 1 0 1 7 0 7 9 0 8 9 0 0 4 0 10 11 0 12 11 0 13 12 0 10 13 0 14 8 0 9 15 0
+		 14 15 0 2 16 0 16 17 0 17 6 0 2 6 0 16 18 0 18 19 0 19 17 0 20 21 0 22 21 0 23 22 0
 		 20 23 0 3 5 0 0 10 0 14 13 0 0 14 0 4 11 0 15 12 0 15 4 0 18 20 0 3 23 0 18 3 0 5 22 0
 		 19 21 0 5 19 0 3 24 1 25 24 0 0 25 1 23 26 1 24 26 0 10 23 0 10 27 1 27 26 0 25 27 0
 		 23 28 1 29 28 0 10 29 1 22 30 1 28 30 0 11 22 0 11 31 1 31 30 0 29 31 0 22 32 1 33 32 0
@@ -2467,25 +2486,25 @@ createNode mesh -n "Floor1Shape" -p "Floor1";
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -1500.938283028036 1891.4657621346478 -5304.2034404037067 ;
-	setAttr ".r" -type "double3" -18.938352729602897 195.79999999999959 0 ;
+	setAttr ".t" -type "double3" -5885.8336778945431 1379.9789446612192 -824.77805024277802 ;
+	setAttr ".r" -type "double3" -12.938352729282265 265.80000000002985 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 5827.9526933544257;
+	setAttr ".coi" 7201.6198710054423;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
 	setAttr ".hc" -type "string" "viewSet -p %camera";
 createNode transform -s -n "top";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 0 1337.4415527343749 0 ;
+	setAttr ".t" -type "double3" 1315.9282603563197 1337.4415527343749 -427.10242984724221 ;
 	setAttr ".r" -type "double3" -89.999999999999986 0 0 ;
 createNode camera -s -n "topShape" -p "top";
 	setAttr -k off ".v" no;
 	setAttr ".rnd" no;
 	setAttr ".coi" 1337.4415527343749;
-	setAttr ".ow" 30;
+	setAttr ".ow" 1209.6206492938261;
 	setAttr ".imn" -type "string" "top";
 	setAttr ".den" -type "string" "top_depth";
 	setAttr ".man" -type "string" "top_mask";
