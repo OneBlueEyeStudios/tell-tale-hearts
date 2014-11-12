@@ -15,6 +15,8 @@ public class SetStageDestination : Command {
 	public CopType _copType;
 	//public ClueType _clueType;
 	public int _waitTimePerNode;
+	public bool _loop;
+	public bool _useChildrenNodes;
 
 
 	void pathFinished (CopType agent)
@@ -33,7 +35,9 @@ public class SetStageDestination : Command {
 		SequenceTesting._instance.pathFinished += pathFinished;
 
 
-		SequenceTesting._instance.MoveCharacterListToCurrentClue (_copType,_waitTimePerNode);
+		//SequenceTesting._instance.MoveCharacterListToCurrentClue (_copType,_waitTimePerNode);
+
+		SequenceTesting._instance.MoveCopCurrentStage (_copType,_waitTimePerNode,_useChildrenNodes, _loop);
 
 	}
 

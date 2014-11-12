@@ -41,7 +41,7 @@ public class Cop : MonoBehaviour
 
 		float angle = AngleSigned(direction.normalized, transform.forward,Vector3.up);
 
-		/*
+	
 				if (angle < -120) {
 					_animator.SetTrigger (_backVar);
 				}
@@ -61,7 +61,7 @@ public class Cop : MonoBehaviour
 				} else if (angle > 120) {
 						_animator.SetTrigger (_backVar);
 				}
-				*/
+				
 
 
 

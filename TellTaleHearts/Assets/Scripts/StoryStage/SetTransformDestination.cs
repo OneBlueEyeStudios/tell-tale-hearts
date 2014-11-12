@@ -46,7 +46,7 @@ public class SetTransformDestination : Command {
 
 		foreach (CopDestination destination in _copDestination) 
 		{
-			SequenceTesting._instance.MoveCharacterTrack (destination._copType, destination._node);
+			SequenceTesting._instance.MoveCopTrack(destination._copType,destination._node);//MoveCharacterTrack (destination._copType, destination._node);
 			
 		}
 
