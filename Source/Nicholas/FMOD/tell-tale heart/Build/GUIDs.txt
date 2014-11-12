@@ -5,6 +5,7 @@
 {5061842f-f740-4985-a1f3-1da990f8d10e} event:/ambience/rain
 {172ed1ce-720e-4626-9bf7-ce9e64c3d2f7} event:/ambience/room tone
 {e765eee3-7cd2-4e7f-b43d-8c245e874ab9} event:/dialogue/confess
+{d3836c69-51a3-4d94-a73d-f5f64f87692a} event:/dialogue/test dialogue
 {82b1b5fc-1a25-4fef-b936-76c90a077a62} event:/household/door
 {d601953d-0de4-4dac-8475-b3ece117ec1d} event:/household/door knocking
 {f26b981c-4d00-4be1-afd5-94a4b25a172a} event:/household/kerosene lamp
@@ -15,8 +16,12 @@
 {d619531b-f43f-429c-9572-1c561ea709c4} event:/human/footstep - cop1
 {e2df5dbd-4b36-4c46-92de-fdf08b32a4e4} event:/human/footstep - cop2
 {0cf24789-64d4-439b-bcf3-72d24eadb632} event:/human/heartbeat
+{ce1d2e50-f869-44dc-8afe-766d444b77d0} event:/music/test music
 {ece1d9bd-5bb0-479f-8571-24a3f124a50f} bus:/
 {0d5e9d5a-4e02-4cb9-8d21-8f3aa831e51f} bus:/Reverb
+{354a59d7-4f5a-44d6-adbc-fec79c25a0b1} bus:/ambience
+{1e837d0e-9d41-4d70-a023-14175788dd4e} bus:/dialogue
+{94b38b4d-20c1-4a3e-8b1d-36732796071c} bus:/music
 {8ca2cc90-b40b-43b7-a3b5-3d8bdae0655d} bank:/test
-{e86e1ea5-25f4-4378-a80b-8573d5986a30} bank:/Master Bank
 {fb2d5a7b-e9c4-466b-b9f8-2afdea8e6907} bank:/test2
+{e86e1ea5-25f4-4378-a80b-8573d5986a30} bank:/Master Bank
