@@ -25,6 +25,8 @@ public class StageManager : MonoBehaviour {
 	public event StringDelegate eventTrigger;
 	public event StageStepDelegate stageStepEnded;
 
+
+
 	public int _nFungusThreads = 2;
 	int _nMergedFungusThreads= 0;
 
@@ -83,10 +85,10 @@ public class StageManager : MonoBehaviour {
 	public int _lastLevel = 8;
 	public int _suspicionThreshold = 5;
 
-
-
 	public CopType getCurrentSpeakingCop()
 	{
+
+
 		/*if (_goodFungus.GetBooleanVariable (Constants.SPEAKING_COP))
 			return CopType.good;
 		else
@@ -351,6 +353,14 @@ public class StageManager : MonoBehaviour {
 		_currentStage._steps [_currentStepIndex].execute ();
 	}
 */
+
+	void Update()
+	{
+		ImageEffectsHandler handler = (ImageEffectsHandler)GetComponent ("ImageEffectsHandler");
+		handler.UpdateSuspicion (StageManager._instance._globalVars [Constants.SUSPICION]);
+
+	}
+
 	void OnGUI()
 	{
 		if (_globalVars.ContainsKey (Constants.SUSPICION))
