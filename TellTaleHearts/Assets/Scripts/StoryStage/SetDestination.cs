@@ -53,12 +53,14 @@ public class SetDestination : Command {
 
 		foreach (CopDestination destination in _copDestination) 
 		{
-			if(destination._node.childCount > 0)
-			{
-				SequenceTesting._instance.MoveCharacterList (destination._copType, destination._node,_waitTimePerNode);
-			}
-			else
-				SequenceTesting._instance.MoveCharacter (destination._copType, destination._node.position);
+
+
+			//if(destination._node.childCount > 0)
+			//{
+			//	SequenceTesting._instance.MoveCharacterList (destination._copType, destination._node,_waitTimePerNode);
+			//}
+			//else
+			SequenceTesting._instance.MoveCop(destination._copType, destination._node);//.MoveCharacter (destination._copType, destination._node.position);
 		
 		}
 	}

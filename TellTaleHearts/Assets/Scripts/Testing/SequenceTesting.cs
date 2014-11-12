@@ -348,6 +348,106 @@ public class SequenceTesting : MonoBehaviour
 						OnPathFinished (CopType.good);
 		}
 
+	public void testNewMove (CopType copType, Transform targetNode, int waitTimePerNode, bool shouldLoop, bool useChildren)
+	{
+		MoveNavMeshAgentTo moveScript = null;
+
+		switch (copType) {
+				case CopType.bad:
+						moveScript = _badCop.gameObject.AddComponent<MoveNavMeshAgentTo> ();
+		
+						break;
+				case CopType.good:
+						moveScript = _goodCop.gameObject.AddComponent<MoveNavMeshAgentTo> ();
+
+						break;
+				default:
+						break;
+		}
+
+			if(moveScript!=null)
+				moveScript.Init(copType,targetNode,useChildren,shouldLoop,waitTimePerNode);
+	}
+
+	public void MoveCop (CopType copType, Transform target)
+	{
+
+		MoveNavMeshAgentTo moveScript = null;
+		
+		
+		switch (copType) {
+		case CopType.bad:
+			moveScript = _badCop.gameObject.AddComponent<MoveNavMeshAgentTo> ();
+			
+			break;
+		case CopType.good:
+			moveScript = _goodCop.gameObject.AddComponent<MoveNavMeshAgentTo> ();
+			
+			break;
+		default:
+			break;
+		}
+		
+		if(moveScript!=null)
+			moveScript.Init(copType,target,false,false,0);
+	}
+
+	public void MoveCopCurrentStage (CopType copType, int waitTimePerNode, bool useChildren = true,  bool loop = true)
+	{
+		Transform parentNode = null;
+		
+		if (copType == StageManager._instance.getCurrentSpeakingCop ()) 
+			
+			parentNode = StageManager._instance.getRoomForCurrentStage ();
+		else
+			parentNode = StageManager._instance.getSecondaryRoomForCurrentStage ();
+	
+
+		MoveNavMeshAgentTo moveScript = null;
+
+
+		switch (copType) {
+		case CopType.bad:
+			moveScript = _badCop.gameObject.AddComponent<MoveNavMeshAgentTo> ();
+			
+			break;
+		case CopType.good:
+			moveScript = _goodCop.gameObject.AddComponent<MoveNavMeshAgentTo> ();
+			
+			break;
+		default:
+			break;
+		}
+		
+		if(moveScript!=null)
+			moveScript.Init(copType,parentNode,useChildren,loop,waitTimePerNode);
+	}
+
+	public void MoveCopTrack (CopType copType, Transform targetNode)
+	{
+
+		
+		TrackNavMeshAgentTo trackScript = null;
+		
+		
+		switch (copType) {
+		case CopType.bad:
+			trackScript = _badCop.gameObject.AddComponent<TrackNavMeshAgentTo> ();
+			
+			break;
+		case CopType.good:
+			trackScript = _goodCop.gameObject.AddComponent<TrackNavMeshAgentTo> ();
+			
+			break;
+		default:
+			break;
+		}
+		
+		if(trackScript!=null)
+			trackScript.Init(copType,targetNode);
+	}
+
+	/*
 		public void MoveCharacter (CopType copType, string stage)
 		{
 				switch (copType) {
@@ -361,6 +461,7 @@ public class SequenceTesting : MonoBehaviour
 						break;
 				}
 		}
+
 
 		public void startSequence (CopType copType, List<Sequence> sequence, int index = 0)
 		{
@@ -443,7 +544,7 @@ public class SequenceTesting : MonoBehaviour
 		{
 				NGUITools.SetActive (_clueFoundLabel.gameObject, false);
 		}
-		
+		*/
 
 		/*Transform getRandomPos()
 	{

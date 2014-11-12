@@ -26,7 +26,7 @@ public class TriggerMovementCommand : Command {
 	public override void OnEnter ()
 	{
 		SequenceTesting._instance.pathFinished += pathFinished;
-		SequenceTesting._instance.MoveCharacter (_copType, _stage);
+//		SequenceTesting._instance.MoveCharacter (_copType, _stage);
 	}
 
 	public override string GetSummary()

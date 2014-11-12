@@ -24,8 +24,13 @@ public class CharView : MonoBehaviour
 		bool _isHoldingObject;
 		bool _canDrop;
 
+
+	public static CharView _instance;
+
 		void Awake ()
 		{
+				_instance = this;
+
 				if (SoundManager._instance == null) {
 						Instantiate (_soundManagerPref);
 				}
@@ -193,7 +198,7 @@ public class CharView : MonoBehaviour
 				_canDrop = true;
 		}
 
-		void setMouseLookEnabled (bool enabled)
+		public void setMouseLookEnabled (bool enabled)
 		{
 				_mouseLookX.enabled = enabled;
 				_mouseLookY.enabled = enabled;
@@ -201,7 +206,7 @@ public class CharView : MonoBehaviour
 				_mouseLookEnabled = enabled;
 		}
 
-		void setCharacterMotorEnabled (bool enabled)
+	public void setCharacterMotorEnabled (bool enabled)
 		{
 				_charMotor.enabled = enabled;
 

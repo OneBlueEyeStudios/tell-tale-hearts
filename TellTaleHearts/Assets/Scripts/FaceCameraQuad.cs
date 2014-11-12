@@ -7,11 +7,12 @@ public class FaceCameraQuad : MonoBehaviour
 
 		public Camera _camera;
 
-		// Use this for initialization
-		void Start ()
-		{
-	
-		}
+	void Awake()
+	{
+		if (_camera == null)
+			_camera = Camera.main;
+	}
+
 	
 		// Update is called once per frame
 		void Update ()
