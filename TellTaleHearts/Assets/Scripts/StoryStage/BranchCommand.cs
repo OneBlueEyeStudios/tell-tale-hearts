@@ -18,13 +18,13 @@ public class BranchCommand : Command
 		{
 				if (sequence == _leftSequence) {
 			SequenceTesting._instance.eventFinished -= eventFinished;
-						Debug.LogWarning ("Sequence:" + _leftSequence.name + " finished");
+//						Debug.LogWarning ("Sequence:" + _leftSequence.name + " finished");
 						//ExecuteSequence (_leftSequence);
 						command.Continue ();
 						
 				} else if (sequence == _rightSequence) {
 			SequenceTesting._instance.eventFinished -= eventFinished;
-						Debug.LogWarning ("Sequence:" + _rightSequence.name + " finished");
+//						Debug.LogWarning ("Sequence:" + _rightSequence.name + " finished");
 						command.Continue ();
 						
 				}

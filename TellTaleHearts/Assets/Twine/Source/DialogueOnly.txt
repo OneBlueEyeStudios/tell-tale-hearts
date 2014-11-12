@@ -7,7 +7,7 @@ The logo dissolves away and the camera pans down until it is looking straight ah
 
 
 :: Stage 3
-Do you live here alone?
+Do you live here alone? $cue:24
 
 [[No, I have a roommate|Stage 3B]]<var:doubt+=0>
 [[Yes, I live here alone|Stage 3D]]<var:doubt+=1>
@@ -15,21 +15,21 @@ Do you live here alone?
 
 
 :: Stage 5
-This roommate of yours, how can he afford living in such a large house?
+This roommate of yours, how can he afford living in such a large house?  $cue:33
 
 [[I think he has a pension|Stage 5B]]<var:doubt+=1>
 [[He's owned it a long time and I pay rent|Stage 5C]]<var:doubt+=0>
 
 
 :: Stage 6
-Where did you say your roommmate was?
+Where did you say your roommmate was? $cue:39
 
 [[As far as I know he is out at the pub| Stage 6B]]<var:doubt+=0>
 [[Visiting his son|Stage 6C]]<var:doubt+=1>
 
 
-:: Stage 7A
-What time did you say you got home?
+:: Stage 7
+What time did you say you got home? $cue:42
 
 [[I've been home all night|Stage 7 END]]<var:doubt+=1>
 [[A short while ago|Stage 7 END]]<var:doubt+=0>
@@ -37,7 +37,7 @@ What time did you say you got home?
 
 
 :: Stage 2A
-Sorry to wake you, but we have have recieved a complaint about a shriek and  a possible violent altercation. Do you mind if we come in and look around?
+Sorry to wake you, but we have have recieved a complaint about a shriek and  a possible violent altercation. Do you mind if we come in and look around? $cue:19
 
 [[Yes, come on in|Stage 2 END]]<var:doubt+=0>
 [[No, not without a warrant|Stage 2E]]<var:doubt+=1>
@@ -46,7 +46,7 @@ Sorry to wake you, but we have have recieved a complaint about a shriek and  a p
 
 
 :: Stage 2C
-About time, it’s raining out here! We have report about a possible violent altercation. We need to look around, OK?
+About time, it’s raining out here! We have report about a possible violent altercation. We need to look around, OK?  $cue:21
 
 [[Yes|Stage 2 END]]<var:doubt+=0>
 [[No|Stage 2E]]<var:doubt+=1>
@@ -55,7 +55,7 @@ About time, it’s raining out here! We have report about a possible violent alt
 
 
 :: Stage 2D
-So you are awake! You afraid or something, you look nervous? We’re here on suspicion of foul play and need to look around the premises. 
+So you are awake! You afraid or something, you look nervous? We’re here on suspicion of foul play and need to look around the premises.  $cue:22
 
 
 
@@ -64,14 +64,14 @@ Untitled Story
 
 
 :: Stage 4
-Where were you earlier tonight?
+Where were you earlier tonight?  $cue:29
 
 [[I have been home all night, alone|Stage 4D]]<var:doubt+=1>
 [[I was at a play, then home|Stage 4E]]<var:doubt+=0>
 
 
 :: Stage 3B
-Is your roommate home?
+Is your roommate home?  $cue:25
 
 [[He went out drinking|Stage 3 END]]<var:doubt+=0>
 [[He is off visiting his son|Stage 3C]]<var:doubt+=1>
@@ -80,14 +80,14 @@ Is your roommate home?
 
 
 :: Stage 3D
-A lot of stuff around here looks like it was meant for an old man. Can you explain that?
+A lot of stuff around here looks like it was meant for an old man. Can you explain that?  $cue:27
 
 [[It's from the previous tenant|Stage 3 END]]<var:doubt+=1>
 [[Oh, that's my roommates stuff|Stage 3E]]<var:doubt+=0>
 
 
 :: Stage 5B
-Pensioner, hmmm. Military or company?
+Pensioner, hmmm. Military or company? $cue:34
 
 [[I believe he was a lieutentant|Stage 5D]]<var:doubt-=1>
 [[I've never bothered to ask|Stage 5E]]<var:doubt+=0>
@@ -100,7 +100,7 @@ Done
 
 
 :: Stage 5C
-Do you pay your rent on time?
+Do you pay your rent on time? $cue:35
 
 [[Of course, I got a good deal here|Stage 5 END]]<var:doubt+=0>
 [[Not lately, been sick lately|Stage 5 END]]<var:doubt+=1>
@@ -108,14 +108,14 @@ Do you pay your rent on time?
 
 
 ::  Stage 6B
-Does he drink often?
+Does he drink often? $cue:40
 
 [[Pretty much everyday|Stage 6 END]]<var:doubt+=0>
 [[No, just enjoys the people at the pub|Stage 6 END]]<var:doubt+=1>
 
 
 :: Stage 6C
-Did he ever mention a niece?
+Did he ever mention a niece? $cue:41
 
 [[His son is his only family|Stage 6 END]] <var:doubt+=1>
 [[I believe she is coming to visit soon|Stage 6 END]] <var:doubt-=1>
@@ -126,32 +126,32 @@ Anonymous
 
 
 :: Stage 2E
-I’m afraid you don’t have much of a choice. 
+I’m afraid you don’t have much of a choice.  $cue:23
 
 
 
 :: Stage 4D
-Did you happen to hear a shriek?
+Did you happen to hear a shriek?  $cue:30
 
 [[It's been quiet all night|Stage 4 END]]<var:doubt+=1>
 [[I screamed when I stubbed my toe|Stage 4 END]]<var:doubt-=1>
 
 
 :: Stage 4E
-Interesting. When did you get home?
+Interesting. When did you get home?  $cue:31
 
 [[Around dusk|Stage 4D]]<var:doubt+=1>
 [[Less than an hour ago|Stage 4 END]]<var:doubt+=0>
 
 
 :: Stage 5D
-An officer. Good to see he's being taken care of. 
+An officer. Good to see he's being taken care of. $cue:36
 
 [[end scene|Stage 5 END]]
 
 
 :: Stage 5E
-Never mentioned it...Interesting. 
+Never mentioned it...Interesting. $cue:37
 
 [[end scene|Stage 5 END]]
 
@@ -162,7 +162,7 @@ Done
 
 
 :: Stage 3C
-His son? When do you expect him back?
+His son? When do you expect him back?  $cue:26
 
 [[He didn’t say|Stage 3 END]]<var:doubt+=1>
 [[He’ll be back in a few days|Stage 3 END]]<var:doubt+=1>
@@ -170,7 +170,7 @@ His son? When do you expect him back?
 
 
 :: Stage 3E
-I thought you said you live here alone?
+I thought you said you live here alone?  $cue:28
 
 [[Sorry, I thought you meant right now|Stage 3 END]]<var:doubt-=1>
 [[You are mistaken|Stage 3 END]]<var:doubt+=1>

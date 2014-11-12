@@ -11,7 +11,12 @@ public delegate void VoidDelegate ();
 public class StageClue
 {
 	public int _stage;
+	public bool _hasClue;
 	public ClueType _type;
+	public Transform _mainRoom;
+	public Transform _secondaryRoom;
+	public CopType _speakingCop;
+
 }
 
 public class StageManager : MonoBehaviour {
@@ -19,6 +24,8 @@ public class StageManager : MonoBehaviour {
 	public event VoidDelegate fungusMerge;
 	public event StringDelegate eventTrigger;
 	public event StageStepDelegate stageStepEnded;
+
+
 
 	public int _nFungusThreads = 2;
 	int _nMergedFungusThreads= 0;
@@ -40,7 +47,7 @@ public class StageManager : MonoBehaviour {
 	public void OnEventTrigger(string eventName)
 	{
 		if (eventTrigger != null)
-						eventTrigger (eventName);
+			eventTrigger (eventName);
 	}
 
 	public void OnStageStepEnd(StageStep stageStep)
@@ -66,17 +73,8 @@ public class StageManager : MonoBehaviour {
 	// Global vars for the game - Suspicicion and CurrentStage
 	public Dictionary<string,int> _globalVars;
 
-	/*
-	public Vector3 _position;
-
-	bool _currentStepDone;
-
-	public Stage _currentStage;
-
-	int _currentStepIndex;
-*/
 	// Reference tot each cop fungus script
-	public Fungus.FungusScript _goodFungus, _badFungus;
+	public Fungus.FungusScript _goodCopFungus, _badCopFungus, _arrestFungus, _confessFungus, _escapeFungus;
 
 	// List of clues that the good cop and the bad cop discovered when exploring the house
 	public List<StageClue> _stageClue;
@@ -84,19 +82,81 @@ public class StageManager : MonoBehaviour {
 	// List of clues that the good cop and the bad cop discovered when exploring the house
 	List<ClueType> _goodCopClues, _badCopClues;
 
+	public int _lastLevel = 8;
+	public int _suspicionThreshold = 5;
+
 	public CopType getCurrentSpeakingCop()
 	{
-		if (_goodFungus.GetBooleanVariable (Constants.SPEAKING_COP))
+
+
+		/*if (_goodFungus.GetBooleanVariable (Constants.SPEAKING_COP))
 			return CopType.good;
 		else
-			return CopType.bad;
+			return CopType.bad;*/
+
+		StageClue stage = getCurrentStage ();
+
+		return stage._speakingCop;
+	}
+
+	ClueType getClueType(int stage, out bool hasClue)
+	{
+		foreach (StageClue stageClue in _stageClue) 
+		{
+			if(stageClue._stage == stage)
+			{
+				hasClue = stageClue._hasClue;
+				return stageClue._type;
+			}
+		}
+
+		Debug.LogError ("Could not find clue for Stage: " + stage);
+		hasClue = false;
+		return ClueType.OperaTicket;
+	}
+
+	public Transform getRoomForCurrentStage ()
+	{
+		int currentStage = _globalVars [Constants.CURRENT_STAGE];
+
+		foreach (StageClue stageClue in _stageClue) 
+		{
+			if(stageClue._stage == currentStage)
+			{
+				return stageClue._mainRoom;
+			}
+		}
+
+		return null;
+	}
+
+	public Transform getSecondaryRoomForCurrentStage ()
+	{
+		int currentStage = _globalVars [Constants.CURRENT_STAGE];
+		
+		foreach (StageClue stageClue in _stageClue) 
+		{
+			if(stageClue._stage == currentStage)
+			{
+				return stageClue._secondaryRoom;
+			}
+		}
+		
+		return null;
 	}
 
 	public bool copKnowsStageClue ()
 	{
+		if (_globalVars [Constants.CURRENT_STAGE] < 3)
+			return true;
+
 		CopType currentCop = getCurrentSpeakingCop ();
 
-		ClueType currentStageClue = _stageClue [_globalVars [Constants.CURRENT_STAGE]]._type;
+		bool hasClue = false;
+		ClueType currentStageClue = getClueType (_globalVars [Constants.CURRENT_STAGE],out hasClue);//_stageClue []._type;
+
+		if (!hasClue)
+			return true;
 
 		switch (currentCop) {
 		case CopType.bad:
@@ -117,9 +177,11 @@ public class StageManager : MonoBehaviour {
 	{
 		switch (cop) {
 		case CopType.bad:
+			if(!_badCopClues.Contains(clueType))
 			_badCopClues.Add(clueType);
 			break;
 		case CopType.good:
+			if(!_goodCopClues.Contains(clueType))
 			_goodCopClues.Add(clueType);
 			break;
 		default:
@@ -131,17 +193,17 @@ public class StageManager : MonoBehaviour {
 	{
 		if (copType == CopType.good) 
 		{
-			Fungus.Sequence seq = getSequence(_goodFungus,sequenceName);
+			Fungus.Sequence seq = getSequence(_goodCopFungus,sequenceName);
 			if(seq!=null)
-				_goodFungus.ExecuteSequence(seq);
+				_goodCopFungus.ExecuteSequence(seq);
 		}
 		else 
 			if (copType == CopType.bad) 
 		{
 			
-			Fungus.Sequence seq = getSequence(_badFungus,sequenceName);
+			Fungus.Sequence seq = getSequence(_badCopFungus,sequenceName);
 			if(seq!=null)
-				_badFungus.ExecuteSequence(seq);
+				_badCopFungus.ExecuteSequence(seq);
 		}
 	}
 
@@ -197,28 +259,74 @@ public class StageManager : MonoBehaviour {
 		fungus.SetBooleanVariable(boolVarName,!fungus.GetBooleanVariable(boolVarName));
 	}
 
+	StageClue getCurrentStage ()
+	{
+		int currentStage = _globalVars [Constants.CURRENT_STAGE];
+	
+		//Debug.LogWarning ("CurrentStage: " + currentStage);
+
+		foreach (StageClue stageClue in _stageClue) 
+		{
+			if(stageClue._stage == currentStage)
+			{
+				return stageClue;
+			}
+		}
+
+		return null;
+	}
+
 	public void triggerNextStage (FungusScript script)
 	{
 
-		if (_globalVars [Constants.CURRENT_STAGE] == 0) {
-			_globalVars [Constants.CURRENT_STAGE] = 4;
-						_goodFungus.SetBooleanVariable (Constants.SPEAKING_COP, true);
-				} else 
-		{
+		OnEventTrigger (Constants.STAGE_FINISH_TRIGGER);
+
+
+		//if (_globalVars [Constants.SUSPICION] >= 3)
+		if (_globalVars [Constants.SUSPICION] >= _suspicionThreshold)
+						_arrestFungus.Execute ();
+				//else if (_globalVars [Constants.CURRENT_STAGE] >= 7)
+		else if (_globalVars [Constants.CURRENT_STAGE] >= _lastLevel)
+						_escapeFungus.Execute ();
+		//if (_globalVars [Constants.CURRENT_STAGE] == 0) {
+		//	_globalVars [Constants.CURRENT_STAGE] = 3;
+		//				_badFungus.SetBooleanVariable (Constants.SPEAKING_COP, true);
+		//		} else 
+		else {
+
+			//Debug.LogError ("CurrentStage: " + _globalVars [Constants.CURRENT_STAGE]);
 			_globalVars [Constants.CURRENT_STAGE] = _globalVars [Constants.CURRENT_STAGE] + 1;
+			//Debug.LogError ("CurrentStage: " + _globalVars [Constants.CURRENT_STAGE]);
+
+			StageClue stage = getCurrentStage ();
+
+			if(stage._speakingCop == CopType.bad)
+			{
+				_badCopFungus.SetBooleanVariable (Constants.SPEAKING_COP, true);
+				_goodCopFungus.SetBooleanVariable (Constants.SPEAKING_COP, false);
+			}
+			else
+			{
+				_badCopFungus.SetBooleanVariable (Constants.SPEAKING_COP, false);
+				_goodCopFungus.SetBooleanVariable (Constants.SPEAKING_COP, true);
+			}
+
 	
-			toggleVariable (_goodFungus, Constants.SPEAKING_COP);
-			toggleVariable (_badFungus, Constants.SPEAKING_COP);
+			_goodCopFungus.ExecuteSequence (getSequence(_goodCopFungus, Constants.DECISION_NODE));
+			_badCopFungus.ExecuteSequence (getSequence(_badCopFungus, Constants.DECISION_NODE));
+
 				}
-		_goodFungus.ExecuteSequence (getSequence(_goodFungus, Constants.DECISION_NODE));
-		_badFungus.ExecuteSequence (getSequence(_badFungus, Constants.DECISION_NODE));
+
 
 	}
 
 	void Awake()
 	{
+		_badCopClues = new List<ClueType>();
+		_goodCopClues = new List<ClueType>();
+
 		_globalVars = new Dictionary<string, int> ();
-		_globalVars.Add (Constants.CURRENT_STAGE,0);
+		_globalVars.Add (Constants.CURRENT_STAGE,2);
 		_globalVars.Add (Constants.SUSPICION,0);
 		_instance = this;
 	}
@@ -245,6 +353,14 @@ public class StageManager : MonoBehaviour {
 		_currentStage._steps [_currentStepIndex].execute ();
 	}
 */
+
+	void Update()
+	{
+		ImageEffectsHandler handler = (ImageEffectsHandler)GetComponent ("ImageEffectsHandler");
+		handler.UpdateSuspicion (StageManager._instance._globalVars [Constants.SUSPICION]);
+
+	}
+
 	void OnGUI()
 	{
 		if (_globalVars.ContainsKey (Constants.SUSPICION))

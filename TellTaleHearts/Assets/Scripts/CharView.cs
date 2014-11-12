@@ -22,9 +22,15 @@ public class CharView : MonoBehaviour
 		bool _hasGameBegun;
 		public GameObject _soundManagerPref;
 		bool _isHoldingObject;
+		bool _canDrop;
+
+
+	public static CharView _instance;
 
 		void Awake ()
 		{
+				_instance = this;
+
 				if (SoundManager._instance == null) {
 						Instantiate (_soundManagerPref);
 				}
@@ -58,6 +64,9 @@ public class CharView : MonoBehaviour
 		// Update is called once per frame
 		void Update ()
 		{
+
+			setMouseLookEnabled (!Input.GetKey (KeyCode.LeftShift));
+
 				_handSocket.transform.position = Camera.main.transform.position + Camera.main.transform.forward * _objectDistance;
 
 				if (Input.GetButtonDown ("Fire1") && !_hasGameBegun) {
@@ -111,11 +120,15 @@ public class CharView : MonoBehaviour
 						if (Input.GetKeyDown (KeyCode.E)) {
 
 								if (_currentlyCentered.layer == LayerMasks.GrabbableLayerIndex) {
-										if (_isHoldingObject) {
+										if (_isHoldingObject && _canDrop) {
+												Item item = _currentlyCentered.GetComponent<Item> ();
+												item.released ();
+
 												_currentlyCentered.transform.parent = _lastObjectParent;
 						
 												iTween.MoveTo (_currentlyCentered.gameObject, iTween.Hash ("position", Vector3.zero, "time", 1.0f, "islocal", true));
-												iTween.RotateTo (_currentlyCentered.gameObject, iTween.Hash ("rotation", Vector3.zero, "time", 1.0f, "islocal", true));
+												if (item._rotateWhenRelease)
+														iTween.RotateTo (_currentlyCentered.gameObject, iTween.Hash ("rotation", Vector3.zero, "time", 1.0f, "islocal", true));
 						
 												_lastObjectParent = null;
 												_currentlyCentered = null;
@@ -124,43 +137,22 @@ public class CharView : MonoBehaviour
 
 												setMouseLookEnabled (true);
 												
-										} else {
+										} else if(!_isHoldingObject){
 												_lastObjectParent = _currentlyCentered.transform.parent;
 												_currentlyCentered.transform.parent = _handSocket;
 												Item item = _currentlyCentered.GetComponent<Item> ();
+												item.grabbed ();
 						
-												iTween.MoveTo (_currentlyCentered.gameObject, iTween.Hash ("position", Vector3.zero, "time", 1.0f, "islocal", true));
+												iTween.MoveTo (_currentlyCentered.gameObject, iTween.Hash ("position", Vector3.zero, "time", 1.0f, "islocal", true, "oncompletetarget", gameObject, "oncomplete", "onMoveToComplete"));
+
 												iTween.RotateTo (_currentlyCentered.gameObject, iTween.Hash ("rotation", item._frontFacing, "time", 1.0f, "islocal", true));
 						
 												setMouseLookEnabled (false);
 												_isHoldingObject = true;
+
+												_canDrop = false;
 										}
-										/*
-
-										if (!_mouseLookEnabled) {
-												_currentlyCentered.transform.parent = _lastObjectParent;
-
-												iTween.MoveTo (_currentlyCentered.gameObject, iTween.Hash ("position", Vector3.zero, "time", 1.0f, "islocal", true));
-												iTween.RotateTo (_currentlyCentered.gameObject, iTween.Hash ("rotation", Vector3.zero, "time", 1.0f, "islocal", true));
-				
-												_lastObjectParent = null;
-				
-												setMouseLookEnabled (true);
-										} else			if (_currentlyCentered != null) {
-		
-												_lastObjectParent = _currentlyCentered.transform.parent;
-												_currentlyCentered.transform.parent = _handSocket;
-												Item item = _currentlyCentered.GetComponent<Item> ();
-
-												iTween.MoveTo (_currentlyCentered.gameObject, iTween.Hash ("position", Vector3.zero, "time", 1.0f, "islocal", true));
-												iTween.RotateTo (_currentlyCentered.gameObject, iTween.Hash ("rotation", item._frontFacing, "time", 1.0f, "islocal", true));
-
-												setMouseLookEnabled (false);
-
-
-
-										}
-										*/
+										
 								} else if (_currentlyCentered.layer == LayerMasks.InteractableLayerIndex) {
 										
 										Interactable interactable = _currentlyCentered.GetComponent<Interactable> ();
@@ -168,11 +160,11 @@ public class CharView : MonoBehaviour
 								}
 						} else if (Input.GetKeyDown (KeyCode.P)) {
 								//if (!_mouseLookEnabled) {
-								if(_isHoldingObject){
-										_lastObjectParent.GetComponent<Clue>()._available = false;
+								if (_isHoldingObject) {
+										_lastObjectParent.GetComponent<Clue> ()._available = false;
 										_currentlyCentered.GetComponent<Item> ().putInInventory ();
 										//Destroy(_currentlyCentered.gameObject);
-					        			_currentlyCentered.gameObject.SetActive (false);
+										_currentlyCentered.gameObject.SetActive (false);
 										_currentlyCentered = null;
 										
 										_lastObjectParent = null;
@@ -183,6 +175,7 @@ public class CharView : MonoBehaviour
 						}
 				}
 			
+
 				if (!_mouseLookEnabled) {
 						if (_currentlyCentered != null) {
 		
@@ -200,7 +193,12 @@ public class CharView : MonoBehaviour
 				_lastMousePosition = Input.mousePosition;
 		}
 
-		void setMouseLookEnabled (bool enabled)
+		void onMoveToComplete ()
+		{
+				_canDrop = true;
+		}
+
+		public void setMouseLookEnabled (bool enabled)
 		{
 				_mouseLookX.enabled = enabled;
 				_mouseLookY.enabled = enabled;
@@ -208,7 +206,7 @@ public class CharView : MonoBehaviour
 				_mouseLookEnabled = enabled;
 		}
 
-		void setCharacterMotorEnabled (bool enabled)
+	public void setCharacterMotorEnabled (bool enabled)
 		{
 				_charMotor.enabled = enabled;
 
