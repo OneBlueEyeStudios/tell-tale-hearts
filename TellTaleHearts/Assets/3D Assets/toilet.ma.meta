@@ -9,27 +9,51 @@ ModelImporter:
     100006: //RootNode
     100008: toilet1
     100010: tube1
+    100012: device
+    100014: polySurface1
+    100016: polySurface2
+    100018: polySurface3
+    100020: toilet
+    100022: toilet_flush
     400000: base
     400002: gear
     400004: tank1
     400006: //RootNode
     400008: toilet1
     400010: tube1
+    400012: device
+    400014: polySurface1
+    400016: polySurface2
+    400018: polySurface3
+    400020: toilet
+    400022: toilet_flush
     2300000: base
     2300002: gear
     2300004: tank1
     2300006: toilet1
     2300008: tube1
+    2300010: device
+    2300012: polySurface1
+    2300014: polySurface2
+    2300016: polySurface3
     3300000: base
     3300002: gear
     3300004: tank1
     3300006: toilet1
     3300008: tube1
+    3300010: device
+    3300012: polySurface1
+    3300014: polySurface2
+    3300016: polySurface3
     4300000: base
     4300002: tank1
     4300004: tube1
     4300006: toilet1
     4300008: gear
+    4300010: polySurface1
+    4300012: polySurface2
+    4300014: polySurface3
+    4300016: device
     9500000: //RootNode
   materials:
     importMaterials: 1

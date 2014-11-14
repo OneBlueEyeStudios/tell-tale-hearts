@@ -7,19 +7,29 @@ ModelImporter:
     100002: pCube19
     100004: pCube27
     100006: pSphere5
+    100008: counter1
+    100010: counter_door
     400000: //RootNode
     400002: pCube19
     400004: pCube27
     400006: pSphere5
+    400008: counter1
+    400010: counter_door
     2300000: pCube19
     2300002: pCube27
     2300004: pSphere5
+    2300006: counter1
+    2300008: counter_door
     3300000: pCube19
     3300002: pCube27
     3300004: pSphere5
+    3300006: counter1
+    3300008: counter_door
     4300000: pCube19
     4300002: pSphere5
     4300004: pCube27
+    4300006: counter_door
+    4300008: counter1
     9500000: //RootNode
   materials:
     importMaterials: 1

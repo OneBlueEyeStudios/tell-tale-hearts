@@ -17,6 +17,11 @@ ModelImporter:
     100022: pSphere4
     100024: top1
     100026: upper
+    100028: cabinet1
+    100030: left_door
+    100032: left_drawer
+    100034: right_door
+    100036: right_drawer
     400000: body
     400002: face
     400004: feet
@@ -31,6 +36,11 @@ ModelImporter:
     400022: pSphere4
     400024: top1
     400026: upper
+    400028: cabinet1
+    400030: left_door
+    400032: left_drawer
+    400034: right_door
+    400036: right_drawer
     2300000: body
     2300002: face
     2300004: feet
@@ -44,6 +54,11 @@ ModelImporter:
     2300020: pSphere4
     2300022: top1
     2300024: upper
+    2300026: cabinet1
+    2300028: left_door
+    2300030: left_drawer
+    2300032: right_door
+    2300034: right_drawer
     3300000: body
     3300002: face
     3300004: feet
@@ -57,6 +72,11 @@ ModelImporter:
     3300020: pSphere4
     3300022: top1
     3300024: upper
+    3300026: cabinet1
+    3300028: left_door
+    3300030: left_drawer
+    3300032: right_door
+    3300034: right_drawer
     4300000: body
     4300002: top1
     4300004: pCube20
@@ -70,6 +90,11 @@ ModelImporter:
     4300020: upper
     4300022: feet
     4300024: face
+    4300026: cabinet1
+    4300028: right_drawer
+    4300030: left_drawer
+    4300032: right_door
+    4300034: left_door
     9500000: //RootNode
   materials:
     importMaterials: 1

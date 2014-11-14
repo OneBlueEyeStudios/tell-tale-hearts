@@ -9,27 +9,42 @@ ModelImporter:
     100006: pCube9
     100008: pSphere3
     100010: pSphere4
+    100012: counter1
+    100014: drawer
+    100016: main_door
     400000: //RootNode
     400002: pCube25
     400004: pCube8
     400006: pCube9
     400008: pSphere3
     400010: pSphere4
+    400012: counter1
+    400014: drawer
+    400016: main_door
     2300000: pCube25
     2300002: pCube8
     2300004: pCube9
     2300006: pSphere3
     2300008: pSphere4
+    2300010: counter1
+    2300012: drawer
+    2300014: main_door
     3300000: pCube25
     3300002: pCube8
     3300004: pCube9
     3300006: pSphere3
     3300008: pSphere4
+    3300010: counter1
+    3300012: drawer
+    3300014: main_door
     4300000: pCube8
     4300002: pCube9
     4300004: pSphere3
     4300006: pSphere4
     4300008: pCube25
+    4300010: counter1
+    4300012: main_door
+    4300014: drawer
     9500000: //RootNode
   materials:
     importMaterials: 1
