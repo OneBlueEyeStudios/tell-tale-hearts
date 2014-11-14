@@ -1,6 +1,6 @@
 //Maya ASCII 2015 scene
 //Name: bedroom_table_simple.ma
-//Last modified: Fri, Nov 07, 2014 06:26:43 PM
+//Last modified: Fri, Nov 14, 2014 10:53:08 AM
 //Codeset: UTF-8
 requires maya "2015";
 currentUnit -l centimeter -a degree -t film;
@@ -8,16 +8,16 @@ fileInfo "application" "maya";
 fileInfo "product" "Maya 2015";
 fileInfo "version" "2015";
 fileInfo "cutIdentifier" "201405190330-916664";
-fileInfo "osv" "Mac OS X 10.9.4";
+fileInfo "osv" "Mac OS X 10.9";
 fileInfo "license" "education";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -12.746942274253579 30.204145773937338 -75.713774719181842 ;
-	setAttr ".r" -type "double3" -15.338352729562361 190.19999999999183 0 ;
+	setAttr ".t" -type "double3" 52.813331950067749 17.566154956595547 -37.417320626566045 ;
+	setAttr ".r" -type "double3" -7.5383527295587234 125.79999999998469 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 79.809215176133009;
+	setAttr ".coi" 64.58607075468997;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -65,6 +65,8 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".hc" -type "string" "viewSet -s %camera";
 	setAttr ".o" yes;
 createNode transform -n "pasted__pasted__pasted__pasted__pCube3";
+	setAttr ".rp" -type "double3" -0.49306774139404297 8.1539859771728516 -0.28628063201904297 ;
+	setAttr ".sp" -type "double3" -0.49306774139404297 8.1539859771728516 -0.28628063201904297 ;
 createNode mesh -n "pasted__pasted__pasted__pasted__pCube3Shape" -p "pasted__pasted__pasted__pasted__pCube3";
 	setAttr -k off ".v";
 	setAttr ".iog[0].og[0].gcl" -type "componentList" 1 "f[0:35]";
