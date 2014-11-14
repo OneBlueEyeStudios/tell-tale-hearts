@@ -36,8 +36,9 @@ public class FMOD_PropertyTweak : MonoBehaviour {
 		_event.set3DAttributes (attributes);
 		
 		_event.start ();
-		
-		_event.getParameter (_propertyName, out _parameterInstance);
+
+		if(!string.IsNullOrEmpty(_propertyName))
+			_event.getParameter (_propertyName, out _parameterInstance);
 		//rain.getParameter ("window", out windowValue);
 		/*
 		rainFloat = 5;
@@ -53,7 +54,8 @@ public class FMOD_PropertyTweak : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		_parameterInstance.setValue (_parameterValue);
+		if(!string.IsNullOrEmpty(_propertyName))
+			_parameterInstance.setValue (_parameterValue);
 		//_event.getParameter (_propertyName, out _parameterInstance);
 	}
 }

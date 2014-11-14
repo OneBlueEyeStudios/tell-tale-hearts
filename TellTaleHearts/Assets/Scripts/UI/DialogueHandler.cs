@@ -20,8 +20,10 @@ public class Constants
 	public static string PLUS_EQUAL = "+=";
 	public static string MINUS_EQUAL = "-=";
 
-	
+
 	public static string STAGE_FINISH_TRIGGER =  "StageFinished";
+	public static string GAME_START_TRIGGER =  "GameStart";
+	public static string DOOR_OPEN_TRIGGER = "DoorOpen";
 
 }
 
@@ -64,6 +66,8 @@ public class DialogueHandler : MonoBehaviour {
 	bool _showingDialogue;
 
 	public Dictionary<string,int> _currentDialogueVars;
+
+	public AudioSource _currentLine;
 	
 	public void startDialogue (string dialogueID, string startPassage = "Start")
 	{
@@ -75,7 +79,7 @@ public class DialogueHandler : MonoBehaviour {
 
 
 		_cylinderWrap._currentPassage = _currentDialogue.getPassage (startPassage);
-		StartCoroutine(printPassage (startPassage,0));
+		StartCoroutine (printPassage (startPassage));//,0));
 
 		//NGUITools.SetActive (_dialogueBox, true);
 		showDialogueBox ();
@@ -121,7 +125,7 @@ public class DialogueHandler : MonoBehaviour {
 	{
 		NGUITools.SetActive (_dialogueBox, true);
 		
-		showOptions ();
+		Invoke("showOptions",2f);
 	}
 	public void hideDialogueBox ()
 	{
@@ -146,13 +150,23 @@ public class DialogueHandler : MonoBehaviour {
 		_showingDialogue = true;
 	}
 
-	 IEnumerator printPassage(string title, float wait)
+	 IEnumerator printPassage(string title)//, float wait)
 	{
 		_currentPassage = _currentDialogue.getPassage (title);
 
+		float length = 0;
+
+		if (!string.IsNullOrEmpty (_currentPassage.dialogue)) {
+			
+			UnityEngine.Debug.LogWarning ("_currentPassage.dialogue: " + _currentPassage.dialogue);
+			
+			//SoundManager._instance.playDialogue(_currentPassage.dialogue);
+			//_currentLine = SoundManager._instance.playDialogue(_currentPassage.dialogue, length, StageManager._instance.getSpeakingCopPos());
+			
+			playDialogueLine(_currentPassage,out length);
+		}
 
 
-		yield return new WaitForSeconds (wait);
 		
 
 		
@@ -163,13 +177,18 @@ public class DialogueHandler : MonoBehaviour {
 			//hideDialogueBox();
 			//OnDialogueEnded();
 		}
-		
+		/*
 		if (!string.IsNullOrEmpty (_currentPassage.dialogue)) {
 
 			UnityEngine.Debug.LogWarning ("_currentPassage.dialogue: " + _currentPassage.dialogue);
 
-			SoundManager._instance.playDialogue(_currentPassage.dialogue);
+			//SoundManager._instance.playDialogue(_currentPassage.dialogue);
+			float length;
+			//_currentLine = SoundManager._instance.playDialogue(_currentPassage.dialogue, length, StageManager._instance.getSpeakingCopPos());
+
+			playDialogueLine(_currentPassage,length);
 		}
+		*/
 		
 		_text.text = _currentPassage.body;
 
@@ -213,7 +232,9 @@ public class DialogueHandler : MonoBehaviour {
 
 		_cylinderWrap._currentPassage = _currentPassage;
 
-		
+		yield return null;
+		//yield return new WaitForSeconds (length);
+
 	}
 
 	string getTransitionCue(TweeTransition tweeTransition)
@@ -298,18 +319,42 @@ public class DialogueHandler : MonoBehaviour {
 	void evaluateTransition (TweeTransition tweeTransition)
 	{
 		//float length = SoundManager._instance.playDialogue(_currentPassage.transitions[index].dialogue);
-		string cue = getTransitionCue (tweeTransition);
+		/*string cue = getTransitionCue (tweeTransition);
 		float length = 0;
 		if (!string.IsNullOrEmpty (cue)) 
 		{ 
 			length = SoundManager._instance.playDialogue(cue);
 		
 		}
+		*/
 
 		evaluateVars (tweeTransition);
 
-		StartCoroutine(printPassage(tweeTransition.passageTag, length));
+		//float length;
+		//playDialogueLine (tweeTransition, out length);
+
+
+
+
+		StartCoroutine(printPassage(tweeTransition.passageTag));//, length));
 	}	
+
+	//void playDialogueLine (TweeTransition tweeTransition, out float length)
+	void playDialogueLine (TweePassage tweePassage, out float length)
+	{
+		//length = 0;
+
+		if (_currentLine != null) 
+		{
+			_currentLine.Stop();
+		}
+
+		/*Transform pos = StageManager._instance.getSpeakingCopPos ();
+		if(pos==null)
+			pos= StageManager._instance.getDoorPos ();
+*/
+		_currentLine = SoundManager._instance.playDialogue(tweePassage.dialogue, out length, StageManager._instance._goodCop.transform);
+	}
 	
 	// Update is called once per frame
 	void Update () {

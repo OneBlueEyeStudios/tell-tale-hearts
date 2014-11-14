@@ -15,6 +15,8 @@ public class Cop : MonoBehaviour
 		int _backVar = Animator.StringToHash ("Back");
 		int _frontVar = Animator.StringToHash ("Front");
 
+	public float _walkSpeedAnimationFactor;
+
 	Vector3 _startScale;
 	
 		// Use this for initialization
@@ -30,11 +32,18 @@ public class Cop : MonoBehaviour
 	
 		// Update is called once per frame
 		void Update ()
-		{
+	{
+		float speed = Vector3.SqrMagnitude (_navMeshAgent.velocity);
+
+		/*
+		if (speed > 0.01f)
+						_animator.speed = _walkSpeedAnimationFactor * Mathf.Max (speed, 0.2f);
+				else
+						_animator.speed = 1;
+*/
 
 
-
-				_animator.SetFloat (_speedFloat, Vector3.SqrMagnitude (_navMeshAgent.velocity));
+				_animator.SetFloat (_speedFloat, speed);
 
 				Vector3 direction = Camera.main.transform.position - transform.position;
 				direction.y = 0;

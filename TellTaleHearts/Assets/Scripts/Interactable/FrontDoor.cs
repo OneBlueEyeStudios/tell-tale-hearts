@@ -55,10 +55,7 @@ public class FrontDoor : Interactable {
 	
 	override public void interact()
 	{
-		StageManager._instance.OnEventTrigger ("DoorOpen");
-		
-
-
+		StageManager._instance.OnEventTrigger (Constants.DOOR_OPEN_TRIGGER);
 
 		if (_isClosed)
 			open ();
@@ -68,7 +65,8 @@ public class FrontDoor : Interactable {
 	
 	void open ()
 	{
-		_animator.Play ("OpenDoor");
+		//_animator.Play ("OpenDoor");
+		_animator.SetTrigger ("Open");
 		//_animator.SetTrigger ("open");
 		_isClosed = false;
 		
@@ -83,7 +81,7 @@ public class FrontDoor : Interactable {
 	
 	void close ()
 	{
-		_animator.SetTrigger ("close");
+		_animator.SetTrigger ("Close");
 		_isClosed = true;
 		
 		//_windowParameter.setValue (9);

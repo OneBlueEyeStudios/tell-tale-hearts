@@ -59,10 +59,33 @@ public class SoundManager : MonoBehaviour {
 
 
 
-	public float playDialogue(string tag)
+	public AudioSource playDialogue(string tag, out float length, Transform pos)
 	{
-//		UnityEngine.Debug.LogWarning ("play: " + tag);
+		GameObject go = new GameObject ("Dialogue_" + tag);
+		go.transform.position = pos.position;
+		AudioSource source = go.AddComponent<AudioSource> ();
+		source.minDistance = 8;
 
+		AudioClip clip = getClipFor (tag);
+
+
+		//Could not find the 
+		if (clip == null) {
+
+			UnityEngine.Debug.LogError("Could not find dialogue with tag: "+tag);
+			length = 0;
+			return null;
+		}
+		source.clip = clip;
+		length = clip.length;
+
+		source.Play ();
+
+		Destroy (go, length);
+
+		return source;
+
+		/*
 		AudioClip clip = getClipFor (tag);
 
 		if (clip == null)
@@ -71,6 +94,7 @@ public class SoundManager : MonoBehaviour {
 		AudioSource.PlayClipAtPoint (clip,_cop.transform.position);
 
 		return clip.length;
+		*/
 	}
 
 	AudioClip getClipFor (string tag)

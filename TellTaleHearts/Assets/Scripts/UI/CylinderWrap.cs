@@ -147,7 +147,8 @@ public class CylinderWrap : MonoBehaviour {
 
 	public void centerOnNext ()
 	{
-		if (_currentCenteredIndex == transform.childCount - 1)
+		//if (_currentCenteredIndex == transform.childCount - 1)
+		if (_currentCenteredIndex == _currentPassage.transitions.Count-1)
 						centerOnIndex (0);
 
 		else
@@ -156,7 +157,9 @@ public class CylinderWrap : MonoBehaviour {
 	public void centerOnPrevious ()
 	{
 		if (_currentCenteredIndex == 0)
-			centerOnIndex (transform.childCount - 1);
+		//	centerOnIndex (transform.childCount - 1);
+			centerOnIndex (_currentPassage.transitions.Count-1);
+			
 		else
 			centerOnIndex (_currentCenteredIndex-1);
 	}

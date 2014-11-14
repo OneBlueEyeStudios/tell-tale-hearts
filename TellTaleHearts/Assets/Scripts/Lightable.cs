@@ -8,6 +8,8 @@ public class Lightable : MonoBehaviour {
 
 	Shader _rimShader;
 
+	bool _lighted;
+
 	// Use this for initialization
 	void Start () {
 		_initialShaders = GetAllShaders ();
@@ -54,12 +56,24 @@ public class Lightable : MonoBehaviour {
 		List<Renderer> allRenderers = GetAllRenderers ();
 		foreach (Renderer r in allRenderers) 
 		{
-			r.material.shader = _rimShader;
+			//r.material.shader = _rimShader;
+
+			Color newColor = r.material.color;
+			newColor.r += 0.4f;
+			r.material.color = newColor;
+			//r.material.color -= new Color(0.0f,0.0f,0.2f,0.0f);
+			//r.material.color = Color.red;
 		}
 	}
 
 	public void lightUp()
 	{
+		if (_lighted)
+						return;
+
+		_lighted = true;
+			
+		Debug.LogWarning ("Light up!");
 		setAllShadersRim ();
 		
 	}
@@ -70,12 +84,26 @@ public class Lightable : MonoBehaviour {
 		for(int i = 0; i < allRenderers.Count; i++)
 		
 		{
-			allRenderers[i].material.shader = _initialShaders[i];
+			//allRenderers[i].material.shader = _initialShaders[i];
+
+			//allRenderers[i].material.color += new Color(0.0f,0.0f,0.2f,0.0f);
+			//allRenderers[i].material.color += new Color(0.0f,0.0f,0.2f,0.0f);
+			Color newColor = allRenderers[i].material.color;
+			newColor.r -= 0.4f;
+			allRenderers[i].material.color = newColor;
+
+
 		}
 	}
 
 	public void unlight()
 	{
+		if (!_lighted)
+			return;
+
+		_lighted = false;
+
+		Debug.LogWarning ("Unlight!");
 		returnDefaultShaders ();
 	}
 

@@ -14,5 +14,5 @@ function UpdateSuspicion(suspicion : int)
 {
 //Debug.Log("aksjdaksjda");
 
-	vignette.chromaticAberration = Mathf.Lerp(1,20,suspicion);
+	vignette.chromaticAberration = Mathf.Lerp(1,5,suspicion);
 }

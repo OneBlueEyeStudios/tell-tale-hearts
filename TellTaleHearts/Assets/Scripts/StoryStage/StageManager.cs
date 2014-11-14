@@ -73,6 +73,9 @@ public class StageManager : MonoBehaviour {
 	// Global vars for the game - Suspicicion and CurrentStage
 	public Dictionary<string,int> _globalVars;
 
+	// Reference to the Cops GameObjects
+	public GameObject _goodCop, _badCop, _frontDoor;
+
 	// Reference tot each cop fungus script
 	public Fungus.FungusScript _goodCopFungus, _badCopFungus, _arrestFungus, _confessFungus, _escapeFungus;
 
@@ -97,6 +100,32 @@ public class StageManager : MonoBehaviour {
 		StageClue stage = getCurrentStage ();
 
 		return stage._speakingCop;
+	}
+
+
+		
+	public Transform getDoorPos ()
+	{
+
+		return _frontDoor.transform;
+	}
+	public Transform getSpeakingCopPos ()
+	{
+		CopType type = getCurrentSpeakingCop ();
+
+		switch (type) {
+		case CopType.bad:
+			return _badCop.transform;
+			break;
+		case CopType.good:
+			return _goodCop.transform;
+			break;
+
+		default:
+				break;
+				}
+
+		return null;
 	}
 
 	ClueType getClueType(int stage, out bool hasClue)
