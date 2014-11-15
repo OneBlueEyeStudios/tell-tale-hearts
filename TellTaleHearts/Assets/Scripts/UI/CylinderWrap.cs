@@ -141,14 +141,19 @@ public class CylinderWrap : MonoBehaviour {
 
 	void OnEnable()
 	{
+		//spin ();
+	}
+
+	public void spin()
+	{
 		iTween.RotateBy (gameObject, iTween.Hash ("amount", new Vector3 (1, 0, 0), "time", 0.5f, "easetype", "spring"));
 		iTween.RotateBy (_cylinderModel, iTween.Hash ("amount", new Vector3 (0, 1, 0), "time", 0.5f, "easetype", "spring"));
-	}
+		}
 
 	public void centerOnNext ()
 	{
 		//if (_currentCenteredIndex == transform.childCount - 1)
-		if (_currentCenteredIndex == _currentPassage.transitions.Count-1)
+		if (_currentCenteredIndex == _currentPassage.transitions.Count)
 						centerOnIndex (0);
 
 		else
@@ -158,7 +163,7 @@ public class CylinderWrap : MonoBehaviour {
 	{
 		if (_currentCenteredIndex == 0)
 		//	centerOnIndex (transform.childCount - 1);
-			centerOnIndex (_currentPassage.transitions.Count-1);
+			centerOnIndex (_currentPassage.transitions.Count);
 			
 		else
 			centerOnIndex (_currentCenteredIndex-1);
@@ -208,6 +213,7 @@ public class CylinderWrap : MonoBehaviour {
 			else
 
 			transform.GetChild(i).GetComponent<UILabel>().text = "CONFESS";
+
 		}
 	}
 }

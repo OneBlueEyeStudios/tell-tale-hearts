@@ -21,12 +21,13 @@ public class BlackFadeOut : MonoBehaviour {
 		
 		blackPos.width = black.width * scaleBlack;
 		blackPos.height = black.height * scaleBlack;
-		
+
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 		alpha += fadeSpeed * Time.deltaTime;
 		
 	}	

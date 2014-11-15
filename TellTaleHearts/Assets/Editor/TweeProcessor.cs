@@ -6,7 +6,6 @@ using System.Text;
 
 public class TweeProcessor : AssetPostprocessor
 {
-
 		static void OnPostprocessAllAssets (string[] importedAssets,
 	                            string[] deletedAssets,
 	                            string[] movedAssets,
@@ -139,9 +138,9 @@ public class TweeProcessor : AssetPostprocessor
                  
 								// If there was anything after the [, the passage has tags, so just
 								// split them up and attach them to the passage.
-								if (chunks.Length > 1) {
-										currentPassage.tags = chunks [1].Trim ().Split (' ');  
-								}
+								//if (chunks.Length > 1) {
+								//		currentPassage.tags = chunks [1].Trim ().Split (' ');  
+								//}
                  
 						} else if (currentPassage != null) {
              
@@ -191,18 +190,39 @@ public class TweeProcessor : AssetPostprocessor
 
 										currentPassage.addNewTransition (split [0], split [1], "", tags);//, dialogue);
 								} else {
-										if (lines [i].Contains ("$")) {
 
-						string cueTag = "$cue:";
+										if (lines [i].Contains ("<")) {
+
+						List<TweeTag> tags = new List<TweeTag>();
+
+						string[] dicString = lines[i].cutFromTo(lines[i].IndexOf("<")+1,lines[i].IndexOf(">")).Split(',');
+
+						foreach(string tag in dicString)
+						{
+							int collenIndex = tag.IndexOf(":");
+							string key = tag.cutFromTo(0,collenIndex);
+							string value = tag.Substring(collenIndex+1);
+
+							tags.Add(new TweeTag(key,value));
+
+							//Debug.LogWarning("Key: "+key+"    _value: "+value);
+						}
+
+						currentPassage.addTags(tags);
+
+						/*
+												string cueTag = "$cue:";
 
 												currentPassage.dialogue = lines [i].Substring (lines [i].IndexOf (cueTag) + cueTag.Length);
 						
 //												Debug.LogWarning ("body dialogue: " + currentPassage.dialogue);
-
-												buffer.AppendLine (lines [i].Substring (0, lines [i].Length - (lines [i].Length - lines [i].IndexOf ('$')))); 
+*/
+												//buffer.AppendLine (lines [i].Substring (0, lines [i].Length - (lines [i].Length - lines [i].IndexOf ('$')))); 
+						buffer.AppendLine (lines [i].Substring (0, lines [i].Length - (lines [i].Length - lines [i].IndexOf ('<')))); 
 
 												Debug.LogWarning ("body : " + buffer.ToString ());
 										} else {
+
 												// If we didn't start a new passage, we're still in the previous one,
 												// so just append this line to the current passage's buffer.
 												buffer.AppendLine (lines [i]); 

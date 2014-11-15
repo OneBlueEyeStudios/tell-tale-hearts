@@ -68,8 +68,13 @@ public class MoveNavMeshAgentTo : MonoBehaviour {
 
 		while (index < parentnode.childCount) {
 			Transform current = parentnode.GetChild (index);
+
 			yield return StartCoroutine (MoveCharacterCoroutine (current, true));
 
+			if(current.childCount>0)
+			{
+				transform.LookAt(current.GetChild(0));
+			}
 
 			//Debug.LogWarning ("Wait!");
 			yield return new WaitForSeconds (waitTimePerNode);

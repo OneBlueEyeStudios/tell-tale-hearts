@@ -13,9 +13,11 @@ public class Constants
 	public static string DECISION_NODE = "Decision";
 	public static string GOOD_COP_APPROACH = "GoodCopApproach";
 	public static string BAD_COP_APPROACH = "BadCopApproach";
-
+	public static string GOOD_COP = "good";
+	public static string BAD_COP = "bad";
 
 	public static string CUE_TAG = "cue";
+	public static string COP_TAG = "cop";
 	public static string VAR_TAG = "var";
 	public static string PLUS_EQUAL = "+=";
 	public static string MINUS_EQUAL = "-=";
@@ -33,6 +35,11 @@ public class DialogueHandler : MonoBehaviour {
 
 	public void OnDialogueEnded()
 	{
+		//Debug.Log ("Dialogue ended!");
+
+		CharView._instance.setMouseLookEnabled (true);
+		CharView._instance.setCharacterMotorEnabled (true);
+
 		evaluateDialogue ();
 
 		if (dialogueEnded!=null)
@@ -71,6 +78,9 @@ public class DialogueHandler : MonoBehaviour {
 	
 	public void startDialogue (string dialogueID, string startPassage = "Start")
 	{
+		CharView._instance.setMouseLookEnabled (false);
+		CharView._instance.setCharacterMotorEnabled (false);
+
 		_currentDialogueVars = new Dictionary<string, int> ();
 
 //		Debug.LogWarning ("startDialogue: " + startPassage);
@@ -79,6 +89,7 @@ public class DialogueHandler : MonoBehaviour {
 
 
 		_cylinderWrap._currentPassage = _currentDialogue.getPassage (startPassage);
+		StopAllCoroutines ();
 		StartCoroutine (printPassage (startPassage));//,0));
 
 		//NGUITools.SetActive (_dialogueBox, true);
@@ -99,8 +110,9 @@ public class DialogueHandler : MonoBehaviour {
 
 			if(StageManager._instance.copKnowsStageClue())
 			{
-				Debug.LogWarning("Cop knows about clue");
-			StageManager._instance.incrementGlobalVar(Constants.SUSPICION,1);
+				//Debug.LogWarning("Cop knows about clue");
+				Debug.LogWarning("Increment suspicion by 1");
+				StageManager._instance.incrementGlobalVar(Constants.SUSPICION,1);
 			}
 			else
 				Debug.LogWarning("Cop does not knows about clue");
@@ -124,8 +136,11 @@ public class DialogueHandler : MonoBehaviour {
 	public void showDialogueBox ()
 	{
 		NGUITools.SetActive (_dialogueBox, true);
-		
-		Invoke("showOptions",2f);
+
+		if (_currentPassage.transitions != null && _currentPassage.transitions.Count > 0)
+						Invoke ("showOptions", 2f);
+				else
+						hideOptions ();
 	}
 	public void hideDialogueBox ()
 	{
@@ -156,15 +171,15 @@ public class DialogueHandler : MonoBehaviour {
 
 		float length = 0;
 
-		if (!string.IsNullOrEmpty (_currentPassage.dialogue)) {
+		//if (!string.IsNullOrEmpty (_currentPassage.dialogue)) {
 			
-			UnityEngine.Debug.LogWarning ("_currentPassage.dialogue: " + _currentPassage.dialogue);
+		//	UnityEngine.Debug.LogWarning ("_currentPassage.dialogue: " + _currentPassage.dialogue);
 			
 			//SoundManager._instance.playDialogue(_currentPassage.dialogue);
 			//_currentLine = SoundManager._instance.playDialogue(_currentPassage.dialogue, length, StageManager._instance.getSpeakingCopPos());
 			
 			playDialogueLine(_currentPassage,out length);
-		}
+		//}
 
 
 		
@@ -177,22 +192,12 @@ public class DialogueHandler : MonoBehaviour {
 			//hideDialogueBox();
 			//OnDialogueEnded();
 		}
-		/*
-		if (!string.IsNullOrEmpty (_currentPassage.dialogue)) {
 
-			UnityEngine.Debug.LogWarning ("_currentPassage.dialogue: " + _currentPassage.dialogue);
-
-			//SoundManager._instance.playDialogue(_currentPassage.dialogue);
-			float length;
-			//_currentLine = SoundManager._instance.playDialogue(_currentPassage.dialogue, length, StageManager._instance.getSpeakingCopPos());
-
-			playDialogueLine(_currentPassage,length);
-		}
-		*/
 		
 		_text.text = _currentPassage.body;
 
-		for (int i =0; i < _choices.Length; i++) 
+		int i;
+		for (i =0; i < _choices.Length; i++) 
 		{
 
 			_choices[i].text = "";
@@ -200,39 +205,33 @@ public class DialogueHandler : MonoBehaviour {
 		}
 
 
-		/*_transition1.text = "";
-		_transition2.text = "";
-		_transition1.color = Color.black;
-		_transition2.color = Color.black;
-
-*/
-		if (_currentPassage.transitions == null) 
-		{
-			OnDialogueEnded();
-			hideOptions();
-			//stopDialogue();
-			//			yield break;
-
-				}
-		
-		if (_currentPassage.transitions.Count == 0) {
-			OnDialogueEnded();
-			hideOptions();
-			//stopDialogue();
-			//yield break;
-
-				}
-
-		for (int i =0; i < _currentPassage.transitions.Count; i++) 
+		for (i =0; i < _currentPassage.transitions.Count; i++) 
 		{
 			NGUITools.SetActive(_choices[i].gameObject,true);
 			_choices[i].text = _currentPassage.transitions[i].name;
 		}
 
-
+		NGUITools.SetActive(_choices[i].gameObject,true);
+		_choices[i].text = "CONFESS";
+		
+		
 		_cylinderWrap._currentPassage = _currentPassage;
+		_cylinderWrap.spin ();
 
-		yield return null;
+
+		if (_currentPassage.transitions == null || _currentPassage.transitions.Count == 0) 
+		{
+			Debug.LogError("Here");
+
+			OnDialogueEnded();
+			hideOptions();
+			//stopDialogue();
+			//			yield break;
+			
+		}
+
+		yield return new WaitForSeconds(length);
+
 		//yield return new WaitForSeconds (length);
 
 	}
@@ -335,7 +334,7 @@ public class DialogueHandler : MonoBehaviour {
 
 
 
-
+		StopAllCoroutines ();
 		StartCoroutine(printPassage(tweeTransition.passageTag));//, length));
 	}	
 
@@ -353,7 +352,26 @@ public class DialogueHandler : MonoBehaviour {
 		if(pos==null)
 			pos= StageManager._instance.getDoorPos ();
 */
-		_currentLine = SoundManager._instance.playDialogue(tweePassage.dialogue, out length, StageManager._instance._goodCop.transform);
+
+
+		string cue = tweePassage.getDialogue ();
+		string cop = tweePassage.getCop ();
+
+		if (string.IsNullOrEmpty (cue) || string.IsNullOrEmpty (cue)) {
+			Debug.LogError("Cue or cop was empty for passage: "+tweePassage.body);
+						length = 0;
+						return;
+				}
+//		Debug.LogError ("play cue: " + cue);
+
+		Transform source = cop.Equals (Constants.BAD_COP) ? StageManager._instance._badCop.transform : StageManager._instance._goodCop.transform;
+
+		Debug.LogError ("look at!");
+
+		source.LookAt (CharView._instance.transform);
+
+		//_currentLine = SoundManager._instance.playDialogue(tweePassage.dialogue, out length, StageManager._instance._goodCop.transform);
+		_currentLine = SoundManager._instance.playDialogue(cue, out length, source);
 	}
 	
 	// Update is called once per frame
@@ -381,8 +399,12 @@ public class DialogueHandler : MonoBehaviour {
 			{
 				int index = _cylinderWrap._currentCenteredIndex;
 
+				if(index == _currentPassage.transitions.Count)
+					Debug.LogWarning("CONFESS");
+				else
+					evaluateTransition(_currentPassage.transitions[index]);
+
 				//float length = SoundManager._instance.playDialogue(_currentPassage.transitions[index].dialogue);
-				evaluateTransition(_currentPassage.transitions[index]);
 
 
 			}

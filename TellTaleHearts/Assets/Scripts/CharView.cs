@@ -25,6 +25,7 @@ public class CharView : MonoBehaviour
 		bool _canDrop;
 	public HeadBob2 _headBob;
 		public static CharView _instance;
+	public bool _useShift;
 
 		void Awake ()
 		{
@@ -82,13 +83,15 @@ public class CharView : MonoBehaviour
 		void Update ()
 		{
 
-				//setMouseLookEnabled (!Input.GetKey (KeyCode.LeftShift));
+
+			if(_useShift)
+				setMouseLookEnabled (!Input.GetKey (KeyCode.LeftShift));
 
 				_handSocket.transform.position = Camera.main.transform.position + Camera.main.transform.forward * _objectDistance;
 
 				if (Input.GetButtonDown ("Fire1") && !_hasGameBegun) {
 
-			startGame();
+					startGame();
 				}
 
 	
@@ -185,7 +188,14 @@ public class CharView : MonoBehaviour
 								if (_isHoldingObject) {
 										_lastObjectParent.GetComponent<Clue> ()._available = false;
 										_currentlyCentered.GetComponent<Item> ().putInInventory ();
-										//Destroy(_currentlyCentered.gameObject);
+
+										ItemAudio itemAudio =_currentlyCentered.GetComponent<ItemAudio>(); 
+										if(itemAudio!= null)
+										{
+											itemAudio.released();
+										}
+					
+					//Destroy(_currentlyCentered.gameObject);
 										_currentlyCentered.gameObject.SetActive (false);
 										_currentlyCentered = null;
 										

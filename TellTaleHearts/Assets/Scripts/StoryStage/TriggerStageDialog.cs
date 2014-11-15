@@ -10,13 +10,14 @@ public class TriggerStageDialog : Command {
 	public string _dialogID;
 	//public string _startingPassage = "Start";
 
+	 string _titleSufix = "Stage ";
 
 	public override void OnEnter ()
 	{
 		
 		DialogueHandler._instance.dialogueEnded += dialogueEnded;
 
-		DialogueHandler._instance.startDialogue (_dialogID,"Stage "+StageManager._instance._globalVars["CurrentStage"]);
+		DialogueHandler._instance.startDialogue (_dialogID,_titleSufix+ StageManager._instance._globalVars[Constants.CURRENT_STAGE]);
 
 	}
 

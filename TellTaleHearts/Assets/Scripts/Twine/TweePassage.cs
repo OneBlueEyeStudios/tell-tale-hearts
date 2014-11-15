@@ -7,7 +7,8 @@ public class TweePassage {
 
 
 	public string title;
-	public string[] tags;
+	//public string[] tags;
+	public List<TweeTag> tags;
 	public List<TweeTransition> transitions;
 	public string body;
 	public string dialogue;
@@ -21,6 +22,28 @@ public class TweePassage {
 		transitions.Add(new TweeTransition(title,tag, dialogue,tags));
 	}
 
+	public void addTags (List<TweeTag> tags)
+	{
+		this.tags = tags;
+	}
+
+	public string getDialogue ()
+	{
+		foreach (TweeTag tag in tags)
+			if (tag.key == Constants.CUE_TAG)
+				return tag.value;
+
+		return null;
+	}
+
+	public string getCop ()
+	{
+		foreach (TweeTag tag in tags)
+			if (tag.key == Constants.COP_TAG)
+				return tag.value;
+
+		return null;
+	}
 }
 
 [System.Serializable]

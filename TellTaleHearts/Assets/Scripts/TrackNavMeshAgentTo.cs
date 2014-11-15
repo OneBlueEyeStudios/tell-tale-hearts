@@ -31,14 +31,22 @@ public class TrackNavMeshAgentTo : MonoBehaviour {
 		_navMeshAgent.SetDestination (node.position);
 		
 		yield return null;
-		
-		while (!arrived(_navMeshAgent)) {
-			
-			_navMeshAgent.SetDestination (node.position + (transform.position - node.position).normalized * 3);
-			
-			yield return null;
+
+		bool hasArrived = arrived (_navMeshAgent);
+
+		while (!hasArrived) {
+
+			if(Vector3.Distance(transform.position,node.position) > 3)
+			{
+				_navMeshAgent.SetDestination (node.position + (transform.position - node.position).normalized * 3);
+				yield return null;
+			}
+			else
+				hasArrived = true;
 			
 		}
+
+		transform.LookAt (node);
 		
 		pathEnd ();
 	}

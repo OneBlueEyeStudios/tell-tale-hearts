@@ -388,6 +388,9 @@ public class StageManager : MonoBehaviour {
 		ImageEffectsHandler handler = (ImageEffectsHandler)GetComponent ("ImageEffectsHandler");
 		handler.UpdateSuspicion (StageManager._instance._globalVars [Constants.SUSPICION]);
 
+		ImageEffectsHandlerC handlerC = GetComponent<ImageEffectsHandlerC> ();
+		handlerC.UpdateSuspicion(StageManager._instance._globalVars [Constants.SUSPICION]);
+
 	}
 
 	void OnGUI()
