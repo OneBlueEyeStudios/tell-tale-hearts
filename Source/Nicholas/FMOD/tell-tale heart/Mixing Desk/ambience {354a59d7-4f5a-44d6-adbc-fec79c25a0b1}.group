@@ -27,13 +27,13 @@
             <value>-22.5</value>
         </property>
         <property name="ratio">
-            <value>50</value>
+            <value>2</value>
         </property>
         <property name="attackTime">
             <value>0.2</value>
         </property>
         <property name="releaseTime">
-            <value>620</value>
+            <value>1000</value>
         </property>
         <property name="sidechainEnabled">
             <value>true</value>

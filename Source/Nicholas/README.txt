@@ -19,3 +19,5 @@ not good enough:
 -heartbeat (speed: 0-1 silent, 1-3 normal, 3-5 fast, 5-7 super fast, 7-10 silent)
 -breath (frequency: 0-2 silent, 2-5 deep, 5-10 fast)
 -confess (level: 0-1 silent, 1-2 level1, 2-3 level2, 3-4 level3, 4-5 level4; reverb: 1-10; delay: 1-10; filter: 5 initial, 1-5 high, 5-10 low)
+－suspicion (level1: 0-10, level2: 0-10, level3: 0-10, level4: 0-10, level5: 0-10, theme: 0-10)
+-realization (level: 1-2 level1, 3-4 level2, 5-6 level3, 7-8 level4, 9-10 level5)

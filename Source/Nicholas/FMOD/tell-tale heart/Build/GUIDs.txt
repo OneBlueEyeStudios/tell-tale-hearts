@@ -16,12 +16,15 @@
 {d619531b-f43f-429c-9572-1c561ea709c4} event:/human/footstep - cop1
 {e2df5dbd-4b36-4c46-92de-fdf08b32a4e4} event:/human/footstep - cop2
 {0cf24789-64d4-439b-bcf3-72d24eadb632} event:/human/heartbeat
+{ecfb8d56-6b9b-48d1-b5ed-8246c1a9d296} event:/music/realization
+{10ee6d36-6807-4c00-bd64-d4280553da5f} event:/music/suspicion
 {ce1d2e50-f869-44dc-8afe-766d444b77d0} event:/music/test music
 {ece1d9bd-5bb0-479f-8571-24a3f124a50f} bus:/
+{b2118a87-9a6e-46ce-8bf9-9adeafd4b384} bus:/music2
 {0d5e9d5a-4e02-4cb9-8d21-8f3aa831e51f} bus:/Reverb
 {354a59d7-4f5a-44d6-adbc-fec79c25a0b1} bus:/ambience
 {1e837d0e-9d41-4d70-a023-14175788dd4e} bus:/dialogue
 {94b38b4d-20c1-4a3e-8b1d-36732796071c} bus:/music
-{8ca2cc90-b40b-43b7-a3b5-3d8bdae0655d} bank:/test
-{fb2d5a7b-e9c4-466b-b9f8-2afdea8e6907} bank:/test2
 {e86e1ea5-25f4-4378-a80b-8573d5986a30} bank:/Master Bank
+{fb2d5a7b-e9c4-466b-b9f8-2afdea8e6907} bank:/test2
+{8ca2cc90-b40b-43b7-a3b5-3d8bdae0655d} bank:/test
