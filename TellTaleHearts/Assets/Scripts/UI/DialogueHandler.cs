@@ -42,6 +42,8 @@ public class DialogueHandler : MonoBehaviour {
 
 		evaluateDialogue ();
 
+		SoundManager._instance.stopSound("event:/dialogue/confess");
+
 		if (dialogueEnded!=null)
 				dialogueEnded (this,EventArgs.Empty);
 	}
@@ -111,7 +113,7 @@ public class DialogueHandler : MonoBehaviour {
 			if(StageManager._instance.copKnowsStageClue())
 			{
 				//Debug.LogWarning("Cop knows about clue");
-				Debug.LogWarning("Increment suspicion by 1");
+//				Debug.LogWarning("Increment suspicion by 1");
 				StageManager._instance.incrementGlobalVar(Constants.SUSPICION,1);
 			}
 			else
@@ -125,7 +127,7 @@ public class DialogueHandler : MonoBehaviour {
 		NGUITools.SetActive (_simpleLine.gameObject, true);
 		_simpleLine.text = text;
 		Invoke ("disableSimpleLine", 2);
-		}
+	}
 
 	void disableSimpleLine()
 	{
@@ -160,6 +162,8 @@ public class DialogueHandler : MonoBehaviour {
 	}
 	void showOptions ()
 	{
+		SoundManager._instance.playSoundAtPositionAndParameter ("event:/dialogue/confess", CharView._instance.transform, "level",1.5f, true, true);
+
 		NGUITools.SetActive (_optionsBox, true);
 
 		_showingDialogue = true;
@@ -221,7 +225,7 @@ public class DialogueHandler : MonoBehaviour {
 
 		if (_currentPassage.transitions == null || _currentPassage.transitions.Count == 0) 
 		{
-			Debug.LogError("Here");
+		//	Debug.LogError("Here");
 
 			OnDialogueEnded();
 			hideOptions();
@@ -294,6 +298,8 @@ public class DialogueHandler : MonoBehaviour {
 
 		Debug.LogWarning (varName+"="+_currentDialogueVars [varName]);
 
+		if (varName.Equals (Constants.DOUBT))
+						SoundManager._instance.setDoubtLevel (_currentDialogueVars [varName]);
 	}
 
 	void evaluateVars (TweeTransition tweeTransition)
@@ -400,7 +406,10 @@ public class DialogueHandler : MonoBehaviour {
 				int index = _cylinderWrap._currentCenteredIndex;
 
 				if(index == _currentPassage.transitions.Count)
+				{
 					Debug.LogWarning("CONFESS");
+					StageManager._instance.confessChosen();
+				}
 				else
 					evaluateTransition(_currentPassage.transitions[index]);
 

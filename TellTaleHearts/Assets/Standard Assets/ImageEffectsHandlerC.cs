@@ -7,7 +7,21 @@ public class ImageEffectsHandlerC : MonoBehaviour {
 	public MotionBlur _motionBlur;
 	int _suspicion;
 
-	public 	float _twirlAngle;
+	float _twirlAngle;
+
+	public float blurLevel0 = 0;
+	public float blurLevel1 = 0.3f;
+	public float blurLevel2 = 0.5f;
+	public float blurLevel3 = 0.7f;
+	public float blurLevel4 = 1;
+	public float blurLevel5 = 1.4f;
+
+	public float twirlLevel0 = 0;
+	public float twirlLevel1 = 2;
+	public float twirlLevel2 = 6;
+	public float twirlLevel3 = 12;
+	public float twirlLevel4 = 14;
+	public float twirlLevel5 = 20;
 
 	void Start()
 	{
@@ -73,26 +87,30 @@ public class ImageEffectsHandlerC : MonoBehaviour {
 				_suspicion = suspicion;
 		
 				switch (_suspicion) {
+		case 0:
+			StartCoroutine(upTwirlEffect (twirlLevel0));
+			StartCoroutine(upMotionBlur(blurLevel0));
+			break;
 				case 1:
-						StartCoroutine(upTwirlEffect (2));
-			               StartCoroutine(upMotionBlur(0.3f));
+			StartCoroutine(upTwirlEffect (twirlLevel1));
+			StartCoroutine(upMotionBlur(blurLevel1));
 			//
 						break;
 				case 2:
-			               StartCoroutine(upTwirlEffect (6));
-			               StartCoroutine(upMotionBlur(0.5f));
+			StartCoroutine(upTwirlEffect (twirlLevel2));
+			StartCoroutine(upMotionBlur(blurLevel2));
 						break;
 				case 3:
-			               StartCoroutine(upTwirlEffect (12));
-			               StartCoroutine(upMotionBlur(0.7f));
+			StartCoroutine(upTwirlEffect (twirlLevel3));
+			StartCoroutine(upMotionBlur(blurLevel3));
 						break;
 				case 4:
-			               StartCoroutine(upTwirlEffect (15));
-			               StartCoroutine(upMotionBlur(1f));
+			StartCoroutine(upTwirlEffect (twirlLevel4));
+			StartCoroutine(upMotionBlur(blurLevel4));
 						break;
 				case 5:
-			               StartCoroutine(upTwirlEffect (20));
-			               StartCoroutine(upMotionBlur(1.4f));
+			StartCoroutine(upTwirlEffect (twirlLevel5));
+			StartCoroutine(upMotionBlur(blurLevel5));
 						break;
 			
 			

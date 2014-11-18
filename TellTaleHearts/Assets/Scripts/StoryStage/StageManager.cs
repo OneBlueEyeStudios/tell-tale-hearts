@@ -88,6 +88,10 @@ public class StageManager : MonoBehaviour {
 	public int _lastLevel = 8;
 	public int _suspicionThreshold = 5;
 
+	public LineRenderer _lineRenderer;
+	public GameObject _pathRendererPrefab;
+	public NavMeshAgent _pathRenderer;
+
 	public CopType getCurrentSpeakingCop()
 	{
 
@@ -102,8 +106,89 @@ public class StageManager : MonoBehaviour {
 		return stage._speakingCop;
 	}
 
+	public void clearTrail ()
+	{
+		//_pathRenderer.GetComponent<TrailRenderer> ().time = 1f;
+		Destroy (_pathRenderer.gameObject);
+	}
 
+
+	public void DrawPlayerPath(Transform start, Transform end)
+	{
+		StartCoroutine (DrawPlayerPathCoroutine (start, end));
+		//NavMeshPath path = new NavMeshPath();
+		//NavMesh.CalculatePath (start, end, -1, path);
+
+		//_pathRenderer.GetComponent<TrailRenderer>().material.mainTextureScale = new Vector2(path.corners.Length,1);
+		//_pathRenderer.GetComponent<TrailRenderer>().material.mainTextureScale = new Vector2(10,1);
+		//_pathRenderer.GetComponent<TrailRenderer> ().enabled = false;
+
+
+		//StartCoroutine (parentTrailWhenDone ());
 		
+	}
+
+	IEnumerator DrawPlayerPathCoroutine (Transform start, Transform end)
+	{
+		//while (true) 
+		{
+
+			if(_pathRenderer != null)
+				Destroy(_pathRenderer.gameObject);
+
+			GameObject go = Instantiate(_pathRendererPrefab,start.position,Quaternion.identity) as GameObject;
+			_pathRenderer = go.GetComponent<NavMeshAgent>();
+
+			//_pathRenderer.GetComponent<TrailRenderer> ().time = -1f;
+			//_pathRenderer.transform.position = start.position;
+			_pathRenderer.SetDestination (end.position);
+			
+			_pathRenderer.GetComponent<TrailRenderer> ().time = 100f;
+			_pathRenderer.GetComponent<TrailRenderer> ().enabled = true;
+		
+			//yield return new WaitForSeconds(10);
+			yield return null;
+		}
+	}
+
+	bool arrived (NavMeshAgent agent)
+	{
+		float dist = agent.remainingDistance; 
+		
+		//		Debug.LogWarning ("agent.remainingDistance:" + agent.remainingDistance);
+		
+		if (dist != Mathf.Infinity && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance <= agent.stoppingDistance) //Arrived.
+			return true;
+		return false;
+	}
+
+	IEnumerator parentTrailWhenDone ()
+	{
+		while (!arrived( _pathRenderer)) 
+		{
+			yield return null;
+		}
+
+		_pathRenderer.transform.parent = CharView._instance.transform;
+		_pathRenderer.transform.position = Vector3.zero;
+	}
+
+	public void DrawPlayerPath2(Vector3 start, Vector3 end)
+	{
+		NavMeshPath path = new NavMeshPath();
+		NavMesh.CalculatePath (start, end, -1, path);
+
+		_lineRenderer.SetVertexCount (path.corners.Length);
+
+		int count = 0;
+		foreach (Vector3 pos in path.corners) 
+		{
+			_lineRenderer.SetPosition(count,pos);
+			count++;
+		}
+
+	}
+
 	public Transform getDoorPos ()
 	{
 
@@ -312,8 +397,11 @@ public class StageManager : MonoBehaviour {
 
 
 		//if (_globalVars [Constants.SUSPICION] >= 3)
-		if (_globalVars [Constants.SUSPICION] >= _suspicionThreshold)
-						_arrestFungus.Execute ();
+		if (_globalVars [Constants.SUSPICION] >= _suspicionThreshold) 
+		{
+			_arrestFungus.Execute ();
+			SoundManager._instance.increaseSuspicionParam("theme");
+		}
 				//else if (_globalVars [Constants.CURRENT_STAGE] >= 7)
 		else if (_globalVars [Constants.CURRENT_STAGE] >= _lastLevel)
 						_escapeFungus.Execute ();
@@ -347,6 +435,11 @@ public class StageManager : MonoBehaviour {
 				}
 
 
+	}
+
+	public void confessChosen ()
+	{
+		_confessFungus.Execute ();
 	}
 
 	void Awake()
@@ -383,14 +476,33 @@ public class StageManager : MonoBehaviour {
 	}
 */
 
+	public void doubtChanged(int doubt)
+	{
+		SoundManager._instance.setDoubtLevel (doubt);
+	}
+
+	public void disableAllCameraEffects ()
+	{
+		_globalVars [Constants.SUSPICION] = 0;
+	}
+
+	void Start()
+	{
+		//DrawPlayerPath2(CharView._instance.transform.position, _goodCop.transform.position);
+		//DrawPlayerPath (CharView._instance.transform.position, _goodCop.transform.position);
+	}
+
 	void Update()
 	{
 		ImageEffectsHandler handler = (ImageEffectsHandler)GetComponent ("ImageEffectsHandler");
-		handler.UpdateSuspicion (StageManager._instance._globalVars [Constants.SUSPICION]);
+		handler.UpdateSuspicion (_globalVars [Constants.SUSPICION]);
 
 		ImageEffectsHandlerC handlerC = GetComponent<ImageEffectsHandlerC> ();
-		handlerC.UpdateSuspicion(StageManager._instance._globalVars [Constants.SUSPICION]);
+		handlerC.UpdateSuspicion(_globalVars [Constants.SUSPICION]);
 
+		SoundManager._instance.setSuspicionLevel (_globalVars [Constants.SUSPICION]);
+
+		//SoundManager._instance.setSuspicionLevel (StageManager._instance._globalVars [Constants.SUSPICION]);
 	}
 
 	void OnGUI()

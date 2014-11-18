@@ -20,6 +20,8 @@ public class PopulateWithCops : Command {
 	public override void OnEnter ()
 	{
 		StartCoroutine(populateCops(_sprite1,_nDuplicates));
+
+		Continue ();
 	}
 
 	IEnumerator populateCops (GameObject sprite1, int nDuplicates)
@@ -59,7 +61,7 @@ public class PopulateWithCops : Command {
        }
 
 
-		Continue ();
+
 	}
 
 }

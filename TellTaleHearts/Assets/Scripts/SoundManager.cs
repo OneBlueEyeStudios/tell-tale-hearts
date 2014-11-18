@@ -57,6 +57,13 @@ public class SoundManager : MonoBehaviour {
 
 	public float _currentRainIntensity;
 
+	public EventInstance _suspicionEvent;
+	int _currentSuspicion = 0;
+
+	public EventInstance _realizationEvent;
+	int _currentDoubt = 0;
+	//public EventInstance _musicEvent;
+
 
 
 	public AudioSource playDialogue(string tag, out float length, Transform pos)
@@ -171,8 +178,93 @@ public class SoundManager : MonoBehaviour {
 		_soundEvents = new List<FMODEvent> ();
 
 
+		_suspicionEvent = playSoundAtPosition ("event:/music/suspicion", Vector3.zero, true);
+		_realizationEvent = playSoundAtPosition ("event:/music/realization", Vector3.zero, true);
+
+		//StartCoroutine (increaseSuspicionParameter ("theme"));
+
 		if(Application.loadedLevelName=="GameInit")
 			Invoke ("playThemeMusic", _themeMusicWaitTime);
+	
+	}
+
+
+
+	public void setDoubtLevel(int level)
+	{
+
+
+		if (level == _currentDoubt)
+			return;
+		
+		_currentDoubt = level;
+
+		PLAYBACK_STATE state;
+		_realizationEvent.getPlaybackState (out state);
+
+//		UnityEngine.Debug.LogWarning (state);
+
+		switch (level) {
+		case 1:
+//			UnityEngine.Debug.LogError ("setDoubtLevel: " + level);
+			//_realizationEvent.setParameterValue("level",9.5f);
+			//_realizationEvent.start();
+			playSoundAtPositionAndParameter("event:/music/realization",transform,"level",3.5f);
+
+			//StartCoroutine (increaseSuspicionParameter ("level1"));
+			break;
+		case 2:
+			//_realizationEvent.setParameterValue("level",3.5f);
+			//StartCoroutine (increaseSuspicionParameter ("level2"));
+			playSoundAtPositionAndParameter("event:/music/realization",transform,"level",5.5f);
+			break;
+		case 3:
+			//_realizationEvent.setParameterValue("level",5.5f);
+			playSoundAtPositionAndParameter("event:/music/realization",transform,"level",7.5f);
+			//StartCoroutine (increaseSuspicionParameter ("level3"));
+			break;
+		case 4:
+			//_realizationEvent.setParameterValue("level",7.5f);
+			playSoundAtPositionAndParameter("event:/music/realization",transform,"level",7.5f);
+			//StartCoroutine (increaseSuspicionParameter ("level4"));
+			break;
+		case 5:
+			//_realizationEvent.setParameterValue("level",9.5f);
+			playSoundAtPositionAndParameter("event:/music/realization",transform,"level",9.5f);
+			//StartCoroutine (increaseSuspicionParameter ("level5"));
+			break;
+		default:
+			break;
+		}
+		
+	}
+
+	public void setSuspicionLevel(int level)
+	{
+		if (level == _currentSuspicion)
+						return;
+
+		_currentSuspicion = level;
+
+		switch (level) {
+		case 1:
+			StartCoroutine (increaseSuspicionParameter ("level1"));
+			break;
+		case 2:
+			StartCoroutine (increaseSuspicionParameter ("level2"));
+			break;
+		case 3:
+			StartCoroutine (increaseSuspicionParameter ("level3"));
+			break;
+		case 4:
+			StartCoroutine (increaseSuspicionParameter ("level4"));
+			break;
+		case 5:
+			StartCoroutine (increaseSuspicionParameter ("level5"));
+			break;
+		default:
+						break;
+		}
 
 	}
 
@@ -180,7 +272,36 @@ public class SoundManager : MonoBehaviour {
 	{
 //		UnityEngine.Debug.LogWarning ("Play music NOW!");
 
-		audio.Play ();
+		//audio.Play ();
+
+		StartCoroutine (increaseSuspicionParameter ("theme"));
+		//_suspicionEvent.setParameterValue("theme"
+	}
+
+	public void increaseSuspicionParam(string parameter, int target = 10)
+	{
+		StartCoroutine (increaseSuspicionParameter (parameter, target));
+
+	}
+
+	IEnumerator increaseSuspicionParameter (string parameter, int target = 10)
+	{
+		float duration = 5;
+		float elapsed = 0;
+
+		//int target = 10;
+
+		while (elapsed < duration) 
+		{
+		
+			float t = elapsed/duration;
+
+			_suspicionEvent.setParameterValue(parameter,Mathf.Lerp(0,target,t));
+
+			elapsed += Time.deltaTime;
+			yield return  null;
+
+		}
 	}
 
 	public void stopThemeMusic()
@@ -227,20 +348,67 @@ public class SoundManager : MonoBehaviour {
 		return false;
 	}
 
+	public void stopSound (string eventName)
+	{
+		FMODEvent ev;
+		if (HasEventWithName (eventName, out ev)) 
+		{
+			ev._event.stop(STOP_MODE.ALLOWFADEOUT);
+			ev._event.release();
+			_soundEvents.Remove(ev);
+		}
+	}
+
 	public void SetParameterForEvent (string eventName, string parameterName, float parameterValue)
 	{
 		FMODEvent ev;
 		if (HasEventWithName (eventName, out ev)) 
 		{
+
+			PLAYBACK_STATE state;
+			ev._event.getPlaybackState(out state);
+			if(state == PLAYBACK_STATE.STOPPED || state == PLAYBACK_STATE.STOPPING)
+				ev._event.start();
+
+			UnityEngine.Debug.LogWarning("State: "+state);
+
 			ev._event.setParameterValue(parameterName,parameterValue);
+
+
 		}
 	}
-	public void TweenParameter (string eventName, string parameterName, string easeType, float duration)
+	public void TweenParameter (string eventName, string parameterName, float duration, float start, float target)
 	{
 		FMODEvent ev;
 		if (HasEventWithName (eventName, out ev)) 
 		{
+			PLAYBACK_STATE state;
+			ev._event.getPlaybackState(out state);
+			if(state == PLAYBACK_STATE.STOPPED || state == PLAYBACK_STATE.STOPPING)
+				ev._event.start();
+
+			StartCoroutine(TweenParameterCoroutine(ev,parameterName,duration,start,target));
+		}
+	}
+
+	IEnumerator TweenParameterCoroutine (FMODEvent ev, string parameterName, float duration, float start, float target)
+	{
+		float elapsed = 0;
+
+		while (elapsed < duration) 
+		{
+
+
+			float t = elapsed/duration;
+			float value = Mathf.Lerp(start,target,t);
+			ev._event.setParameterValue(parameterName,value);
+
+			elapsed += Time.deltaTime;
+
 			
+			UnityEngine.Debug.LogWarning("TweenParameterCoroutine: "+parameterName+"   "+value);
+
+			yield return null;
 		}
 	}
 
@@ -272,6 +440,11 @@ public class SoundManager : MonoBehaviour {
 	}
 
 
+	public void clearRegisteredEvents()
+	{
+		_soundEvents.Clear ();
+	}
+
 	void trackAudio ()
 	{
 		foreach (FMODEvent ev in _soundEvents) 
@@ -281,5 +454,13 @@ public class SoundManager : MonoBehaviour {
 				ev._event.set3DAttributes(FMOD.Studio.UnityUtil.to3DAttributes(ev._position.position));
 			}
 		}
+	}
+
+	public AudioSource createSoundSource ()
+	{
+		GameObject go = new GameObject ("SoundSource");
+		AudioSource source = go.AddComponent<AudioSource> ();
+
+		return source;
 	}
 }

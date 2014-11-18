@@ -195,13 +195,15 @@ public class CharView : MonoBehaviour
 											itemAudio.released();
 										}
 					
-					//Destroy(_currentlyCentered.gameObject);
-										_currentlyCentered.gameObject.SetActive (false);
+										//Destroy(_currentlyCentered.gameObject);
+										//_currentlyCentered.gameObject.SetActive (false);
+										_currentlyCentered.renderer.enabled = false;
 										_currentlyCentered = null;
 										
 										_lastObjectParent = null;
 									
 										setMouseLookEnabled (true);
+										setCharacterMotorEnabled (true);
 										_isHoldingObject = false;
 								}
 						}

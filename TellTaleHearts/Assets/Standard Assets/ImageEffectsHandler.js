@@ -1,8 +1,22 @@
 ﻿#pragma strict
 
 var vignette : Vignetting;
-var fishEye : Fisheye;
+//var fishEye : Fisheye;
 var bloom : Bloom;
+
+var bloomLevel0 = 0;
+var bloomLevel1 = 0;
+var bloomLevel2 = 0.25f;
+var bloomLevel3 = 0.4f;
+var bloomLevel4 = 0.6f;
+var bloomLevel5 = 0.9f;
+
+var vignetteLevel0 = 2;
+var vignetteLevel1 = 3;
+var vignetteLevel2 = 4;
+var vignetteLevel3 = 5;
+var vignetteLevel4 = 6;
+var vignetteLevel5 = 8;
 
 var _suspicion : int;
 
@@ -21,7 +35,7 @@ function UpdateSuspicion(suspicion : int)
 	//vignette.chromaticAberration = Mathf.Lerp(1,20,suspicion);
 	
 }
-
+/*
 function upFishEye(levelX: float,levelY: float)
 {
 	var elapsed : float = 0;
@@ -43,7 +57,7 @@ function upFishEye(levelX: float,levelY: float)
 		yield;
 	}
 }
-
+*/
 function upBloom(target: float)
 {
 	var elapsed : float = 0;
@@ -91,28 +105,34 @@ function triggerSuspicionChange(suspicion : int)
 	
 	switch(_suspicion)
 	{
+		case 0:
+		upVignette(vignetteLevel0);
+		upBloom(bloomLevel0);
+		//upFishEye(0.1,0.1);
+		//
+	break;
 	case 1:
-		upVignette(3);
-		upBloom(0.5f);
+		upVignette(vignetteLevel1);
+		upBloom(bloomLevel1);
 		//upFishEye(0.1,0.1);
 		//
 	break;
 	case 2:
-		upVignette(4);
-		upBloom(1);
+		upVignette(vignetteLevel2);
+		upBloom(bloomLevel2);
 		//upFishEye(0.2,0.2);
 	break;
 	case 3:
-			upVignette(5);
-			upBloom(2);
+			upVignette(vignetteLevel3);
+			upBloom(bloomLevel3);
 	break;
 	case 4:
-			upVignette(6);
-			upBloom(3);
+			upVignette(vignetteLevel4);
+			upBloom(bloomLevel4);
 	break;
 	case 5:
-			upVignette(8);
-			upBloom(5);
+			upVignette(vignetteLevel5);
+			upBloom(bloomLevel5);
 	break;
 	
 	
