@@ -1,45 +1,35 @@
 fileFormatVersion: 2
-guid: f2e32e62ef1f24c3498769907c66b4c4
+guid: 9dc1fa440d49f4967bf1bb41b6345b00
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: body1
+    100000: body2
+    100002: //RootNode
     100004: door1
     100006: door2
-    100008: feet
-    100010: hand1
-    100012: hand2
-    100014: body2
-    400000: //RootNode
-    400002: body1
+    100008: hand1
+    100010: hand2
+    400000: body2
+    400002: //RootNode
     400004: door1
     400006: door2
-    400008: feet
-    400010: hand1
-    400012: hand2
-    400014: body2
-    2300000: body1
+    400008: hand1
+    400010: hand2
+    2300000: body2
     2300002: door1
     2300004: door2
-    2300006: feet
-    2300008: hand1
-    2300010: hand2
-    2300012: body2
-    3300000: body1
+    2300006: hand1
+    2300008: hand2
+    3300000: body2
     3300002: door1
     3300004: door2
-    3300006: feet
-    3300008: hand1
-    3300010: hand2
-    3300012: body2
-    4300000: body1
+    3300006: hand1
+    3300008: hand2
+    4300000: body2
     4300002: door1
-    4300004: door2
-    4300006: hand1
+    4300004: hand1
+    4300006: door2
     4300008: hand2
-    4300010: feet
-    4300012: body2
     9500000: //RootNode
   materials:
     importMaterials: 1
