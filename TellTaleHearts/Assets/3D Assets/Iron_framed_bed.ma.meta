@@ -32,6 +32,7 @@ ModelImporter:
     100052: polySurface6
     100054: Iron01
     100056: Iron02
+    100058: polySurface1
     400000: curve1
     400002: curve1 1
     400004: curve2
@@ -61,6 +62,7 @@ ModelImporter:
     400052: polySurface6
     400054: Iron01
     400056: Iron02
+    400058: polySurface1
     2300000: Matress_01
     2300002: Matress_02
     2300004: polySurface3
@@ -71,6 +73,8 @@ ModelImporter:
     2300014: polySurface6
     2300016: Iron01
     2300018: Iron02
+    2300020: polySurface1
+    2300022: polySurface2
     3300000: Matress_01
     3300002: Matress_02
     3300004: polySurface3
@@ -81,6 +85,8 @@ ModelImporter:
     3300014: polySurface6
     3300016: Iron01
     3300018: Iron02
+    3300020: polySurface1
+    3300022: polySurface2
     4300000: polySurface3
     4300002: Matress_01
     4300004: Matress_02
@@ -91,6 +97,8 @@ ModelImporter:
     4300014: polySurface6
     4300016: Iron01
     4300018: Iron02
+    4300020: polySurface1
+    4300022: polySurface2
     9500000: //RootNode
   materials:
     importMaterials: 1
