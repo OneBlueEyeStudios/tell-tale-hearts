@@ -10,8 +10,12 @@ basically finished:
 -footstep (surface: 0-1 silent, 1-2 rug, 2-3 wood, 3-4 creaky rug; step duration: 3.5 initial 0-2 slow, 2-4 normal, 4-10 fast)
 -footstep-cop1 (surface: 0-1 silent, 1-2 rug, 2-3 wood, 3-4 creaky flr; step duration: 3.5 initial 0-2 slow, 2-4 normal, 4-10 fast)
 -footstep-cop2 (surface: 0-1 silent, 1-2 rug, 2-3 wood, 3-4 creaky flr; step duration: 3.5 initial 0-2 slow, 2-4 normal, 4-10 fast)
--door knocking (intensity: 0-2 silent, 2-4 1st knock, 4-6 2nd knock, 6-10 3rd knock)
+-door knocking (intensity: 0-2 silent, 2-4 1st knock, 4-6 2nd knock, 6-8 3rd knock, 8-10 door kick)
 -kerosene lamp
+-cheque (pickndrop: 5 initial 0-2 pick, 8-10 drop; hide: 9-10)
+-letter (pickndrop: 5 initial 0-2 pick, 8-10 drop; hide: 9-10)
+-poster card (pickndrop: 5 initial 0-2 pick, 8-10 drop; hide: 9-10)
+-ticket (pickndrop: 5 initial 0-2 pick, 8-10 drop; hide: 9-10)
 
 not good enough:
 -door (door: 5 initial 0-1 open, 9-10 close)

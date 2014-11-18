@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.05.00">
+    <object class="Folder" id="{8bf48753-9ab4-4713-a358-18108627d0a7}">
+        <property name="name">
+            <value>massive dialogues</value>
+        </property>
+        <relationship name="folder">
+            <destination>{484c350f-6343-41cb-8ce2-cb15b28d62d2}</destination>
+        </relationship>
+    </object>
+</objects>
