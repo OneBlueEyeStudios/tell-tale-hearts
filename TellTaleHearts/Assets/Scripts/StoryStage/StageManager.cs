@@ -507,7 +507,7 @@ public class StageManager : MonoBehaviour {
 
 	void OnGUI()
 	{
-		if (_globalVars.ContainsKey (Constants.SUSPICION))
-			GUI.Label (new Rect(0,50,100,100),"Suspicion: " + _globalVars [Constants.SUSPICION]);
+		//if (_globalVars.ContainsKey (Constants.SUSPICION))
+		//	GUI.Label (new Rect(0,50,100,100),"Suspicion: " + _globalVars [Constants.SUSPICION]);
 	}
 }

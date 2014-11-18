@@ -58,8 +58,12 @@ public class Lightable : MonoBehaviour {
 		{
 			//r.material.shader = _rimShader;
 
+			float delta = 0.2f;
+
 			Color newColor = r.material.color;
-			newColor.r += 0.4f;
+			//newColor.r += delta;
+			newColor.g += delta;
+			newColor.b += delta;
 			r.material.color = newColor;
 			//r.material.color -= new Color(0.0f,0.0f,0.2f,0.0f);
 			//r.material.color = Color.red;
@@ -85,11 +89,15 @@ public class Lightable : MonoBehaviour {
 		
 		{
 			//allRenderers[i].material.shader = _initialShaders[i];
-
+			
+			float delta = 0.2f;
 			//allRenderers[i].material.color += new Color(0.0f,0.0f,0.2f,0.0f);
 			//allRenderers[i].material.color += new Color(0.0f,0.0f,0.2f,0.0f);
 			Color newColor = allRenderers[i].material.color;
-			newColor.r -= 0.4f;
+			//newColor.r -= delta;
+			newColor.g -= delta;
+			newColor.b -= delta;
+
 			allRenderers[i].material.color = newColor;
 
 

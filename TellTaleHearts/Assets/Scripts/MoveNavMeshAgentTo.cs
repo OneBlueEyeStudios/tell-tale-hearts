@@ -140,7 +140,7 @@ public class MoveNavMeshAgentTo : MonoBehaviour {
 		
 		
 		pathEnd ();
-	}
+	} 
 
 	
 	IEnumerator MoveCharacterCoroutine (Transform target, bool multiPath = false)

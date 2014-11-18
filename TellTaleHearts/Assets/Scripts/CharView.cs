@@ -39,6 +39,7 @@ public class CharView : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
+				SoundManager._instance.gameStart ();
 				_hasGameBegun = false;
 				setMouseLookEnabled (false);
 				setCharacterMotorEnabled (false);
@@ -108,9 +109,14 @@ public class CharView : MonoBehaviour
 										unlightObject (_currentlyCentered);
 								}
 
-								_currentlyCentered = hit.transform.gameObject;
-								lightUpObject (_currentlyCentered);
+								Item item = hit.transform.GetComponent<Item>();
+								Interactable interactable = hit.transform.GetComponent<Interactable>();
+								if((interactable!=null && interactable._interactEnabled) || item!=null)
+								{
 
+												_currentlyCentered = hit.transform.gameObject;
+												lightUpObject (_currentlyCentered);
+								}
 
 
 						}
@@ -144,7 +150,8 @@ public class CharView : MonoBehaviour
 												iTween.MoveTo (_currentlyCentered.gameObject, iTween.Hash ("position", Vector3.zero, "time", 1.0f, "islocal", true));
 												
 												if (item._rotateWhenRelease)
-														iTween.RotateTo (_currentlyCentered.gameObject, iTween.Hash ("rotation", Vector3.zero, "time", 1.0f, "islocal", true));
+														//iTween.RotateTo (_currentlyCentered.gameObject, iTween.Hash ("rotation", Vector3.zero, "time", 1.0f, "islocal", true));
+													iTween.RotateTo (_currentlyCentered.gameObject, iTween.Hash ("rotation", item._defaultFacing, "time", 1.0f, "islocal", true));
 						
 												_lastObjectParent = null;
 												_currentlyCentered = null;
@@ -183,7 +190,7 @@ public class CharView : MonoBehaviour
 										Interactable interactable = _currentlyCentered.GetComponent<Interactable> ();
 										interactable.interact ();
 								}
-						} else if (Input.GetKeyDown (KeyCode.P)) {
+						} else if (Input.GetKeyDown (KeyCode.Q)) {
 								//if (!_mouseLookEnabled) {
 								if (_isHoldingObject) {
 										_lastObjectParent.GetComponent<Clue> ()._available = false;

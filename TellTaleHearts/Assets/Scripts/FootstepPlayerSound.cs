@@ -46,12 +46,13 @@ public class FootstepPlayerSound : MonoBehaviour {
 		else
 			surfaceFloat = 0f;
 
-		footstep.setVolume (_volume);
+		if (footstep != null) {
+						footstep.setVolume (_volume);
 
-		footstep.set3DAttributes (FMOD.Studio.UnityUtil.to3DAttributes(transform.position));
+						footstep.set3DAttributes (FMOD.Studio.UnityUtil.to3DAttributes (transform.position));
 
-		surfaceValue.setValue (surfaceFloat);
-		
+						surfaceValue.setValue (surfaceFloat);
+				}
 	
 	}
 }

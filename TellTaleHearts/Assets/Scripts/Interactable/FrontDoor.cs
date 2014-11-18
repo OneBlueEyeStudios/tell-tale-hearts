@@ -8,7 +8,7 @@ public class FrontDoor : Interactable {
 	bool _isClosed = true;
 	
 	RainSoundSource _rainSound;
-	
+	bool _canInteract = true;
 	//EventInstance _windowEvent;
 	//ParameterInstance _windowParameter;
 	
@@ -55,6 +55,11 @@ public class FrontDoor : Interactable {
 	
 	override public void interact()
 	{
+		if (!_canInteract)
+			return;
+		
+		_canInteract = false;
+
 		StageManager._instance.OnEventTrigger (Constants.DOOR_OPEN_TRIGGER);
 
 		if (_isClosed)
@@ -65,6 +70,8 @@ public class FrontDoor : Interactable {
 	
 	void open ()
 	{
+		
+		Invoke ("reloadInteract", 1);
 		//_animator.Play ("OpenDoor");
 		_animator.SetTrigger ("Open");
 		//_animator.SetTrigger ("open");
@@ -81,6 +88,8 @@ public class FrontDoor : Interactable {
 	
 	void close ()
 	{
+		
+		Invoke ("reloadInteract", 1);
 		_animator.SetTrigger ("Close");
 		_isClosed = true;
 		

@@ -4,8 +4,10 @@ using System.Collections;
 public abstract class Item : MonoBehaviour {
 
 	public string _description;
+	public Vector3 _defaultFacing = Vector3.zero;
 	public Vector3 _frontFacing;
 	public bool _rotateWhenRelease = true;
+
 
 	// Use this for initialization
 	void Start () {

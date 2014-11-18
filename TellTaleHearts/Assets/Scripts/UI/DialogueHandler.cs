@@ -372,9 +372,9 @@ public class DialogueHandler : MonoBehaviour {
 
 		Transform source = cop.Equals (Constants.BAD_COP) ? StageManager._instance._badCop.transform : StageManager._instance._goodCop.transform;
 
-		Debug.LogError ("look at!");
+		//Debug.LogError ("look at!");
 
-		source.LookAt (CharView._instance.transform);
+		//source.LookAt (CharView._instance.transform);
 
 		//_currentLine = SoundManager._instance.playDialogue(tweePassage.dialogue, out length, StageManager._instance._goodCop.transform);
 		_currentLine = SoundManager._instance.playDialogue(cue, out length, source);
@@ -435,8 +435,8 @@ public class DialogueHandler : MonoBehaviour {
 	}
 	void OnGUI()
 	{
-		if (_currentDialogueVars!=null && _currentDialogueVars.ContainsKey (Constants.DOUBT))
-			GUI.Label (new Rect(0,0,100,100),"doubt: " + _currentDialogueVars [Constants.DOUBT]);
+		//if (_currentDialogueVars!=null && _currentDialogueVars.ContainsKey (Constants.DOUBT))
+		//	GUI.Label (new Rect(0,0,100,100),"doubt: " + _currentDialogueVars [Constants.DOUBT]);
 	}
 
 	/*

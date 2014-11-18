@@ -64,7 +64,11 @@ public class SoundManager : MonoBehaviour {
 	int _currentDoubt = 0;
 	//public EventInstance _musicEvent;
 
-
+	public void gameStart()
+	{
+		_suspicionEvent = playSoundAtPosition ("event:/music/suspicion", Vector3.zero, true);
+		_realizationEvent = playSoundAtPosition ("event:/music/realization", Vector3.zero, true);
+	}
 
 	public AudioSource playDialogue(string tag, out float length, Transform pos)
 	{
@@ -178,15 +182,15 @@ public class SoundManager : MonoBehaviour {
 		_soundEvents = new List<FMODEvent> ();
 
 
-		_suspicionEvent = playSoundAtPosition ("event:/music/suspicion", Vector3.zero, true);
-		_realizationEvent = playSoundAtPosition ("event:/music/realization", Vector3.zero, true);
+
 
 		//StartCoroutine (increaseSuspicionParameter ("theme"));
 
-		if(Application.loadedLevelName=="GameInit")
-			Invoke ("playThemeMusic", _themeMusicWaitTime);
+		//if(Application.loadedLevelName=="GameInit")
+		//	Invoke ("playThemeMusic", _themeMusicWaitTime);
 	
 	}
+
 
 
 
