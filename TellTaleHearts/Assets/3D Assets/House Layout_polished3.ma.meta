@@ -136,6 +136,10 @@ ModelImporter:
     100260: body
     100262: knob
     100264: window
+    100266: House_Main_Group
+    100268: House_wall8 1
+    100270: transform1
+    100272: transform2
     400000: backdoor
     400002: bedroomdoor
     400004: bottom_small_wainscotting
@@ -269,6 +273,10 @@ ModelImporter:
     400260: body
     400262: knob
     400264: window
+    400266: House_Main_Group
+    400268: House_wall8 1
+    400270: transform1
+    400272: transform2
     2300000: backdoor
     2300002: bottom_small_wainscotting
     2300004: ceiling_wbar13
