@@ -1,5 +1,3 @@
-#define FMOD_LIVEUPDATE
-
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -222,6 +220,11 @@ public class FMOD_StudioSystem : MonoBehaviour
 	void PlayOneShot(string path, Vector3 position, float volume)
 	{
 		var instance = GetEvent(path);
+		if (instance == null) 
+		{			
+			FMOD.Studio.UnityUtil.LogWarning("PlayOneShot coudn't find event: \"" + path + "\"");
+			return;
+		}
 		
 		var attributes = FMOD.Studio.UnityUtil.to3DAttributes(position);
 		ERRCHECK( instance.set3DAttributes(attributes) );
@@ -268,7 +271,7 @@ public class FMOD_StudioSystem : MonoBehaviour
                 FMOD.GUID guid;
                 FMOD.SPEAKERMODE speakermode;
                 int speakermodechannels;
-                ERRCHECK(sys.getDriverInfo(0, str, 0, out guid, out outputRate, out speakermode, out speakermodechannels));
+                ERRCHECK(sys.getDriverInfo(0, str, str.Capacity, out guid, out outputRate, out speakermode, out speakermodechannels));
             }
 
             ERRCHECK(sys.setSoftwareFormat(outputRate, FMOD.SPEAKERMODE.DEFAULT, 0));
@@ -303,18 +306,27 @@ public class FMOD_StudioSystem : MonoBehaviour
 	
 	void OnApplicationPause(bool pauseStatus)
 	{
-		FMOD.System sys;
-		ERRCHECK(system.getLowLevelSystem(out sys));
-		
-		FMOD.Studio.UnityUtil.Log("Pause state changed to: " + pauseStatus);
-		
-		if (pauseStatus)
-		{
-			ERRCHECK(sys.mixerSuspend());
-		}
-		else
-		{
-			ERRCHECK(sys.mixerResume());
+		if (system != null && system.isValid())
+		{			
+			FMOD.Studio.UnityUtil.Log("Pause state changed to: " + pauseStatus);
+
+			FMOD.System sys;
+			ERRCHECK(system.getLowLevelSystem(out sys));
+
+			if (sys == null)
+			{
+				FMOD.Studio.UnityUtil.LogError("Tried to suspend mixer, but no low level system found");
+				return;
+			}
+			
+			if (pauseStatus)
+			{
+				ERRCHECK(sys.mixerSuspend());
+			}
+			else
+			{
+				ERRCHECK(sys.mixerResume());
+			}
 		}
 	}
 	

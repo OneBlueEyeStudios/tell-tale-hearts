@@ -139,7 +139,7 @@ public class FMODEditorExtension : MonoBehaviour
 	}
 	
 	[MenuItem ("FMOD/Import Banks")]
-	static void ImportBanks()
+	public static void ImportBanks()
 	{
 		PrepareIntegration();
 		
@@ -149,9 +149,8 @@ public class FMODEditorExtension : MonoBehaviour
 			return;
 		}
 		
-		ImportAndRefresh(filePath + "/Desktop");
+		ImportAndRefresh(filePath + "/" + studioPlatformDirectoryName());
 	}
-	
 	
 	[MenuItem ("FMOD/Refresh Event List", true)]
 	static bool CheckRefreshEventList()
@@ -161,11 +160,38 @@ public class FMODEditorExtension : MonoBehaviour
 	}
 	
 	[MenuItem ("FMOD/Refresh Event List")]
-	static void RefreshEventList()
+	public static void RefreshEventList()
 	{
 		string filePath =  GetDefaultPath();
 		
-		ImportAndRefresh(filePath + "/Build/Desktop");
+		ImportAndRefresh(filePath + "/Build/" + studioPlatformDirectoryName());
+	}
+	
+	static string studioPlatformDirectoryName()
+	{
+		var platDirFile = "Assets/Plugins/FMOD/PlatformDirectories.txt";
+		if (!System.IO.File.Exists(platDirFile))
+		{
+			FMOD.Studio.UnityUtil.Log("No PlatformDirectories.txt found in Assets/Plugins/FMOD defaulting to \"Desktop\"");
+			return "Desktop";
+		}
+		
+		string platformName = UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup.ToString();
+		var stream = new System.IO.StreamReader(platDirFile);
+		while (!stream.EndOfStream)
+		{
+			var line = stream.ReadLine();
+			
+			string[] s = line.Split(':');
+			if (string.Equals(s[0], platformName))
+			{
+				FMOD.Studio.UnityUtil.Log("target: " + platformName + ", directory: " + s[1]);
+				return s[1];
+			}
+		}
+
+		FMOD.Studio.UnityUtil.LogWarning("Current platform: " + platformName + " not found in PlatformDirectories.txt, defaulting to \"Desktop\"");
+		return "Desktop";
 	}
 	
 	static bool CopyBanks(string path)
@@ -380,6 +406,12 @@ public class FMODEditorExtension : MonoBehaviour
 			fromAsset.path = toAsset.path;
 		}
 	}
+
+	[MenuItem ("FMOD/Online Manual")]
+	static void OnlineManual()
+	{
+		Application.OpenURL("http://fmod.com/documentation");
+	}
 	
 	[MenuItem ("FMOD/About Integration")]
 	static void AboutIntegration() 
@@ -453,9 +485,8 @@ public class FMODEditorExtension : MonoBehaviour
 		}
 		
 		EditorPrefs.SetString(guidPathKey, directory.Parent.FullName);
-		
-		
-		var bankPath = filePath + "/Desktop"; // TODO: rename filePath to bankPath
+
+		var bankPath = filePath + "/" + studioPlatformDirectoryName();
 		var info = new System.IO.DirectoryInfo(bankPath);
 		
 		if (info.GetFiles().Count() == 0)

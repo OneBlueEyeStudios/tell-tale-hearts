@@ -18,11 +18,10 @@ namespace FMOD
 	{
 #if UNITY_IPHONE && !UNITY_EDITOR
 		public const string dll    = "__Internal";
-#elif UNITY_PS4 && !UNITY_EDITOR
+#elif (UNITY_PS4 || UNITY_WIIU) && !UNITY_EDITOR
 		public const string dll    = "libfmod";
 #else
 		public const string dll    = "fmod";
-        //public const string dll = "fmodL";
 #endif
 		public const int    number = 0x00010500;
     }

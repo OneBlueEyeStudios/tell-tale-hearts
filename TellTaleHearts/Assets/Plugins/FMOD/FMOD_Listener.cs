@@ -70,14 +70,24 @@ public class FMOD_Listener : MonoBehaviour
 		{
 			bankPath = "jar:file://" + Application.dataPath + "!/assets";
 		}
+#if (UNITY_4_0 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6)
         else if (Application.platform == RuntimePlatform.MetroPlayerARM || 
-            Application.platform == RuntimePlatform.MetroPlayerX86 || 
-            Application.platform == RuntimePlatform.MetroPlayerX64
+                 Application.platform == RuntimePlatform.MetroPlayerX86 || 
+                 Application.platform == RuntimePlatform.MetroPlayerX64
             )
         {
             bankPath = "ms-appx:///Data/StreamingAssets";
         }
-		else
+#else // UNITY 5 enum
+        else if (Application.platform == RuntimePlatform.WSAPlayerARM || 
+		         Application.platform == RuntimePlatform.WSAPlayerX86 || 
+		         Application.platform == RuntimePlatform.WSAPlayerX64
+            )
+        {
+            bankPath = "ms-appx:///Data/StreamingAssets";
+        }
+#endif
+        else
 		{		
 			FMOD.Studio.UnityUtil.LogError("Unknown platform!");
 			return "";
@@ -166,7 +176,7 @@ public class FMOD_Listener : MonoBehaviour
             FMOD.Studio.UnityUtil.LogError("Cannot read " + bankListPath + ": " + e.Message + " : No banks loaded.");
         }
 		
-		cachedRigidBody = rigidbody;
+		cachedRigidBody = GetComponent<Rigidbody>();
 		
 		Update3DAttributes();
 	}

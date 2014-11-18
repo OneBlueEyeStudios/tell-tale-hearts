@@ -40,6 +40,7 @@ public class SoundManager : MonoBehaviour {
 	void Awake()
 	{
 
+
 		DontDestroyOnLoad (this.gameObject);
 
 		_instance = this;
@@ -181,8 +182,10 @@ public class SoundManager : MonoBehaviour {
 	
 		_soundEvents = new List<FMODEvent> ();
 
-
-
+		Screen.showCursor = false;
+		Screen.lockCursor = false;
+		
+		
 
 		//StartCoroutine (increaseSuspicionParameter ("theme"));
 
