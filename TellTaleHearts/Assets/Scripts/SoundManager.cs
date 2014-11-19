@@ -183,14 +183,14 @@ public class SoundManager : MonoBehaviour {
 		_soundEvents = new List<FMODEvent> ();
 
 		Screen.showCursor = false;
-		Screen.lockCursor = false;
+		Screen.lockCursor = true;
 		
 		
 
 		//StartCoroutine (increaseSuspicionParameter ("theme"));
 
-		//if(Application.loadedLevelName=="GameInit")
-		//	Invoke ("playThemeMusic", _themeMusicWaitTime);
+		if(Application.loadedLevelName=="GameInit")
+			Invoke ("playThemeMusic", _themeMusicWaitTime);
 	
 	}
 
@@ -279,9 +279,9 @@ public class SoundManager : MonoBehaviour {
 	{
 //		UnityEngine.Debug.LogWarning ("Play music NOW!");
 
-		//audio.Play ();
+		audio.Play ();
 
-		StartCoroutine (increaseSuspicionParameter ("theme"));
+		//StartCoroutine (increaseSuspicionParameter ("theme"));
 		//_suspicionEvent.setParameterValue("theme"
 	}
 

@@ -23,9 +23,9 @@ public class CharView : MonoBehaviour
 		public GameObject _soundManagerPref;
 		bool _isHoldingObject;
 		bool _canDrop;
-	public HeadBob2 _headBob;
+		public HeadBob2 _headBob;
 		public static CharView _instance;
-	public bool _useShift;
+		public bool _useShift;
 
 		void Awake ()
 		{
@@ -60,39 +60,38 @@ public class CharView : MonoBehaviour
 				if (lightable != null)
 						lightable.unlight ();
 		}
-	
 
-	void startGame()
-	{
-		_cameraSmooth.returnToOriginalPos ();
+		void startGame ()
+		{
+				_cameraSmooth.returnToOriginalPos ();
 		
-		Destroy (_cameraSmooth);
-		Destroy (_eyelids.gameObject);
-		Destroy (_themeSplash.gameObject);
+				Destroy (_cameraSmooth);
+				Destroy (_eyelids.gameObject);
+				Destroy (_themeSplash.gameObject);
 
-		StageManager._instance.OnEventTrigger (Constants.GAME_START_TRIGGER);
+				StageManager._instance.OnEventTrigger (Constants.GAME_START_TRIGGER);
 		
-		setMouseLookEnabled (true);
-		setCharacterMotorEnabled (true);
+				setMouseLookEnabled (true);
+				setCharacterMotorEnabled (true);
 		
-		SoundManager._instance.lowerThemeMusic ();
+				SoundManager._instance.lowerThemeMusic ();
 
-		_hasGameBegun = true;
-	}
+				_hasGameBegun = true;
+		}
 
 		// Update is called once per frame
 		void Update ()
 		{
 
 
-			if(_useShift)
-				setMouseLookEnabled (!Input.GetKey (KeyCode.LeftShift));
+				if (_useShift)
+						setMouseLookEnabled (!Input.GetKey (KeyCode.LeftShift));
 
 				_handSocket.transform.position = Camera.main.transform.position + Camera.main.transform.forward * _objectDistance;
 
 				if (Input.GetButtonDown ("Fire1") && !_hasGameBegun) {
 
-					startGame();
+						startGame ();
 				}
 
 	
@@ -109,13 +108,12 @@ public class CharView : MonoBehaviour
 										unlightObject (_currentlyCentered);
 								}
 
-								Item item = hit.transform.GetComponent<Item>();
-								Interactable interactable = hit.transform.GetComponent<Interactable>();
-								if((interactable!=null && interactable._interactEnabled) || item!=null)
-								{
+								Item item = hit.transform.GetComponent<Item> ();
+								Interactable interactable = hit.transform.GetComponent<Interactable> ();
+								if ((interactable != null && interactable._interactEnabled) || item != null) {
 
-												_currentlyCentered = hit.transform.gameObject;
-												lightUpObject (_currentlyCentered);
+										_currentlyCentered = hit.transform.gameObject;
+										lightUpObject (_currentlyCentered);
 								}
 
 
@@ -139,11 +137,10 @@ public class CharView : MonoBehaviour
 												Item item = _currentlyCentered.GetComponent<Item> ();
 												item.released ();
 
-						ItemAudio itemAudio =_currentlyCentered.GetComponent<ItemAudio>(); 
-						if(itemAudio!= null)
-						{
-							itemAudio.released();
-						}
+												ItemAudio itemAudio = _currentlyCentered.GetComponent<ItemAudio> (); 
+												if (itemAudio != null) {
+														itemAudio.released ();
+												}
 
 												_currentlyCentered.transform.parent = _lastObjectParent;
 						
@@ -151,7 +148,7 @@ public class CharView : MonoBehaviour
 												
 												if (item._rotateWhenRelease)
 														//iTween.RotateTo (_currentlyCentered.gameObject, iTween.Hash ("rotation", Vector3.zero, "time", 1.0f, "islocal", true));
-													iTween.RotateTo (_currentlyCentered.gameObject, iTween.Hash ("rotation", item._defaultFacing, "time", 1.0f, "islocal", true));
+														iTween.RotateTo (_currentlyCentered.gameObject, iTween.Hash ("rotation", item._defaultFacing, "time", 1.0f, "islocal", true));
 						
 												_lastObjectParent = null;
 												_currentlyCentered = null;
@@ -168,10 +165,9 @@ public class CharView : MonoBehaviour
 												Item item = _currentlyCentered.GetComponent<Item> ();
 												item.grabbed ();
 
-												ItemAudio itemAudio =_currentlyCentered.GetComponent<ItemAudio>(); 
-												if(itemAudio!= null)
-												{
-													itemAudio.grabbed();
+												ItemAudio itemAudio = _currentlyCentered.GetComponent<ItemAudio> (); 
+												if (itemAudio != null) {
+														itemAudio.grabbed ();
 												}
 
 												iTween.MoveTo (_currentlyCentered.gameObject, iTween.Hash ("position", Vector3.zero, "time", 1.0f, "islocal", true, "oncompletetarget", gameObject, "oncomplete", "onMoveToComplete"));
@@ -193,18 +189,21 @@ public class CharView : MonoBehaviour
 						} else if (Input.GetKeyDown (KeyCode.Q)) {
 								//if (!_mouseLookEnabled) {
 								if (_isHoldingObject) {
-										_lastObjectParent.GetComponent<Clue> ()._available = false;
-										_currentlyCentered.GetComponent<Item> ().putInInventory ();
+										if (_lastObjectParent.GetComponent<Clue> () != null)
+												_lastObjectParent.GetComponent<Clue> ()._available = false;
+										if (_currentlyCentered.GetComponent<Item> () != null)
+												_currentlyCentered.GetComponent<Item> ().putInInventory ();
 
-										ItemAudio itemAudio =_currentlyCentered.GetComponent<ItemAudio>(); 
-										if(itemAudio!= null)
-										{
-											itemAudio.released();
+
+
+										ItemAudio itemAudio = _currentlyCentered.GetComponent<ItemAudio> (); 
+										if (itemAudio != null) {
+												itemAudio.released ();
 										}
 					
 										//Destroy(_currentlyCentered.gameObject);
-										//_currentlyCentered.gameObject.SetActive (false);
-										_currentlyCentered.renderer.enabled = false;
+										_currentlyCentered.gameObject.SetActive (false);
+										//_currentlyCentered.renderer.enabled = false;
 										_currentlyCentered = null;
 										
 										_lastObjectParent = null;
@@ -249,7 +248,7 @@ public class CharView : MonoBehaviour
 
 		public void setCharacterMotorEnabled (bool enabled)
 		{
-		_headBob.enabled = enabled;
+				_headBob.enabled = enabled;
 				_charMotor.enabled = enabled;
 
 

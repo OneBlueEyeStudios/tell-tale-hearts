@@ -63,7 +63,7 @@ public class Door : Interactable {
 		//_animator.SetTrigger ("open");
 		_isClosed = false;
 
-		SoundManager._instance.playSoundAtPositionAndParameter ("event:/household/door",transform,"door",0.5f);
+		SoundManager._instance.playSoundAtPositionAndParameter ("event:/household/door",transform,"door",0.5f,false,false,0.3f);
 
 	}
 	
@@ -80,7 +80,7 @@ public class Door : Interactable {
 		
 		//_windowParameter.setValue (9);
 		//_windowEvent.start ();
-		SoundManager._instance.playSoundAtPositionAndParameter ("event:/household/door",transform,"door",9.5f);
+		SoundManager._instance.playSoundAtPositionAndParameter ("event:/household/door",transform,"door",9.5f,false,false,0.3f);
 
 		
 	}
