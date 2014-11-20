@@ -8,8 +8,10 @@
 {d3836c69-51a3-4d94-a73d-f5f64f87692a} event:/dialogue/test dialogue
 {5deff30b-0660-48ac-8f47-8b715319f594} event:/dialogue/ending phrases/badcop
 {73ef16bf-9024-4693-8ef7-a9667473ca2f} event:/dialogue/ending phrases/goodcop
-{24ab00ab-ad39-4a35-b088-4c7d94d78e73} event:/dialogue/massive dialogues/10
-{384c1f56-2c03-4fc1-afba-d0f6bfc71efb} event:/dialogue/massive dialogues/11
+{38c5af9a-9acd-4499-a0aa-18232e4f9ae8} event:/dialogue/massive dialogues/4&6&7
+{14dd6ab7-0ad9-4d34-9409-29f6a19e001c} event:/dialogue/massive dialogues/5&8
+{24ab00ab-ad39-4a35-b088-4c7d94d78e73} event:/dialogue/massive dialogues/9-11
+{23492e48-d23b-41ad-bfd0-e11a088def50} event:/dialogue/massive dialogues/14
 {1d59df07-dcd1-4ec2-a072-9c819215cf81} event:/dialogue/massive dialogues/18
 {beee8c51-bcfd-4611-8df3-91aacc54ed52} event:/dialogue/massive dialogues/19
 {7504bb05-9f2f-4ded-8841-cf57dc280013} event:/dialogue/massive dialogues/20
@@ -32,17 +34,13 @@
 {f86236ba-bd82-4baa-bbb7-8ee0c883cab7} event:/dialogue/massive dialogues/37
 {6005f5f6-a799-44f8-a01c-93db2add4181} event:/dialogue/massive dialogues/38
 {78c1c2c8-ab3a-4bbc-b3f2-cc7abf08eb0b} event:/dialogue/massive dialogues/39
-{07c723f3-a285-41e5-9767-1493d68273db} event:/dialogue/massive dialogues/4
 {fad12c3f-9177-4ced-b896-5425f9d4b546} event:/dialogue/massive dialogues/40
 {618bd0ed-f985-42c1-983f-06f5332fbe04} event:/dialogue/massive dialogues/41
 {9d9e3727-f08f-41ac-8808-3bb1e81d2133} event:/dialogue/massive dialogues/42
-{3fd8ff62-6695-4f11-bf01-3feda1c15fae} event:/dialogue/massive dialogues/5
-{4b61c308-2536-4879-a026-bb0ffa24ea2f} event:/dialogue/massive dialogues/6
 {7d17771c-86d8-40b9-ad02-12d63cbb95b6} event:/dialogue/massive dialogues/66
 {2de751ae-6a80-4f83-b498-1108aad46452} event:/dialogue/massive dialogues/67
 {eaff03fb-9bb2-47c0-a212-78c5ac5ff669} event:/dialogue/massive dialogues/68
 {7e9a0f8f-51a5-4eed-a959-e62d38a151f2} event:/dialogue/massive dialogues/69
-{731112e6-1beb-465b-bb4d-acd00e0f6463} event:/dialogue/massive dialogues/7
 {694e65ca-3bef-450a-b78e-8cf109b304ed} event:/dialogue/massive dialogues/70
 {9dd9e883-ae28-45ac-ae06-af04b63dd042} event:/dialogue/massive dialogues/71
 {ad5d01d2-cb52-4763-938d-a821ad81a14e} event:/dialogue/massive dialogues/74
@@ -51,9 +49,7 @@
 {89d1eae2-9112-4b81-b3df-1f8dbbb0d448} event:/dialogue/massive dialogues/77
 {c281c6f3-1ce6-4e0f-b747-85dbe50812cf} event:/dialogue/massive dialogues/78
 {6a60eb49-4f54-4162-ad3c-d9c8b4644a84} event:/dialogue/massive dialogues/79
-{9cd66941-f0ba-4188-984c-5122189051d0} event:/dialogue/massive dialogues/8
 {dfe226f0-9294-4ea9-8968-93c784b9a36e} event:/dialogue/massive dialogues/81
-{e81fd408-8f7e-4faa-afb5-2823e8b99464} event:/dialogue/massive dialogues/9
 {82b1b5fc-1a25-4fef-b936-76c90a077a62} event:/household/door
 {d601953d-0de4-4dac-8475-b3ece117ec1d} event:/household/door knocking
 {f26b981c-4d00-4be1-afd5-94a4b25a172a} event:/household/kerosene lamp
