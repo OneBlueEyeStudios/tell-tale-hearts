@@ -109,6 +109,53 @@ public class SoundManager : MonoBehaviour {
 		*/
 	}
 
+	public EventInstance playDialogueFMOD(string tag, out float length, Transform pos)
+	{
+		EventInstance ev = playSoundAtPosition("event:/dialogue/massive dialogues/" + tag,pos.position);
+
+		EventDescription desc;
+		ev.getDescription (out desc);
+
+		int l;
+
+		desc.getLength (out l);
+		length = l;
+		//GameObject go = new GameObject ("Dialogue_" + tag);
+		//go.transform.position = pos.position;
+		//AudioSource source = go.AddComponent<AudioSource> ();
+		//source.minDistance = 8;
+		
+		//AudioClip clip = getClipFor (tag);
+		
+		
+/*		//Could not find the 
+		if (clip == null) {
+			
+			UnityEngine.Debug.LogError("Could not find dialogue with tag: "+tag);
+			length = 0;
+			return null;
+		}
+		source.clip = clip;
+		length = clip.length;
+		
+		source.Play ();
+		
+		Destroy (go, length);
+		*/
+		return ev;
+		
+		/*
+		AudioClip clip = getClipFor (tag);
+
+		if (clip == null)
+						return 0;
+
+		AudioSource.PlayClipAtPoint (clip,_cop.transform.position);
+
+		return clip.length;
+		*/
+	}
+
 	AudioClip getClipFor (string tag)
 	{
 		foreach (AudioClip clip in _dialogueDB) 
@@ -371,17 +418,16 @@ public class SoundManager : MonoBehaviour {
 		FMODEvent ev;
 		if (HasEventWithName (eventName, out ev)) 
 		{
-
 			PLAYBACK_STATE state;
 			ev._event.getPlaybackState(out state);
 			if(state == PLAYBACK_STATE.STOPPED || state == PLAYBACK_STATE.STOPPING)
 				ev._event.start();
 
-			UnityEngine.Debug.LogWarning("State: "+state);
+			//UnityEngine.Debug.LogWarning("State: "+state);
+			UnityEngine.Debug.LogWarning("Set parameter: "+parameterName + "    "+ parameterValue);
 
 			ev._event.setParameterValue(parameterName,parameterValue);
-
-
+			
 		}
 	}
 	public void TweenParameter (string eventName, string parameterName, float duration, float start, float target)

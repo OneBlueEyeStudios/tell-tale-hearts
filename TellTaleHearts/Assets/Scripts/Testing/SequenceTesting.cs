@@ -403,16 +403,16 @@ public class SequenceTesting : MonoBehaviour
 			parentNode = StageManager._instance.getSecondaryRoomForCurrentStage ();
 	
 
-		MoveNavMeshAgentTo moveScript = null;
+		MoveNavMeshAgentTo2 moveScript = null;
 
 
 		switch (copType) {
 		case CopType.bad:
-			moveScript = _badCop.gameObject.AddComponent<MoveNavMeshAgentTo> ();
+			moveScript = _badCop.gameObject.AddComponent<MoveNavMeshAgentTo2> ();
 			
 			break;
 		case CopType.good:
-			moveScript = _goodCop.gameObject.AddComponent<MoveNavMeshAgentTo> ();
+			moveScript = _goodCop.gameObject.AddComponent<MoveNavMeshAgentTo2> ();
 			
 			break;
 		default:
@@ -427,16 +427,16 @@ public class SequenceTesting : MonoBehaviour
 	{
 
 		
-		TrackNavMeshAgentTo trackScript = null;
+		TrackNavMeshAgentTo2 trackScript = null;
 		
 		
 		switch (copType) {
 		case CopType.bad:
-			trackScript = _badCop.gameObject.AddComponent<TrackNavMeshAgentTo> ();
+			trackScript = _badCop.gameObject.AddComponent<TrackNavMeshAgentTo2> ();
 			
 			break;
 		case CopType.good:
-			trackScript = _goodCop.gameObject.AddComponent<TrackNavMeshAgentTo> ();
+			trackScript = _goodCop.gameObject.AddComponent<TrackNavMeshAgentTo2> ();
 			
 			break;
 		default:

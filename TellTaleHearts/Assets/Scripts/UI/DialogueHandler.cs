@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using FMOD;
+using FMOD.Studio;
 
 public class Constants
 {
@@ -33,10 +35,18 @@ public class DialogueHandler : MonoBehaviour {
 
 	public event EventHandler dialogueEnded;
 
+
+
 	public void OnDialogueEnded()
 	{
 		//Debug.Log ("Dialogue ended!");
 
+		playEndLine ();
+
+
+
+		
+		
 		CharView._instance.setMouseLookEnabled (true);
 		CharView._instance.setCharacterMotorEnabled (true);
 
@@ -46,6 +56,35 @@ public class DialogueHandler : MonoBehaviour {
 
 		if (dialogueEnded!=null)
 				dialogueEnded (this,EventArgs.Empty);
+	}
+
+	void playEndLine ()
+	{
+//		UnityEngine.Debug.LogError("playEndLineplayEndLineplayEndLineplayEndLineplayEndLineplayEndLineplayEndLine!");
+//
+//		string cop = _currentPassage.getCop ();
+//		if (string.IsNullOrEmpty (cop)) 
+//		{
+//		
+//			UnityEngine.Debug.LogWarning("Cop is empty!");
+//			return;
+//		
+//		}
+//
+		CopType cop;
+		bool hasCop = StageManager._instance.getCurrentSpeakingCop (out cop);
+		if (!hasCop)
+						return;
+
+		string eventSuffix = cop == CopType.bad ? "badcop":"goodcop";
+		Transform source = cop == CopType.bad ? StageManager._instance._badCop.transform : StageManager._instance._goodCop.transform;
+
+		string eventName= "event:/dialogue/ending phrases/"+eventSuffix;
+
+		UnityEngine.Debug.LogWarning("Cop is not empty:  "+eventName);
+
+		SoundManager._instance.playSoundAtPosition (eventName, source.position);
+
 	}
 
 	public static DialogueHandler _instance;
@@ -72,11 +111,14 @@ public class DialogueHandler : MonoBehaviour {
 
 	public CylinderWrap _cylinderWrap;
 
+	public int _confessThreshold;
+
 	bool _showingDialogue;
 
 	public Dictionary<string,int> _currentDialogueVars;
 
-	public AudioSource _currentLine;
+	//public AudioSource _currentLine;
+	public EventInstance _currentLineFMOD;
 	
 	public void startDialogue (string dialogueID, string startPassage = "Start")
 	{
@@ -117,7 +159,7 @@ public class DialogueHandler : MonoBehaviour {
 				StageManager._instance.incrementGlobalVar(Constants.SUSPICION,1);
 			}
 			else
-				Debug.LogWarning("Cop does not knows about clue");
+				UnityEngine.Debug.LogWarning("Cop does not knows about clue");
 
 		}
 	}
@@ -162,7 +204,8 @@ public class DialogueHandler : MonoBehaviour {
 	}
 	void showOptions ()
 	{
-		SoundManager._instance.playSoundAtPositionAndParameter ("event:/dialogue/confess", CharView._instance.transform, "level",1.5f, true, true);
+		if(StageManager._instance.getSuspicionLevel()>_confessThreshold)
+			SoundManager._instance.playSoundAtPositionAndParameter ("event:/dialogue/confess", CharView._instance.transform, "level",1.5f, true, true);
 
 		NGUITools.SetActive (_optionsBox, true);
 
@@ -191,7 +234,7 @@ public class DialogueHandler : MonoBehaviour {
 		
 		if(_currentPassage == null)
 		{
-			Debug.LogError("There is no such passage: "+title);
+			UnityEngine.Debug.LogError("There is no such passage: "+title);
 			//stopDialogue();
 			//hideDialogueBox();
 			//OnDialogueEnded();
@@ -215,10 +258,14 @@ public class DialogueHandler : MonoBehaviour {
 			_choices[i].text = _currentPassage.transitions[i].name;
 		}
 
-		NGUITools.SetActive(_choices[i].gameObject,true);
-		_choices[i].text = "CONFESS";
+		if (StageManager._instance.getSuspicionLevel () > _confessThreshold) 
+		{
+			NGUITools.SetActive (_choices [i].gameObject, true);
+			_choices [i].text = "CONFESS";
+
+		}
 		
-		
+		_cylinderWrap.hasConfess = StageManager._instance.getSuspicionLevel () > 2;
 		_cylinderWrap._currentPassage = _currentPassage;
 		_cylinderWrap.spin ();
 
@@ -265,7 +312,7 @@ public class DialogueHandler : MonoBehaviour {
 		{
 				
 			_currentDialogueVars.Add (s, 0);
-			Debug.LogWarning("Created var: "+s);
+			UnityEngine.Debug.LogWarning("Created var: "+s);
 		}
 
 	}
@@ -296,7 +343,7 @@ public class DialogueHandler : MonoBehaviour {
 
 		//Debug.LogWarning ("varName: " + varName + " => value " + value);
 
-		Debug.LogWarning (varName+"="+_currentDialogueVars [varName]);
+		UnityEngine.Debug.LogWarning (varName+"="+_currentDialogueVars [varName]);
 
 		if (varName.Equals (Constants.DOUBT))
 						SoundManager._instance.setDoubtLevel (_currentDialogueVars [varName]);
@@ -306,7 +353,7 @@ public class DialogueHandler : MonoBehaviour {
 	{
 		if (tweeTransition.tags == null) 
 		{
-			Debug.LogWarning("tweeTransition.tags == null");
+			UnityEngine.Debug.LogWarning("tweeTransition.tags == null");
 
 						return;
 		
@@ -344,16 +391,59 @@ public class DialogueHandler : MonoBehaviour {
 		StartCoroutine(printPassage(tweeTransition.passageTag));//, length));
 	}	
 
+	IEnumerator lookAtEachotherCoroutine (Transform left, Transform right)
+	{
+
+		float elapsed = 0;
+		float duration = 0.5f;
+
+		Quaternion leftStart = left.rotation;
+		Quaternion rightStart = right.rotation;
+
+		Vector3 rightNoY = right.transform.position;
+		rightNoY.y = left.position.y;
+
+		Vector3 leftNoY = left.transform.position;
+		leftNoY.y = right.position.y;
+
+		Vector3 leftForward = (rightNoY - left.transform.position).normalized;
+		Vector3 rightForward = (leftNoY - right.transform.position).normalized;
+		//right.LookAt (new Vector3 (left.position.x, right.position.y, left.position.z));
+
+		while (elapsed<duration) 
+		{
+			float t = elapsed/duration;
+
+			left.rotation = Quaternion.Slerp(leftStart,Quaternion.LookRotation(leftForward),t);
+			right.rotation = Quaternion.Slerp(rightStart,Quaternion.LookRotation(rightForward),t);
+
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+
+	}
+
+	void lookAtEachother (Transform left, Transform right)
+	{
+		StartCoroutine (lookAtEachotherCoroutine (left, right));
+
+
+	}
+
 	//void playDialogueLine (TweeTransition tweeTransition, out float length)
 	void playDialogueLine (TweePassage tweePassage, out float length)
 	{
 		//length = 0;
 
-		if (_currentLine != null) 
+		if (_currentLineFMOD != null) 
 		{
-			_currentLine.Stop();
+			_currentLineFMOD.stop(STOP_MODE.IMMEDIATE);
 		}
-
+//		if (_currentLine != null) 
+//		{
+//			_currentLine.Stop();
+//		}
+//
 		/*Transform pos = StageManager._instance.getSpeakingCopPos ();
 		if(pos==null)
 			pos= StageManager._instance.getDoorPos ();
@@ -363,8 +453,10 @@ public class DialogueHandler : MonoBehaviour {
 		string cue = tweePassage.getDialogue ();
 		string cop = tweePassage.getCop ();
 
+		UnityEngine.Debug.LogWarning ("COPPPPPPPPP:" + cop);
+
 		if (string.IsNullOrEmpty (cue) || string.IsNullOrEmpty (cue)) {
-			Debug.LogError("Cue or cop was empty for passage: "+tweePassage.body);
+			UnityEngine.Debug.LogError("Cue or cop was empty for passage: "+tweePassage.body);
 						length = 0;
 						return;
 				}
@@ -374,10 +466,10 @@ public class DialogueHandler : MonoBehaviour {
 
 		//Debug.LogError ("look at!");
 
-		//source.LookAt (CharView._instance.transform);
+		lookAtEachother (source, CharView._instance.transform);
 
 		//_currentLine = SoundManager._instance.playDialogue(tweePassage.dialogue, out length, StageManager._instance._goodCop.transform);
-		_currentLine = SoundManager._instance.playDialogue(cue, out length, source);
+		_currentLineFMOD = SoundManager._instance.playDialogueFMOD(cue, out length, source);
 	}
 	
 	// Update is called once per frame
@@ -393,12 +485,14 @@ public class DialogueHandler : MonoBehaviour {
 			{
 				//centerOnIndex(_currentCenteredIndex+1);
 				_cylinderWrap.centerOnNext();
+
 			}
 			
 			else if (scrollWheel < 0f) 
 			{
 				//centerOnIndex(_currentCenteredIndex-1);
-				_cylinderWrap.centerOnPrevious();
+				//_cylinderWrap.centerOnPrevious();
+				_cylinderWrap.centerOnNext();
 			}
 
 			if(Input.GetButtonDown("Fire1"))
@@ -407,7 +501,7 @@ public class DialogueHandler : MonoBehaviour {
 
 				if(index == _currentPassage.transitions.Count)
 				{
-					Debug.LogWarning("CONFESS");
+					UnityEngine.Debug.LogWarning("CONFESS");
 					StageManager._instance.confessChosen();
 				}
 				else
@@ -464,17 +558,6 @@ public class DialogueHandler : MonoBehaviour {
 		/*_body.gameObject.SetActive (enabled);
 		_transition1.gameObject.SetActive (enabled);
 		_transition2.gameObject.SetActive (enabled);*/
-	}
-	
-	IEnumerator ClearConsole()
-	{
-		// wait until console visible
-		while(!Debug.developerConsoleVisible)
-		{
-			yield return null;
-		}
-		yield return null; // this is required to wait for an additional frame, without this clearing doesn't work (at least for me)
-		Debug.ClearDeveloperConsole();
 	}
 
 

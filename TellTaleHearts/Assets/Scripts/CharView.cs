@@ -84,8 +84,8 @@ public class CharView : MonoBehaviour
 		{
 
 
-				if (_useShift)
-						setMouseLookEnabled (!Input.GetKey (KeyCode.LeftShift));
+				//if (_useShift)
+				//		setMouseLookEnabled (!Input.GetKey (KeyCode.LeftShift));
 
 				_handSocket.transform.position = Camera.main.transform.position + Camera.main.transform.forward * _objectDistance;
 
@@ -98,6 +98,14 @@ public class CharView : MonoBehaviour
 				Ray r = Camera.main.ScreenPointToRay (new Vector3 (Screen.width / 2f, Screen.height / 2f, 0));
 
 				RaycastHit hit;
+
+				// Interact with cops
+				if (Input.GetButtonDown ("Fire1") && Physics.Raycast (r, out hit, 1f, LayerMasks.CopsLayerMask)) 
+				{
+					
+					Debug.LogWarning("Cop say something!");
+
+				}
 
 				if (!_isHoldingObject && Physics.Raycast (r, out hit, _grabDistance, LayerMasks.GrabbableLayerMask | LayerMasks.InteractableLayerMask)) {
 						if (hit.transform.gameObject == _currentlyCentered) {
@@ -130,7 +138,7 @@ public class CharView : MonoBehaviour
 
 				//if (_currentlyCentered != null) 
 				{
-						if (Input.GetKeyDown (KeyCode.E)) {
+						if (Input.GetButtonDown("Fire1")) {
 
 								if (_currentlyCentered != null && _currentlyCentered.layer == LayerMasks.GrabbableLayerIndex) {
 										if (_isHoldingObject && _canDrop) {
@@ -186,7 +194,8 @@ public class CharView : MonoBehaviour
 										Interactable interactable = _currentlyCentered.GetComponent<Interactable> ();
 										interactable.interact ();
 								}
-						} else if (Input.GetKeyDown (KeyCode.Q)) {
+							}	else if (Input.GetButtonDown("Fire2")) {
+						//} else if (Input.GetKeyDown (KeyCode.Q)) {
 								//if (!_mouseLookEnabled) {
 								if (_isHoldingObject) {
 										if (_lastObjectParent.GetComponent<Clue> () != null)

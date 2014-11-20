@@ -15,6 +15,8 @@ public class Cop : MonoBehaviour
 		int _backVar = Animator.StringToHash ("Back");
 		int _frontVar = Animator.StringToHash ("Front");
 
+	bool _isWalking;
+
 	public float _walkSpeedAnimationFactor;
 
 	Vector3 _startScale;
@@ -42,8 +44,11 @@ public class Cop : MonoBehaviour
 						_animator.speed = 1;
 */
 
-
-				_animator.SetFloat (_speedFloat, speed);
+		if(_isWalking)
+			_animator.SetFloat (_speedFloat, 1);
+		else
+			_animator.SetFloat (_speedFloat, 0);
+			//_animator.SetFloat (_speedFloat, speed);
 
 				Vector3 direction = Camera.main.transform.position - transform.position;
 				direction.y = 0;
@@ -90,6 +95,11 @@ public class Cop : MonoBehaviour
 						StageManager._instance.OnCopApproach (_copType);
 				}
 
+		}
+
+	public void setWalking(bool isWalking)
+	{
+		_isWalking = isWalking;
 		}
 
 	public static float AngleSigned(Vector3 v1, Vector3 v2, Vector3 n)

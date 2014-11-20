@@ -60,8 +60,9 @@ public class SetDestination : Command {
 			//	SequenceTesting._instance.MoveCharacterList (destination._copType, destination._node,_waitTimePerNode);
 			//}
 			//else
-			SequenceTesting._instance.MoveCop(destination._copType, destination._node);//.MoveCharacter (destination._copType, destination._node.position);
+			//SequenceTesting._instance.MoveCop(destination._copType, destination._node);//.MoveCharacter (destination._copType, destination._node.position);
 		
+			SequenceTesting._instance.MoveCopTrack(destination._copType,destination._node);
 		}
 	}
 

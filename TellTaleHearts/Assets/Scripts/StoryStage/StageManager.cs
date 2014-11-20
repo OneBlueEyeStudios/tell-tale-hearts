@@ -88,10 +88,37 @@ public class StageManager : MonoBehaviour {
 	public int _lastLevel = 8;
 	public int _suspicionThreshold = 5;
 
-	public LineRenderer _lineRenderer;
+	public Trail _trail;
 	public GameObject _pathRendererPrefab;
 	public NavMeshAgent _pathRenderer;
 
+	public bool getCurrentSpeakingCop(out CopType type)
+	{
+		
+		
+		/*if (_goodFungus.GetBooleanVariable (Constants.SPEAKING_COP))
+			return CopType.good;
+		else
+			return CopType.bad;*/
+		
+		StageClue stage = getCurrentStage ();
+		if (stage == null) {
+			type = CopType.bad;
+				return false;
+				}
+			//return CopType.bad;
+
+		type = stage._speakingCop;
+		return true;
+		//return stage._speakingCop;
+	}
+
+
+	public int getSuspicionLevel()
+	{
+		return _globalVars [Constants.SUSPICION];
+
+	}
 	public CopType getCurrentSpeakingCop()
 	{
 
@@ -102,6 +129,8 @@ public class StageManager : MonoBehaviour {
 			return CopType.bad;*/
 
 		StageClue stage = getCurrentStage ();
+		if (stage == null)
+			return CopType.bad;
 
 		return stage._speakingCop;
 	}
@@ -109,47 +138,73 @@ public class StageManager : MonoBehaviour {
 	public void clearTrail ()
 	{
 		//_pathRenderer.GetComponent<TrailRenderer> ().time = 1f;
-		Destroy (_pathRenderer.gameObject);
+	//	Destroy (_pathRenderer.gameObject);
 	}
 
+	public void DrawPlayerPath(Transform start, Transform end, CopType type)
+	{
+		GameObject go = Instantiate(_pathRendererPrefab,start.position + start.forward*2f,Quaternion.identity) as GameObject;
+		_trail = go.GetComponent<Trail> ();		
+		_trail.DrawPlayerPath (start, end, type);
+	}
 
+	/*
 	public void DrawPlayerPath(Transform start, Transform end)
 	{
 		StartCoroutine (DrawPlayerPathCoroutine (start, end));
-		//NavMeshPath path = new NavMeshPath();
-		//NavMesh.CalculatePath (start, end, -1, path);
 
-		//_pathRenderer.GetComponent<TrailRenderer>().material.mainTextureScale = new Vector2(path.corners.Length,1);
-		//_pathRenderer.GetComponent<TrailRenderer>().material.mainTextureScale = new Vector2(10,1);
-		//_pathRenderer.GetComponent<TrailRenderer> ().enabled = false;
-
-
-		//StartCoroutine (parentTrailWhenDone ());
-		
 	}
 
 	IEnumerator DrawPlayerPathCoroutine (Transform start, Transform end)
 	{
 		//while (true) 
 		{
+			NavMeshPath path = new NavMeshPath();
+			bool theresPath = NavMesh.CalculatePath(start.position,end.position,-1,path);
+
+			Debug.LogWarning(theresPath+"  path:"+path.corners.Length);
 
 			if(_pathRenderer != null)
 				Destroy(_pathRenderer.gameObject);
 
-			GameObject go = Instantiate(_pathRendererPrefab,start.position,Quaternion.identity) as GameObject;
+			GameObject go = Instantiate(_pathRendererPrefab,start.position + start.forward*2f,Quaternion.identity) as GameObject;
 			_pathRenderer = go.GetComponent<NavMeshAgent>();
 
 			//_pathRenderer.GetComponent<TrailRenderer> ().time = -1f;
 			//_pathRenderer.transform.position = start.position;
+
+			yield return new WaitForSeconds(1);
 			_pathRenderer.SetDestination (end.position);
-			
-			_pathRenderer.GetComponent<TrailRenderer> ().time = 100f;
-			_pathRenderer.GetComponent<TrailRenderer> ().enabled = true;
+
+			iTween.FadeTo(_pathRenderer.gameObject.transform.FindChild("Quad").gameObject,0,5f);
+//			LineRenderer lineRenderer = _pathRenderer.GetComponentInChildren<LineRenderer> ();
+//			lineRenderer.SetVertexCount(path.corners.Length);
+//			int index = 0;
+//			foreach(Vector3 pos in path.corners)
+//			{
+//				Debug.LogWarning("Set pos");
+//
+//				lineRenderer.SetPosition(index,pos);
+//				index++;
+//			}
+//
+			//_pathRenderer.GetComponentInChildren<TrailRenderer> ().time = 100f;
+			_pathRenderer.GetComponentInChildren<TrailRenderer> ().enabled = true;
 		
 			//yield return new WaitForSeconds(10);
 			yield return null;
+
+			while(!arrived(_pathRenderer))
+			{
+				yield return null;
+			}
+
+			//Destroy(_pathRenderer.gameObject.transform.FindChild("Quad").gameObject);
+
+
 		}
 	}
+	*/
 
 	bool arrived (NavMeshAgent agent)
 	{
@@ -173,21 +228,21 @@ public class StageManager : MonoBehaviour {
 		_pathRenderer.transform.position = Vector3.zero;
 	}
 
-	public void DrawPlayerPath2(Vector3 start, Vector3 end)
-	{
-		NavMeshPath path = new NavMeshPath();
-		NavMesh.CalculatePath (start, end, -1, path);
-
-		_lineRenderer.SetVertexCount (path.corners.Length);
-
-		int count = 0;
-		foreach (Vector3 pos in path.corners) 
-		{
-			_lineRenderer.SetPosition(count,pos);
-			count++;
-		}
-
-	}
+//	public void DrawPlayerPath2(Vector3 start, Vector3 end)
+//	{
+//		NavMeshPath path = new NavMeshPath();
+//		NavMesh.CalculatePath (start, end, -1, path);
+//
+//		_lineRenderer.SetVertexCount (path.corners.Length);
+//
+//		int count = 0;
+//		foreach (Vector3 pos in path.corners) 
+//		{
+//			_lineRenderer.SetPosition(count,pos);
+//			count++;
+//		}
+//
+//	}
 
 	public Transform getDoorPos ()
 	{

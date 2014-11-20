@@ -5,7 +5,7 @@ public class Door : Interactable {
 
 	Animator _animator;
 
-	bool _isClosed = true;
+	public bool _isClosed = true;
 	public bool _invert;
 	bool _canInteract = true;
 	
