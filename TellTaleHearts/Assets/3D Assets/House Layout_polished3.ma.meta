@@ -140,6 +140,58 @@ ModelImporter:
     100268: House_wall8 1
     100270: transform1
     100272: transform2
+    100274: bedroomdoor1
+    100276: Bottom_large_wainscotting_Isolated:bottom_large_wainscotting
+    100278: Bottom_large_wainscotting_Isolated:House_Main_Group
+    100280: ceiling_wooden_bars
+    100282: Cement_square
+    100284: Cement_square1
+    100286: Cement_square2
+    100288: Cement_square3
+    100290: Cement_square4
+    100292: Cement_square5
+    100294: Cement_square6
+    100296: Cement_square7
+    100298: Door1
+    100300: Entrance_bars
+    100302: Entrance_bars1
+    100304: Entrance_Floor
+    100306: Entrance_Floor1
+    100308: Entrance_Outdoor
+    100310: Entrance_wbar20
+    100312: Entrance_wbar21
+    100314: Entrance_wbar22
+    100316: Entrance_wbar23
+    100318: Entrance_wbar24
+    100320: Entrance_wbar25
+    100322: Front_Door
+    100324: group1
+    100326: main_door
+    100328: main_door_knob
+    100330: polySurface110
+    100332: polySurface127
+    100334: polySurface128
+    100336: polySurface129
+    100338: polySurface130
+    100340: polySurface131
+    100342: polySurface132
+    100344: polySurface133
+    100346: polySurface134
+    100348: polySurface135
+    100350: polySurface136
+    100352: polySurface137
+    100354: polySurface138
+    100356: polySurface139
+    100358: polySurface140
+    100360: polySurface141
+    100362: polySurface142
+    100364: transform12
+    100366: transform21
+    100368: transform22
+    100370: transform23
+    100372: transform24
+    100374: transform25
+    100376: wall_entrance_outside
     400000: backdoor
     400002: bedroomdoor
     400004: bottom_small_wainscotting
@@ -277,6 +329,58 @@ ModelImporter:
     400268: House_wall8 1
     400270: transform1
     400272: transform2
+    400274: bedroomdoor1
+    400276: Bottom_large_wainscotting_Isolated:bottom_large_wainscotting
+    400278: Bottom_large_wainscotting_Isolated:House_Main_Group
+    400280: ceiling_wooden_bars
+    400282: Cement_square
+    400284: Cement_square1
+    400286: Cement_square2
+    400288: Cement_square3
+    400290: Cement_square4
+    400292: Cement_square5
+    400294: Cement_square6
+    400296: Cement_square7
+    400298: Door1
+    400300: Entrance_bars
+    400302: Entrance_bars1
+    400304: Entrance_Floor
+    400306: Entrance_Floor1
+    400308: Entrance_Outdoor
+    400310: Entrance_wbar20
+    400312: Entrance_wbar21
+    400314: Entrance_wbar22
+    400316: Entrance_wbar23
+    400318: Entrance_wbar24
+    400320: Entrance_wbar25
+    400322: Front_Door
+    400324: group1
+    400326: main_door
+    400328: main_door_knob
+    400330: polySurface110
+    400332: polySurface127
+    400334: polySurface128
+    400336: polySurface129
+    400338: polySurface130
+    400340: polySurface131
+    400342: polySurface132
+    400344: polySurface133
+    400346: polySurface134
+    400348: polySurface135
+    400350: polySurface136
+    400352: polySurface137
+    400354: polySurface138
+    400356: polySurface139
+    400358: polySurface140
+    400360: polySurface141
+    400362: polySurface142
+    400364: transform12
+    400366: transform21
+    400368: transform22
+    400370: transform23
+    400372: transform24
+    400374: transform25
+    400376: wall_entrance_outside
     2300000: backdoor
     2300002: bottom_small_wainscotting
     2300004: ceiling_wbar13
@@ -404,6 +508,43 @@ ModelImporter:
     2300248: body
     2300250: knob
     2300252: window
+    2300254: Bottom_large_wainscotting_Isolated:bottom_large_wainscotting
+    2300256: Cement_square
+    2300258: Cement_square1
+    2300260: Cement_square2
+    2300262: Cement_square3
+    2300264: Cement_square4
+    2300266: Cement_square5
+    2300268: Cement_square6
+    2300270: Cement_square7
+    2300272: Door1
+    2300274: Entrance_bars
+    2300276: Entrance_bars1
+    2300278: Entrance_Floor
+    2300280: Entrance_Floor1
+    2300282: Entrance_wbar20
+    2300284: Entrance_wbar21
+    2300286: Entrance_wbar22
+    2300288: Entrance_wbar23
+    2300290: Entrance_wbar24
+    2300292: Entrance_wbar25
+    2300294: main_door
+    2300296: main_door_knob
+    2300298: polySurface110
+    2300300: polySurface127
+    2300302: polySurface128
+    2300304: polySurface129
+    2300306: polySurface130
+    2300308: polySurface131
+    2300310: polySurface132
+    2300312: polySurface133
+    2300314: polySurface134
+    2300316: polySurface135
+    2300318: polySurface136
+    2300320: polySurface140
+    2300322: polySurface141
+    2300324: polySurface142
+    2300326: wall_entrance_outside
     3300000: backdoor
     3300002: bottom_small_wainscotting
     3300004: ceiling_wbar13
@@ -531,6 +672,43 @@ ModelImporter:
     3300248: body
     3300250: knob
     3300252: window
+    3300254: Bottom_large_wainscotting_Isolated:bottom_large_wainscotting
+    3300256: Cement_square
+    3300258: Cement_square1
+    3300260: Cement_square2
+    3300262: Cement_square3
+    3300264: Cement_square4
+    3300266: Cement_square5
+    3300268: Cement_square6
+    3300270: Cement_square7
+    3300272: Door1
+    3300274: Entrance_bars
+    3300276: Entrance_bars1
+    3300278: Entrance_Floor
+    3300280: Entrance_Floor1
+    3300282: Entrance_wbar20
+    3300284: Entrance_wbar21
+    3300286: Entrance_wbar22
+    3300288: Entrance_wbar23
+    3300290: Entrance_wbar24
+    3300292: Entrance_wbar25
+    3300294: main_door
+    3300296: main_door_knob
+    3300298: polySurface110
+    3300300: polySurface127
+    3300302: polySurface128
+    3300304: polySurface129
+    3300306: polySurface130
+    3300308: polySurface131
+    3300310: polySurface132
+    3300312: polySurface133
+    3300314: polySurface134
+    3300316: polySurface135
+    3300318: polySurface136
+    3300320: polySurface140
+    3300322: polySurface141
+    3300324: polySurface142
+    3300326: wall_entrance_outside
     4300000: ceiling_wbar13
     4300002: ceiling_wbar14
     4300004: ceiling_wbar15
@@ -658,6 +836,43 @@ ModelImporter:
     4300248: body
     4300250: knob
     4300252: window
+    4300254: Door1
+    4300256: polySurface127
+    4300258: polySurface128
+    4300260: polySurface129
+    4300262: polySurface130
+    4300264: polySurface131
+    4300266: polySurface132
+    4300268: polySurface133
+    4300270: polySurface134
+    4300272: polySurface135
+    4300274: polySurface110
+    4300276: polySurface136
+    4300278: polySurface140
+    4300280: polySurface141
+    4300282: polySurface142
+    4300284: wall_entrance_outside
+    4300286: main_door
+    4300288: main_door_knob
+    4300290: Bottom_large_wainscotting_Isolated:bottom_large_wainscotting
+    4300292: Cement_square
+    4300294: Cement_square1
+    4300296: Cement_square2
+    4300298: Cement_square3
+    4300300: Cement_square4
+    4300302: Cement_square5
+    4300304: Entrance_Floor
+    4300306: Cement_square6
+    4300308: Cement_square7
+    4300310: Entrance_bars
+    4300312: Entrance_bars1
+    4300314: Entrance_Floor1
+    4300316: Entrance_wbar20
+    4300318: Entrance_wbar21
+    4300320: Entrance_wbar22
+    4300322: Entrance_wbar23
+    4300324: Entrance_wbar24
+    4300326: Entrance_wbar25
     9500000: //RootNode
   materials:
     importMaterials: 1
