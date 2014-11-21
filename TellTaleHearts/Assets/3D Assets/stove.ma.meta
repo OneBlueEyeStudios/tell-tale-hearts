@@ -23,6 +23,9 @@ ModelImporter:
     100034: drawer_middle
     100036: drawer_top
     100038: stove1
+    100040: Bottom_Drawer
+    100042: Middle_Drawer
+    100044: Top_Drawer
     400000: pCube1
     400002: pCube2
     400004: pCube3
@@ -43,6 +46,9 @@ ModelImporter:
     400034: drawer_middle
     400036: drawer_top
     400038: stove1
+    400040: Bottom_Drawer
+    400042: Middle_Drawer
+    400044: Top_Drawer
     2300000: pCube1
     2300002: pCube2
     2300004: pCube3
@@ -62,6 +68,9 @@ ModelImporter:
     2300032: drawer_middle
     2300034: drawer_top
     2300036: stove1
+    2300038: Bottom_Drawer
+    2300040: Middle_Drawer
+    2300042: Top_Drawer
     3300000: pCube1
     3300002: pCube2
     3300004: pCube3
@@ -81,6 +90,9 @@ ModelImporter:
     3300032: drawer_middle
     3300034: drawer_top
     3300036: stove1
+    3300038: Bottom_Drawer
+    3300040: Middle_Drawer
+    3300042: Top_Drawer
     4300000: pCube1
     4300002: pCube2
     4300004: pCylinder1
@@ -100,6 +112,9 @@ ModelImporter:
     4300032: drawer_top
     4300034: drawer_middle
     4300036: drawer_bottom
+    4300038: Top_Drawer
+    4300040: Middle_Drawer
+    4300042: Bottom_Drawer
     7400000: Take 001
     9500000: //RootNode
   materials:

@@ -22,6 +22,9 @@ ModelImporter:
     100032: left_drawer
     100034: right_door
     100036: right_drawer
+    100038: Left_Door
+    100040: Left_Drawer
+    100042: Right_Door
     400000: body
     400002: face
     400004: feet
@@ -41,6 +44,9 @@ ModelImporter:
     400032: left_drawer
     400034: right_door
     400036: right_drawer
+    400038: Left_Door
+    400040: Left_Drawer
+    400042: Right_Door
     2300000: body
     2300002: face
     2300004: feet
@@ -59,6 +65,9 @@ ModelImporter:
     2300030: left_drawer
     2300032: right_door
     2300034: right_drawer
+    2300036: Left_Door
+    2300038: Left_Drawer
+    2300040: Right_Door
     3300000: body
     3300002: face
     3300004: feet
@@ -77,6 +86,9 @@ ModelImporter:
     3300030: left_drawer
     3300032: right_door
     3300034: right_drawer
+    3300036: Left_Door
+    3300038: Left_Drawer
+    3300040: Right_Door
     4300000: body
     4300002: top1
     4300004: pCube20
@@ -95,6 +107,9 @@ ModelImporter:
     4300030: left_drawer
     4300032: right_door
     4300034: left_door
+    4300036: Left_Drawer
+    4300038: Right_Door
+    4300040: Left_Door
     9500000: //RootNode
   materials:
     importMaterials: 1
