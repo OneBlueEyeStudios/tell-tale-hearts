@@ -1,6 +1,6 @@
 //Maya ASCII 2015 scene
-//Name: Asset_desk_v02.ma
-//Last modified: Wed, Nov 19, 2014 08:43:38 PM
+//Name: desk.ma
+//Last modified: Fri, Nov 21, 2014 01:56:50 PM
 //Codeset: UTF-8
 requires maya "2015";
 currentUnit -l centimeter -a degree -t film;
@@ -11,14 +11,14 @@ fileInfo "cutIdentifier" "201405190330-916664";
 fileInfo "osv" "Mac OS X 10.9.1";
 fileInfo "license" "education";
 createNode transform -s -n "persp";
-	setAttr ".t" -type "double3" 53.103062185311934 30.695137571270756 2.869957507332074 ;
-	setAttr ".r" -type "double3" -9.9383527317456029 82.600000000000321 0 ;
+	setAttr ".t" -type "double3" 52.43663792656411 29.230380846958028 3.1805393109654494 ;
+	setAttr ".r" -type "double3" -8.738352731745648 71.400000000000347 -4.9858314034836955e-15 ;
 	setAttr ".rp" -type "double3" -3.5527136788005009e-15 7.1054273576010019e-15 3.5527136788005009e-15 ;
 	setAttr ".rpt" -type "double3" -6.6493273983928659e-16 9.281553931915714e-17 -1.0773541522891336e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v";
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 79.727237184861565;
+	setAttr ".coi" 79.727237184861167;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -1950,8 +1950,6 @@ select -ne :hardwareRenderingGlobals;
 	setAttr ".msaa" yes;
 select -ne :defaultHardwareRenderGlobals;
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
-select -ne :ikSystem;
-	setAttr -s 4 ".sol";
 connectAttr "polyAutoProj11.out" "right_drawerShape.i";
 connectAttr "polyAutoProj12.out" "|desk_main|right_drawer|handle|handleShape.i";
 connectAttr "polyAutoProj13.out" "left_drawerShape.i";
@@ -2029,4 +2027,4 @@ connectAttr "place2dTexture2.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
 connectAttr "checker1.msg" ":defaultTextureList1.tx" -na;
 connectAttr "checker2.msg" ":defaultTextureList1.tx" -na;
-// End of Asset_desk_v02.ma
+// End of desk.ma
