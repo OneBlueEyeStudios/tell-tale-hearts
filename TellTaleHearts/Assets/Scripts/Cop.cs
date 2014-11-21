@@ -17,6 +17,10 @@ public class Cop : MonoBehaviour
 
 	bool _isWalking;
 
+	[HideInInspector]
+	public bool _waitingForDialogue;
+
+
 	public float _walkSpeedAnimationFactor;
 
 	Vector3 _startScale;

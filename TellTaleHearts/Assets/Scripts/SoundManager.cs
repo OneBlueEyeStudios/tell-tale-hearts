@@ -199,8 +199,30 @@ public class SoundManager : MonoBehaviour {
 		return fmodEvent;
 	}
 
+	void setNewTrackTarget (string eventName, Transform position)
+	{
+		foreach (FMODEvent ev in _soundEvents) 
+		{
+			if(ev._eventName.Equals(eventName))
+			{
+				ev._position = position;
+			}
+		}
+	}
+
 	public EventInstance playSoundAtPositionAndParameter(string eventName, Transform position, string parameterName, float value, bool register = false, bool track = false, float volume = 1)
 	{
+		FMODEvent ev;
+		if(register && HasEventWithName (eventName, out ev))
+		{
+			ev._event.setParameterValue(parameterName,value);
+			ev._position = position;
+			//setNewTrackTarget(eventName,position);
+
+			return ev._event;
+		}
+
+
 		EventInstance fmodEvent = FMOD_StudioSystem.instance.GetEvent (eventName);
 		ParameterInstance fmodParameter;
 
@@ -219,7 +241,7 @@ public class SoundManager : MonoBehaviour {
 		fmodEvent.release ();
 	
 		if (register)
-						RegisterNewEvent (fmodEvent, eventName,track,position);
+			RegisterNewEvent (fmodEvent, eventName,track,position);
 
 		return fmodEvent;
 		}
@@ -442,6 +464,20 @@ public class SoundManager : MonoBehaviour {
 
 			StartCoroutine(TweenParameterCoroutine(ev,parameterName,duration,start,target));
 		}
+	}
+
+	public void playDismissalLine (CopType copType)
+	{
+
+		string eventSuffix = copType == CopType.bad ? "badcop":"goodcop";
+		Transform source = copType == CopType.bad ? StageManager._instance._badCop.transform : StageManager._instance._goodCop.transform;
+		
+		string eventName= "event:/dialogue/ending phrases/"+eventSuffix;
+		
+		UnityEngine.Debug.LogWarning("Cop is not empty:  "+eventName);
+		
+		SoundManager._instance.playSoundAtPosition (eventName, source.position);
+		
 	}
 
 	IEnumerator TweenParameterCoroutine (FMODEvent ev, string parameterName, float duration, float start, float target)

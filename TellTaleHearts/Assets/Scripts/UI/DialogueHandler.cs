@@ -15,8 +15,12 @@ public class Constants
 	public static string DECISION_NODE = "Decision";
 	public static string GOOD_COP_APPROACH = "GoodCopApproach";
 	public static string BAD_COP_APPROACH = "BadCopApproach";
+	public static string GOOD_COP_CLICK = "GoodCopClick";
+	public static string BAD_COP_CLICK = "BadCopClick";
 	public static string GOOD_COP = "good";
 	public static string BAD_COP = "bad";
+
+
 
 	public static string CUE_TAG = "cue";
 	public static string COP_TAG = "cop";
@@ -25,6 +29,7 @@ public class Constants
 	public static string MINUS_EQUAL = "-=";
 
 
+	public static string PLAYER_REACH_LR_TRIGGER =  "PlayerReachLR";
 	public static string STAGE_FINISH_TRIGGER =  "StageFinished";
 	public static string GAME_START_TRIGGER =  "GameStart";
 	public static string DOOR_OPEN_TRIGGER = "DoorOpen";
@@ -58,7 +63,7 @@ public class DialogueHandler : MonoBehaviour {
 				dialogueEnded (this,EventArgs.Empty);
 	}
 
-	void playEndLine ()
+	public void playEndLine ()
 	{
 //		UnityEngine.Debug.LogError("playEndLineplayEndLineplayEndLineplayEndLineplayEndLineplayEndLineplayEndLine!");
 //
@@ -86,6 +91,9 @@ public class DialogueHandler : MonoBehaviour {
 		SoundManager._instance.playSoundAtPosition (eventName, source.position);
 
 	}
+
+
+
 
 	public static DialogueHandler _instance;
 

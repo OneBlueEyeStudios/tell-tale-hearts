@@ -99,7 +99,18 @@ public class TrackNavMeshAgentTo2 : MonoBehaviour {
 						NavMeshPath path = new NavMeshPath ();
 						NavMesh.CalculatePath (transform.position, node.position, -1, path);
 
+
 						int index = 0;
+
+//						Vector3 pos = path.corners [index];
+//						pos.y = transform.position.y;
+//
+//						transform.LookAt (pos);
+//
+//						transform.position += transform.forward * Time.deltaTime;
+//
+//						yield return null;
+
 						while (index < path.corners.Length) {
 								Vector3 pos = path.corners [index];
 								pos.y = transform.position.y;
@@ -107,17 +118,17 @@ public class TrackNavMeshAgentTo2 : MonoBehaviour {
 								transform.LookAt (pos);
 
 								/*
-			Ray r = new Ray(transform.position,transform.forward);
-			RaycastHit hit;
-			if(Physics.Raycast(r, out hit,2.0f,LayerMasks.InteractableLayerMask))
-			{
-				Door door = hit.transform.GetComponent<Door>();
-				if(door!=null && door._isClosed)
-				{
-					door.interact();
-					yield return new WaitForSeconds(1);
-				}
-			}*/
+								Ray r = new Ray(transform.position,transform.forward);
+								RaycastHit hit;
+								if(Physics.Raycast(r, out hit,2.0f,LayerMasks.InteractableLayerMask))
+								{
+									Door door = hit.transform.GetComponent<Door>();
+									if(door!=null && door._isClosed)
+									{
+										door.interact();
+										yield return new WaitForSeconds(1);
+									}
+								}*/
 			
 								transform.position += transform.forward * Time.deltaTime;
 		

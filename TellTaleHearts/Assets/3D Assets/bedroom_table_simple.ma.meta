@@ -4,10 +4,35 @@ ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Bottom_Drawer
+    100004: Bottom_Drawer_handle
+    100006: Nighstand
+    100008: Top_Drawer
+    100010: Top_Drawer_handle
     400000: //RootNode
+    400002: Bottom_Drawer
+    400004: Bottom_Drawer_handle
+    400006: Nighstand
+    400008: Top_Drawer
+    400010: Top_Drawer_handle
     2300000: //RootNode
+    2300002: Bottom_Drawer
+    2300004: Bottom_Drawer_handle
+    2300006: Nighstand
+    2300008: Top_Drawer
+    2300010: Top_Drawer_handle
     3300000: //RootNode
+    3300002: Bottom_Drawer
+    3300004: Bottom_Drawer_handle
+    3300006: Nighstand
+    3300008: Top_Drawer
+    3300010: Top_Drawer_handle
     4300000: pasted__pasted__pasted__pasted__pCube3
+    4300002: Bottom_Drawer
+    4300004: Bottom_Drawer_handle
+    4300006: Top_Drawer
+    4300008: Top_Drawer_handle
+    4300010: Nighstand
     9500000: //RootNode
   materials:
     importMaterials: 1

@@ -102,8 +102,22 @@ public class CharView : MonoBehaviour
 				// Interact with cops
 				if (Input.GetButtonDown ("Fire1") && Physics.Raycast (r, out hit, 1f, LayerMasks.CopsLayerMask)) 
 				{
+					Cop cop = hit.transform.GetComponent<Cop>();
+					CopType type = cop._copType;
+
+					if(cop._waitingForDialogue)
+					{
+						if(type == CopType.bad)
+							StageManager._instance.OnEventTrigger(Constants.BAD_COP_CLICK);
+						else 
+							StageManager._instance.OnEventTrigger(Constants.GOOD_COP_CLICK);
+					}
+					else
+						SoundManager._instance.playDismissalLine(type);
+
+
 					
-					Debug.LogWarning("Cop say something!");
+							
 
 				}
 
