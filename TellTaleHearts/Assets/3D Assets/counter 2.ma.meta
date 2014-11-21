@@ -12,6 +12,13 @@ ModelImporter:
     100012: counter1
     100014: drawer
     100016: main_door
+    100018: Counter2_main
+    100020: drawer 1
+    100022: main_door 1
+    100024: transform1
+    100026: transform2
+    100028: transform3
+    100030: transform4
     400000: //RootNode
     400002: pCube25
     400004: pCube8
@@ -21,6 +28,13 @@ ModelImporter:
     400012: counter1
     400014: drawer
     400016: main_door
+    400018: Counter2_main
+    400020: drawer 1
+    400022: main_door 1
+    400024: transform1
+    400026: transform2
+    400028: transform3
+    400030: transform4
     2300000: pCube25
     2300002: pCube8
     2300004: pCube9

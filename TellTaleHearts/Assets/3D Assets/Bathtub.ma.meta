@@ -37,12 +37,14 @@ ModelImporter:
     2300006: pCube5
     2300008: pSphere2
     2300010: Bathtub1
+    2300012: //RootNode
     3300000: pCube2
     3300002: pCube3
     3300004: pCube4
     3300006: pCube5
     3300008: pSphere2
     3300010: Bathtub1
+    3300012: //RootNode
     4300000: pSphere2
     4300002: pCube2
     4300004: pCube3
