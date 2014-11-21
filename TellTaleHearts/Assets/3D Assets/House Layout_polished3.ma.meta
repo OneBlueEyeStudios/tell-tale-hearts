@@ -192,6 +192,27 @@ ModelImporter:
     100372: transform24
     100374: transform25
     100376: wall_entrance_outside
+    100378: doorframe1
+    100380: doorframe10
+    100382: doorframe11
+    100384: doorframe12
+    100386: doorframe13
+    100388: doorframe14
+    100390: doorframe15
+    100392: doorframe2
+    100394: doorframe3
+    100396: doorframe4
+    100398: doorframe5
+    100400: doorframe6
+    100402: doorframe7
+    100404: doorframe8
+    100406: doorframe9
+    100408: House_wall
+    100410: Large_Wainscotting
+    100412: polySurface144
+    100414: polySurface146
+    100416: polySurface148
+    100418: Wainscotting
     400000: backdoor
     400002: bedroomdoor
     400004: bottom_small_wainscotting
@@ -381,6 +402,27 @@ ModelImporter:
     400372: transform24
     400374: transform25
     400376: wall_entrance_outside
+    400378: doorframe1
+    400380: doorframe10
+    400382: doorframe11
+    400384: doorframe12
+    400386: doorframe13
+    400388: doorframe14
+    400390: doorframe15
+    400392: doorframe2
+    400394: doorframe3
+    400396: doorframe4
+    400398: doorframe5
+    400400: doorframe6
+    400402: doorframe7
+    400404: doorframe8
+    400406: doorframe9
+    400408: House_wall
+    400410: Large_Wainscotting
+    400412: polySurface144
+    400414: polySurface146
+    400416: polySurface148
+    400418: Wainscotting
     2300000: backdoor
     2300002: bottom_small_wainscotting
     2300004: ceiling_wbar13
@@ -545,6 +587,26 @@ ModelImporter:
     2300322: polySurface141
     2300324: polySurface142
     2300326: wall_entrance_outside
+    2300328: doorframe1
+    2300330: doorframe10
+    2300332: doorframe11
+    2300334: doorframe12
+    2300336: doorframe13
+    2300338: doorframe14
+    2300340: doorframe15
+    2300342: doorframe2
+    2300344: doorframe3
+    2300346: doorframe4
+    2300348: doorframe5
+    2300350: doorframe6
+    2300352: doorframe7
+    2300354: doorframe8
+    2300356: doorframe9
+    2300358: House_wall
+    2300360: Large_Wainscotting
+    2300362: polySurface144
+    2300364: polySurface146
+    2300366: polySurface148
     3300000: backdoor
     3300002: bottom_small_wainscotting
     3300004: ceiling_wbar13
@@ -709,6 +771,26 @@ ModelImporter:
     3300322: polySurface141
     3300324: polySurface142
     3300326: wall_entrance_outside
+    3300328: doorframe1
+    3300330: doorframe10
+    3300332: doorframe11
+    3300334: doorframe12
+    3300336: doorframe13
+    3300338: doorframe14
+    3300340: doorframe15
+    3300342: doorframe2
+    3300344: doorframe3
+    3300346: doorframe4
+    3300348: doorframe5
+    3300350: doorframe6
+    3300352: doorframe7
+    3300354: doorframe8
+    3300356: doorframe9
+    3300358: House_wall
+    3300360: Large_Wainscotting
+    3300362: polySurface144
+    3300364: polySurface146
+    3300366: polySurface148
     4300000: ceiling_wbar13
     4300002: ceiling_wbar14
     4300004: ceiling_wbar15
@@ -873,6 +955,26 @@ ModelImporter:
     4300322: Entrance_wbar23
     4300324: Entrance_wbar24
     4300326: Entrance_wbar25
+    4300328: doorframe1
+    4300330: doorframe2
+    4300332: doorframe3
+    4300334: doorframe4
+    4300336: doorframe5
+    4300338: doorframe6
+    4300340: doorframe7
+    4300342: doorframe8
+    4300344: doorframe9
+    4300346: doorframe10
+    4300348: doorframe11
+    4300350: doorframe12
+    4300352: doorframe13
+    4300354: doorframe14
+    4300356: doorframe15
+    4300358: polySurface144
+    4300360: polySurface146
+    4300362: polySurface148
+    4300364: House_wall
+    4300366: Large_Wainscotting
     9500000: //RootNode
   materials:
     importMaterials: 1

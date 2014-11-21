@@ -14,13 +14,15 @@ public class CylinderWrap2 : MonoBehaviour {
 	public Vector3 _childDefaultRotation;
 	public axis _childForwardAxis;
 
+	public float _angle= 360;
+
 	[ContextMenu("Wrap")]
 	void wrap()
 	{
 
 		int nChilds = transform.childCount;
 
-		float angleDelta = 360f / (nChilds);
+		float angleDelta = _angle / (nChilds);
 
 		float angleDeltaRad = Mathf.Deg2Rad * angleDelta;
 
