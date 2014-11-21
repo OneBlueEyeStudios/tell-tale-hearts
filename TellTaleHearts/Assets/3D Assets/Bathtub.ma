@@ -1,6 +1,6 @@
 //Maya ASCII 2015 scene
 //Name: Bathtub.ma
-//Last modified: Thu, Nov 20, 2014 06:09:00 PM
+//Last modified: Thu, Nov 20, 2014 06:35:14 PM
 //Codeset: UTF-8
 requires maya "2015";
 requires -nodeType "mentalrayFramebuffer" -nodeType "mentalrayOptions" -nodeType "mentalrayGlobals"
@@ -853,6 +853,8 @@ select -ne :hardwareRenderingGlobals;
 		 0 0 0 0 ;
 select -ne :defaultHardwareRenderGlobals;
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
+select -ne :ikSystem;
+	setAttr -s 4 ".sol";
 connectAttr "polyAutoProj1.out" "pSphere2Shape.i";
 connectAttr "groupId1.id" "pSphere2Shape.iog.og[0].gid";
 connectAttr ":initialShadingGroup.mwc" "pSphere2Shape.iog.og[0].gco";
