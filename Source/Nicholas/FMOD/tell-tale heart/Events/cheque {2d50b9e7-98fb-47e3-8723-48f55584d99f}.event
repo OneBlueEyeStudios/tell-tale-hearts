@@ -152,6 +152,9 @@
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{17929494-0048-46b1-936b-5271080a51eb}">
+        <property name="volume">
+            <value>3</value>
+        </property>
         <property name="name">
             <value>Audio 1</value>
         </property>
@@ -300,7 +303,7 @@
     <object class="MixerBusFader" id="{38980b55-9773-4322-bfd9-c87d3904aa7b}"/>
     <object class="SpatialiserEffect" id="{57a19688-cdd6-413c-8dfc-f6df1f0eaa1a}">
         <property name="maximumDistance">
-            <value>4</value>
+            <value>25</value>
         </property>
     </object>
     <object class="MixerSend" id="{2d9ba696-50d8-4f62-9f3d-d907f7f7ac82}">

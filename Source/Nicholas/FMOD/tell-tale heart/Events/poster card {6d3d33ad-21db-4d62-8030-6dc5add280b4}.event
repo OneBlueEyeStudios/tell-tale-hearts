@@ -128,6 +128,9 @@
         <property name="triggerProbabilityEnabled">
             <value>true</value>
         </property>
+        <property name="volume">
+            <value>2</value>
+        </property>
         <relationship name="modulators">
             <destination>{4bbf432d-4844-41c2-8a32-320d86d5e01c}</destination>
             <destination>{e1302e48-b7f4-465a-bccb-7817a80cc7c4}</destination>
@@ -152,6 +155,9 @@
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{ae859238-bb97-4248-a2d3-d5b476405b1c}">
+        <property name="volume">
+            <value>6</value>
+        </property>
         <property name="name">
             <value>Audio 1</value>
         </property>
@@ -300,7 +306,7 @@
     <object class="MixerBusFader" id="{fad9d4a3-7814-41c2-bb65-33295cc9fd77}"/>
     <object class="SpatialiserEffect" id="{652c8a1f-b897-4496-bcef-fedabcd09a6e}">
         <property name="maximumDistance">
-            <value>4</value>
+            <value>10</value>
         </property>
     </object>
     <object class="MixerSend" id="{0166c845-22ff-4f8f-af5c-fbd96f3136b4}">

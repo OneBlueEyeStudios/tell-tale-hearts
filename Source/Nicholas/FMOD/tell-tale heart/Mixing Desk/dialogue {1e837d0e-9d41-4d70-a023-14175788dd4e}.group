@@ -28,7 +28,7 @@
     <object class="MixerBusFader" id="{539c9b53-7bee-47bf-a0bb-221e84920192}"/>
     <object class="Sidechain" id="{b9baafed-483b-460c-b701-889d133aa49b}">
         <relationship name="targets">
-            <destination>{318a047f-04d9-47a8-b8f1-bbe6d37fc9c2}</destination>
+            <destination>{1f7908fd-9c30-4be9-a9dc-9b1ef136149b}</destination>
         </relationship>
     </object>
     <object class="Sidechain" id="{461aa038-7ce4-4643-b6da-cc440d8966c7}">

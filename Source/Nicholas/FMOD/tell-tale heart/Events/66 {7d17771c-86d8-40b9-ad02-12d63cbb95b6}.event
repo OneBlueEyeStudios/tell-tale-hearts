@@ -28,6 +28,9 @@
         <relationship name="timeline">
             <destination>{f112dbc9-f07d-4f6d-a56c-45c07f7a5165}</destination>
         </relationship>
+        <relationship name="banks">
+            <destination>{e86e1ea5-25f4-4378-a80b-8573d5986a30}</destination>
+        </relationship>
     </object>
     <object class="EventMixer" id="{6f1a5743-9713-40fb-b5ed-f670d96ebc61}">
         <relationship name="masterBus">
@@ -104,6 +107,7 @@
     <object class="MixerBusEffectChain" id="{a2e69192-9c13-4c75-a55d-a4e41015daee}">
         <relationship name="effects">
             <destination>{9dd6ac1f-f253-4fcb-b7e2-95550cec35fd}</destination>
+            <destination>{3af07377-3ab8-4050-a91e-7422fcce9667}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{6c94f09d-ec11-417b-a429-592a02f233c8}">
@@ -125,4 +129,15 @@
         </relationship>
     </object>
     <object class="MixerBusFader" id="{9dd6ac1f-f253-4fcb-b7e2-95550cec35fd}"/>
+    <object class="DelayEffect" id="{3af07377-3ab8-4050-a91e-7422fcce9667}">
+        <property name="delay">
+            <value>1000</value>
+        </property>
+        <property name="feedback">
+            <value>35</value>
+        </property>
+        <property name="level">
+            <value>-22.5</value>
+        </property>
+    </object>
 </objects>

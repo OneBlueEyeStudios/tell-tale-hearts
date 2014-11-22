@@ -8,7 +8,7 @@
             <destination>{cd41df10-6c3c-4477-bbd0-43cd7db54abe}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{ece1d9bd-5bb0-479f-8571-24a3f124a50f}</destination>
+            <destination>{1e837d0e-9d41-4d70-a023-14175788dd4e}</destination>
         </relationship>
     </object>
     <object class="MixerBusEffectChain" id="{a9e8c6bb-0a88-433e-b56d-5f90fcac0bf7}">

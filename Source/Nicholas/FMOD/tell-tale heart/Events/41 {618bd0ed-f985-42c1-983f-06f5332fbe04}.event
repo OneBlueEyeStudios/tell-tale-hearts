@@ -28,9 +28,6 @@
         <relationship name="timeline">
             <destination>{06a20ff6-9716-4229-908b-f58798d636bf}</destination>
         </relationship>
-        <relationship name="parameters">
-            <destination>{2fdc14e6-f065-4cee-a5a9-5757af73f535}</destination>
-        </relationship>
         <relationship name="banks">
             <destination>{e86e1ea5-25f4-4378-a80b-8573d5986a30}</destination>
         </relationship>
@@ -63,14 +60,6 @@
             <destination>{32bab154-6136-45c0-aa99-11d77b724e62}</destination>
         </relationship>
     </object>
-    <object class="DistanceParameter" id="{2fdc14e6-f065-4cee-a5a9-5757af73f535}">
-        <relationship name="automationCurves">
-            <destination>{cc6e3c33-bf1b-4adc-82fd-a1a84cb7d978}</destination>
-        </relationship>
-        <relationship name="automationScale">
-            <destination>{a17c5b23-bb63-40c0-b3f8-109fa2d0fe86}</destination>
-        </relationship>
-    </object>
     <object class="EventMixerMaster" id="{4358ab99-65cc-486e-91cb-8f822e6930c1}">
         <property name="name">
             <value>Master</value>
@@ -89,9 +78,6 @@
         <property name="nameOfPropertyBeingAutomated">
             <value>cutoff</value>
         </property>
-        <relationship name="automationCurves">
-            <destination>{cc6e3c33-bf1b-4adc-82fd-a1a84cb7d978}</destination>
-        </relationship>
         <relationship name="objectBeingAutomated">
             <destination>{3bd472ea-1d40-4ff5-aaa9-72c16ac3ab98}</destination>
         </relationship>
@@ -121,23 +107,6 @@
             <destination>{4358ab99-65cc-486e-91cb-8f822e6930c1}</destination>
         </relationship>
     </object>
-    <object class="AutomationCurve" id="{cc6e3c33-bf1b-4adc-82fd-a1a84cb7d978}">
-        <relationship name="automationPoints">
-            <destination>{51fda2bc-e84b-4d8d-86f6-0b58ce8c3b3f}</destination>
-            <destination>{6d5199a2-f1ba-4cbb-a8da-4af6942efb05}</destination>
-        </relationship>
-    </object>
-    <object class="AutomationScale" id="{a17c5b23-bb63-40c0-b3f8-109fa2d0fe86}">
-        <property name="curve">
-            <value>LinearCurveStrategy{(0.000000,0.000000)(1.000000,15.000000)}</value>
-        </property>
-        <property name="associatedClassName">
-            <value>GameParameter</value>
-        </property>
-        <property name="associatedPropertyName">
-            <value>Distance</value>
-        </property>
-    </object>
     <object class="MixerBusEffectChain" id="{36c78203-c2ab-4d57-b25d-dbfd5650bd16}">
         <relationship name="effects">
             <destination>{1b028a54-27d6-4f1a-88ca-3f2ca1bf9d7f}</destination>
@@ -161,25 +130,6 @@
         </property>
         <property name="outputFormatOverridden">
             <value>true</value>
-        </property>
-    </object>
-    <object class="AutomationPoint" id="{51fda2bc-e84b-4d8d-86f6-0b58ce8c3b3f}">
-        <property name="position">
-            <value>0</value>
-        </property>
-        <property name="value">
-            <value>22000</value>
-        </property>
-        <property name="curveShape">
-            <value>0.151914</value>
-        </property>
-    </object>
-    <object class="AutomationPoint" id="{6d5199a2-f1ba-4cbb-a8da-4af6942efb05}">
-        <property name="position">
-            <value>15</value>
-        </property>
-        <property name="value">
-            <value>2913.04</value>
         </property>
     </object>
     <object class="MixerBusFader" id="{1b028a54-27d6-4f1a-88ca-3f2ca1bf9d7f}"/>

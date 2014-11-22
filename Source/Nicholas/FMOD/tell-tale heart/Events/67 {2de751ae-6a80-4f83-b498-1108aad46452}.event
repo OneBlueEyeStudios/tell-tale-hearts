@@ -28,6 +28,9 @@
         <relationship name="timeline">
             <destination>{9361b021-ed5e-47cf-b99c-435dcc32b15b}</destination>
         </relationship>
+        <relationship name="banks">
+            <destination>{e86e1ea5-25f4-4378-a80b-8573d5986a30}</destination>
+        </relationship>
     </object>
     <object class="EventMixer" id="{cb1577ea-cc6d-4c3e-9463-823a14695903}">
         <relationship name="masterBus">
@@ -103,7 +106,9 @@
     <object class="MixerBusPanner" id="{ddee5cd8-e803-4f33-a0bd-504346cbea64}"/>
     <object class="MixerBusEffectChain" id="{05224226-02cc-4ca2-bc48-8a11f692503c}">
         <relationship name="effects">
+            <destination>{5949cf24-8cc9-4f54-8be2-7b3ff66bb659}</destination>
             <destination>{9e6d184b-79ed-452b-bc38-1c3c1d1a1663}</destination>
+            <destination>{5a46382f-c02d-4235-b6bd-a2136b30536c}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{6a052f43-6d71-46c4-b21e-b48206dc7def}">
@@ -124,5 +129,39 @@
             <destination>{0d5e9d5a-4e02-4cb9-8d21-8f3aa831e51f}</destination>
         </relationship>
     </object>
+    <object class="SFXReverbEffect" id="{5949cf24-8cc9-4f54-8be2-7b3ff66bb659}">
+        <property name="decayTime">
+            <value>950</value>
+        </property>
+        <property name="lateDelay">
+            <value>70</value>
+        </property>
+        <property name="HFReference">
+            <value>3000</value>
+        </property>
+        <property name="HFDecayRatio">
+            <value>35</value>
+        </property>
+        <property name="highCut">
+            <value>20000</value>
+        </property>
+        <property name="earlyLateMix">
+            <value>80</value>
+        </property>
+        <property name="wetLevel">
+            <value>-10</value>
+        </property>
+    </object>
     <object class="MixerBusFader" id="{9e6d184b-79ed-452b-bc38-1c3c1d1a1663}"/>
+    <object class="DelayEffect" id="{5a46382f-c02d-4235-b6bd-a2136b30536c}">
+        <property name="delay">
+            <value>900</value>
+        </property>
+        <property name="feedback">
+            <value>39.5</value>
+        </property>
+        <property name="level">
+            <value>-17.5</value>
+        </property>
+    </object>
 </objects>

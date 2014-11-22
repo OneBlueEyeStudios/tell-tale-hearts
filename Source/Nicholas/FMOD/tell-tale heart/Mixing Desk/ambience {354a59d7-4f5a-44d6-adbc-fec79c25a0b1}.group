@@ -24,16 +24,16 @@
     <object class="MixerBusFader" id="{3be24845-18bc-4e38-9ff5-78bbb57db8cd}"/>
     <object class="CompressorEffect" id="{09063314-2a1e-484a-b305-efde388761b1}">
         <property name="threshold">
-            <value>-22.5</value>
+            <value>-38</value>
         </property>
         <property name="ratio">
-            <value>2.3</value>
+            <value>1.7</value>
         </property>
         <property name="attackTime">
-            <value>0.2</value>
+            <value>10</value>
         </property>
         <property name="releaseTime">
-            <value>1000</value>
+            <value>600</value>
         </property>
         <property name="sidechainEnabled">
             <value>true</value>

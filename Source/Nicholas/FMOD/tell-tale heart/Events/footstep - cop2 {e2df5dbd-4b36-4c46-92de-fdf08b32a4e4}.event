@@ -866,10 +866,13 @@
             <value>2.2</value>
         </property>
         <property name="maximumDistance">
-            <value>10</value>
+            <value>15</value>
         </property>
     </object>
     <object class="MixerSend" id="{1bc93506-0b18-4d59-9194-e30dfc4054da}">
+        <property name="level">
+            <value>-30</value>
+        </property>
         <relationship name="return">
             <destination>{0d5e9d5a-4e02-4cb9-8d21-8f3aa831e51f}</destination>
         </relationship>

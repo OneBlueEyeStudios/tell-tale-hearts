@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.05.00">
+    <object class="MixerGroup" id="{2b3231f5-74e3-4cdd-8f3b-069a2943af46}">
+        <property name="name">
+            <value>taunting</value>
+        </property>
+        <relationship name="effectChain">
+            <destination>{a7b94163-ce77-414d-b98f-fdc8d382f1e0}</destination>
+        </relationship>
+        <relationship name="panner">
+            <destination>{bddba8ad-2c84-4b33-a8a3-f1adbd9aaaaa}</destination>
+        </relationship>
+        <relationship name="output">
+            <destination>{1e837d0e-9d41-4d70-a023-14175788dd4e}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusEffectChain" id="{a7b94163-ce77-414d-b98f-fdc8d382f1e0}">
+        <relationship name="effects">
+            <destination>{5148c0aa-e054-4e49-802b-9bba86b03da2}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusPanner" id="{bddba8ad-2c84-4b33-a8a3-f1adbd9aaaaa}"/>
+    <object class="MixerBusFader" id="{5148c0aa-e054-4e49-802b-9bba86b03da2}"/>
+</objects>

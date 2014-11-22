@@ -1,3 +1,4 @@
+{1bcb6aca-10b2-4b08-b74e-b2b1b25bf022} event:/action/door locked
 {2d50b9e7-98fb-47e3-8723-48f55584d99f} event:/action/cheque
 {8940e9b7-c490-4f6e-b611-62a28a3e8286} event:/action/letter
 {6d3d33ad-21db-4d62-8030-6dc5add280b4} event:/action/poster card
@@ -5,15 +6,19 @@
 {5061842f-f740-4985-a1f3-1da990f8d10e} event:/ambience/rain
 {172ed1ce-720e-4626-9bf7-ce9e64c3d2f7} event:/ambience/room tone
 {e765eee3-7cd2-4e7f-b43d-8c245e874ab9} event:/dialogue/confess
+{b47b8ae1-d108-4541-ac31-6bff429b7d37} event:/dialogue/liar
+{57f02932-408b-4c1d-9312-3270f91ae175} event:/dialogue/taunting
 {d3836c69-51a3-4d94-a73d-f5f64f87692a} event:/dialogue/test dialogue
 {5deff30b-0660-48ac-8f47-8b715319f594} event:/dialogue/ending phrases/badcop
 {73ef16bf-9024-4693-8ef7-a9667473ca2f} event:/dialogue/ending phrases/goodcop
-{38c5af9a-9acd-4499-a0aa-18232e4f9ae8} event:/dialogue/massive dialogues/4&6&7
-{14dd6ab7-0ad9-4d34-9409-29f6a19e001c} event:/dialogue/massive dialogues/5&8
-{24ab00ab-ad39-4a35-b088-4c7d94d78e73} event:/dialogue/massive dialogues/9-11
-{23492e48-d23b-41ad-bfd0-e11a088def50} event:/dialogue/massive dialogues/14
+{e7fc8a59-e838-4bdc-94df-cb24a86e3d05} event:/dialogue/massive dialogues/1
+{50dddce1-454e-4da5-979b-e2658c738e01} event:/dialogue/massive dialogues/12
+{099c1093-1ff8-49bf-99dd-f8d9d9826739} event:/dialogue/massive dialogues/13
+{4a6e259e-641e-44ec-a1f6-e535732eacc6} event:/dialogue/massive dialogues/14n15n16
+{0167cd5d-4e96-4c17-8830-b86ed524d0d6} event:/dialogue/massive dialogues/17
 {1d59df07-dcd1-4ec2-a072-9c819215cf81} event:/dialogue/massive dialogues/18
 {beee8c51-bcfd-4611-8df3-91aacc54ed52} event:/dialogue/massive dialogues/19
+{b48e536e-9467-4413-9c9a-6bd3ba33a4a0} event:/dialogue/massive dialogues/2
 {7504bb05-9f2f-4ded-8841-cf57dc280013} event:/dialogue/massive dialogues/20
 {d9f9558c-ebf4-4133-a8c2-2a1bc31d9349} event:/dialogue/massive dialogues/21
 {44785285-fad3-4579-9c3d-873d320aa467} event:/dialogue/massive dialogues/22
@@ -24,9 +29,9 @@
 {20290789-1889-4fde-8cca-282484ce3001} event:/dialogue/massive dialogues/27
 {914334a0-9d2e-4ed3-848f-a9eef6571433} event:/dialogue/massive dialogues/28
 {76d42139-f343-47d9-8ea8-28ee8179273d} event:/dialogue/massive dialogues/29
+{21cb6930-041e-4a7d-a750-a10b0d1114ba} event:/dialogue/massive dialogues/3
 {325accff-097e-41c1-bce1-6f661a219fd7} event:/dialogue/massive dialogues/30
 {f494c12e-d08c-431c-a21d-5f3822a3104c} event:/dialogue/massive dialogues/31
-{d0c19f40-df8e-4c1b-a5df-bb3133190cb1} event:/dialogue/massive dialogues/32
 {fb5bf1de-15e4-4d66-ad09-fabc2b62515f} event:/dialogue/massive dialogues/33
 {e80c4890-499d-4339-8976-9a89345529a7} event:/dialogue/massive dialogues/34
 {e14ec8d5-18a5-4577-9556-a825badfb14e} event:/dialogue/massive dialogues/35
@@ -34,22 +39,36 @@
 {f86236ba-bd82-4baa-bbb7-8ee0c883cab7} event:/dialogue/massive dialogues/37
 {6005f5f6-a799-44f8-a01c-93db2add4181} event:/dialogue/massive dialogues/38
 {78c1c2c8-ab3a-4bbc-b3f2-cc7abf08eb0b} event:/dialogue/massive dialogues/39
-{fad12c3f-9177-4ced-b896-5425f9d4b546} event:/dialogue/massive dialogues/40
 {618bd0ed-f985-42c1-983f-06f5332fbe04} event:/dialogue/massive dialogues/41
 {9d9e3727-f08f-41ac-8808-3bb1e81d2133} event:/dialogue/massive dialogues/42
+{ab452393-8b6b-415c-8514-709d15f561e3} event:/dialogue/massive dialogues/48
+{38c5af9a-9acd-4499-a0aa-18232e4f9ae8} event:/dialogue/massive dialogues/4n6n7
+{0e25db02-c884-49f8-9afd-931fe41dc464} event:/dialogue/massive dialogues/59
+{14dd6ab7-0ad9-4d34-9409-29f6a19e001c} event:/dialogue/massive dialogues/5n8
+{bcaa2210-f40b-4331-b31f-9a8299121b65} event:/dialogue/massive dialogues/60n61
+{5456cd88-0fa9-4750-86a7-b08905a2ec37} event:/dialogue/massive dialogues/62
+{3ffdb988-31f9-4777-a5b6-8bd5d5a3b63b} event:/dialogue/massive dialogues/63
+{35d27af8-9001-4912-9f2d-71d08f2a1173} event:/dialogue/massive dialogues/64n65
 {7d17771c-86d8-40b9-ad02-12d63cbb95b6} event:/dialogue/massive dialogues/66
 {2de751ae-6a80-4f83-b498-1108aad46452} event:/dialogue/massive dialogues/67
-{eaff03fb-9bb2-47c0-a212-78c5ac5ff669} event:/dialogue/massive dialogues/68
-{7e9a0f8f-51a5-4eed-a959-e62d38a151f2} event:/dialogue/massive dialogues/69
+{8f094b2d-a7eb-494e-bddc-098dc90a67f1} event:/dialogue/massive dialogues/68
+{7eb1a88a-82b4-4d10-8c30-bbaf6acd0826} event:/dialogue/massive dialogues/69
 {694e65ca-3bef-450a-b78e-8cf109b304ed} event:/dialogue/massive dialogues/70
 {9dd9e883-ae28-45ac-ae06-af04b63dd042} event:/dialogue/massive dialogues/71
+{59541ac2-12a3-4b71-b06c-ec86bd5149a1} event:/dialogue/massive dialogues/72
+{ba0611e7-580a-4f6d-8875-478db3c1c6af} event:/dialogue/massive dialogues/73
 {ad5d01d2-cb52-4763-938d-a821ad81a14e} event:/dialogue/massive dialogues/74
-{726beb1c-327e-4c60-857c-cbd700b0fd19} event:/dialogue/massive dialogues/75
-{a3389834-e945-40ab-be0a-8a32e43a4dbf} event:/dialogue/massive dialogues/76
-{89d1eae2-9112-4b81-b3df-1f8dbbb0d448} event:/dialogue/massive dialogues/77
+{7c6bf87f-3086-4fcb-afd2-aeb244eee585} event:/dialogue/massive dialogues/75
+{23b87918-108f-4ae9-a66f-cd77b8f61095} event:/dialogue/massive dialogues/56
+{b969ca13-623a-461c-9a70-1e2431433154} event:/dialogue/massive dialogues/76
+{0c7d0716-4935-47bf-a163-c3dda56d3b85} event:/dialogue/massive dialogues/77
 {c281c6f3-1ce6-4e0f-b747-85dbe50812cf} event:/dialogue/massive dialogues/78
 {6a60eb49-4f54-4162-ad3c-d9c8b4644a84} event:/dialogue/massive dialogues/79
+{47f3b7c8-a284-4d05-9b92-423d927e4da1} event:/dialogue/massive dialogues/80
 {dfe226f0-9294-4ea9-8968-93c784b9a36e} event:/dialogue/massive dialogues/81
+{49e9b1ba-b38a-4236-9c9d-7a8664c5236f} event:/dialogue/massive dialogues/86
+{d961343c-a0ef-46fa-a6fc-e4e8f704deca} event:/dialogue/massive dialogues/87
+{24ab00ab-ad39-4a35-b088-4c7d94d78e73} event:/dialogue/massive dialogues/9-11
 {82b1b5fc-1a25-4fef-b936-76c90a077a62} event:/household/door
 {d601953d-0de4-4dac-8475-b3ece117ec1d} event:/household/door knocking
 {f26b981c-4d00-4be1-afd5-94a4b25a172a} event:/household/kerosene lamp
@@ -64,11 +83,15 @@
 {10ee6d36-6807-4c00-bd64-d4280553da5f} event:/music/suspicion
 {ce1d2e50-f869-44dc-8afe-766d444b77d0} event:/music/test music
 {ece1d9bd-5bb0-479f-8571-24a3f124a50f} bus:/
+{2b3231f5-74e3-4cdd-8f3b-069a2943af46} bus:/taunting
+{6ced960a-efdb-4ce3-b421-9045540cfc94} bus:/memories
+{10d8307e-7af5-4bf9-b104-2ac265e72acf} bus:/action
+{a019b47d-0630-4b91-8755-0e3d5692ead5} bus:/human
 {0d5e9d5a-4e02-4cb9-8d21-8f3aa831e51f} bus:/Reverb
 {354a59d7-4f5a-44d6-adbc-fec79c25a0b1} bus:/ambience
 {1e837d0e-9d41-4d70-a023-14175788dd4e} bus:/dialogue
 {94b38b4d-20c1-4a3e-8b1d-36732796071c} bus:/music
 {b2118a87-9a6e-46ce-8bf9-9adeafd4b384} bus:/music2
-{8ca2cc90-b40b-43b7-a3b5-3d8bdae0655d} bank:/test
 {e86e1ea5-25f4-4378-a80b-8573d5986a30} bank:/Master Bank
+{8ca2cc90-b40b-43b7-a3b5-3d8bdae0655d} bank:/test
 {fb2d5a7b-e9c4-466b-b9f8-2afdea8e6907} bank:/test2

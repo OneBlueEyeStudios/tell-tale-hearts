@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.05.00">
+    <object class="MixerGroup" id="{6ced960a-efdb-4ce3-b421-9045540cfc94}">
+        <property name="volume">
+            <value>1.6</value>
+        </property>
+        <property name="name">
+            <value>memories</value>
+        </property>
+        <relationship name="effectChain">
+            <destination>{715d38f6-4324-49c9-b8c8-44d9fe82863f}</destination>
+        </relationship>
+        <relationship name="panner">
+            <destination>{27957a79-d9ac-44b3-9bbb-dff6f5f1d3c4}</destination>
+        </relationship>
+        <relationship name="output">
+            <destination>{ece1d9bd-5bb0-479f-8571-24a3f124a50f}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusEffectChain" id="{715d38f6-4324-49c9-b8c8-44d9fe82863f}">
+        <relationship name="effects">
+            <destination>{55c5146c-ad60-4811-b9b8-2e6ba3e36bc5}</destination>
+            <destination>{567154c1-3f3c-483d-a10c-8ef724da40b3}</destination>
+            <destination>{539c24a2-c6ed-4e06-be6b-a0173b4595ba}</destination>
+            <destination>{a7b73cea-6735-4588-bc29-6e0a65c12563}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusPanner" id="{27957a79-d9ac-44b3-9bbb-dff6f5f1d3c4}"/>
+    <object class="MixerBusFader" id="{55c5146c-ad60-4811-b9b8-2e6ba3e36bc5}"/>
+    <object class="Sidechain" id="{567154c1-3f3c-483d-a10c-8ef724da40b3}">
+        <relationship name="targets">
+            <destination>{318a047f-04d9-47a8-b8f1-bbe6d37fc9c2}</destination>
+        </relationship>
+    </object>
+    <object class="Sidechain" id="{539c24a2-c6ed-4e06-be6b-a0173b4595ba}">
+        <relationship name="targets">
+            <destination>{09063314-2a1e-484a-b305-efde388761b1}</destination>
+        </relationship>
+    </object>
+    <object class="Sidechain" id="{a7b73cea-6735-4588-bc29-6e0a65c12563}">
+        <relationship name="targets">
+            <destination>{0f0f9710-b858-4c7b-9725-37cf37cf3bd7}</destination>
+        </relationship>
+    </object>
+</objects>
