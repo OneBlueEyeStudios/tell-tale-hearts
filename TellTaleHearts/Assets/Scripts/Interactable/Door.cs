@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Door : Interactable {
 
-	Animator _animator;
+	public Animator _animator;
 
 	public bool _isClosed = true;
 	public bool _invert;
@@ -11,7 +11,7 @@ public class Door : Interactable {
 	
 	// Use this for initialization
 	void Start () {
-		_animator = GetComponent<Animator> ();
+		//_animator = GetComponent<Animator> ();
 
 	
 		

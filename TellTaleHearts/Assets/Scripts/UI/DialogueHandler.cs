@@ -220,8 +220,11 @@ public class DialogueHandler : MonoBehaviour {
 		_showingDialogue = true;
 	}
 
-	 IEnumerator printPassage(string title)//, float wait)
+	 IEnumerator printPassage(string title,bool wait = false)//, float wait)
 	{
+		if(wait)
+			yield return new WaitForSeconds (1.5f);
+
 		_currentPassage = _currentDialogue.getPassage (title);
 
 		float length = 0;
@@ -396,7 +399,7 @@ public class DialogueHandler : MonoBehaviour {
 
 
 		StopAllCoroutines ();
-		StartCoroutine(printPassage(tweeTransition.passageTag));//, length));
+		StartCoroutine(printPassage(tweeTransition.passageTag,true));//, length));
 	}	
 
 	IEnumerator lookAtEachotherCoroutine (Transform left, Transform right)

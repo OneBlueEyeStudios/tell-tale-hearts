@@ -8,6 +8,8 @@ public class FootstepSound : MonoBehaviour {
 
 	NavMeshAgent _navAgent;
 
+	Cop _cop;
+
 	EventInstance footstep;
 	ParameterInstance surfaceValue;
 
@@ -17,6 +19,8 @@ public class FootstepSound : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		_cop = GetComponent<Cop> (); 
 
 		_navAgent = GetComponent<NavMeshAgent> ();
 
@@ -41,10 +45,16 @@ public class FootstepSound : MonoBehaviour {
 		//float v = Input.GetAxis ("Vertical");
 
 
-		if (Vector3.SqrMagnitude (_navAgent.velocity) > 1)
+//		if (Vector3.SqrMagnitude (_navAgent.velocity) > 1)
+//			surfaceFloat = 1.5f;
+//		else
+//			surfaceFloat = 0f;
+//
+		if (_cop._isWalking)
 			surfaceFloat = 1.5f;
 		else
 			surfaceFloat = 0f;
+
 
 		if (footstep != null) {
 						footstep.set3DAttributes (FMOD.Studio.UnityUtil.to3DAttributes (transform.position));

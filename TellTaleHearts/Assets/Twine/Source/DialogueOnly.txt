@@ -94,8 +94,6 @@ Pensioner, hmmm. Military or company? <cue:34,cop:good>
 
 
 :: Stage 7 END
-Done
-
 
 
 
@@ -147,18 +145,15 @@ Interesting. When did you get home?  <cue:31,cop:bad>
 :: Stage 5D
 An officer. Good to see he's being taken care of. <cue:36,cop:good>
 
-[[end scene|Stage 5 END]]
 
 
 :: Stage 5E
 Never mentioned it...Interesting. <cue:37,cop:good>
 
-[[end scene|Stage 5 END]]
-
 
 
 :: Stage 6 END
-Done
+
 
 
 :: Stage 3C
@@ -189,6 +184,6 @@ I thought you said you live here alone?  <cue:28,cop:good>
 
 
 :: Stage 4 END
-Done
+
 
 

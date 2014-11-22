@@ -15,7 +15,8 @@ public class Cop : MonoBehaviour
 		int _backVar = Animator.StringToHash ("Back");
 		int _frontVar = Animator.StringToHash ("Front");
 
-	bool _isWalking;
+	[HideInInspector]
+	public bool _isWalking;
 
 	[HideInInspector]
 	public bool _waitingForDialogue;

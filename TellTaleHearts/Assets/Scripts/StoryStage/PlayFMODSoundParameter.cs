@@ -17,7 +17,10 @@ public class PlayFMODSoundParameter : Command {
 
 	public override void OnEnter()
 	{
-		SoundManager._instance.playSoundAtPositionAndParameter (_eventName, _position, _parameterName, _parameterValue,_register,_track, _volume);
+		if(string.IsNullOrEmpty(_parameterName))
+			SoundManager._instance.playSoundAtPosition (_eventName, _position,_register,_track, _volume);
+		else
+			SoundManager._instance.playSoundAtPositionAndParameter (_eventName, _position, _parameterName, _parameterValue,_register,_track, _volume);
 
 		Continue ();
 	}

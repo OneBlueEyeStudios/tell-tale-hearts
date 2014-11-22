@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FrontDoor : Interactable {
 
-	Animator _animator;
+	public Animator _animator;
 
 	bool _isClosed = true;
 	
@@ -15,7 +15,7 @@ public class FrontDoor : Interactable {
 	
 	// Use this for initialization
 	void Start () {
-		_animator = GetComponent<Animator> ();
+		//_animator = GetComponent<Animator> ();
 		_rainSound = GetComponent<RainSoundSource> ();
 
 		/**	

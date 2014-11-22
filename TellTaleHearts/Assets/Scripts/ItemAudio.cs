@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using FMOD;
+using FMOD.Studio;
 
-[RequireComponent(typeof(AudioSource))]
+//[RequireComponent(typeof(AudioSource))]
 public class ItemAudio : MonoBehaviour {
 
 	AudioSource _source;
 	public AudioClip _clip;
 
+	public FMODAsset _asset;
+	EventInstance _ev;
+
+	public bool _delay;
 	float maxVolume = 0.4f;
 
 	void Awake()
@@ -14,39 +20,95 @@ public class ItemAudio : MonoBehaviour {
 		//_source = GetComponent<AudioSource> ();
 	}
 
+	void playCue()
+	{
+		if (_ev == null) {
+			_ev = SoundManager._instance.playSoundAtPosition (_asset, transform);
+			
+		} else {
+			_ev.stop (STOP_MODE.IMMEDIATE);
+			_ev = SoundManager._instance.playSoundAtPosition (_asset, transform);
+		}
+	}
+
 	public void grabbed()
 	{
-		if (_source == null) {
-						_source = SoundManager._instance.createSoundSource ();
-			_source.transform.position = transform.position;
-		}
+		if (_delay)
+						Invoke ("playCue", 2f);
 				else
-						_source.Stop ();
+						playCue ();
+//		if (_ev == null) {
+//		
+//						_ev = SoundManager._instance.playSoundAtPosition (_asset, transform);
+//		
+//				} else {
+//					_ev.stop (STOP_MODE.IMMEDIATE);
+//					_ev = SoundManager._instance.playSoundAtPosition (_asset, transform);
+//				}
+//
+//		if (_source == null) {
+//						_source = SoundManager._instance.createSoundSource ();
+//			_source.transform.position = transform.position;
+//		}
+//				else
+//						_source.Stop ();
+//
 
-		_source.clip = _clip;
-		//_source.Play ();
+//		_source.clip = _clip;
+//		//_source.Play ();
+//
+////		UnityEngine.Debug.LogWarning ("Grabbed");
+//		if (_source != null) 
+//		{
+//			_source.volume = maxVolume;
+//			_source.Play ();
+//
+//			Destroy(_source.gameObject,_clip.length);
+//			//StopAllCoroutines();
+//		}
+	}
 
-		Debug.LogWarning ("Grabbed");
-		if (_source != null) 
+	IEnumerator fadeVolumeAndDestroy (int i)
+	{
+		float elapsed = 0;
+		float duration = 1;
+
+		float startVolume;
+		_ev.getVolume (out startVolume);
+
+		while (elapsed < duration) 
 		{
-			_source.volume = maxVolume;
-			_source.Play ();
+			float t = elapsed/duration;
 
-			Destroy(_source.gameObject,_clip.length);
-			//StopAllCoroutines();
+			_ev.setVolume(Mathf.Lerp(startVolume,0,t));
+
+			elapsed += Time.deltaTime;
+
+			yield return null;
 		}
+
+		_ev.stop (STOP_MODE.IMMEDIATE);
+		_ev.release ();
 	}
 
 	public void released()
 	{
-		Debug.LogWarning ("Released");
-		if (_source != null) 
-		{
-			FadeVolume fade = _source.gameObject.AddComponent<FadeVolume>();
-			fade.Init(5);
-			//StartCoroutine (fadeVolume (5.0f));
-			Destroy(_source.gameObject,5);
-		}
+
+		if (_ev != null) {
+			StartCoroutine(fadeVolumeAndDestroy(1));
+			//_ev.stop (STOP_MODE.ALLOWFADEOUT);
+
+
+				}
+
+//		Debug.LogWarning ("Released");
+//		if (_source != null) 
+//		{
+//			FadeVolume fade = _source.gameObject.AddComponent<FadeVolume>();
+//			fade.Init(5);
+//			//StartCoroutine (fadeVolume (5.0f));
+//			Destroy(_source.gameObject,5);
+//		}
 	}
 
 	/*

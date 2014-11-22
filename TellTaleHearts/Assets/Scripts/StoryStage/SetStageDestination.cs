@@ -32,6 +32,8 @@ public class SetStageDestination : Command {
 
 	public override void OnEnter()
 	{
+
+		Debug.LogWarning ("set stage!");
 		SequenceTesting._instance.pathFinished += pathFinished;
 
 

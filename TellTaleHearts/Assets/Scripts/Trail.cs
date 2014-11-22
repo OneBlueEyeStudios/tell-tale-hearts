@@ -86,6 +86,8 @@ public class Trail : MonoBehaviour
 			
 
 				}
+
+			Destroy (_trail, _trail.time);
 		}
 
 		bool arrived (NavMeshAgent agent)

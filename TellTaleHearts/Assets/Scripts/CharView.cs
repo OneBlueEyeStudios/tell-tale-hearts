@@ -63,7 +63,7 @@ public class CharView : MonoBehaviour
 
 		void startGame ()
 		{
-				_cameraSmooth.returnToOriginalPos ();
+				//_cameraSmooth.returnToOriginalPos ();
 		
 				Destroy (_cameraSmooth);
 				Destroy (_eyelids.gameObject);
@@ -207,6 +207,12 @@ public class CharView : MonoBehaviour
 										
 										Interactable interactable = _currentlyCentered.GetComponent<Interactable> ();
 										interactable.interact ();
+
+										ItemAudio itemAudio = _currentlyCentered.GetComponent<ItemAudio> (); 
+										if (itemAudio != null) {
+											itemAudio.grabbed ();
+										}
+
 								}
 							}	else if (Input.GetButtonDown("Fire2")) {
 						//} else if (Input.GetKeyDown (KeyCode.Q)) {

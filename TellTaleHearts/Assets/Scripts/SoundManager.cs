@@ -210,6 +210,74 @@ public class SoundManager : MonoBehaviour {
 		}
 	}
 
+	public EventInstance playSoundAtPosition(FMODAsset asset, Transform position, bool register = false, bool track = false, float volume = 1)
+	{
+
+
+//		FMODEvent ev;
+//		if(register && HasEventWithName (eventName, out ev))
+//		{
+//			ev._position = position;
+//			//setNewTrackTarget(eventName,position);
+//			
+//			return ev._event;
+//		}
+//		
+
+		UnityEngine.Debug.LogWarning ("asset.name:" + asset.name);
+
+		EventInstance fmodEvent = FMOD_StudioSystem.instance.GetEvent (asset);
+		ParameterInstance fmodParameter;
+		
+		var attributes = FMOD.Studio.UnityUtil.to3DAttributes(position.position);
+		
+		fmodEvent.set3DAttributes (attributes);
+		
+		fmodEvent.setVolume (volume);
+		
+		fmodEvent.start ();
+		
+		fmodEvent.release ();
+		
+		if (register)
+			RegisterNewEvent (fmodEvent, asset.name,track,position);
+		
+		return fmodEvent;
+	}
+
+	
+	public EventInstance playSoundAtPosition(string eventName, Transform position, bool register = false, bool track = false, float volume = 1)
+	{
+		FMODEvent ev;
+		if(register && HasEventWithName (eventName, out ev))
+		{
+			ev._position = position;
+			//setNewTrackTarget(eventName,position);
+			
+			return ev._event;
+		}
+		
+		
+		EventInstance fmodEvent = FMOD_StudioSystem.instance.GetEvent (eventName);
+		ParameterInstance fmodParameter;
+		
+		var attributes = FMOD.Studio.UnityUtil.to3DAttributes(position.position);
+		
+		fmodEvent.set3DAttributes (attributes);
+		
+		fmodEvent.setVolume (volume);
+		
+		fmodEvent.start ();
+
+		fmodEvent.release ();
+		
+		if (register)
+			RegisterNewEvent (fmodEvent, eventName,track,position);
+		
+		return fmodEvent;
+	}
+
+
 	public EventInstance playSoundAtPositionAndParameter(string eventName, Transform position, string parameterName, float value, bool register = false, bool track = false, float volume = 1)
 	{
 		FMODEvent ev;
@@ -227,7 +295,6 @@ public class SoundManager : MonoBehaviour {
 		ParameterInstance fmodParameter;
 
 		RESULT result = fmodEvent.getParameter (parameterName, out fmodParameter);
-	
 		var attributes = FMOD.Studio.UnityUtil.to3DAttributes(position.position);
 
 		fmodEvent.set3DAttributes (attributes);
