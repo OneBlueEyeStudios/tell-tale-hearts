@@ -1,6 +1,6 @@
 //Maya ASCII 2015 scene
 //Name: House Layout_polished3.ma
-//Last modified: Fri, Nov 21, 2014 06:34:37 PM
+//Last modified: Sun, Nov 23, 2014 12:43:08 PM
 //Codeset: UTF-8
 requires maya "2015";
 requires -nodeType "mentalrayFramebuffer" -nodeType "mentalrayOptions" -nodeType "mentalrayGlobals"
@@ -14,13 +14,13 @@ fileInfo "osv" "Mac OS X 10.9.1";
 fileInfo "license" "education";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 1968.7329462368939 3948.1363681254575 -4415.2835519905884 ;
-	setAttr ".r" -type "double3" 321.26164727134 -14244.999999993901 0 ;
+	setAttr ".t" -type "double3" 1072.1315219523433 2255.4028196494728 2005.9218446217358 ;
+	setAttr ".r" -type "double3" 316.46164727110238 -14384.999999992395 -1.6463762511640319e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".pze" yes;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 6326.5531657188767;
+	setAttr ".coi" 2929.1201514418967;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -7571,8 +7571,8 @@ createNode checker -n "House_Layout:checker1";
 createNode place2dTexture -n "House_Layout:place2dTexture3";
 	setAttr ".re" -type "float2" 4 4 ;
 createNode lightLinker -s -n "lightLinker1";
-	setAttr -s 18 ".lnk";
-	setAttr -s 18 ".slnk";
+	setAttr -s 19 ".lnk";
+	setAttr -s 19 ".slnk";
 createNode displayLayerManager -n "layerManager";
 	setAttr ".cdl" 3;
 	setAttr -s 4 ".dli[1:3]"  4 2 3;
@@ -8175,21 +8175,29 @@ createNode polyAutoProj -n "polyAutoProj11";
 	setAttr ".s" -type "double3" 1167.8359298706055 1167.8359298706055 1167.8359298706055 ;
 	setAttr ".ps" 0.20000000298023224;
 	setAttr ".dl" yes;
+createNode lambert -n "Wainscotting_painted";
+createNode shadingEngine -n "lambert15SG";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo14";
+createNode file -n "file6";
+	setAttr ".ftn" -type "string" "/Users/marcelo_martinez/tell-tale-hearts/TellTaleHearts/Assets/Textures/Wainscotting_Painting.png";
+createNode place2dTexture -n "place2dTexture12";
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
 select -ne :renderPartition;
-	setAttr -s 18 ".st";
+	setAttr -s 19 ".st";
 select -ne :renderGlobalsList1;
 select -ne :defaultShaderList1;
-	setAttr -s 10 ".s";
+	setAttr -s 11 ".s";
 select -ne :postProcessList1;
 	setAttr -s 2 ".p";
 select -ne :defaultRenderUtilityList1;
-	setAttr -s 13 ".u";
+	setAttr -s 14 ".u";
 select -ne :defaultRenderingList1;
 select -ne :defaultTextureList1;
-	setAttr -s 13 ".tx";
+	setAttr -s 14 ".tx";
 select -ne :initialShadingGroup;
 	setAttr ".ro" yes;
 select -ne :initialParticleSE;
@@ -8341,6 +8349,7 @@ relationship "link" ":lightLinker1" "lambert11SG.message" ":defaultLightSet.mess
 relationship "link" ":lightLinker1" "lambert12SG.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "lambert13SG.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "lambert14SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "lambert15SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "House_Layout:lambert2SG.message" ":defaultLightSet.message";
@@ -8359,6 +8368,7 @@ relationship "shadowLink" ":lightLinker1" "lambert11SG.message" ":defaultLightSe
 relationship "shadowLink" ":lightLinker1" "lambert12SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "lambert13SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "lambert14SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "lambert15SG.message" ":defaultLightSet.message";
 connectAttr "layerManager.dli[0]" "defaultLayer.id";
 connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
 connectAttr "lambert2SG.msg" "materialInfo1.sg";
@@ -8429,8 +8439,6 @@ connectAttr "Bottom_large_wainscotting_Isolated:wainscotting_test_mat.msg" "Bott
 		;
 connectAttr "Bottom_large_wainscotting_Isolated:wainscotting_test_mat.oc" "Bottom_large_wainscotting_Isolated:lambert10SG.ss"
 		;
-connectAttr "Large_WainscottingShape.iog" "Bottom_large_wainscotting_Isolated:lambert10SG.dsm"
-		 -na;
 connectAttr ":mentalrayGlobals.msg" ":mentalrayItemsList.glb";
 connectAttr ":miDefaultOptions.msg" ":mentalrayItemsList.opt" -na;
 connectAttr ":miDefaultFramebuffer.msg" ":mentalrayItemsList.fb" -na;
@@ -8622,6 +8630,30 @@ connectAttr "polySurfaceShape164.o" "polyAutoProj10.ip";
 connectAttr "ceiling_wbarShape15.wm" "polyAutoProj10.mp";
 connectAttr "polySurfaceShape165.o" "polyAutoProj11.ip";
 connectAttr "ceiling_wbarShape13.wm" "polyAutoProj11.mp";
+connectAttr "file6.oc" "Wainscotting_painted.c";
+connectAttr "Wainscotting_painted.oc" "lambert15SG.ss";
+connectAttr "Large_WainscottingShape.iog" "lambert15SG.dsm" -na;
+connectAttr "lambert15SG.msg" "materialInfo14.sg";
+connectAttr "Wainscotting_painted.msg" "materialInfo14.m";
+connectAttr "file6.msg" "materialInfo14.t" -na;
+connectAttr "place2dTexture12.c" "file6.c";
+connectAttr "place2dTexture12.tf" "file6.tf";
+connectAttr "place2dTexture12.rf" "file6.rf";
+connectAttr "place2dTexture12.mu" "file6.mu";
+connectAttr "place2dTexture12.mv" "file6.mv";
+connectAttr "place2dTexture12.s" "file6.s";
+connectAttr "place2dTexture12.wu" "file6.wu";
+connectAttr "place2dTexture12.wv" "file6.wv";
+connectAttr "place2dTexture12.re" "file6.re";
+connectAttr "place2dTexture12.of" "file6.of";
+connectAttr "place2dTexture12.r" "file6.ro";
+connectAttr "place2dTexture12.n" "file6.n";
+connectAttr "place2dTexture12.vt1" "file6.vt1";
+connectAttr "place2dTexture12.vt2" "file6.vt2";
+connectAttr "place2dTexture12.vt3" "file6.vt3";
+connectAttr "place2dTexture12.vc1" "file6.vc1";
+connectAttr "place2dTexture12.o" "file6.uv";
+connectAttr "place2dTexture12.ofs" "file6.fs";
 connectAttr "House_Layout:lambert2SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert2SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert3SG.pa" ":renderPartition.st" -na;
@@ -8639,6 +8671,7 @@ connectAttr "lambert11SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert12SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert13SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert14SG.pa" ":renderPartition.st" -na;
+connectAttr "lambert15SG.pa" ":renderPartition.st" -na;
 connectAttr "House_Layout:test_checker.msg" ":defaultShaderList1.s" -na;
 connectAttr "floor_test_mat.msg" ":defaultShaderList1.s" -na;
 connectAttr "wainscotting_test_mat.msg" ":defaultShaderList1.s" -na;
@@ -8648,6 +8681,7 @@ connectAttr "Outdoor_horizontalWood.msg" ":defaultShaderList1.s" -na;
 connectAttr "Wooden_Bar_Vertical.msg" ":defaultShaderList1.s" -na;
 connectAttr "Cement_blocks.msg" ":defaultShaderList1.s" -na;
 connectAttr "Outdoor_top_bars.msg" ":defaultShaderList1.s" -na;
+connectAttr "Wainscotting_painted.msg" ":defaultShaderList1.s" -na;
 connectAttr "House_Layout:place2dTexture3.msg" ":defaultRenderUtilityList1.u" -na
 		;
 connectAttr "place2dTexture1.msg" ":defaultRenderUtilityList1.u" -na;
@@ -8663,6 +8697,7 @@ connectAttr "place2dTexture8.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "place2dTexture9.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "place2dTexture10.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "place2dTexture11.msg" ":defaultRenderUtilityList1.u" -na;
+connectAttr "place2dTexture12.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
 connectAttr "House_Layout:checker1.msg" ":defaultTextureList1.tx" -na;
 connectAttr "checker1.msg" ":defaultTextureList1.tx" -na;
@@ -8677,8 +8712,9 @@ connectAttr "file2.msg" ":defaultTextureList1.tx" -na;
 connectAttr "file3.msg" ":defaultTextureList1.tx" -na;
 connectAttr "file4.msg" ":defaultTextureList1.tx" -na;
 connectAttr "file5.msg" ":defaultTextureList1.tx" -na;
+connectAttr "file6.msg" ":defaultTextureList1.tx" -na;
 connectAttr "Entrance_FloorShape.iog" ":initialShadingGroup.dsm" -na;
 dataStructure -fmt "raw" -as "name=externalContentTable:string=node:string=key:string=upath:uint32=upathcrc:string=rpath:string=roles";
-applyMetadata -fmt "raw" -v "channel\nname externalContentTable\nstream\nname v1.0\nindexType numeric\nstructure externalContentTable\n0\n\"file1\" \"fileTextureName\" \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/WallpaperForties0002_S.jpg\" 2291123261 \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/WallpaperForties0002_S.jpg\" \"sourceImages\"\n1\n\"file2\" \"fileTextureName\" \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Horizontal_Wood_UVSnap.png\" 3291139463 \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Horizontal_Wood_UVSnap.png\" \"sourceImages\"\n2\n\"file3\" \"fileTextureName\" \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Wooden_Bar_vertical_UVSnap.png\" 691258922 \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Wooden_Bar_vertical_UVSnap.png\" \"sourceImages\"\n3\n\"file4\" \"fileTextureName\" \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Cement_square_UVSnap.png\" 3763430267 \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Cement_square_UVSnap.png\" \"sourceImages\"\n4\n\"file5\" \"fileTextureName\" \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Wooden_Bar_UVSnap.png\" 759722290 \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Wooden_Bar_UVSnap.png\" \"sourceImages\"\nendStream\nendChannel\nendAssociations\n" 
+applyMetadata -fmt "raw" -v "channel\nname externalContentTable\nstream\nname v1.0\nindexType numeric\nstructure externalContentTable\n0\n\"file1\" \"fileTextureName\" \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/WallpaperForties0002_S.jpg\" 2291123261 \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/WallpaperForties0002_S.jpg\" \"sourceImages\"\n1\n\"file2\" \"fileTextureName\" \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Horizontal_Wood_UVSnap.png\" 3291139463 \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Horizontal_Wood_UVSnap.png\" \"sourceImages\"\n2\n\"file3\" \"fileTextureName\" \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Wooden_Bar_vertical_UVSnap.png\" 691258922 \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Wooden_Bar_vertical_UVSnap.png\" \"sourceImages\"\n3\n\"file4\" \"fileTextureName\" \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Cement_square_UVSnap.png\" 3763430267 \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Cement_square_UVSnap.png\" \"sourceImages\"\n4\n\"file5\" \"fileTextureName\" \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Wooden_Bar_UVSnap.png\" 759722290 \"/Users/marcelo_martinez/Documents/maya/projects/Tell Tale Heart Game/sourceimages/Wooden_Bar_UVSnap.png\" \"sourceImages\"\n5\n\"file6\" \"fileTextureName\" \"/Users/marcelo_martinez/tell-tale-hearts/TellTaleHearts/Assets/Textures/Wainscotting_Painting.png\" 3161641262 \"/Users/marcelo_martinez/tell-tale-hearts/TellTaleHearts/Assets/Textures/Wainscotting_Painting.png\" \"sourceImages\"\nendStream\nendChannel\nendAssociations\n" 
 		-scn;
 // End of House Layout_polished3.ma
