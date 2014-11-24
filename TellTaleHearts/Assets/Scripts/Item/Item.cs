@@ -3,6 +3,7 @@ using System.Collections;
 
 public abstract class Item : MonoBehaviour {
 
+	public bool _canInteract = true;
 	public string _description;
 	public Vector3 _defaultFacing = Vector3.zero;
 	public Vector3 _frontFacing;

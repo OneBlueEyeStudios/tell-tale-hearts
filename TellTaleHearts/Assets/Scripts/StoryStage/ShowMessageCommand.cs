@@ -7,11 +7,15 @@ using Fungus;
 public class ShowMessageCommand : Command {
 
 	public string _message;
+	public int _time;
 
 	public override void OnEnter()
 	{
 		//UnityEngine.Debug.LogWarning (_message);
+		if(_time == 0)
 		DialogueHandler._instance.showSimpleDialog (_message);
+		else
+			DialogueHandler._instance.showSimpleDialog (_message,_time);
 		Continue ();
 	}
 

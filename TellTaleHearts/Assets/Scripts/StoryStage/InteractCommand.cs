@@ -11,7 +11,7 @@ public class InteractCommand : Command {
 
 	public override void OnEnter ()
 	{
-		
+		Debug.LogError ("interact with: " + _interactable.name);
 		_interactable.interact ();
 		Continue ();
 	}

@@ -67,6 +67,11 @@ public class FrontDoor : Interactable {
 		else
 			close ();
 	}
+
+	void reloadInteract()
+	{
+		_canInteract = true;
+	}
 	
 	void open ()
 	{

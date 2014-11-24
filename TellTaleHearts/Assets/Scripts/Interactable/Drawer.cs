@@ -12,6 +12,7 @@ public class Drawer : Interactable {
 	void Start () {
 		_animator = GetComponent<Animator> ();
 
+		setContainedItemEnabled (false);
 		
 	}
 	
@@ -32,9 +33,21 @@ public class Drawer : Interactable {
 		else
 			close ();
 	}
-	
+
+	void setContainedItemEnabled(bool enabled)
+	{
+		Item[] allInnerItem = GetComponentsInChildren<Item> ();
+		foreach (Item item in allInnerItem) 
+		{
+			item._canInteract = enabled;
+		}
+
+		}
+
 	void open ()
 	{
+		setContainedItemEnabled (true);
+
 		Debug.LogWarning ("Open Drawer");
 
 		_animator.SetTrigger ("Open");
@@ -46,6 +59,9 @@ public class Drawer : Interactable {
 	
 	void close ()
 	{
+		setContainedItemEnabled (false);
+
+
 		Debug.LogWarning ("Close Drawer");
 
 		_animator.SetTrigger ("Close");

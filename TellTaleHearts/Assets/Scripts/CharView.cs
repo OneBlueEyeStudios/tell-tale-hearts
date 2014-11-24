@@ -132,7 +132,7 @@ public class CharView : MonoBehaviour
 
 								Item item = hit.transform.GetComponent<Item> ();
 								Interactable interactable = hit.transform.GetComponent<Interactable> ();
-								if ((interactable != null && interactable._interactEnabled) || item != null) {
+								if ((interactable != null && interactable._interactEnabled) || (item != null && item._canInteract)) {
 
 										_currentlyCentered = hit.transform.gameObject;
 										lightUpObject (_currentlyCentered);

@@ -140,8 +140,10 @@ public class CylinderWrap : MonoBehaviour
 
 		public void spin ()
 		{
-				iTween.RotateBy (gameObject, iTween.Hash ("amount", new Vector3 (1, 0, 0), "time", 0.5f, "easetype", "spring"));
-				iTween.RotateBy (_cylinderModel, iTween.Hash ("amount", new Vector3 (0, 1, 0), "time", 0.5f, "easetype", "spring"));
+			centerOnIndex (0);
+
+			//iTween.RotateBy (gameObject, iTween.Hash ("amount", new Vector3 (1, 0, 0), "time", 0.5f, "easetype", "spring"));
+			//iTween.RotateBy (_cylinderModel, iTween.Hash ("amount", new Vector3 (0, 1, 0), "time", 0.5f, "easetype", "spring"));
 		}
 
 		public void centerOnNext ()

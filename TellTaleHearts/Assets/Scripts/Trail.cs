@@ -49,11 +49,13 @@ public class Trail : MonoBehaviour
 						
 			transform.parent = CharView._instance.transform;
 
+			float time = _trail.time;
+			
+			_trail.time = -1f;
+
 						yield return new WaitForSeconds (1.5f);
 
-			float time = _trail.time;
 
-			_trail.time = -1f;
 			_trail.enabled = true;
 			_trail.time = time;
 			transform.parent = null;

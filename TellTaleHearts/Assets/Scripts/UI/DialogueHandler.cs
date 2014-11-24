@@ -172,11 +172,11 @@ public class DialogueHandler : MonoBehaviour {
 		}
 	}
 
-	public void showSimpleDialog(string text)
+	public void showSimpleDialog(string text,float time = 2)
 	{
 		NGUITools.SetActive (_simpleLine.gameObject, true);
 		_simpleLine.text = text;
-		Invoke ("disableSimpleLine", 2);
+		Invoke ("disableSimpleLine", time);
 	}
 
 	void disableSimpleLine()
@@ -222,8 +222,8 @@ public class DialogueHandler : MonoBehaviour {
 
 	 IEnumerator printPassage(string title,bool wait = false)//, float wait)
 	{
-		if(wait)
-			yield return new WaitForSeconds (1.5f);
+		//if(wait)
+		//	yield return new WaitForSeconds (1.5f);
 
 		_currentPassage = _currentDialogue.getPassage (title);
 
@@ -276,7 +276,7 @@ public class DialogueHandler : MonoBehaviour {
 
 		}
 		
-		_cylinderWrap.hasConfess = StageManager._instance.getSuspicionLevel () > 2;
+		_cylinderWrap.hasConfess = StageManager._instance.getSuspicionLevel () > _confessThreshold;
 		_cylinderWrap._currentPassage = _currentPassage;
 		_cylinderWrap.spin ();
 

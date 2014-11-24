@@ -94,7 +94,7 @@ public class TrackNavMeshAgentTo2 : MonoBehaviour {
 	IEnumerator setDestinationCoroutine (Transform node)
 	{
 		Walking = true;
-		while (!arrived(node.position)) {
+		while (!arrived(node.position,2.0f)) {
 
 						NavMeshPath path = new NavMeshPath ();
 						NavMesh.CalculatePath (transform.position, node.position, -1, path);
@@ -111,7 +111,7 @@ public class TrackNavMeshAgentTo2 : MonoBehaviour {
 //
 //						yield return null;
 
-						while (index < path.corners.Length) {
+						while (index < path.corners.Length  && !arrived(node.position,2.0f)) {
 								Vector3 pos = path.corners [index];
 								pos.y = transform.position.y;
 			

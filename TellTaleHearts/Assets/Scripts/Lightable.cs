@@ -77,7 +77,7 @@ public class Lightable : MonoBehaviour {
 
 		_lighted = true;
 			
-		Debug.LogWarning ("Light up!");
+//		Debug.LogWarning ("Light up!");
 		setAllShadersRim ();
 		
 	}
@@ -111,7 +111,7 @@ public class Lightable : MonoBehaviour {
 
 		_lighted = false;
 
-		Debug.LogWarning ("Unlight!");
+//		Debug.LogWarning ("Unlight!");
 		returnDefaultShaders ();
 	}
 

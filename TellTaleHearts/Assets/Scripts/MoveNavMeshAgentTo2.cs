@@ -85,7 +85,7 @@ public class MoveNavMeshAgentTo2 : MonoBehaviour {
 			
 			index++;
 
-			Debug.LogWarning("Index:" +index);
+//			Debug.LogWarning("Index:" +index);
 		}
 		
 		pathEnd ();
@@ -176,12 +176,12 @@ public class MoveNavMeshAgentTo2 : MonoBehaviour {
 
 			if(arrived(pos))
 			{
-				Debug.Log("reached index: "+index);
+//				Debug.Log("reached index: "+index);
 				index++;
 			}
 			else
 			{
-				Debug.Log("Not reached index: "+index);
+//				Debug.Log("Not reached index: "+index);
 			}
 
 			yield return null;
