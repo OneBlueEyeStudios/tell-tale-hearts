@@ -39,6 +39,7 @@
 {f86236ba-bd82-4baa-bbb7-8ee0c883cab7} event:/dialogue/massive dialogues/37
 {6005f5f6-a799-44f8-a01c-93db2add4181} event:/dialogue/massive dialogues/38
 {78c1c2c8-ab3a-4bbc-b3f2-cc7abf08eb0b} event:/dialogue/massive dialogues/39
+{f0f132db-ac28-4870-9e61-055a0d4d4424} event:/dialogue/massive dialogues/40
 {618bd0ed-f985-42c1-983f-06f5332fbe04} event:/dialogue/massive dialogues/41
 {9d9e3727-f08f-41ac-8808-3bb1e81d2133} event:/dialogue/massive dialogues/42
 {ab452393-8b6b-415c-8514-709d15f561e3} event:/dialogue/massive dialogues/48
