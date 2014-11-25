@@ -1011,7 +1011,11 @@
         </property>
     </object>
     <object class="MixerBusFader" id="{b87fbc58-5d00-4f04-9b63-2224e9752b7f}"/>
-    <object class="SpatialiserEffect" id="{ba473e56-8e4d-451f-878d-14118a51f41b}"/>
+    <object class="SpatialiserEffect" id="{ba473e56-8e4d-451f-878d-14118a51f41b}">
+        <property name="maximumDistance">
+            <value>3</value>
+        </property>
+    </object>
     <object class="MixerSend" id="{8691cce4-5fb0-4d46-9b30-5ba5c1874cd5}">
         <relationship name="return">
             <destination>{0d5e9d5a-4e02-4cb9-8d21-8f3aa831e51f}</destination>
