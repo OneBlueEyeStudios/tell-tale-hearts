@@ -32,21 +32,29 @@ public class FMODEvent
 
 public class SoundManager : MonoBehaviour {
 
+	public AudioClip _mainMenuSong;
+	public AudioSource _source;
+
+	public void stopMusic()
+	{
+		_source.Stop ();
+	}
+
 
 	public static SoundManager _instance;
 
-	GameObject _cop;
-
 	void Awake()
 	{
-
-
+		
 		DontDestroyOnLoad (this.gameObject);
-
 		_instance = this;
+
 		_rainEvents = new List<RainSoundSource> ();
 		_currentRainIntensity = 0;
 	}
+
+	
+	GameObject _cop;
 
 	public float _themeMusicWaitTime = 25;
 
@@ -69,6 +77,8 @@ public class SoundManager : MonoBehaviour {
 	{
 		_suspicionEvent = playSoundAtPosition ("event:/music/suspicion", Vector3.zero, true);
 		_realizationEvent = playSoundAtPosition ("event:/music/realization", Vector3.zero, true);
+
+		Invoke("playTaunt",15);
 	}
 
 	public AudioSource playDialogue(string tag, out float length, Transform pos)
@@ -181,8 +191,13 @@ public class SoundManager : MonoBehaviour {
 
 	public EventInstance playSoundAtPosition(string eventName, Vector3 position, bool register = false)
 	{
+		UnityEngine.Debug.LogWarning ("Play event: " + eventName);
+
 		EventInstance fmodEvent = FMOD_StudioSystem.instance.GetEvent (eventName);
 		ParameterInstance fmodParameter;
+
+		if (fmodEvent == null)
+						return null;
 
 		var attributes = FMOD.Studio.UnityUtil.to3DAttributes(position);
 	
@@ -347,6 +362,10 @@ public class SoundManager : MonoBehaviour {
 
 //		UnityEngine.Debug.LogWarning (state);
 
+		float suspicionLevel = StageManager._instance.getSuspicionLevel ();
+		suspicionLevel = Mathf.Min (4.5f, suspicionLevel);
+		playSoundAtPositionAndParameter("event:/dialogue/liar",transform,"level",suspicionLevel+0.5f);
+
 		switch (level) {
 		case 1:
 //			UnityEngine.Debug.LogError ("setDoubtLevel: " + level);
@@ -354,32 +373,62 @@ public class SoundManager : MonoBehaviour {
 			//_realizationEvent.start();
 			playSoundAtPositionAndParameter("event:/music/realization",transform,"level",3.5f);
 
+
 			//StartCoroutine (increaseSuspicionParameter ("level1"));
 			break;
 		case 2:
 			//_realizationEvent.setParameterValue("level",3.5f);
 			//StartCoroutine (increaseSuspicionParameter ("level2"));
 			playSoundAtPositionAndParameter("event:/music/realization",transform,"level",5.5f);
+
 			break;
 		case 3:
 			//_realizationEvent.setParameterValue("level",5.5f);
 			playSoundAtPositionAndParameter("event:/music/realization",transform,"level",7.5f);
+
 			//StartCoroutine (increaseSuspicionParameter ("level3"));
 			break;
 		case 4:
 			//_realizationEvent.setParameterValue("level",7.5f);
 			playSoundAtPositionAndParameter("event:/music/realization",transform,"level",7.5f);
+
 			//StartCoroutine (increaseSuspicionParameter ("level4"));
 			break;
 		case 5:
 			//_realizationEvent.setParameterValue("level",9.5f);
 			playSoundAtPositionAndParameter("event:/music/realization",transform,"level",9.5f);
+
 			//StartCoroutine (increaseSuspicionParameter ("level5"));
 			break;
 		default:
 			break;
 		}
 		
+	}
+
+	public void playTaunt()
+	{
+		if (!DialogueHandler._instance._isShowingDialog && !CharView._instance._isHoldingObject
+						&& !ItemAudio._isPlayingItemSound) {
+						UnityEngine.Debug.LogError ("DialogueHandler._instance._isShowingDialog:" + DialogueHandler._instance._isShowingDialog);
+						UnityEngine.Debug.LogError ("CharView._instance._isHoldingObject:" + CharView._instance._isHoldingObject);
+						UnityEngine.Debug.LogError ("ItemAudio._isPlayingItemSound:" + ItemAudio._isPlayingItemSound);
+
+						playSoundAtPosition ("event:/dialogue/taunting", transform);
+						Invoke ("playTaunt", 15);
+				} else {
+						Invoke ("playTaunt", 10);
+			UnityEngine.Debug.LogError("DialogueHandler._instance._isShowingDialog:"+DialogueHandler._instance._isShowingDialog);
+			UnityEngine.Debug.LogError("CharView._instance._isHoldingObject:"+CharView._instance._isHoldingObject);
+			UnityEngine.Debug.LogError("ItemAudio._isPlayingItemSound:"+ItemAudio._isPlayingItemSound);
+
+		}
+	}
+
+
+	public void playUnderArrestSuspicion()
+	{
+		StartCoroutine (increaseSuspicionParameter ("ending1",10,20));	
 	}
 
 	public void setSuspicionLevel(int level)
@@ -427,9 +476,9 @@ public class SoundManager : MonoBehaviour {
 
 	}
 
-	IEnumerator increaseSuspicionParameter (string parameter, int target = 10)
+	IEnumerator increaseSuspicionParameter (string parameter, int target = 10,float duration = 5)
 	{
-		float duration = 5;
+		//float duration = 5;
 		float elapsed = 0;
 
 		//int target = 10;
@@ -446,6 +495,8 @@ public class SoundManager : MonoBehaviour {
 
 		}
 	}
+
+
 
 	public void stopThemeMusic()
 	{

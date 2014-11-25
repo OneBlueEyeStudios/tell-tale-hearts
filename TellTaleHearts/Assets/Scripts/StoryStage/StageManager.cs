@@ -455,7 +455,8 @@ public class StageManager : MonoBehaviour {
 		if (_globalVars [Constants.SUSPICION] >= _suspicionThreshold) 
 		{
 			_arrestFungus.Execute ();
-			SoundManager._instance.increaseSuspicionParam("theme");
+
+			//SoundManager._instance.playUnderArrestSuspicion();
 		}
 				//else if (_globalVars [Constants.CURRENT_STAGE] >= 7)
 		else if (_globalVars [Constants.CURRENT_STAGE] >= _lastLevel)

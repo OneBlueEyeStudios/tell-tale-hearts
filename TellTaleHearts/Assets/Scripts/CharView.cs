@@ -6,7 +6,9 @@ public class CharView : MonoBehaviour
 		[Range(0.1f,10f)]
 		public float
 				_grabDistance;
-		[Range(0.1f,10f)]
+	float
+		_currentGrabDistance;
+	[Range(0.1f,10f)]
 		public float
 				_objectDistance;
 		public GameObject _currentlyCentered;
@@ -21,7 +23,8 @@ public class CharView : MonoBehaviour
 		public CharacterMotor2 _charMotor;
 		bool _hasGameBegun;
 		public GameObject _soundManagerPref;
-		bool _isHoldingObject;
+		[HideInInspector]
+		public bool _isHoldingObject;
 		bool _canDrop;
 		public HeadBob2 _headBob;
 		public static CharView _instance;
@@ -39,6 +42,8 @@ public class CharView : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
+		_currentGrabDistance = _objectDistance;
+
 				SoundManager._instance.gameStart ();
 				_hasGameBegun = false;
 				setMouseLookEnabled (false);
@@ -79,16 +84,21 @@ public class CharView : MonoBehaviour
 				_hasGameBegun = true;
 		}
 
+		void setHandSocketDistance()
+	{
+		_handSocket.transform.position = Camera.main.transform.position + Camera.main.transform.forward * _currentGrabDistance;
+
+	}
+
 		// Update is called once per frame
 		void Update ()
 		{
-
+				setHandSocketDistance ();
 
 				//if (_useShift)
 				//		setMouseLookEnabled (!Input.GetKey (KeyCode.LeftShift));
 
-				_handSocket.transform.position = Camera.main.transform.position + Camera.main.transform.forward * _objectDistance;
-
+				
 				if (Input.GetButtonDown ("Fire1") && !_hasGameBegun) {
 
 						startGame ();
@@ -116,7 +126,6 @@ public class CharView : MonoBehaviour
 						SoundManager._instance.playDismissalLine(type);
 
 
-					
 							
 
 				}
@@ -159,6 +168,8 @@ public class CharView : MonoBehaviour
 												Item item = _currentlyCentered.GetComponent<Item> ();
 												item.released ();
 
+
+												_currentGrabDistance = _objectDistance;
 												ItemAudio itemAudio = _currentlyCentered.GetComponent<ItemAudio> (); 
 												if (itemAudio != null) {
 														itemAudio.released ();
@@ -182,12 +193,25 @@ public class CharView : MonoBehaviour
 												
 										} else if (!_isHoldingObject && _currentlyCentered != null) {
 
+												
+
 												_lastObjectParent = _currentlyCentered.transform.parent;
 												_currentlyCentered.transform.parent = _handSocket;
 												Item item = _currentlyCentered.GetComponent<Item> ();
 												item.grabbed ();
 
-												ItemAudio itemAudio = _currentlyCentered.GetComponent<ItemAudio> (); 
+												if(item._overrideGrabDistance)
+						{
+							setHandSocketDistance ();
+							_currentGrabDistance = item._grabDistance;
+						}
+
+						else
+						{
+							_currentGrabDistance = _objectDistance;
+						}
+						
+						ItemAudio itemAudio = _currentlyCentered.GetComponent<ItemAudio> (); 
 												if (itemAudio != null) {
 														itemAudio.grabbed ();
 												}

@@ -22,9 +22,9 @@ This roommate of yours, how can he afford living in such a large house?  <cue:33
 
 
 :: Stage 6
-Where did you say your roommmate was? <cue:39,cop:good>
+Where did you say your roommmate was? <cue:39,cop:bad>
 
-[[As far as I know he is out at the pub| Stage 6B]]<var:doubt+=0>
+[[As far as I know he is out at the pub|Stage 6B]]<var:doubt+=0>
 [[Visiting his son|Stage 6C]]<var:doubt+=1>
 
 
@@ -105,15 +105,15 @@ Do you pay your rent on time? <cue:35,cop:good>
 
 
 
-::  Stage 6B
-Does he drink often? <cue:40,cop:good>
+:: Stage 6B
+Does he drink often? <cue:40,cop:bad>
 
 [[Pretty much everyday|Stage 6 END]]<var:doubt+=0>
 [[No, just enjoys the people at the pub|Stage 6 END]]<var:doubt+=1>
 
 
 :: Stage 6C
-Did he ever mention a niece? <cue:41,cop:good>
+Did he ever mention a niece? <cue:41,cop:bad>
 
 [[His son is his only family|Stage 6 END]] <var:doubt+=1>
 [[I believe she is coming to visit soon|Stage 6 END]] <var:doubt-=1>

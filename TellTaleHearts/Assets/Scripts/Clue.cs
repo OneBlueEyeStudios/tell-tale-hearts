@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum ClueType {OperaTicket, SonLetter}
+public enum ClueType {OperaTicket, SonLetter, ChequePension, NieceLetter}
 
 public class Clue : MonoBehaviour {
 

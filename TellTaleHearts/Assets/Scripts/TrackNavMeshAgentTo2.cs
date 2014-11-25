@@ -134,10 +134,10 @@ public class TrackNavMeshAgentTo2 : MonoBehaviour {
 		
 			
 								if (arrived (pos)) {
-										Debug.Log ("reached index: " + index);
+										//Debug.Log ("reached index: " + index);
 										index++;
 								} else {
-										Debug.Log ("Not reached index: " + index);
+										//Debug.Log ("Not reached index: " + index);
 								}
 			
 								yield return null;
@@ -170,12 +170,12 @@ public class TrackNavMeshAgentTo2 : MonoBehaviour {
 			
 			if(arrived(pos))
 			{
-				Debug.Log("reached index: "+_pathIndex);
+				//Debug.Log("reached index: "+_pathIndex);
 				_pathIndex++;
 			}
 			else
 			{
-				Debug.Log("Not reached index: "+_pathIndex);
+				//Debug.Log("Not reached index: "+_pathIndex);
 			}
 				
 

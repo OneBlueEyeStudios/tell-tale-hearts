@@ -917,7 +917,7 @@ Tiddler
 p287
 (dp288
 g21
-VWhere did you say your roommmate was? <cue:39,cop:good>\u000a\u000a[[As far as I know he is out at the pub| Stage 6B]]<var:doubt+=0>\u000a[[Visiting his son|Stage 6C]]<var:doubt+=1>
+VWhere did you say your roommmate was? <cue:39,cop:bad>\u000a\u000a[[As far as I know he is out at the pub|Stage 6B]]<var:doubt+=0>\u000a[[Visiting his son|Stage 6C]]<var:doubt+=1>
 p289
 sg23
 VStage 6
@@ -926,12 +926,12 @@ sg25
 g26
 ((I2014
 I11
-I15
-I10
-I52
-I22
-I5
-I319
+I24
+I14
+I46
+I45
+I0
+I328
 I0
 tp291
 (dp292
@@ -967,7 +967,7 @@ Tiddler
 p302
 (dp303
 g21
-VDid he ever mention a niece? <cue:41,cop:good>\u000a\u000a[[His son is his only family|Stage 6 END]] <var:doubt+=1>\u000a[[I believe she is coming to visit soon|Stage 6 END]] <var:doubt-=1>
+VDid he ever mention a niece? <cue:41,cop:bad>\u000a\u000a[[His son is his only family|Stage 6 END]] <var:doubt+=1>\u000a[[I believe she is coming to visit soon|Stage 6 END]] <var:doubt-=1>
 p304
 sg23
 VStage 6C
@@ -976,12 +976,12 @@ sg25
 g26
 ((I2014
 I11
-I15
-I10
-I52
-I40
-I5
-I319
+I24
+I14
+I46
+I54
+I0
+I328
 I0
 tp306
 (dp307
@@ -1017,21 +1017,21 @@ Tiddler
 p317
 (dp318
 g21
-VDoes he drink often? <cue:40,cop:good>\u000a\u000a[[Pretty much everyday|Stage 6 END]]<var:doubt+=0>\u000a[[No, just enjoys the people at the pub|Stage 6 END]]<var:doubt+=1>
+VDoes he drink often? <cue:40,cop:bad>\u000a\u000a[[Pretty much everyday|Stage 6 END]]<var:doubt+=0>\u000a[[No, just enjoys the people at the pub|Stage 6 END]]<var:doubt+=1>
 p319
 sg23
-V Stage 6B
+VStage 6B
 p320
 sg25
 g26
 ((I2014
 I11
-I15
-I10
-I52
-I32
-I5
-I319
+I24
+I14
+I46
+I51
+I0
+I328
 I0
 tp321
 (dp322
@@ -1056,7 +1056,7 @@ tp328
 Rp329
 sbsa(dp330
 g14
-I00
+I01
 sg15
 (lp331
 F2091.0
@@ -1106,7 +1106,7 @@ tp343
 Rp344
 sbsa(dp345
 g14
-I01
+I00
 sg15
 (lp346
 F2090.0

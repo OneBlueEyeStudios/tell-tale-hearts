@@ -6,6 +6,8 @@ using FMOD.Studio;
 //[RequireComponent(typeof(AudioSource))]
 public class ItemAudio : MonoBehaviour {
 
+	public static bool _isPlayingItemSound;
+		
 	AudioSource _source;
 	public AudioClip _clip;
 
@@ -29,7 +31,28 @@ public class ItemAudio : MonoBehaviour {
 			_ev.stop (STOP_MODE.IMMEDIATE);
 			_ev = SoundManager._instance.playSoundAtPosition (_asset, transform);
 		}
+
+		_isPlayingItemSound = true;
+
+		EventDescription desc;
+		_ev.getDescription (out desc);
+
+		int length;
+		desc.getLength (out length);
+			
+		float sec = length / 1000f;
+
+		UnityEngine.Debug.Log ("Length:" + sec);
+
+		Invoke ("reloadPlayingItem",sec);
+
 	}
+
+	public void reloadPlayingItem()
+	{
+		_isPlayingItemSound = false;
+	}
+
 
 	public void grabbed()
 	{
@@ -99,7 +122,7 @@ public class ItemAudio : MonoBehaviour {
 			//_ev.stop (STOP_MODE.ALLOWFADEOUT);
 
 
-				}
+		}
 
 //		Debug.LogWarning ("Released");
 //		if (_source != null) 

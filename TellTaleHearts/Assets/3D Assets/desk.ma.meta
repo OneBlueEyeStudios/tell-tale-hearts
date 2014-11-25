@@ -21,6 +21,8 @@ ModelImporter:
     100030: handle 1
     100032: handle 2
     100034: handle1
+    100036: handle2
+    100038: handle3
     400000: //RootNode
     400002: pCube25
     400004: pCube30
@@ -39,6 +41,8 @@ ModelImporter:
     400030: handle 1
     400032: handle 2
     400034: handle1
+    400036: handle2
+    400038: handle3
     2300000: pCube25
     2300002: pCube30
     2300004: pCube36
@@ -56,6 +60,8 @@ ModelImporter:
     2300028: handle 1
     2300030: handle 2
     2300032: handle1
+    2300034: handle2
+    2300036: handle3
     3300000: pCube25
     3300002: pCube30
     3300004: pCube36
@@ -73,6 +79,8 @@ ModelImporter:
     3300028: handle 1
     3300030: handle 2
     3300032: handle1
+    3300034: handle2
+    3300036: handle3
     4300000: pCube25
     4300002: pCube30
     4300004: pSphere3
@@ -90,6 +98,8 @@ ModelImporter:
     4300028: handle
     4300030: handle1
     4300032: desk3
+    4300034: handle2
+    4300036: handle3
     9500000: //RootNode
   materials:
     importMaterials: 1

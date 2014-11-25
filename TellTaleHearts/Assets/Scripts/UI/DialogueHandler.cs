@@ -38,6 +38,8 @@ public class Constants
 
 public class DialogueHandler : MonoBehaviour {
 
+
+
 	public event EventHandler dialogueEnded;
 
 
@@ -50,7 +52,7 @@ public class DialogueHandler : MonoBehaviour {
 
 
 
-		
+		_isShowingDialog = false;
 		
 		CharView._instance.setMouseLookEnabled (true);
 		CharView._instance.setCharacterMotorEnabled (true);
@@ -121,7 +123,10 @@ public class DialogueHandler : MonoBehaviour {
 
 	public int _confessThreshold;
 
-	bool _showingDialogue;
+	bool _showingOptions;
+
+	[HideInInspector]
+	public bool _isShowingDialog = false;
 
 	public Dictionary<string,int> _currentDialogueVars;
 
@@ -130,6 +135,8 @@ public class DialogueHandler : MonoBehaviour {
 	
 	public void startDialogue (string dialogueID, string startPassage = "Start")
 	{
+		_isShowingDialog = true;
+
 		CharView._instance.setMouseLookEnabled (false);
 		CharView._instance.setCharacterMotorEnabled (false);
 
@@ -206,18 +213,22 @@ public class DialogueHandler : MonoBehaviour {
 		NGUITools.SetActive (_optionsBox, false);
 
 		
-		_showingDialogue = false;
+		_showingOptions = false;
 
 		Invoke ("hideDialogueBox", 3);
 	}
 	void showOptions ()
 	{
-		if(StageManager._instance.getSuspicionLevel()>_confessThreshold)
-			SoundManager._instance.playSoundAtPositionAndParameter ("event:/dialogue/confess", CharView._instance.transform, "level",1.5f, true, true);
+		if (StageManager._instance.getSuspicionLevel () > _confessThreshold) {
+			float suspicionLevel = StageManager._instance.getSuspicionLevel ();
+			suspicionLevel = Mathf.Min (4.5f, suspicionLevel);
+			SoundManager._instance.playSoundAtPositionAndParameter("event:/dialogue/confess",transform,"level",suspicionLevel+0.5f,true,true);
+				}
+			//SoundManager._instance.playSoundAtPositionAndParameter ("event:/dialogue/confess", CharView._instance.transform, "level",1.5f, true, true);
 
 		NGUITools.SetActive (_optionsBox, true);
 
-		_showingDialogue = true;
+		_showingOptions = true;
 	}
 
 	 IEnumerator printPassage(string title,bool wait = false)//, float wait)
@@ -485,7 +496,7 @@ public class DialogueHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (_currentPassage != null && _showingDialogue) 
+		if (_currentPassage != null && _showingOptions) 
 		{
 
 			float scrollWheel = Input.GetAxis ("Mouse ScrollWheel");

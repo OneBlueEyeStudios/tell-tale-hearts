@@ -225,6 +225,7 @@ public class TweeProcessor : AssetPostprocessor
 
 												// If we didn't start a new passage, we're still in the previous one,
 												// so just append this line to the current passage's buffer.
+						if(!string.IsNullOrEmpty(lines[i]))
 												buffer.AppendLine (lines [i]); 
 										}
 								}
