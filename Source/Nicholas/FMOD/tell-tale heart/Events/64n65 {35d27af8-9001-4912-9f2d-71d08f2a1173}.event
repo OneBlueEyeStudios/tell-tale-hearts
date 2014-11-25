@@ -76,7 +76,7 @@
             <value>0</value>
         </property>
         <property name="length">
-            <value>5</value>
+            <value>15.3958944281525</value>
         </property>
         <relationship name="sounds">
             <destination>{ce0ec97b-1535-4c7a-aaa9-c940aa2d17e6}</destination>
