@@ -233,7 +233,7 @@
             <value>true</value>
         </property>
         <property name="volume">
-            <value>6</value>
+            <value>10</value>
         </property>
         <property name="polyphony">
             <value>15</value>
@@ -280,7 +280,7 @@
             <value>true</value>
         </property>
         <property name="volume">
-            <value>6</value>
+            <value>10</value>
         </property>
         <property name="polyphony">
             <value>3</value>

@@ -109,6 +109,9 @@
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{6f96fe55-adfa-47e4-a570-7cc3838aad0d}">
+        <property name="volume">
+            <value>10</value>
+        </property>
         <property name="name">
             <value>Master</value>
         </property>
@@ -567,7 +570,17 @@
             <destination>{e642152c-abeb-4378-ab3c-18372382647b}</destination>
         </relationship>
     </object>
-    <object class="MixerBusPanner" id="{55ef23d5-7c0b-4fe0-9fca-e7b777e58372}"/>
+    <object class="MixerBusPanner" id="{55ef23d5-7c0b-4fe0-9fca-e7b777e58372}">
+        <property name="stereoToSurroundPanMode">
+            <value>0</value>
+        </property>
+        <property name="overridingOutputFormat">
+            <value>2</value>
+        </property>
+        <property name="outputFormatOverridden">
+            <value>true</value>
+        </property>
+    </object>
     <object class="RandomizerModulator" id="{cd84a12f-d86e-4241-b9d9-0c371f2dab71}">
         <property name="nameOfPropertyBeingModulated">
             <value>pitch</value>
@@ -882,7 +895,17 @@
             <destination>{b00d939c-0b4d-4835-a7fb-d89d627b7e08}</destination>
         </relationship>
     </object>
-    <object class="MixerBusPanner" id="{0b678d9b-14d8-4859-9b14-936b1292f704}"/>
+    <object class="MixerBusPanner" id="{0b678d9b-14d8-4859-9b14-936b1292f704}">
+        <property name="stereoToSurroundPanMode">
+            <value>0</value>
+        </property>
+        <property name="overridingOutputFormat">
+            <value>2</value>
+        </property>
+        <property name="outputFormatOverridden">
+            <value>true</value>
+        </property>
+    </object>
     <object class="FadeCurve" id="{6eb2bba9-9871-4cd9-83be-2946285fc373}">
         <relationship name="startPoint">
             <destination>{f2348841-c355-43aa-bdce-2d8f4a7a7fdb}</destination>
@@ -976,9 +999,23 @@
             <destination>{6725014d-4992-4137-a8cb-c196af2a5640}</destination>
         </relationship>
     </object>
-    <object class="MixerBusPanner" id="{06dfd00c-3a67-4cde-b51e-9d1e9396eae1}"/>
+    <object class="MixerBusPanner" id="{06dfd00c-3a67-4cde-b51e-9d1e9396eae1}">
+        <property name="stereoToSurroundPanMode">
+            <value>0</value>
+        </property>
+        <property name="overridingOutputFormat">
+            <value>2</value>
+        </property>
+        <property name="outputFormatOverridden">
+            <value>true</value>
+        </property>
+    </object>
     <object class="MixerBusFader" id="{b87fbc58-5d00-4f04-9b63-2224e9752b7f}"/>
-    <object class="SpatialiserEffect" id="{ba473e56-8e4d-451f-878d-14118a51f41b}"/>
+    <object class="SpatialiserEffect" id="{ba473e56-8e4d-451f-878d-14118a51f41b}">
+        <property name="maximumDistance">
+            <value>3</value>
+        </property>
+    </object>
     <object class="MixerSend" id="{8691cce4-5fb0-4d46-9b30-5ba5c1874cd5}">
         <relationship name="return">
             <destination>{0d5e9d5a-4e02-4cb9-8d21-8f3aa831e51f}</destination>
