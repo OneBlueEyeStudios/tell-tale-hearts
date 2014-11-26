@@ -213,6 +213,7 @@ ModelImporter:
     100414: polySurface146
     100416: polySurface148
     100418: Wainscotting
+    100420: Bottom_large_Wainscotting
     400000: backdoor
     400002: bedroomdoor
     400004: bottom_small_wainscotting
@@ -423,6 +424,7 @@ ModelImporter:
     400414: polySurface146
     400416: polySurface148
     400418: Wainscotting
+    400420: Bottom_large_Wainscotting
     2300000: backdoor
     2300002: bottom_small_wainscotting
     2300004: ceiling_wbar13
@@ -607,6 +609,7 @@ ModelImporter:
     2300362: polySurface144
     2300364: polySurface146
     2300366: polySurface148
+    2300368: Bottom_large_Wainscotting
     3300000: backdoor
     3300002: bottom_small_wainscotting
     3300004: ceiling_wbar13
@@ -791,6 +794,7 @@ ModelImporter:
     3300362: polySurface144
     3300364: polySurface146
     3300366: polySurface148
+    3300368: Bottom_large_Wainscotting
     4300000: ceiling_wbar13
     4300002: ceiling_wbar14
     4300004: ceiling_wbar15
@@ -975,6 +979,7 @@ ModelImporter:
     4300362: polySurface148
     4300364: House_wall
     4300366: Large_Wainscotting
+    4300368: Bottom_large_Wainscotting
     9500000: //RootNode
   materials:
     importMaterials: 1

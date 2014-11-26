@@ -42,7 +42,7 @@ public class ItemAudio : MonoBehaviour {
 			
 		float sec = length / 1000f;
 
-		UnityEngine.Debug.Log ("Length:" + sec);
+//		UnityEngine.Debug.Log ("Length:" + sec);
 
 		Invoke ("reloadPlayingItem",sec);
 
@@ -53,6 +53,16 @@ public class ItemAudio : MonoBehaviour {
 		_isPlayingItemSound = false;
 	}
 
+	public void pocketed()
+	{
+		CancelInvoke("playCue");
+
+		if (_ev != null) {
+						_ev.stop (STOP_MODE.IMMEDIATE);
+						_ev.release ();
+
+				}
+	}
 
 	public void grabbed()
 	{

@@ -22,7 +22,7 @@ public class MainScreenAutoLoad : MonoBehaviour {
 		else
 		{
 			//Application.LoadLevel("NewMainScreen");
-			Application.LoadLevel("test_scene");
+			Application.LoadLevel("GameScene");
 		}
 	
 	}

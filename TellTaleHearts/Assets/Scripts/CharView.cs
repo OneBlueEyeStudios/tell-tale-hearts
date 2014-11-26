@@ -42,7 +42,8 @@ public class CharView : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
-		_currentGrabDistance = _objectDistance;
+
+				_currentGrabDistance = _objectDistance;
 
 				SoundManager._instance.gameStart ();
 				_hasGameBegun = false;
@@ -251,7 +252,8 @@ public class CharView : MonoBehaviour
 
 										ItemAudio itemAudio = _currentlyCentered.GetComponent<ItemAudio> (); 
 										if (itemAudio != null) {
-												itemAudio.released ();
+												//itemAudio.released ();
+											itemAudio.pocketed();
 										}
 					
 										//Destroy(_currentlyCentered.gameObject);

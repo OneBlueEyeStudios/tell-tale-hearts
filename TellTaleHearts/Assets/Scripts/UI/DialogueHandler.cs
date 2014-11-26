@@ -34,6 +34,12 @@ public class Constants
 	public static string GAME_START_TRIGGER =  "GameStart";
 	public static string DOOR_OPEN_TRIGGER = "DoorOpen";
 
+	public static string MASSIVE_DIALOG_SOUND = "event:/dialogue/massive dialogues/";
+	public static string CONFESS_SOUND = "event:/dialogue/confess";
+	public static string ENDING_PHRASES_SOUND = "event:/dialogue/ending phrases/";
+
+	//public static string MASSIVE_DIALOG_SOUND = "event:/dialogue/massive dialogues/";
+
 }
 
 public class DialogueHandler : MonoBehaviour {
@@ -59,7 +65,7 @@ public class DialogueHandler : MonoBehaviour {
 
 		evaluateDialogue ();
 
-		SoundManager._instance.stopSound("event:/dialogue/confess");
+		SoundManager._instance.stopSound(Constants.CONFESS_SOUND);
 
 		if (dialogueEnded!=null)
 				dialogueEnded (this,EventArgs.Empty);
@@ -86,7 +92,7 @@ public class DialogueHandler : MonoBehaviour {
 		string eventSuffix = cop == CopType.bad ? "badcop":"goodcop";
 		Transform source = cop == CopType.bad ? StageManager._instance._badCop.transform : StageManager._instance._goodCop.transform;
 
-		string eventName= "event:/dialogue/ending phrases/"+eventSuffix;
+		string eventName= Constants.ENDING_PHRASES_SOUND +eventSuffix;
 
 		UnityEngine.Debug.LogWarning("Cop is not empty:  "+eventName);
 
@@ -222,7 +228,7 @@ public class DialogueHandler : MonoBehaviour {
 		if (StageManager._instance.getSuspicionLevel () > _confessThreshold) {
 			float suspicionLevel = StageManager._instance.getSuspicionLevel ();
 			suspicionLevel = Mathf.Min (4.5f, suspicionLevel);
-			SoundManager._instance.playSoundAtPositionAndParameter("event:/dialogue/confess",transform,"level",suspicionLevel+0.5f,true,true);
+			SoundManager._instance.playSoundAtPositionAndParameter(Constants.CONFESS_SOUND,transform,"level",suspicionLevel+0.5f,true,true);
 				}
 			//SoundManager._instance.playSoundAtPositionAndParameter ("event:/dialogue/confess", CharView._instance.transform, "level",1.5f, true, true);
 
@@ -525,6 +531,14 @@ public class DialogueHandler : MonoBehaviour {
 				{
 					UnityEngine.Debug.LogWarning("CONFESS");
 					StageManager._instance.confessChosen();
+					SoundManager._instance.stopSound(Constants.CONFESS_SOUND);
+					SoundManager._instance.playConfessSuspicion();
+					hideDialogueBox();
+					if (_currentLineFMOD != null) 
+					{
+						_currentLineFMOD.stop(STOP_MODE.IMMEDIATE);
+					}
+
 				}
 				else
 					evaluateTransition(_currentPassage.transitions[index]);

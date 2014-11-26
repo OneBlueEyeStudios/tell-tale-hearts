@@ -48,8 +48,8 @@ public class SoundManager : MonoBehaviour {
 		
 		DontDestroyOnLoad (this.gameObject);
 		_instance = this;
+		
 
-		_rainEvents = new List<RainSoundSource> ();
 		_currentRainIntensity = 0;
 	}
 
@@ -75,8 +75,22 @@ public class SoundManager : MonoBehaviour {
 
 	public void gameStart()
 	{
+		_soundEvents = new List<FMODEvent> ();
+		_rainEvents = new List<RainSoundSource> ();
+
+		if (_suspicionEvent != null) {
+						_suspicionEvent.stop (STOP_MODE.IMMEDIATE);
+			_suspicionEvent.release ();
+				}
+		if (_realizationEvent != null) {
+			_realizationEvent.stop (STOP_MODE.IMMEDIATE);
+			_realizationEvent.release ();
+		}
+
 		_suspicionEvent = playSoundAtPosition ("event:/music/suspicion", Vector3.zero, true);
 		_realizationEvent = playSoundAtPosition ("event:/music/realization", Vector3.zero, true);
+
+		CancelInvoke ("playTaunt");
 
 		Invoke("playTaunt",15);
 	}
@@ -107,21 +121,11 @@ public class SoundManager : MonoBehaviour {
 
 		return source;
 
-		/*
-		AudioClip clip = getClipFor (tag);
-
-		if (clip == null)
-						return 0;
-
-		AudioSource.PlayClipAtPoint (clip,_cop.transform.position);
-
-		return clip.length;
-		*/
 	}
 
 	public EventInstance playDialogueFMOD(string tag, out float length, Transform pos)
 	{
-		EventInstance ev = playSoundAtPosition("event:/dialogue/massive dialogues/" + tag,pos.position);
+		EventInstance ev = playSoundAtPosition(Constants.MASSIVE_DIALOG_SOUND + tag,pos.position);
 
 		EventDescription desc;
 		ev.getDescription (out desc);
@@ -191,13 +195,13 @@ public class SoundManager : MonoBehaviour {
 
 	public EventInstance playSoundAtPosition(string eventName, Vector3 position, bool register = false)
 	{
-		UnityEngine.Debug.LogWarning ("Play event: " + eventName);
+//		UnityEngine.Debug.LogWarning ("Play event: " + eventName);
 
 		EventInstance fmodEvent = FMOD_StudioSystem.instance.GetEvent (eventName);
 		ParameterInstance fmodParameter;
 
 		if (fmodEvent == null)
-						return null;
+			return null;
 
 		var attributes = FMOD.Studio.UnityUtil.to3DAttributes(position);
 	
@@ -331,7 +335,6 @@ public class SoundManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-		_soundEvents = new List<FMODEvent> ();
 
 		Screen.showCursor = false;
 		Screen.lockCursor = true;
@@ -410,21 +413,25 @@ public class SoundManager : MonoBehaviour {
 	{
 		if (!DialogueHandler._instance._isShowingDialog && !CharView._instance._isHoldingObject
 						&& !ItemAudio._isPlayingItemSound) {
-						UnityEngine.Debug.LogError ("DialogueHandler._instance._isShowingDialog:" + DialogueHandler._instance._isShowingDialog);
-						UnityEngine.Debug.LogError ("CharView._instance._isHoldingObject:" + CharView._instance._isHoldingObject);
-						UnityEngine.Debug.LogError ("ItemAudio._isPlayingItemSound:" + ItemAudio._isPlayingItemSound);
+//						UnityEngine.Debug.LogError ("DialogueHandler._instance._isShowingDialog:" + DialogueHandler._instance._isShowingDialog);
+//						UnityEngine.Debug.LogError ("CharView._instance._isHoldingObject:" + CharView._instance._isHoldingObject);
+//						UnityEngine.Debug.LogError ("ItemAudio._isPlayingItemSound:" + ItemAudio._isPlayingItemSound);
 
 						playSoundAtPosition ("event:/dialogue/taunting", transform);
 						Invoke ("playTaunt", 15);
 				} else {
 						Invoke ("playTaunt", 10);
-			UnityEngine.Debug.LogError("DialogueHandler._instance._isShowingDialog:"+DialogueHandler._instance._isShowingDialog);
-			UnityEngine.Debug.LogError("CharView._instance._isHoldingObject:"+CharView._instance._isHoldingObject);
-			UnityEngine.Debug.LogError("ItemAudio._isPlayingItemSound:"+ItemAudio._isPlayingItemSound);
+//			UnityEngine.Debug.LogError("DialogueHandler._instance._isShowingDialog:"+DialogueHandler._instance._isShowingDialog);
+//			UnityEngine.Debug.LogError("CharView._instance._isHoldingObject:"+CharView._instance._isHoldingObject);
+//			UnityEngine.Debug.LogError("ItemAudio._isPlayingItemSound:"+ItemAudio._isPlayingItemSound);
 
 		}
 	}
 
+	public void playConfessSuspicion()
+	{
+		StartCoroutine (increaseSuspicionParameter ("ending2",10,8));	
+	}
 
 	public void playUnderArrestSuspicion()
 	{
@@ -624,7 +631,7 @@ public class SoundManager : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Escape))
 		{
 			if(Application.loadedLevelName == "NewSplashScreen")
-				Application.LoadLevel("test_scene");
+				Application.LoadLevel("GameScene");
 			else
 				Application.Quit();
 		}
@@ -654,6 +661,8 @@ public class SoundManager : MonoBehaviour {
 
 	void trackAudio ()
 	{
+		if (_soundEvents == null)
+						return;
 		foreach (FMODEvent ev in _soundEvents) 
 		{
 			if(ev._track)
