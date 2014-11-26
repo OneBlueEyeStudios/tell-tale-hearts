@@ -93,6 +93,6 @@
 {94b38b4d-20c1-4a3e-8b1d-36732796071c} bus:/music
 {b2118a87-9a6e-46ce-8bf9-9adeafd4b384} bus:/music2
 {2b3231f5-74e3-4cdd-8f3b-069a2943af46} bus:/taunting
-{8ca2cc90-b40b-43b7-a3b5-3d8bdae0655d} bank:/test
 {fb2d5a7b-e9c4-466b-b9f8-2afdea8e6907} bank:/test2
 {e86e1ea5-25f4-4378-a80b-8573d5986a30} bank:/Master Bank
+{8ca2cc90-b40b-43b7-a3b5-3d8bdae0655d} bank:/test
