@@ -261,6 +261,9 @@
         <property name="distanceRolloffType">
             <value>2</value>
         </property>
+        <property name="maximumDistance">
+            <value>6</value>
+        </property>
         <property name="extentMode">
             <value>1</value>
         </property>
