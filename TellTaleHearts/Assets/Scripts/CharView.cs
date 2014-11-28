@@ -20,8 +20,12 @@ public class CharView : MonoBehaviour
 		public SmoothRandomPos _cameraSmooth;
 		public GameObject _eyelids;
 		public GameObject _themeSplash;
+		public GameObject _instructions;
+
 		public CharacterMotor2 _charMotor;
+
 		bool _hasGameBegun;
+		bool _hasShowedInstructions;
 		public GameObject _soundManagerPref;
 		[HideInInspector]
 		public bool _isHoldingObject;
@@ -67,14 +71,27 @@ public class CharView : MonoBehaviour
 						lightable.unlight ();
 		}
 
+	void showInstructions()
+	{
+		//iTween.FadeTo (_themeSplash, 0, 1);
+		Destroy (_themeSplash.gameObject);
+		_instructions.gameObject.SetActive (true);
+
+		//iTween.FadeTo (_instructions, 1, 1);
+
+		_hasShowedInstructions = true;
+	}
+
 		void startGame ()
 		{
 				//_cameraSmooth.returnToOriginalPos ();
-		
+				Destroy (_instructions.gameObject);
 				Destroy (_cameraSmooth);
 				Destroy (_eyelids.gameObject);
-				Destroy (_themeSplash.gameObject);
+				
 
+		//iTween.FadeTo (_instructions, 1, 1);
+		//Destroy (_instructions.gameObject,1);
 				StageManager._instance.OnEventTrigger (Constants.GAME_START_TRIGGER);
 		
 				setMouseLookEnabled (true);
@@ -102,7 +119,14 @@ public class CharView : MonoBehaviour
 				
 				if (Input.GetButtonDown ("Fire1") && !_hasGameBegun) {
 
-						startGame ();
+					if(!_hasShowedInstructions)
+					{
+						showInstructions();
+					}
+					else
+					{
+								startGame ();
+					}
 				}
 
 	

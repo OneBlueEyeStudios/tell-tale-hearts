@@ -550,19 +550,19 @@ public class StageManager : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetKeyDown (KeyCode.L)) 
-		{
-			Screen.showCursor = false;
-			Screen.lockCursor = true;
-		}
-		if (Input.GetKeyDown (KeyCode.P)) 
-		{
-			_globalVars[Constants.SUSPICION] -=1;
-		}
-		if (Input.GetKeyDown (KeyCode.O)) 
-		{
-			_globalVars[Constants.SUSPICION] +=1;
-		}
+//		if (Input.GetKeyDown (KeyCode.L)) 
+//		{
+//			Screen.showCursor = false;
+//			Screen.lockCursor = true;
+//		}
+//		if (Input.GetKeyDown (KeyCode.P)) 
+//		{
+//			_globalVars[Constants.SUSPICION] -=1;
+//		}
+//		if (Input.GetKeyDown (KeyCode.O)) 
+//		{
+//			_globalVars[Constants.SUSPICION] +=1;
+//		}
 
 		ImageEffectsHandler handler = (ImageEffectsHandler)GetComponent ("ImageEffectsHandler");
 		handler.UpdateSuspicion (_globalVars [Constants.SUSPICION]);

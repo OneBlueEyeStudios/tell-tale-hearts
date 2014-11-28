@@ -71,10 +71,32 @@ public class SoundManager : MonoBehaviour {
 
 	public EventInstance _realizationEvent;
 	int _currentDoubt = 0;
+
+	void stopHeartbeats ()
+	{
+
+		foreach (FMODEvent ev in _soundEvents) 
+		{
+			if(ev._eventName == "event:/human/heartbeat")
+			{
+				ev._event.stop(STOP_MODE.IMMEDIATE);
+				ev._event.release();
+			}
+		}
+
+	}
+
 	//public EventInstance _musicEvent;
+
 
 	public void gameStart()
 	{
+//		if (_soundEvents != null) 
+//		{
+//			stopHeartbeats();
+//
+//		}
+
 		_soundEvents = new List<FMODEvent> ();
 		_rainEvents = new List<RainSoundSource> ();
 
@@ -430,13 +452,26 @@ public class SoundManager : MonoBehaviour {
 
 	public void playConfessSuspicion()
 	{
+		CancelInvoke ("playTaunt");
 		StartCoroutine (increaseSuspicionParameter ("ending2",10,8));	
 	}
 
 	public void playUnderArrestSuspicion()
 	{
+		CancelInvoke ("playTaunt");
 		StartCoroutine (increaseSuspicionParameter ("ending1",10,20));	
 	}
+	public void playEscapeSuspicion()
+	{
+		CancelInvoke ("playTaunt");
+		StartCoroutine (increaseSuspicionParameter ("level1",0,5));	
+		StartCoroutine (increaseSuspicionParameter ("level2",0,5));	
+		StartCoroutine (increaseSuspicionParameter ("level3",0,5));	
+		StartCoroutine (increaseSuspicionParameter ("level4",0,5));	
+		StartCoroutine (increaseSuspicionParameter ("level5",0,5));	
+
+	}
+
 
 	public void setSuspicionLevel(int level)
 	{

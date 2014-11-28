@@ -300,12 +300,23 @@ public class DialogueHandler : MonoBehaviour {
 
 		if (_currentPassage.transitions == null || _currentPassage.transitions.Count == 0) 
 		{
-		//	Debug.LogError("Here");
+//			if(!string.IsNullOrEmpty(_currentPassage.body))
+//			{
 
 			OnDialogueEnded();
 			hideOptions();
-			//stopDialogue();
-			//			yield break;
+//			}
+//			else
+//			{
+//				EventDescription desc;
+//				_currentLineFMOD.getDescription(out desc);
+//
+//				int l;
+//				desc.getLength(out l);
+//
+//				Invoke ("endDialogue",l/1000);
+//			}
+//
 			
 		}
 

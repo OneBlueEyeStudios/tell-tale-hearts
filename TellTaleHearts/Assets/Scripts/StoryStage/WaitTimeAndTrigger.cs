@@ -10,6 +10,7 @@ public class WaitTimeAndTrigger : Command {
 
 	public string _triggerName;
 	public float _timeWait;
+	public float _maxTimeWait;
 
 	float elapsed = 0;
 	bool started = false;
@@ -45,7 +46,7 @@ public class WaitTimeAndTrigger : Command {
 			elapsed += Time.deltaTime;
 
 
-		if (started && triggerReached && elapsed >= _timeWait) {
+		if ((started && triggerReached && elapsed >= _timeWait) || elapsed >= _maxTimeWait) {
 			triggerReached = false;
 						started = false;
 						elapsed = 0;
